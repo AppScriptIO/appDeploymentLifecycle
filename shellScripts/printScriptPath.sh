@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash 
 # path and name of file:
 # Accepts 3 parameters: $1 is path to shared folder in VM, $2 is path to shellScripts folder, $3 the name of the file to print.
 # Usage: 
