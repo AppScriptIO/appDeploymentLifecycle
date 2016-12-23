@@ -33,11 +33,12 @@ Vagrant.configure("2") do |config|
     config.vm.synced_folder "./", "#{configVariables['VMConfSynchedFolderOnVM']}"
   end
 
-  # Run shell script
-  config.vm.define :dev do |dev|
+  # Continues Deployment VMachine.
+  config.vm.define :continuesDeployment do |continuesDeployment|
+    # Run shell script
     # dev.vm.provision :shell, path: "./shellScripts/ansibleInstallation.sh"
     # Execute a shell with passing arguments.
-    dev.vm.provision "shell" do |s|
+    continuesDeployment.vm.provision "shell" do |s|
       # Run shell script - Ansible installation.
       s.path = "#{configVariables['shellScriptsFolder']}/ansibleInstallation.sh"
       # Pass as arguments the path to the VM's configuration files inside the VM. So that each subsequent shell script can know the path to be called from.
@@ -46,11 +47,16 @@ Vagrant.configure("2") do |config|
     end
     
     # Execute inline shell command - ansible playbook.
-    dev.vm.provision :shell,
+    continuesDeployment.vm.provision :shell,
       inline: "PYTHONUNBUFFERED=1 ansible-playbook \
         #{configVariables['VMConfSynchedFolderOnVM']}/ansible/dev.yml -c local"
   end
-    
+
+  # Production machine
+  config.vm.define :production do |production|
+    # Run shell script.  
+  end
+
   # Vagrant caching plugin to allow faster build up from cache, rather than downloading each time (speed up creation of VMs, caches all packages used).
   if Vagrant.has_plugin?("vagrant-cachier")
     config.cache.scope = :box
