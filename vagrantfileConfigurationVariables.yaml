@@ -2,7 +2,7 @@
 # choose which set of variables to use.
 variableSetToBeUsed: 'default'
 default:
-    vagrantImage: 'ubuntu/trusty64'
+    vagrantImage: 'williamyeh/ubuntu-trusty64-docker'
     # Local project folder path to be copied to VM.
     projectSynchedFolderOnLocal: './../'
     projectSynchedFolderOnVM: '/project'
