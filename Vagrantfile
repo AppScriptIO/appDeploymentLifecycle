@@ -15,6 +15,11 @@ Vagrant.configure("2") do |config|
   # Connect to outside internet, in order to detect docker and docker-compose and install them.
   config.vm.network "public_network"
 
+  # Memory settings:
+  config.vm.provider "virtualbox" do |v|
+    v.memory = 2048
+  end
+
   # forward multiple ports (forward range of ports)
   for i in 80..89
             config.vm.network :forwarded_port, guest: i, host: i

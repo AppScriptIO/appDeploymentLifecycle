@@ -18,8 +18,6 @@ Vagrant.configure('2') do |config|
     end
     
     # Execute inline shell command - ansible playbook.
-    cd.vm.provision :shell,
-      inline: "PYTHONUNBUFFERED=1 ansible-playbook \
-        #{$configVariables['VMConfSynchedFolderOnVM']}/ansible/continuesDevelopment.yml -c local"
+    cd.vm.provision :shell, inline: "PYTHONUNBUFFERED=1 ansible-playbook #{$configVariables['VMConfSynchedFolderOnVM']}/ansible/continuesDevelopment.yml -c local"
   end
 end
