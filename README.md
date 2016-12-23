@@ -40,3 +40,8 @@ Ansible - Manages VMs and installs required packages, e.g. docker, docker-compos
 Vagrantfile - specifies the base VM machine image from vagrant respiratory, and shell commands to run after VM is running, e.g. *.sh files (like ansible installation), runs anisble playbook to install dependencies like docker, docker-compose.
 
 vagrantfileConfigurationVariables.yaml - Gets Imported into Vagrantfile as variables. Allows for applying different parameters when needed.
+
+_______
+
+Extra packages used: 
+  • vagrant plugin install vagrant-cachier
