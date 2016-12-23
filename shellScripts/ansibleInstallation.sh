@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "SZN $(source $1/$2/printScriptPath.sh $1 $2 ${0##*/}) - Installing Ansible..."
+echo "$(source $1/$2/printScriptPath.sh $1 $2 $BASH_SOURCE) - Installing Ansible..."
 # include shell scripts with arguments in case it needs to include sub scripts.
 source $1/$2/commonCommands.sh $1 $2
 
