@@ -1,12 +1,16 @@
 #!/bin/bash
 # path and name of file:
 # Accepts 3 parameters: $1 is path to shared folder in VM, $2 is path to shellScripts folder, $3 the name of the file to print.
-# Usage: source $1/$2/printScriptPath.sh $1 $2 ${0##*/}
-# http://stackoverflow.com/questions/192319/how-do-i-know-the-script-file-name-in-a-bash-script
-message="SZN (Executing: %s)" "$1/$2/$3"
+# Usage: 
+#   printf '%s - Description of process.' "$(source $1/$2/printScriptPath.sh $1 $2 $BASH_SOURCE)"
+# Top level script invoked by Vagrant will output wrong filename, as it is copied and applied directly.
+
+message="SZN - Executing: $1/$2/$3"
 printf '\e[1;47m%-6s\e[m' "$message"
+
 # ______________________________________
 # Comments possible commands: 
+# http://stackoverflow.com/questions/192319/how-do-i-know-the-script-file-name-in-a-bash-script
 # Colors - http://stackoverflow.com/questions/5412761/using-colors-with-printf
 
 #echo "SZN - Executed file: ${0%/*}/${0##*/}"
