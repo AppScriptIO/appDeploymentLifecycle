@@ -1,17 +1,7 @@
-
-# Ruby code that includes the variables configuration file.
-require 'yaml'
-current_dir    = File.dirname(File.expand_path(__FILE__))
-# import file variables.
-allFileVariables = YAML.load_file("#{current_dir}/vagrantfileConfigurationVariables.yaml")
-# get the variables that are going to be used only.
-configVariables = allFileVariables[allFileVariables['variableSetToBeUsed']]
-
-
 Vagrant.configure("2") do |config|
 
   # Vagrant image to build the VM from.
-  config.vm.box = "#{configVariables['vagrantImage']}"
+  config.vm.box = "williamyeh/ubuntu-trusty64-docker"
 
   # Connect to outside internet, in order to detect docker and docker-compose and install them.
   config.vm.network "public_network"
@@ -25,11 +15,11 @@ Vagrant.configure("2") do |config|
   end
 
   if (/cygwin|mswin|mingw|bccwin|wince|emx/ =~ RUBY_PLATFORM) != nil
-    config.vm.synced_folder "#{configVariables['projectSynchedFolderOnLocal']}", "/#{configVariables['projectSynchedFolderOnVM']}", mount_options: ["dmode=700,fmode=600"]
-    config.vm.synced_folder "./", "#{configVariables['VMConfSynchedFolderOnVM']}", mount_options: ["dmode=700,fmode=600"]
+    config.vm.synced_folder "./../", "/project", mount_options: ["dmode=700,fmode=600"]
+    config.vm.synced_folder "./", "/vagrant", mount_options: ["dmode=700,fmode=600"]
   else
-    config.vm.synced_folder "#{configVariables['projectSynchedFolderOnLocal']}", "/#{configVariables['projectSynchedFolderOnVM']}"
-    config.vm.synced_folder "./", "#{configVariables['VMConfSynchedFolderOnVM']}"
+    config.vm.synced_folder "./../", "/project"
+    config.vm.synced_folder "./", "/vagrant"
   end
   
 end
