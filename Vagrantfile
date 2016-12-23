@@ -49,6 +49,11 @@ Vagrant.configure("2") do |config|
     dev.vm.provision :shell,
       inline: "PYTHONUNBUFFERED=1 ansible-playbook \
         #{configVariables['VMConfSynchedFolderOnVM']}/ansible/dev.yml -c local"
-    end
-  
+  end
+    
+  # Vagrant caching plugin to allow faster build up from cache, rather than downloading each time (speed up creation of VMs, caches all packages used).
+  if Vagrant.has_plugin?("vagrant-cachier")
+    config.cache.scope = :box
+  end
+
 end
