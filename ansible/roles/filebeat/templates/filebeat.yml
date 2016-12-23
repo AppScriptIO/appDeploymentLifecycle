@@ -1,0 +1,9 @@
+filebeat:
+  prospectors:
+    -
+      paths:
+        - "/var/log/**/*.log"
+
+output:
+  logstash:
+      hosts: ["{{ elk_ip }}:5044"]

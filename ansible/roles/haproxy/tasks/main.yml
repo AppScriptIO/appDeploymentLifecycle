@@ -1,0 +1,24 @@
+- name: Directories are present
+  file:
+    dest: "{{ item }}"
+    state: directory
+    owner: vagrant
+  with_items: "{{ directories }}"
+  tags: [haproxy]
+
+- name: Files are present
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  with_items: "{{ files }}"
+  register: result
+  tags: [haproxy]
+
+- name: Container is running
+  docker:
+    image: million12/haproxy
+    name: haproxy
+    state: running
+    ports: "{{ ports }}"
+    volumes: /data/haproxy/config/:/etc/haproxy/
+  tags: [haproxy]
