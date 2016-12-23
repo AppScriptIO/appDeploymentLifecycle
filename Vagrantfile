@@ -32,10 +32,21 @@ Vagrant.configure("2") do |config|
     config.vm.synced_folder "./", "#{configVariables['VMConfSynchedFolderOnVM']}"
   end
   config.vm.define :dev do |dev|
-    dev.vm.provision :shell, path: "./shellScripts/ansibleInstallation.sh"
+    # dev.vm.provision :shell, path: "./shellScripts/ansibleInstallation.sh"
+    # Execute a shell with passing arguments.
+    dev.vm.provision "shell" do |s|
+      # Run shell script - Ansible installation.
+      s.path = "#{configVariables['shellScriptsFolder']}/ansibleInstallation.sh"
+      # Pass as arguments the path to the VM's configuration files inside the VM. So that each subsequent shell script can know the path to be called from.
+      # $1 is VMConfSynchedFolderOnVM & $2 is shellScriptsFolder.
+      s.args = ["#{configVariables['VMConfSynchedFolderOnVM']}", "#{configVariables['shellScriptsFolder']}"]
+    end
+    
+    # Execute inline shell command - ansible playbook.
     dev.vm.provision :shell,
       inline: "PYTHONUNBUFFERED=1 ansible-playbook \
         #{configVariables['VMConfSynchedFolderOnVM']}/ansible/dev.yml -c local"
-  end
+    end
+  
   
 end
