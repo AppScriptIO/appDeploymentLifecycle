@@ -24,6 +24,7 @@ Vagrant.configure("2") do |config|
             config.vm.network :forwarded_port, guest: i, host: i
   end
 
+  # Shared Folders between Local and VM.
   if (/cygwin|mswin|mingw|bccwin|wince|emx/ =~ RUBY_PLATFORM) != nil
     config.vm.synced_folder "#{configVariables['projectSynchedFolderOnLocal']}", "/#{configVariables['projectSynchedFolderOnVM']}", mount_options: ["dmode=700,fmode=600"]
     config.vm.synced_folder "./", "#{configVariables['VMConfSynchedFolderOnVM']}", mount_options: ["dmode=700,fmode=600"]
@@ -31,6 +32,8 @@ Vagrant.configure("2") do |config|
     config.vm.synced_folder "#{configVariables['projectSynchedFolderOnLocal']}", "/#{configVariables['projectSynchedFolderOnVM']}"
     config.vm.synced_folder "./", "#{configVariables['VMConfSynchedFolderOnVM']}"
   end
+
+  # Run shell script
   config.vm.define :dev do |dev|
     # dev.vm.provision :shell, path: "./shellScripts/ansibleInstallation.sh"
     # Execute a shell with passing arguments.
@@ -47,6 +50,5 @@ Vagrant.configure("2") do |config|
       inline: "PYTHONUNBUFFERED=1 ansible-playbook \
         #{configVariables['VMConfSynchedFolderOnVM']}/ansible/dev.yml -c local"
     end
-  
   
 end
