@@ -32,7 +32,7 @@ Vagrant.configure("2") do |config|
     config.vm.synced_folder "./", "#{configVariables['VMConfSynchedFolderOnVM']}"
   end
   config.vm.define :dev do |dev|
-    dev.vm.provision :shell, path: "bootstrap.sh"
+    dev.vm.provision :shell, path: "./shellScripts/ansibleInstallation.sh"
     dev.vm.provision :shell,
       inline: "PYTHONUNBUFFERED=1 ansible-playbook \
         #{configVariables['VMConfSynchedFolderOnVM']}/ansible/dev.yml -c local"
