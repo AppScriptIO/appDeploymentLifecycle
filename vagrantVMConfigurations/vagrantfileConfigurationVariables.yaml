@@ -2,7 +2,7 @@
 # choose which set of variables to use.
 variableSetToBeUsed: 'default'
 default:
-    vagrantImage: 'ubuntu/trusty64'
+    vagrantDefaultImage: 'ubuntu/trusty64'
     # Shell scripts folder path - which will be used to call shell scripts included in each other.
     shellScriptsFolder: './shellScripts'
     # Local project folder path to be copied to VM.

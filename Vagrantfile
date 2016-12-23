@@ -3,15 +3,14 @@
 require 'yaml'
 current_dir    = File.dirname(File.expand_path(__FILE__))
 # import file variables.
-allFileVariables = YAML.load_file("#{current_dir}/vagrantfileConfigurationVariables.yaml")
-# get the variables that are going to be used only.
-configVariables = allFileVariables[allFileVariables['variableSetToBeUsed']]
-
+allFileVariables = YAML.load_file("#{current_dir}/vagrantVMConfigurations/vagrantfileConfigurationVariables.yaml")
+# Global variable - get the variables that are going to be used only.
+$configVariables = allFileVariables[allFileVariables['variableSetToBeUsed']]
 
 Vagrant.configure("2") do |config|
 
   # Vagrant image to build the VM from.
-  config.vm.box = "#{configVariables['vagrantImage']}"
+  config.vm.box = "#{$configVariables['vagrantDefaultImage']}"
 
   # Connect to outside internet, in order to detect docker and docker-compose and install them.
   config.vm.network "public_network"
@@ -26,35 +25,11 @@ Vagrant.configure("2") do |config|
 
   # Shared Folders between Local and VM.
   if (/cygwin|mswin|mingw|bccwin|wince|emx/ =~ RUBY_PLATFORM) != nil
-    config.vm.synced_folder "#{configVariables['projectSynchedFolderOnLocal']}", "/#{configVariables['projectSynchedFolderOnVM']}", mount_options: ["dmode=700,fmode=600"]
-    config.vm.synced_folder "./", "#{configVariables['VMConfSynchedFolderOnVM']}", mount_options: ["dmode=700,fmode=600"]
+    config.vm.synced_folder "#{$configVariables['projectSynchedFolderOnLocal']}", "/#{$configVariables['projectSynchedFolderOnVM']}", mount_options: ["dmode=700,fmode=600"]
+    config.vm.synced_folder "./", "#{$configVariables['VMConfSynchedFolderOnVM']}", mount_options: ["dmode=700,fmode=600"]
   else
-    config.vm.synced_folder "#{configVariables['projectSynchedFolderOnLocal']}", "/#{configVariables['projectSynchedFolderOnVM']}"
-    config.vm.synced_folder "./", "#{configVariables['VMConfSynchedFolderOnVM']}"
-  end
-
-  # Continues Deployment VMachine.
-  config.vm.define :continuesDeployment do |continuesDeployment|
-    # Run shell script
-    # dev.vm.provision :shell, path: "./shellScripts/ansibleInstallation.sh"
-    # Execute a shell with passing arguments.
-    continuesDeployment.vm.provision "shell" do |s|
-      # Run shell script - Ansible installation.
-      s.path = "#{configVariables['shellScriptsFolder']}/ansibleInstallation.sh"
-      # Pass as arguments the path to the VM's configuration files inside the VM. So that each subsequent shell script can know the path to be called from.
-      # $1 is VMConfSynchedFolderOnVM & $2 is shellScriptsFolder.
-      s.args = ["#{configVariables['VMConfSynchedFolderOnVM']}", "#{configVariables['shellScriptsFolder']}"]
-    end
-    
-    # Execute inline shell command - ansible playbook.
-    continuesDeployment.vm.provision :shell,
-      inline: "PYTHONUNBUFFERED=1 ansible-playbook \
-        #{configVariables['VMConfSynchedFolderOnVM']}/ansible/dev.yml -c local"
-  end
-
-  # Production machine
-  config.vm.define :production do |production|
-    # Run shell script.  
+    config.vm.synced_folder "#{$configVariables['projectSynchedFolderOnLocal']}", "/#{$configVariables['projectSynchedFolderOnVM']}"
+    config.vm.synced_folder "./", "#{$configVariables['VMConfSynchedFolderOnVM']}"
   end
 
   # Vagrant caching plugin to allow faster build up from cache, rather than downloading each time (speed up creation of VMs, caches all packages used).
@@ -62,4 +37,10 @@ Vagrant.configure("2") do |config|
     config.cache.scope = :box
   end
 
+end
+
+# Load VM & Configuration files:
+vagrantfiles = %w[continuesDeployment.vagrantMachine.rb]
+vagrantfiles.each do |vagrantfile|
+  load File.expand_path("./vagrantVMConfigurations/" + vagrantfile) if File.exists?("./vagrantVMConfigurations/" + vagrantfile)
 end
