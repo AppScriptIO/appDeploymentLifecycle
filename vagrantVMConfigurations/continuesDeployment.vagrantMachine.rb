@@ -8,7 +8,7 @@ Vagrant.configure('2') do |config|
 
     # Run shell script
     # cd.vm.provision :shell, path: "./shellScripts/ansibleInstallation.sh"
-    # Execute a shell with passing arguments.
+    # Ansible Installation - Execute a shell with passing arguments.
     cd.vm.provision "shell" do |s|
       # Run shell script - Ansible installation.
       s.path = "#{$configVariables['shellScriptsFolder']}/ansibleInstallation.sh"
@@ -17,10 +17,10 @@ Vagrant.configure('2') do |config|
       s.args = ["#{$configVariables['VMConfSynchedFolderOnVM']}", "#{$configVariables['shellScriptsFolder']}"]
     end
     
-    # Copy ansible.cfg to default folder which Ansible will look for it.
+    # Ansible.cfg - Copy ansible.cfg to default folder which Ansible will look for it.
     cd.vm.provision :shell, inline: "cp #{$configVariables['VMConfSynchedFolderOnVM']}/ansible/ansible.cfg /etc/ansible/ansible.cfg"
 
-    # Execute inline shell command - ansible playbook.
+    # Ansible Playbook - Execute inline shell command - ansible playbook.
     cd.vm.provision :shell, inline: "PYTHONUNBUFFERED=1 ansible-playbook #{$configVariables['VMConfSynchedFolderOnVM']}/ansible/continuesDevelopment.yml -c local"
   end
 end
