@@ -7,7 +7,7 @@ Vagrant.configure('2') do |config|
     cd.vm.network "private_network", ip: "192.168.0.2"
 
     # Run shell script
-    # dev.vm.provision :shell, path: "./shellScripts/ansibleInstallation.sh"
+    # cd.vm.provision :shell, path: "./shellScripts/ansibleInstallation.sh"
     # Execute a shell with passing arguments.
     cd.vm.provision "shell" do |s|
       # Run shell script - Ansible installation.
@@ -17,6 +17,9 @@ Vagrant.configure('2') do |config|
       s.args = ["#{$configVariables['VMConfSynchedFolderOnVM']}", "#{$configVariables['shellScriptsFolder']}"]
     end
     
+    # Copy ansible.cfg to default folder which Ansible will look for it.
+    cd.vm.provision :shell, inline: "cp #{$configVariables['VMConfSynchedFolderOnVM']}/ansible/ansible.cfg /etc/ansible/ansible.cfg"
+
     # Execute inline shell command - ansible playbook.
     cd.vm.provision :shell, inline: "PYTHONUNBUFFERED=1 ansible-playbook #{$configVariables['VMConfSynchedFolderOnVM']}/ansible/continuesDevelopment.yml -c local"
   end
