@@ -6,3 +6,4 @@ dist (distribution) / build,
 setup, 
 tools / utilities, 
 docs documentations,
+https://gist.github.com/lancejpollard/1398757
