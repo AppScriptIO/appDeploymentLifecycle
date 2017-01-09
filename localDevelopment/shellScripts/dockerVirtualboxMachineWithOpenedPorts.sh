@@ -1,7 +1,8 @@
 #!/bin/bash 
+# Usage 
 # $1 = docker machine name is first argument passed.
+if [ -z $1 ]; then VM=machine; else VM=$1; fi
 
-VM = $1
 docker-machine create -d virtualbox $VM
 docker-machine stop $VM
 VBoxManage modifyvm "$VM" --natpf1 ",tcp,,80,,80"
