@@ -2,7 +2,9 @@
 
 docker network create --driver overlay go-demo
 
-docker service create --name go-demo-db --network go-demo mongo:3.2.10
+docker service create --name go-demo-db --network go-demo \
+    --constraint 'node.labels.deploymentEnvironment == productionLike' \
+    mongo:3.2.10
 # --reserve-memory 150m
 
 
@@ -17,7 +19,9 @@ while true; do
     fi
 done
 
-docker service create --name go-demo -e DB=go-demo-db --network go-demo --network proxy --replicas 3 --update-delay 5s vfarcic/go-demo:1.0
+docker service create --name go-demo -e DB=go-demo-db --network go-demo --network proxy --replicas 3 --update-delay 5s \
+    --constraint 'node.labels.deploymentEnvironment == productionLike' \    
+    vfarcic/go-demo:1.0
 #--reserve-memory 50m
 
 while true; do

@@ -5,6 +5,7 @@
 docker network create --driver overlay proxy
 
 docker service create --name proxy -p 80:80 -p 443:443 -p 8090:8080 --network proxy -e MODE=swarm --replicas 3 \
+    --constraint 'node.labels.deploymentEnvironment == productionLike' \
     -e CONSUL_ADDRESS="$(docker-machine ip swarm-1):8500,$(docker-machine ip swarm-2):8500,$(docker-machine ip swarm-3):8500" \
     vfarcic/docker-flow-proxy
     # --reserve-memory 50m
