@@ -2,6 +2,7 @@
 # "Consul" key-value store used for service discovery and configuration synchronization between containers.
 # run on both production & local. 
 VM=localContinuousDeploymentNode
+VM=localProductionNode
 eval $(docker-machine env $VM-1)
 
 curl -o docker-compose-proxy.yml https://raw.githubusercontent.com/vfarcic/docker-flow-proxy/master/docker-compose.yml

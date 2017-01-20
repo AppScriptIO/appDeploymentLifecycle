@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 # "vfarcic/docker-flow-proxy" - create proxy service for docker cluster.
+
+# Remove constraint for production.
+VM=localProductionNode
 VM=localContinuousDeploymentNode
 eval $(docker-machine env $VM-1)
 

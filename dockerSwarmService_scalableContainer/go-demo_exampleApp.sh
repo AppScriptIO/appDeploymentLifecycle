@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+VM=localProductionNode
+VM=localContinuousDeploymentNode
+
 docker network create --driver overlay go-demo
 
 docker service create --name go-demo-db --network go-demo \
@@ -34,3 +37,6 @@ while true; do
         sleep 10
     fi
 done
+
+# Configure through http request: (example)
+curl "$(docker-machine ip $VM-1):8090/v1/docker-flow-proxy/reconfigure?serviceName=go-demo&servicePath=/demo&port=8080&distribute=true"

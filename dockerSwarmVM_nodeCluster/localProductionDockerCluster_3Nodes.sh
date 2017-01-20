@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # Simulating production cluster.
 # Creates 3 Nodes and joins them to docker swarm as managers (localProductionNode-<1/2/3>). Labels them with "Production".
-
 VM=localProductionNode
+VMPROD=localProductionNode
 
 # Create 3 nodes.
 for i in 1 2 3; do
