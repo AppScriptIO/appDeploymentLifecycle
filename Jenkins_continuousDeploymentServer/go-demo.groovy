@@ -1,3 +1,4 @@
+#!groovy
 // This is a .groovy file. Reference steps - https://jenkins.io/doc/pipeline/steps/
 
 // Run on slave/agent jenkins nodes labeled with docker only
