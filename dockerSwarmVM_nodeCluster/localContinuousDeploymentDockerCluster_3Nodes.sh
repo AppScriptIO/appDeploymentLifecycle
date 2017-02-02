@@ -1,9 +1,13 @@
 #!/usr/bin/env bash
 # Create 3 nodes: 1 as jenkins agent, 2 as production-like simulation.
+<<<<<<< HEAD
 
 # localContinuousDeploymentNode
 VMCD=CD
 VM=$VMCD
+=======
+VM=localContinuousDeploymentNode
+>>>>>>> origin/master
 
 for i in 1 2 3; do
     docker-machine create -d virtualbox $VM-$i
@@ -18,9 +22,13 @@ for i in 2 3; do
     docker swarm join --token $TOKEN --advertise-addr $(docker-machine ip $VM-$i) $(docker-machine ip $VM-1):2377
 done
 
+<<<<<<< HEAD
 # Add labels:
 docker node update --label-add deploymentEnvironment=jenkinsAgent $VM-1
 docker node update --label-add deploymentEnvironment=productionLike $VM-2
 docker node update --label-add deploymentEnvironment=productionLike $VM-3
 
 echo "☕ The swarm test cluster is up and running"
+=======
+echo "☕ The swarm test cluster is up and running"
+>>>>>>> origin/master
