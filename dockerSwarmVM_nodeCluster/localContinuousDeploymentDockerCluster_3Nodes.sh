@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 # Create 3 nodes: 1 as jenkins agent, 2 as production-like simulation.
 VM=localContinuousDeploymentNode
-VMCD=localContinuousDeploymentNode
 
 for i in 1 2 3; do
     docker-machine create -d virtualbox $VM-$i
