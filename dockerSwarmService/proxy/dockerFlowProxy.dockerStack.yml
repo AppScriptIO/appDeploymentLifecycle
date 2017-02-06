@@ -2,8 +2,8 @@ version: "3"
 
 networks:
   proxy:
-    external: true
-    
+    external: false
+
 services:
 
   proxy:
@@ -11,13 +11,16 @@ services:
     ports:
       - 80:80
       - 443:443
+      - 8080:8080
     networks:
       - proxy
+    volumes:
+      - "$PWD/:/cfg/"
     environment:
       - LISTENER_ADDRESS=swarm-listener
       - MODE=swarm
     deploy:
-      replicas: 2
+      replicas: 1
 
   swarm-listener:
     image: vfarcic/docker-flow-swarm-listener
