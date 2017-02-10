@@ -8,6 +8,7 @@ VM=vm
 
 # Add already existing compute instance.
 docker-machine create --driver generic --generic-ip-address 146.148.2.232 --generic-ssh-user Entrepreneur --generic-ssh-key ~/.ssh/google_compute_engine vmx
+docker-machine create --driver generic --generic-ip-address 146.148.2.232 --generic-ssh-user docker-user --generic-ssh-key ~/.ssh/id_rsa x-1
 
 # create instances:
 # Main Leader Instance that also serves as shared NFS.
