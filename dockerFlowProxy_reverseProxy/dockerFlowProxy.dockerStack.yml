@@ -3,6 +3,16 @@ version: "3"
 networks:
   default:
     external: false
+    driver: overlay
+
+# volumes:
+  # data:
+  #   driver: rexray
+  #   driver_opts:
+  #     size: "100"
+  #     volumetype: "pd-ssd"
+  # data:
+  #   external: true
 
 services:
 
@@ -15,7 +25,7 @@ services:
     networks:
       - default
     volumes:
-      - "$PWD/:/cfg/"
+      - "/mnt/datadisk-1/dockerFlowProxy/haproxyConfiguration:/cfg/"
     environment:
       - LISTENER_ADDRESS=swarm-listener
       - MODE=swarm
