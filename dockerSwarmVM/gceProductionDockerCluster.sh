@@ -7,24 +7,22 @@ https://medium.com/@DazWilkin/deploy-docker-engine-in-swarm-mode-to-google-cloud
 VM=vm
 
 # Add already existing compute instance.
-docker-machine create --driver generic --generic-ip-address 146.148.2.232 --generic-ssh-user Entrepreneur --generic-ssh-key ~/.ssh/google_compute_engine vmx
-docker-machine create --driver generic --generic-ip-address 146.148.2.232 --generic-ssh-user docker-user --generic-ssh-key ~/.ssh/id_rsa x-1
+# `google_compute_engine` = allows connection to all compute engines on google cloud. Created when authentecating or sshing using glcoud command.
+docker-machine create --driver generic --generic-ip-address <ExternalIP> --generic-ssh-user <OSUser> --generic-ssh-key ~/.ssh/google_compute_engine <VM>
+docker-machine create --driver generic --generic-ip-address <ExternalIP> --generic-ssh-user docker-user --generic-ssh-key ~/.ssh/<SSHKey> <VM>
+
+# Set gcloud default credentials - https://developers.google.com/identity/protocols/application-default-credentials
+# One easy way to do so: 
+gcloud auth application-default login
 
 # create instances:
 # Main Leader Instance that also serves as shared NFS.
-docker-machine create $VM-1 -d google \
-    --google-machine-type n1-standard-1	\
-    --google-zone europe-west1-c \
-    --google-tags cluster \
-    --google-project dentrist-webapp-1 ; \
+docker-machine create $VM-1 -d google --google-project szn-webapps --google-username Entrepreneur --google-zone europe-west1-c --google-tags cluster \
+    --google-machine-type n1-standard-1 --google-disk-type pd-standard --google-disk-size 10
 
 for i in 2; do \
-docker-machine create $VM-$i -d google \
-    --google-machine-type f1-micro \
-    --google-zone europe-west1-c \
-    --google-tags cluster \
-    --google-project dentrist-webapp-1 ; \
-done;
+docker-machine create $VM-$i -d google --google-project szn-webapps --google-username Entrepreneur --google-zone europe-west1-c --google-tags cluster --google-machine-type f1-micro --google-disk-type pd-standard --google-disk-size 10 \
+done
 
 # Initialize swarm with one of the nodes.
 eval $(docker-machine env $VM-1)
