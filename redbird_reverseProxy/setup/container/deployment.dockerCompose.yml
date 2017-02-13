@@ -1,0 +1,29 @@
+version: '2.1'
+# Tests & Build: source code --> distribution code
+
+# USAGE (from root directory): docker-compose -f <filePath> up <service>
+services:
+    
+    deploymentEnvironment: # used as image, not meant to be run.
+        build: # change context to project's root folder.
+            context: ../../
+            dockerfile: ./setup/container/deploymentEnvironment.dockerfile
+        image: proxy-deployment # name of biult image cannot be uppercase.
+        # command: bash -c "sleep 100000"
+
+    buildDistributionCode: # Build source code & download project dependencies.
+        extends: deploymentEnvironment
+        container_name: build
+        ports:
+            - 80:80
+            - 443:443
+        environment:
+            DEPLOYMENT: ${DEPLOYMENT:-production}
+        volumes:
+          - ../../source:/app/
+        working_dir: /app/
+        command: bash -c "npm install; node proxy.js"
+
+    # Used only to build image.
+    buildImage:
+        extends: deploymentEnvironment

@@ -11,6 +11,10 @@ VM=vm
 docker-machine create --driver generic --generic-ip-address <ExternalIP> --generic-ssh-user <OSUser> --generic-ssh-key ~/.ssh/google_compute_engine <VM>
 docker-machine create --driver generic --generic-ip-address <ExternalIP> --generic-ssh-user docker-user --generic-ssh-key ~/.ssh/<SSHKey> <VM>
 
+# regenerate certificates & provision
+# docker-machine regenerate-certs <VM>
+# docker-machine provision <VM>
+
 # Set gcloud default credentials - https://developers.google.com/identity/protocols/application-default-credentials
 # One easy way to do so: 
 gcloud auth application-default login
@@ -18,10 +22,11 @@ gcloud auth application-default login
 # create instances:
 # Main Leader Instance that also serves as shared NFS.
 docker-machine create $VM-1 -d google --google-project szn-webapps --google-username Entrepreneur --google-zone europe-west1-c --google-tags cluster \
-    --google-machine-type n1-standard-1 --google-disk-type pd-standard --google-disk-size 10
+    --google-machine-type n1-standard-1 --google-disk-type pd-standard --google-disk-size 10 ;
 
 for i in 2; do \
-docker-machine create $VM-$i -d google --google-project szn-webapps --google-username Entrepreneur --google-zone europe-west1-c --google-tags cluster --google-machine-type f1-micro --google-disk-type pd-standard --google-disk-size 10 \
+    docker-machine create $VM-$i -d google --google-project szn-webapps --google-username Entrepreneur --google-zone europe-west1-c --google-tags cluster \
+        --google-machine-type g1-small --google-disk-type pd-standard --google-disk-size 10 ; \
 done
 
 # Initialize swarm with one of the nodes.
@@ -48,7 +53,7 @@ gcloud compute firewall-rules create docker-swarm --allow tcp:2377,tcp:7946,tcp:
 #     gcloud compute firewall-rules create cluster-rule-$p --allow tcp:$p --description "allow$p" --target-tags cluster
 # done
 
-# Or create firewall shared rules and add tag to instances utilizing it.
+# Or create firewall shared rules and add tag to instances utilizing it. The naming with default and `-server` is because of google default values for https http when created by UI.
 gcloud compute firewall-rules create default-allow-http --allow tcp:80 --description "allow80" --target-tags http-server
 gcloud compute firewall-rules create default-allow-https --allow tcp:443 --description "allow443" --target-tags https-server
 # Add tags that allow http & https access.
@@ -58,6 +63,7 @@ for i in 1 2; do
     gcloud compute instances add-tags $VM-$i --tags http-server,https-server
 done
 
+# IMPORTANT: Restart VMS
 
 # PERSISTENT DISK SOLUTION - doesn't work because persistent disk can be shared accross multiple instances as read only.
 # # create disk that will be used as a volume:
@@ -83,8 +89,11 @@ done
 DISK=datadisk-1
 ZONE=$(gcloud compute instances list --format=text --regexp .*$VM-1.* | grep '^zone:' | sed 's/^.* //g' );
 gcloud config set compute/zone $ZONE
-gcloud compute disks create $DISK --size 50 --type pd-standard
-gcloud compute instances attach-disk $VM-1 --disk $DISK
+gcloud compute disks create $DISK --size 50 --type pd-standard --zone $ZONE
+gcloud compute instances attach-disk $VM-1 --disk $DISK --device-name $DISK
+# get network range:
+REGION=europe-west1
+RANGES=$(gcloud compute networks subnets list --format=text default --regions=$REGION | grep '^ipCidrRange:' | sed 's/^.* //g' );
 # gcloud compute instances reset $VM-1
 # IMPORTANT: run manually
 docker-machine ssh $VM-1
@@ -111,7 +120,7 @@ sudo apt-get install nfs-kernel-server -y
 # /etc/exports is the file for configuration
 # Share access to a particular network - https://console.cloud.google.com/networking/networks/list
 sudo -i
-echo "/mnt/$DISK        10.240.0.0/16(rw,sync,no_root_squash,subtree_check)" >> /etc/exports
+echo "/mnt/$DISK        $RANGES(rw,sync,no_root_squash,subtree_check)" >> /etc/exports
 # start NFS service
 sudo /etc/init.d/nfs-kernel-server start
 # check share status

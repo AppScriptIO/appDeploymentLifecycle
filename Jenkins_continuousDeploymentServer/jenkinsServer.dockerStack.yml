@@ -1,0 +1,31 @@
+version: '3'
+
+networks:
+  proxy_default:
+    external: true
+
+# volumes:
+#   data:
+#     driver: rexray
+
+services:
+
+  jenkins:
+    # image: jenkins:2.32.1-alpine
+    image: jenkinsci/blueocean:latest
+    ports:
+      - 50000:50000
+      # - 8888:8080
+    environment:
+      # - JENKINS_OPTS="--prefix=/jenkins"
+      - JENKINS_OPTS="--prefix=/"
+    networks:
+      - proxy_default
+    volumes:
+      - /mnt/datadisk-1/jenkins:/var/jenkins_home
+    deploy:
+      labels:
+        - com.df.notify=true
+        - com.df.distribute=true
+        - com.df.servicePath=/jenkins
+        - com.df.port=8080
