@@ -29,6 +29,9 @@ RUN apt-get install apt-utils -y; \
 
 # `|| true` to ignore error (because git installation gets debian connection error - apparently servers are temporarly down)
 RUN /tmp/shellScript/git.installation.sh; sleep 1;
+
+ARG NODEJS_VERSION=v8.0.0-nightly201702124cafa60c99
+ENV NODEJS_VERSION ${NODEJS_VERSION}
 RUN /tmp/shellScript/nodejs.installation.sh; sleep 1;
 # RUN /tmp/shellScript/php7.installation.sh;
 RUN /tmp/shellScript/bower.installation.sh; sleep 1;

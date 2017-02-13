@@ -22,9 +22,10 @@ if [ -z "$1" ]; then
     # n stable
     # Nodejs Nightly - latest nightly release
     # build releases - https://nodejs.org/download/nightly/
-    NODE_MIRROR=https://nodejs.org/download/nightly/ n v8.0.0-nightly201702124cafa60c99
+    # IMPORTANT: CHANGE version also in jspm task of dentrist if this version is changed.
+    NODE_MIRROR=https://nodejs.org/download/nightly/ n $NODEJS_VERSION
     # Choose nightly as active node version.
-    n v8.0.0-nightly201702124cafa60c99
+    n $NODEJS_VERSION
     node -v
     node -p process.versions # evaluates argument as javascript and prints result.
     # "--harmony" flag should be used to run latest unstable features.

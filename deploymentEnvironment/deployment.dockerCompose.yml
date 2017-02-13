@@ -8,7 +8,7 @@ services:
             context: ./
             dockerfile: ./deploymentEnvironment.dockerfile
         image: deployment-environment # name of biult image cannot be uppercase.
-        command: bash -c "sleep 100000"
+        # command: bash -c "sleep 100000"
 
     # for testing purposes - to check if all commands exist:
     deploymentEnvironmentImage:
