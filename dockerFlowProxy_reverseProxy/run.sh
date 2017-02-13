@@ -14,5 +14,7 @@ sudo curl -o $VolumePath/haproxy.cfg https://raw.githubusercontent.com/myusering
 # docker-machine ssh $VM-1 sudo echo "$CONTENT" >> /mnt/datadisk-1/dockerFlowProxy/haproxyConfiguration/haproxy.cfg
 
 # docker network create --driver overlay proxy
-docker stack deploy --compose-file ./dockerFlowProxy.dockerStack.yml proxy
+docker stack deploy -c ./dockerFlowProxy.dockerStack.yml proxy
 
+# check proxy: 
+curl -i <IP>:8080/v1/docker-flow-proxy/config
