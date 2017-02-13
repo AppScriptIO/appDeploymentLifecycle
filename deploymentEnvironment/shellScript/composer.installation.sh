@@ -6,3 +6,6 @@ if [ -z "$1" ]; then
 elif [ $1 == "uninstall" ]; then
     rm -r /usr/local/bin/composer;
 fi;
+
+# Print Horizontal Line
+source $(dirname -- "$0")/printHorizontalLine.sh

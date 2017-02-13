@@ -1,24 +1,16 @@
 #!/bin/bash
 
 source $(dirname -- "$0")/isInstalled.sh
+source $(dirname -- "$0")/repeatCommandTillSucceed.sh
 
 if [ -z "$1" ]; then 
     if [ $(programIsInstalled node) == "false" ]; then
         # Install Nodejs
-        echo 'SZN - Node not installed';
+        echo 'SZN - Node not installed. Installing NodeJS...';
         cd ~ ;
-        while true; do 
-            echo 'SZN - trying curl nodejs.';
-            curl -sL https://deb.nodesource.com/setup_7.x | bash - && apt-get install -y nodejs
-            if [ $? -eq 0 ]; then
-                break
-            fi
-            ((c++)) && ((c==10)) && break
-            sleep 1;
-        done
+        repeatCommandTillSucceed "curl -sL https://deb.nodesource.com/setup_7.x | bash - && apt-get install -y nodejs";
         # importatnt ! without problems are caused.
         sleep 5; 
-
     fi;
 
     #⭐ Nodejs installation: Already installed from image.
@@ -44,3 +36,6 @@ elif [ $1 == "uninstall" ]; then
     rm -rf /usr/local/n;
     rm -rf /usr/local/{lib/node{,/.npm,_modules},bin,share/man}/{npm*,node*,man1/node*}
 fi;
+
+# Print Horizontal Line
+source $(dirname -- "$0")/printHorizontalLine.sh

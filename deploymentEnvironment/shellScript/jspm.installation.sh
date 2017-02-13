@@ -13,3 +13,6 @@ elif [ $1 == "uninstall" ]; then
     npm uninstall jspm@beta -g
     npm uninstall jspm-bower-endpoint -g
 fi;
+
+# Print Horizontal Line
+source $(dirname -- "$0")/printHorizontalLine.sh

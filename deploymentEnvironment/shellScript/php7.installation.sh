@@ -15,3 +15,6 @@ elif [ $1 == "uninstall" ]; then
     apt-get remove -y apt-transport-https lsb-release ca-certificates;
     apt-get remove -y php7.1 php7.1-zip;
 fi;
+
+# Print Horizontal Line
+source $(dirname -- "$0")/printHorizontalLine.sh

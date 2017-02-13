@@ -7,3 +7,5 @@ elif [ $1 == "uninstall" ]; then
     npm uninstall bower -g
 fi;
 
+# Print Horizontal Line
+source $(dirname -- "$0")/printHorizontalLine.sh

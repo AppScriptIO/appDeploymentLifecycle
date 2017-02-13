@@ -1,20 +1,15 @@
 #!/bin/bash
 
+source $(dirname -- "$0")/repeatCommandTillSucceed.sh
+
 if [ -z "$1" ]; then 
     #⭐ Git - install git:
     apt-get update --fix-missing;
-    while true; do 
-        apt-get update;
-        apt-get install git-core -y;
-        if [ $? -eq 0 ]; then
-            break
-        fi
-        ((c++)) && ((c==10)) && break
-        sleep 1;
-    done
-
+    repeatCommandTillSucceed "apt-get update; apt-get install git-core -y;";
     # apt-get install git-all -y;
 elif [ $1 == "uninstall" ]; then
     apt-get remove git-all -y
 fi;
 
+# Print Horizontal Line
+source $(dirname -- "$0")/printHorizontalLine.sh
