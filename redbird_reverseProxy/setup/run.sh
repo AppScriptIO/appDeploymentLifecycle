@@ -1,9 +1,7 @@
 
-# Deployment
-docker-compose -f ./setup/container/deployment.dockerCompose.yml up buildDistributionCode
-
-# build image
-docker-compose -f ./setup/container/deployment.dockerCompose.yml build buildImage
+# Build image
+docker-compose -f ./setup/container/deployment.dockerCompose.yml build proxy
+# push image
 
 # Production
 VolumePath=/mnt/datadisk-1/redbirdProxy

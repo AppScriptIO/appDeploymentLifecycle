@@ -56,6 +56,7 @@ gcloud compute firewall-rules create docker-swarm --allow tcp:2377,tcp:7946,tcp:
 # Or create firewall shared rules and add tag to instances utilizing it. The naming with default and `-server` is because of google default values for https http when created by UI.
 gcloud compute firewall-rules create default-allow-http --allow tcp:80 --description "allow80" --target-tags http-server
 gcloud compute firewall-rules create default-allow-https --allow tcp:443 --description "allow443" --target-tags https-server
+gcloud compute firewall-rules create redbird-proxy --allow tcp:3000 --description "allow3000usedforletsencrypt" --target-tags docker-machine
 # Add tags that allow http & https access.
 for i in 1 2; do
     ZONE=$(gcloud compute instances list --format=text --regexp .*$VM-$i.* | grep '^zone:' | sed 's/^.* //g' );

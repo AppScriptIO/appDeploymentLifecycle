@@ -1,7 +1,34 @@
-var proxy = require('redbird')({port: 80, xfwd: false});
+var proxy = require('redbird')({
+    port: 80,
+    xfwd: true, 
+    letsencrypt: {
+        port: 3000, 
+        path: '/app/certificates'
+    },
+    ssl: { // Optional SSL proxying.
+        port: 443, // SSL port the proxy will listen to.
+        // // Default certificates
+        // key: keyPath,
+        // cert: certPath,
+        // ca: caPath // Optional.
+        redirect: true // Disable HTTPS autoredirect to this route.
+    }
+});
  
 proxy.register("jenkins.webapp.run", "http://jenkins_jenkins:8080");
-proxy.register("dentrist.com", "http://dentristwebapp_wordpress:80");
+
+// TODO: Fix cross origin http in https, seems as if `upgrade` header doesn't work well in apache config wiht browser throgh http config file.
+proxy.register('dentrist.com', 'http://dentristwebapp_wordpress:80', {
+    ssl: {
+        letsencrypt: {
+            email: 'sfmissive@gmail.com', // Domain owner/admin email
+            production: true, // WARNING: Only use this flag when the proxy is verified to work correctly to avoid being banned!
+        }
+    }
+});
+
+
+// Using express with redbird - https://github.com/OptimalBits/redbird/issues/83
 
 // var express  = require('express');
 // var app      = express();
