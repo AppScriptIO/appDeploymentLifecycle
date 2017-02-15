@@ -14,7 +14,10 @@ var proxy = require('redbird')({
         redirect: true // Disable HTTPS autoredirect to this route.
     }
 });
- 
+
+proxy.register('radioscanner.webapp.run', 'http://radioscannerwebapp_nodejs:80');
+proxy.register('stream.radioscanner.webapp.run', 'http://radioscannerwebapp_apachestreamproxy/:80');
+
 proxy.register('jenkins.webapp.run', 'http://jenkins_jenkins:8080', {
     ssl: {
         letsencrypt: {
