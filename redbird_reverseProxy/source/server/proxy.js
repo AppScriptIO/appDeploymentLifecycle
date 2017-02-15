@@ -3,7 +3,7 @@ var proxy = require('redbird')({
     xfwd: true, 
     letsencrypt: {
         port: 3000, 
-        path: '/app/certificates'
+        path: '/app/certificate'
     },
     ssl: { // Optional SSL proxying.
         port: 443, // SSL port the proxy will listen to.

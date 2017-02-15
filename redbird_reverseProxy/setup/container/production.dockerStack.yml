@@ -25,7 +25,8 @@ services:
     networks:
       - default
     volumes:
-      - "/mnt/datadisk-1/redbirdProxy:/app/server/"
+      - "/mnt/datadisk-1/redbirdProxy/server:/app/server/"
+      - "/mnt/datadisk-1/redbirdProxy/certificate:/app/certificate/"
     deploy:
       replicas: 1
     working_dir: /app/
