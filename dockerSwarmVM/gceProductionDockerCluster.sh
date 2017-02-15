@@ -147,3 +147,8 @@ for i in 2; do
 done
 
 # TODO: Automatically mount from NFS server to client doesn't work -Check for automount solution https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/3/html/System_Administration_Guide/s1-nfs-mount.html
+
+
+# Change permissions of all mount files:
+sudo find ./datadisk-1/ -type f -exec chown 1000 {} \;
+sudo find ./datadisk-1/ -type d -exec chown 1000 {} \;
