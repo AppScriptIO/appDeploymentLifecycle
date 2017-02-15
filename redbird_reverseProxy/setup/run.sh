@@ -1,6 +1,7 @@
 
 # Build image
-docker-compose -f ./setup/container/deployment.dockerCompose.yml build proxy
+docker-compose -f ./setup/container/deployment.dockerCompose.yml build --no-cache proxy
+
 # push image
 
 # Production
