@@ -1,0 +1,55 @@
+version: '2.1'
+# Tests & Build: source code --> distribution code
+
+# USAGE (from root directory): docker-compose -f <filePath> up <service>
+services:
+    
+    deploymentEnvironment:
+        image: myuserindocker/deployment-environment:latest
+
+    buildDistributionCode: # Build source code & download project dependencies.
+        extends: deploymentEnvironment
+        container_name: build
+        environment:
+            DEPLOYMENT: ${DEPLOYMENT:-production}
+        volumes:
+          - ../../source:/tmp/source/
+          - ../../setup/container/shellScript:/tmp/shellScript/
+          - ../../setup/build:/tmp/build/
+          - ../../distribution:/app/
+        working_dir: /tmp/build/gulp_buildTool/
+        entrypoint: /tmp/shellScript/buildSourceCode.entrypoint.sh
+        # command: bash -c "sleep 100000"
+
+    localUnitTest:
+        extends: deploymentEnvironment
+        container_name: unit
+        volumes:
+          - ../../distribution:/app/
+          - ../../setup/container/shellScript:/tmp/shellScript/
+          - ../../setup/test/:/tmp/test/
+        working_dir: /tmp/test/
+        # entrypoint allows cd command to work, in command: bash it doesn't.
+        # entrypoint: /tmp/shellScript/localUnitTest.sh
+        command: bash -c "npm install; npm run test;"
+
+    localStagingTest:
+        extends: deploymentEnvironment
+        container_name: staging
+        volumes:
+          - ../../setup/container/shellScript:/tmp/shellScript/
+          - ../../setup/test/:/tmp/test/
+        environment:
+            - HOST_IP=localhost:80
+        network_mode: host
+        working_dir: /tmp/test/
+        # entrypoint: /tmp/shellScript/localStagingTest.sh
+        # command: bash -c "printenv"
+        command: bash -c "npm install; npm run localStagingTest;"
+
+    # # Used only to build image.
+    # buildImage:
+    #     extends:
+    #         # relative to the position of current file.
+    #         file: ./.dockerCompose.yml
+    #         service: 

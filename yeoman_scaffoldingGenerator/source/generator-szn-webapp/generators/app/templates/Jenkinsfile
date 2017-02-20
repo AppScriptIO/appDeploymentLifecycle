@@ -1,0 +1,12 @@
+#!groovy
+// This is a .groovy file. Reference steps - https://jenkins.io/doc/pipeline/steps/
+
+// Run on slave/agent jenkins nodes labeled with docker only
+node("docker") {
+    
+    // Pull the latest code from the repository
+    stage("Pull") {
+        git "https://github.com/myuseringithub/"
+    }
+    
+}

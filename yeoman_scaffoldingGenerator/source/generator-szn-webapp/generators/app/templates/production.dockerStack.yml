@@ -1,0 +1,31 @@
+version: '3'
+
+networks: 
+  default:
+    external: false
+  proxy_default:
+    external: true
+
+# volumes: 
+#   dentrist:
+#     driver: rexray
+
+services:
+
+  service:
+    image: myuserindocker/:latest
+    # ports:
+    #   - 80:80
+    #   - 443:443
+    # volumes:
+      # - "/app"
+    environment:
+      DEPLOYMENT: production
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 1
+        delay: 10s
+    networks:
+      - default
+      - proxy_default

@@ -26,6 +26,11 @@ RUN apt-get install apt-utils -y; \
     apt-get install vim -y; \
     apt-get install zip unzip -y;
 
+# install Yeoman
+RUN npm install -g yo generator-generator; \
+    # prevent error permission denied when using `yo` command.
+    chmod g+rwx /root;
+
 # Installing these messes up the package list in linux, and results in errors during apt-get update.
 # for adding "add-apt-repository" command.
 # RUN apt-get install python-software-properties -y;
