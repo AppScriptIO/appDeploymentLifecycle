@@ -96,6 +96,11 @@ module.exports = Generator.extend({
       );
 
       this.fs.copy(
+        this.templatePath('LICENSE'),
+        this.destinationPath('LICENSE')
+      );
+
+      this.fs.copy(
         this.templatePath('run.sh'),
         this.destinationPath('./setup/run.sh')
       );
