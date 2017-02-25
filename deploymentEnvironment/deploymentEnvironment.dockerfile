@@ -29,7 +29,11 @@ RUN apt-get install apt-utils -y; \
 # install Yeoman
 RUN npm install -g yo generator-generator; \
     # prevent error permission denied when using `yo` command.
-    chmod g+rwx /root;
+    chmod g+rwx /root; \
+    # nodmod - live server reloading
+    npm install -g nodemon; \    
+    # babel
+    npm install -g babel-cli babel-register;
 
 # Installing these messes up the package list in linux, and results in errors during apt-get update.
 # for adding "add-apt-repository" command.
