@@ -18,6 +18,15 @@ var proxy = require('redbird')({
 proxy.register('radioscanner.webapp.run', 'http://radioscannerwebapp_nodejs:80');
 proxy.register('stream.radioscanner.webapp.run', 'http://radioscannerwebapp_apachestreamproxy/:80');
 
+proxy.register('education.webapp.run', 'http://educationwebapp_nodejs:80', {
+    ssl: {
+        letsencrypt: {
+            email: 'sfmissive@gmail.com', // Domain owner/admin email
+            production: true, // WARNING: Only use this flag when the proxy is verified to work correctly to avoid being banned!
+        }
+    }
+});
+
 proxy.register('animalsounds.webapp.run', 'http://animalsoundswebapp_nodejs:80', {
     ssl: {
         letsencrypt: {

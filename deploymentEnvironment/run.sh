@@ -5,7 +5,7 @@ deployment.build() {
     docker-compose -f ./deployment.dockerCompose.yml build --no-cache deploymentEnvironment
     
     # 2. tag image to docker hub.
-    docker tag deployment-environment myuserindocker/deployment-environment:latest
+    # docker tag deployment-environment myuserindocker/deployment-environment:latest
     docker push myuserindocker/deployment-environment
 }
 

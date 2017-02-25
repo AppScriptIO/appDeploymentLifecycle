@@ -26,15 +26,6 @@ RUN apt-get install apt-utils -y; \
     apt-get install vim -y; \
     apt-get install zip unzip -y;
 
-# install Yeoman
-RUN npm install -g yo generator-generator; \
-    # prevent error permission denied when using `yo` command.
-    chmod g+rwx /root; \
-    # nodmod - live server reloading
-    npm install -g nodemon; \    
-    # babel
-    npm install -g babel-cli babel-register;
-
 # Installing these messes up the package list in linux, and results in errors during apt-get update.
 # for adding "add-apt-repository" command.
 # RUN apt-get install python-software-properties -y;
@@ -54,3 +45,12 @@ RUN /tmp/shellScript/gulp.installation.sh; sleep 1;
 RUN /tmp/shellScript/rsync.installation.sh; sleep 1;
 RUN /tmp/shellScript/jspm.installation.sh; sleep 1;
 RUN /tmp/shellScript/composer.installation.sh; sleep 1;
+
+# install Yeoman
+RUN npm install -g yo generator-generator; \
+    # prevent error permission denied when using `yo` command.
+    chmod g+rwx /root; \
+    # nodmod - live server reloading
+    npm install -g nodemon; \    
+    # babel
+    npm install -g babel-cli babel-register;

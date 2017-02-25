@@ -17,4 +17,4 @@ services:
         volumes:
           - ../../source:/app/
         working_dir: /app/
-        command: bash -c "npm install; node proxy.js"
+        command: bash -c "npm install; npm update; node proxy.js"
