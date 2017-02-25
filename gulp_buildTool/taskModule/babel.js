@@ -5,8 +5,6 @@ let gulp = require('gulp'),
  
 module.exports = (sources, destination) => {
     return gulp.src(sources)
-        .pipe(babel({
-            presets: ['es2015']
-        }))
+        .pipe(babel())
         .pipe(gulp.dest(destination));
 };
