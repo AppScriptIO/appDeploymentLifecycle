@@ -1,9 +1,9 @@
 'use strict';
 
-import gulp from 'gulp'
-import babel from 'gulp-babel'
+let gulp = require('gulp'), 
+    babel = require('gulp-babel')
  
-export default (sources, destination) => {
+module.exports = (sources, destination) => {
     return gulp.src(sources)
         .pipe(babel({
             presets: ['es2015']
