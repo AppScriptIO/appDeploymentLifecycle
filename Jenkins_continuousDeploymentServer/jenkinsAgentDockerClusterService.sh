@@ -23,3 +23,9 @@ docker service create --name jenkins-agent --mode global --constraint 'node.labe
 
 # New VM as agent should appear.
 open "http://$(docker-machine ip $VMPROD-1):8888/jenkins/computer"
+
+
+# __________________________________________________________________________________
+
+# Create local cluster for docker stack jenkins agent 
+# TODO: add labels to agent machine (constraints) - the devops 2.1 toolkit page ~115

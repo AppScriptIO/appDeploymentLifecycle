@@ -57,6 +57,7 @@ gcloud compute firewall-rules create docker-swarm --allow tcp:2377,tcp:7946,tcp:
 gcloud compute firewall-rules create default-allow-http --allow tcp:80 --description "allow80" --target-tags http-server
 gcloud compute firewall-rules create default-allow-https --allow tcp:443 --description "allow443" --target-tags https-server
 gcloud compute firewall-rules create redbird-proxy --allow tcp:3000 --description "allow3000usedforletsencrypt" --target-tags docker-machine
+gcloud compute firewall-rules create jenkins-server --allow tcp:50000 --description "allow50000usedforjenkinsagentservercommunication" --target-tags docker-machine
 # Add tags that allow http & https access.
 for i in 1 2; do
     ZONE=$(gcloud compute instances list --format=text --regexp .*$VM-$i.* | grep '^zone:' | sed 's/^.* //g' );

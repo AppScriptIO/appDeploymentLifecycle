@@ -15,7 +15,6 @@ services:
     image: jenkinsci/blueocean:latest
     ports:
       - 50000:50000
-      # - 8888:8080
     environment:
       # - JENKINS_OPTS="--prefix=/jenkins"
       - JENKINS_OPTS="--prefix=/"

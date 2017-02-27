@@ -9,5 +9,9 @@ deployment.build() {
     docker push myuserindocker/deployment-environment
 }
 
+production.runForTesting() {
+    docker-compose -f ./deployment.dockerCompose.yml up deploymentEnvironmentImage
+}
+
 # Important: call arguments verbatim. i.e. allows first argument to call functions inside file. So that it could be called as "./setup/run.sh <functionName>".
 $@
