@@ -25,12 +25,12 @@ jenkins.agent() { # local
     # Jenkins agent:
     # https://github.com/vfarcic/docker-flow-stacks/tree/master/jenkins
     # 1. Folder agent local wordspace
-    mkdir ./workspace; chmod 777 ./workspace
-
+    sudo adduser -G root -D jenkins
+    sudo mkdir /workspace; sudo chmod -R 777 /workspace; sudo chown jenkins /workspace
+    
     # 2. run agent
     docker stack deploy -c ./jenkinsAgent.dockerStack.yml jenkins-agent
 
     # 3. validate connection by navigating to jenkins server nodes settings.
-
 
 }
