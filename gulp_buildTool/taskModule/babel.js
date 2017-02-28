@@ -9,7 +9,8 @@ module.exports = (sources, destination) => {
         // Therefore, babel settings need to be configured here.
         .pipe(babel({
             "presets": ["es2015", "stage-0"],
-            "plugins": ["babel-plugin-transform-runtime", "babel-plugin-add-module-exports"]
+            "plugins": ["babel-plugin-transform-runtime", "babel-plugin-add-module-exports"],
+            "babelrc": false
         }))
         .pipe(gulp.dest(destination));
 };
