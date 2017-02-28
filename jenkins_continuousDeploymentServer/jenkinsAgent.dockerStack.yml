@@ -10,7 +10,7 @@ services:
     # image: jenkins:2.32.1-alpine
     image: vfarcic/jenkins-swarm-agent:latest
     environment:
-      - COMMAND_OPTIONS=-master https://${JenkinsServerIP}/ -username admin -password admin -labels 'docker' -executors 5
+      - COMMAND_OPTIONS=-master https://${JenkinsServerIP}/ -username admin -password ${JenkinsServerPassword} -labels 'docker' -executors 5
     volumes:
         # - /mnt/datadisk-1/jenkins/workspace:/workspace
         - /workspace:/workspace
