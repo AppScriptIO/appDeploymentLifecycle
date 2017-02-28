@@ -31,6 +31,7 @@ jenkins.agent() { # local
     sudo mkdir /workspace; sudo chmod -R 777 /workspace; sudo chown jenkins /workspace
     
     # 2. run agent
+    export HOME=/c/Users/<...>
     docker stack deploy -c ./jenkinsAgent.dockerStack.yml jenkins-agent
 
     # 3. validate connection by navigating to jenkins server nodes settings.

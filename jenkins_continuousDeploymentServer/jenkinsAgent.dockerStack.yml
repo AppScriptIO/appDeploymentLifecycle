@@ -19,7 +19,7 @@ services:
         - /var/run/docker.sock:/var/run/docker.sock
         # We also mounted the host (laptop) directory that contains the keys. That will allow us to send requests to engines running inside the other cluster.
         # if we have 'cd cluster' with jenkins agent nodes & prod-like nodes, with another cluster 'production cluster' that will serve as local producation simulation (replacing the cloud hosted vm).
-        - $(HOME)/.docker/machine/machines:/machines
+        - ${HOME}/.docker/machine/machines:/machines
     deploy:
       mode: global
 
