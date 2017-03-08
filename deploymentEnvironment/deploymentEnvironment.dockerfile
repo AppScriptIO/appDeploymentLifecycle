@@ -53,4 +53,4 @@ RUN npm install -g yo generator-generator; \
     # nodmod - live server reloading
     npm install -g nodemon; \    
     # babel
-    npm install -g babel-cli babel-register;
+    npm install -g babel-cli babel-register; 
