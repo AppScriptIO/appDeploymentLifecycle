@@ -54,6 +54,15 @@ proxy.register('gaziteng.com', 'http://gazitengwebapp_wordpress:80', {
     }
 });
 
+proxy.register('gaziteng.com', 'http://assalammdwebapp_wordpress:80', {
+    ssl: {
+        letsencrypt: {
+            email: 'sfmissive@gmail.com', // Domain owner/admin email
+            production: true, // WARNING: Only use this flag when the proxy is verified to work correctly to avoid being banned!
+        }
+    }
+});
+
 // TODO: Fix cross origin http in https, seems as if `upgrade` header doesn't work well in apache config wiht browser throgh http config file.
 proxy.register('dentrist.com', 'http://dentristwebapp_wordpress:80', {
     ssl: {
