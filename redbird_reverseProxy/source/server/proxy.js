@@ -18,7 +18,7 @@ var proxy = require('redbird')({
 proxy.register('radioscanner.webapp.run', 'http://radioscannerwebapp_nodejs:80');
 proxy.register('stream.radioscanner.webapp.run', 'http://radioscannerwebapp_apachestreamproxy/:80');
 
-proxy.register('taleb.io', 'http://educationwebapp_nodejs:80', {
+proxy.register('taleb.io', 'http://talebwebapp_nodejs:80', {
     ssl: {
         letsencrypt: {
             email: 'sfmissive@gmail.com', // Domain owner/admin email
@@ -26,6 +26,23 @@ proxy.register('taleb.io', 'http://educationwebapp_nodejs:80', {
         }
     }
 });
+proxy.register('api.taleb.io', 'http://talebwebapp_nodejs:8082', {
+    ssl: {
+        letsencrypt: {
+            email: 'sfmissive@gmail.com', // Domain owner/admin email
+            production: true, // WARNING: Only use this flag when the proxy is verified to work correctly to avoid being banned!
+        }
+    }
+});
+proxy.register('cdn.taleb.io', 'http://talebwebapp_nodejs:8081', {
+    ssl: {
+        letsencrypt: {
+            email: 'sfmissive@gmail.com', // Domain owner/admin email
+            production: true, // WARNING: Only use this flag when the proxy is verified to work correctly to avoid being banned!
+        }
+    }
+});
+proxy.register('rethinkdb.taleb.io', 'http://talebwebapp_rethinkdb:8080');
 
 proxy.register('animalsounds.webapp.run', 'http://animalsoundswebapp_nodejs:80', {
     ssl: {
