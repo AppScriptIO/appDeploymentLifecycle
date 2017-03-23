@@ -32,6 +32,8 @@ jenkins.agent() { # local
     
     # 2. run agent
     export HOME=/c/Users/<...>
+    export JenkinsServerIP=<...>
+    export JenkinsServerPassword=<...>
     docker stack deploy -c ./jenkinsAgent.dockerStack.yml jenkins-agent
 
     # 3. validate connection by navigating to jenkins server nodes settings.

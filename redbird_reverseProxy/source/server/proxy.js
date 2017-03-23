@@ -18,7 +18,7 @@ var proxy = require('redbird')({
 proxy.register('radioscanner.webapp.run', 'http://radioscannerwebapp_nodejs:80');
 proxy.register('stream.radioscanner.webapp.run', 'http://radioscannerwebapp_apachestreamproxy/:80');
 
-proxy.register('education.webapp.run', 'http://educationwebapp_nodejs:80', {
+proxy.register('taleb.io', 'http://educationwebapp_nodejs:80', {
     ssl: {
         letsencrypt: {
             email: 'sfmissive@gmail.com', // Domain owner/admin email
