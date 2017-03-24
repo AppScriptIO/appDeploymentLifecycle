@@ -1,6 +1,7 @@
 let filesystem = require('fs');
 let filesystemPromise = require('fs-promise'); // supports "fs-extra" functionality.
 var childProcessPromise = require('child-process-promise');
+
 let letsencryptPort = process.env.LETSENCRYPT_PORT;
 let email = process.env.EMAIL;
 let webappGithubModule = [
@@ -17,26 +18,24 @@ let webappGithubModule = [
         url: 'https://raw.githubusercontent.com/myuseringithub/animalsoundsWebapp/master/setup/reverseProxy/production.redbirdConf.js'
     },
     {
-        name: '.js',
-        url: ''
+        name: 'radioscannerWebapp.js',
+        url: 'https://raw.githubusercontent.com/myuseringithub/radioscannerWebapp/master/setup/reverseProxy/production.redbirdConf.js'
     },
     {
-        name: '.js',
-        url: ''
+        name: 'dentristWebapp.js',
+        url: 'https://raw.githubusercontent.com/myuseringithub/dentristWebapp/master/setup/reverseProxy/production.redbirdConf.js'
     },
     {
-        name: '.js',
-        url: ''
+        name: 'assalammdWebapp.js',
+        url: 'https://raw.githubusercontent.com/myuseringithub/assalammdWebapp/master/setup/reverseProxy/production.redbirdConf.js'
     },
     {
-        name: '.js',
-        url: ''
+        name: 'jenkins_continuousDeploymentServer.js',
+        url: 'https://raw.githubusercontent.com/myuseringithub/appDeploymentLifecycle/master/jenkins_continuousDeploymentServer/reverseProxy/production.redbirdConf.js'
     },
-
-    
 ]
 
-var proxy = require('redbird')({
+let proxy = require('redbird')({
     port: 80,
     xfwd: true, 
     letsencrypt: {
@@ -54,7 +53,8 @@ var proxy = require('redbird')({
 });
 
 let promiseArray = []
-filesystemPromise.ensureDir('/app/server/webappProxyConfig').then(function() {
+let webappGithubModuleFolder = 'webappProxyConfig'
+filesystemPromise.ensureDir('/app/server/' + webappGithubModuleFolder).then(function() {
     webappGithubModule.map((file, i) => {
         let promise = childProcessPromise.exec('curl -o /app/server/webappProxyConfig/' + file.name + ' ' + file.url)
         promiseArray.push(promise)
@@ -66,6 +66,7 @@ Promise.all(promiseArray).then(function() {
     });
 })
 
+// _____________________________________________________________________________
 // Using express with redbird - https://github.com/OptimalBits/redbird/issues/83
 
 // var express  = require('express');
