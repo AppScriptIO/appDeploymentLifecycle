@@ -8,6 +8,32 @@ let webappGithubModule = [
         name: 'talebWebapp.js',
         url: 'https://raw.githubusercontent.com/myuseringithub/talebWebapp/master/setup/reverseProxy/production.redbirdConf.js',
     },
+    {
+        name: 'gazitengWebapp.js',
+        url: 'https://raw.githubusercontent.com/myuseringithub/gazitengWebapp/master/setup/reverseProxy/production.redbirdConf.js'
+    },
+    {
+        name: 'animalsoundsWebapp.js',
+        url: 'https://raw.githubusercontent.com/myuseringithub/animalsoundsWebapp/master/setup/reverseProxy/production.redbirdConf.js'
+    },
+    {
+        name: '.js',
+        url: ''
+    },
+    {
+        name: '.js',
+        url: ''
+    },
+    {
+        name: '.js',
+        url: ''
+    },
+    {
+        name: '.js',
+        url: ''
+    },
+
+    
 ]
 
 var proxy = require('redbird')({
@@ -39,57 +65,6 @@ Promise.all(promiseArray).then(function() {
         require("/app/server/webappProxyConfig/" + file)(proxy);
     });
 })
-
-// proxy.register('gaziteng.com', 'http://gazitengwebapp_wordpress:80', {
-//     ssl: {
-//         letsencrypt: {
-//             email: email, // Domain owner/admin email
-//             production: true, // WARNING: Only use this flag when the proxy is verified to work correctly to avoid being banned!
-//         }
-//     }
-// });
-
-
-// proxy.register('radioscanner.webapp.run', 'http://radioscannerwebapp_nodejs:80');
-// proxy.register('stream.radioscanner.webapp.run', 'http://radioscannerwebapp_apachestreamproxy/:80');
-
-// proxy.register('animalsounds.webapp.run', 'http://animalsoundswebapp_nodejs:80', {
-//     ssl: {
-//         letsencrypt: {
-//             email: email, // Domain owner/admin email
-//             production: true, // WARNING: Only use this flag when the proxy is verified to work correctly to avoid being banned!
-//         }
-//     }
-// });
-
-// proxy.register('jenkins.webapp.run', 'http://jenkins_jenkins:8080', {
-//     ssl: {
-//         letsencrypt: {
-//             email: email, // Domain owner/admin email
-//             production: true, // WARNING: Only use this flag when the proxy is verified to work correctly to avoid being banned!
-//         }
-//     }
-// });
-
-// proxy.register('assalammd.com', 'http://assalammdwebapp_wordpress:80', {
-//     ssl: {
-//         letsencrypt: {
-//             email: email, // Domain owner/admin email
-//             production: true, // WARNING: Only use this flag when the proxy is verified to work correctly to avoid being banned!
-//         }
-//     }
-// });
-
-// // TODO: Fix cross origin http in https, seems as if `upgrade` header doesn't work well in apache config wiht browser throgh http config file.
-// proxy.register('dentrist.com', 'http://dentristwebapp_wordpress:80', {
-//     ssl: {
-//         letsencrypt: {
-//             email: email, // Domain owner/admin email
-//             production: true, // WARNING: Only use this flag when the proxy is verified to work correctly to avoid being banned!
-//         }
-//     }
-// });
-
 
 // Using express with redbird - https://github.com/OptimalBits/redbird/issues/83
 
