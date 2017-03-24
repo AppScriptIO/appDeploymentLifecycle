@@ -8,4 +8,11 @@ RUN apt-get update -y; apt-get upgrade -y;
 # node -v ; \
 # node -p process.versions;
 
-COPY ./source /app/
+ENV EMAIL ${EMAIL}
+ENV LETSENCRYPT_PORT ${LETSENCRYPT_PORT}
+
+COPY ./source /tmp/source
+
+COPY ./setup/container/shellScript/entrypoint.sh /tmp/shellScript/
+RUN find /tmp/shellScript/ -type f -exec chmod +x {} \;
+ENTRYPOINT ["/tmp/shellScript/entrypoint.sh"]

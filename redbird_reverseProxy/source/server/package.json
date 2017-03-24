@@ -4,6 +4,8 @@
   "description": "",
   "main": "proxy.js",
   "dependencies": {
+    "child-process-promise": "^2.2.0",
+    "fs-promise": "^2.0.1",
     "http-proxy": "^1.16.2",
     "redbird": "^0.6.15"
   },

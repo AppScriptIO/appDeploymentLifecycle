@@ -29,8 +29,12 @@ services:
       - "/mnt/datadisk-1/redbirdProxy/certificate:/app/certificate/"
     deploy:
       replicas: 1
+    environment:
+      DEPLOYMENT: production
+      EMAIL: ${EMAIL}
+      LETSENCRYPT_PORT: ${LETSENCRYPT_PORT}
     working_dir: /app/
-    command: bash -c "npm install; node entrypoint.js"
+    # command: bash -c "npm install; node entrypoint.js"
 
   # swarm-listener:
   #   image: vfarcic/docker-flow-swarm-listener

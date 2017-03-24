@@ -14,7 +14,16 @@ services:
             - 443:443
         environment:
             DEPLOYMENT: ${DEPLOYMENT:-production}
+            EMAIL: ${EMAIL}
+            LETSENCRYPT_PORT: ${LETSENCRYPT_PORT}
         volumes:
-          - ../../source:/app/
+          - ../../source/server/:/app/server/
         working_dir: /app/
-        command: bash -c "npm install; npm update; node proxy.js"
+        # entrypoint: /tmp/shellScript/entrypoint.sh
+        # command: bash -c ""
+    
+    development:
+        image: myuserindocker/deployment-environment:latest
+        volumes:
+            - ../../source/server/:/app/server/
+        command: bash -c "sleep 100000"
