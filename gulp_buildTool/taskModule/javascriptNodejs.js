@@ -3,17 +3,15 @@
 let gulp = require('gulp');
 let plugins = require('gulp-load-plugins')({ camelize: true });
 const babel = require('gulp-babel'),
-      concat = require('gulp-concat'),
-      sourcemaps = require('gulp-sourcemaps'),
-      UglifyJS = require("uglify-js");
+      sourcemaps = require('gulp-sourcemaps');
 
 module.exports = (sources, destination) => {
   return gulp.src(sources)
     .pipe(plugins.plumber())
 		.pipe(sourcemaps.init())
-    .pipe(babel({
-      "presets": ["es2015"],
-      // "plugins": ["babel-plugin-transform-runtime", "babel-plugin-add-module-exports"],
+		.pipe(babel({
+      "presets": ["es2015", "stage-0"],
+      "plugins": ["babel-plugin-transform-runtime", "babel-plugin-add-module-exports"],
       "babelrc": false
     }))
     .pipe(sourcemaps.write('.'))

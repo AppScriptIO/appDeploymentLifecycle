@@ -32,7 +32,7 @@ function x(rootSource, source, destination) {
 module.exports = (rootSource, source, destination, extraOptions) => {
     let options = {
       'a': true, // archive
-      'v': true, // verbose
+      // 'v': true, // verbose
       'z': true, // compress
       'R': false, // relative
       'r': true // recursive
