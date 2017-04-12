@@ -8,17 +8,19 @@ const babel = require('gulp-babel'),
       UglifyJS = require("uglify-js");
 
 module.exports = (sources, destination) => {
-  return gulp.src(sources)
-    .pipe(plugins.plumber())
-		.pipe(sourcemaps.init())
-    .pipe(babel({
-      "presets": ["es2015"],
-      // "plugins": ["babel-plugin-transform-runtime", "babel-plugin-add-module-exports"],
-      "babelrc": false
-    }))
-    .pipe(sourcemaps.write('.'))
-    .pipe(plugins.if('*.js', plugins.uglify({
-      // preserveComments: 'license'
-    })))
-    .pipe(gulp.dest(destination));
+  return () => {
+    return gulp.src(sources)
+      .pipe(plugins.plumber())
+      .pipe(sourcemaps.init())
+      .pipe(babel({
+        "presets": ["es2015"],
+        // "plugins": ["babel-plugin-transform-runtime", "babel-plugin-add-module-exports"],
+        "babelrc": false
+      }))
+      .pipe(sourcemaps.write('.'))
+      .pipe(plugins.if('*.js', plugins.uglify({
+        // preserveComments: 'license'
+      })))
+      .pipe(gulp.dest(destination));
+  }
 };

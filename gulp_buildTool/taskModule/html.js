@@ -3,10 +3,21 @@
 let gulp = require('gulp');
 let plugins = require('gulp-load-plugins')({ camelize: true }),
 	babelInline = require('gulp-babel-inline'),
-	babel = require('gulp-babel');
+	babel = require('gulp-babel'),
+	merge = require('merge-stream'),
+	
 
 module.exports = (sources, destination) => {
 	return () => {
+		// let html = optimizeHtmlTask( // produces errors.
+		// 	[
+		// 		source('clientSide/assets/**/*.html'),
+		// 		'!'+ source('clientSide/assets/elements/**/*.html'),
+		// 		'!'+ source('clientSide/assets/elements/bower_components/**/*.html'),
+		// 		'!'+ source('clientSide/assets/javascripts/addons_library/Woothemes-FlexSlider2/dynamic-carousel-min-max.html') // Throughs errors.
+		// 	],
+		// 	destination('clientSide/assets')
+		// );
 		var hbAttrWrapOpen = /\{\{(#|\^)[^}]+\}\}/;
 		var hbAttrWrapClose = /\{\{\/[^}]+\}\}/;
 		var hbAttrWrapPair = [hbAttrWrapOpen, hbAttrWrapClose];
