@@ -4,7 +4,7 @@ let gulp = require('gulp');
 let plugins = require('gulp-load-plugins')({ camelize: true }),
 	babelInline = require('gulp-babel-inline'),
 	babel = require('gulp-babel'),
-	merge = require('merge-stream'),
+	merge = require('merge-stream');
 	
 
 module.exports = (sources, destination) => {
