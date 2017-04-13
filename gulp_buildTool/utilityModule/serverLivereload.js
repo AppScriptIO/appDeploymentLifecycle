@@ -8,11 +8,12 @@ function sleep(ms) {
 
 class ServerLivereload extends EventEmitter {
     
-    constructor(gulp, debugArguments) {
+    constructor(gulp, debugArguments, entrypoint) {
         super()
         this.node;
         this.gulp = gulp
         this.debugArguments = debugArguments
+        this.entrypoint = entrypoint
         // clean up if an error goes unhandled.
         process.on('exit', function() {
             if (this.node) this.node.kill()
@@ -24,7 +25,7 @@ class ServerLivereload extends EventEmitter {
         if (this.node) this.node.kill()
 
         // node = childProcess.fork('babelCompile.entrypoint.js', { cwd: '/app/serverSide', stdio:'inherit', execArgv: debugArguments})
-        this.node = childProcess.fork('babelCompile.entrypoint.js', { cwd: '/tmp/distribution/serverSide', stdio:'inherit', execArgv: this.debugArguments})
+        this.node = childProcess.fork(this.entrypoint.filename, { cwd: this.entrypoint.filePath, stdio:'inherit', execArgv: this.debugArguments})
         this.node.on('message', (m) => {
             // console.log('Server ready & listening.', m);
             this.emit('reload')
