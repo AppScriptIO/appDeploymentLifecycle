@@ -30,6 +30,7 @@ function x(rootSource, source, destination) {
 
 // NOTE: joinPath.js module was used instead of path.join module. If any problems appear, rollback.
 module.exports = (rootSource, source, destination, extraOptions) => {
+  return () => {
     let options = {
       'a': true, // archive
       // 'v': true, // verbose
@@ -58,4 +59,5 @@ module.exports = (rootSource, source, destination, extraOptions) => {
         });
       });
     });
+  }
 };

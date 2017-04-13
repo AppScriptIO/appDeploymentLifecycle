@@ -19,15 +19,17 @@ let AUTOPREFIXER_BROWSERS = [
 ];
 
 module.exports = (sources, destination) => {
-  return gulp.src(sources)
-    .pipe(plugins.plumber())
-    .pipe(plugins.autoprefixer({
-      browsers: AUTOPREFIXER_BROWSERS,
-      cascade: false
-    }))
-    .pipe(plugins.if('*.css', cleanCSS()))
-    .pipe(gulp.dest(destination))
-    .pipe(plugins.size({
-      title: 'styleTask'
-    }));
+  return () => {
+    return gulp.src(sources)
+      .pipe(plugins.plumber())
+      .pipe(plugins.autoprefixer({
+        browsers: AUTOPREFIXER_BROWSERS,
+        cascade: false
+      }))
+      .pipe(plugins.if('*.css', cleanCSS()))
+      .pipe(gulp.dest(destination))
+      .pipe(plugins.size({
+        title: 'styleTask'
+      }));
+  }
 };

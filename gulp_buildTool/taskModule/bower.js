@@ -9,7 +9,7 @@ let config = require('configuration/configuration.js'),
 	source = subpath => { return joinPath(config.SourceCodePath, subpath) },
 	destination = subpath => { return joinPath(config.DestinationPath, subpath) }
 
-export default (bowerLocation) => {
+module.exports = (bowerLocation) => {
 	return async ()=> {
 		// In gulp 4, you can return a child process to signal task completion
 		return childProcess.execSync('bower install --allow-root;', { cwd: bowerLocation, shell: true, stdio:[0,1,2] });
