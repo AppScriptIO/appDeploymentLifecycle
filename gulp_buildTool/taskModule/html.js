@@ -10,13 +10,15 @@ const cssSlam = require('css-slam').gulp
 const polyclean = require('polyclean')
 const HtmlSplitter = require('polymer-build').HtmlSplitter
 const sourcesHtmlSplitter = new HtmlSplitter()
+const FragmentIndentation = require('../utilityModule/fragmentIndentation.js').FragmentIndentation
 
 let ignoreCustomFragments = [ /{%[\s\S]*?%}/, /<%[\s\S]*?%>/, /<\?[\s\S]*?\?>/ ]
 
 function webcomponent(sources, destination) {
   return gulp.src(sources)
+	.pipe(FragmentIndentation.TransformToFragmentKeys())
 	.pipe(sourcesHtmlSplitter.split()) // split inline JS & CSS out into individual .js & .css files
-		
+	
 	// Inline CSS
 	.pipe(gulpif(/\.css$/, cssSlam()))
 	
@@ -34,7 +36,7 @@ function webcomponent(sources, destination) {
 	// .pipe(gulpif(/\.js$/, uglify()))
 
 	// Inline HTML
-	// .pipe(gulpif(/\.html$/, htmlMinifier()))
+	.pipe(gulpif(/\.html$/, htmlMinifier()))
     .pipe(gulpif(/\.html$/, plugins.htmlmin({
 			collapseWhitespace: true,
 			removeComments: true,
@@ -46,6 +48,7 @@ function webcomponent(sources, destination) {
 	})))
 
 	.pipe(sourcesHtmlSplitter.rejoin()) // rejoins those files back into their original location
+	.pipe(FragmentIndentation.TransformBackToFragment())
 
 	// .pipe(plugins.plumber())
 	// .pipe(plugins.minifyInline())
