@@ -12,7 +12,14 @@ function pureJavascript(sources, destination) {
       .pipe(plugins.plumber())
       .pipe(sourcemaps.init())
       .pipe(babel({
-        "presets": [`${__dirname}/../node_modules/babel-preset-es2015`],
+        "presets": [
+          `${__dirname}/../node_modules/babel-preset-es2015`,
+					`${__dirname}/../node_modules/babel-preset-babili`
+				],
+				"plugins": [
+					`${__dirname}/../node_modules/babel-plugin-transform-custom-element-classes`
+				// 	`${__dirname}/../node_modules/babel-plugin-transform-es2015-classes`,
+				],        
         // "plugins": ["babel-plugin-transform-runtime", "babel-plugin-add-module-exports"],
         "babelrc": false
       }))

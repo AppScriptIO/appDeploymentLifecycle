@@ -13,6 +13,9 @@ const sourcesHtmlSplitter = new HtmlSplitter()
 const FragmentIndentation = require('../utilityModule/fragmentIndentation.js').FragmentIndentation
 
 let ignoreCustomFragments = [ /{%[\s\S]*?%}/, /<%[\s\S]*?%>/, /<\?[\s\S]*?\?>/ ]
+let hbAttrWrapOpen = /\{\{(#|\^)[^}]+\}\}/;
+let hbAttrWrapClose = /\{\{\/[^}]+\}\}/;
+let hbAttrWrapPair = [hbAttrWrapOpen, hbAttrWrapClose];
 
 function webcomponent(sources, destination) {
   return gulp.src(sources)
@@ -22,17 +25,21 @@ function webcomponent(sources, destination) {
 	// Inline CSS
 	.pipe(gulpif(/\.css$/, cssSlam()))
 	
-	// // Inline JAVASCRIPT
-	// .pipe(gulpif(/\.js$/, 
-	// 			babel({
-	// 				"presets": ["es2015"],
-	// 				"plugins": [
-	// 					// "transform-custom-element-classes",
-	// 					"transform-es2015-classes"
-	// 				],
-	// 				"babelrc": false
-	// 			})
-	// ))
+	// Inline JAVASCRIPT
+	.pipe(gulpif(/\.js$/, 
+			babel({
+				"presets": [
+					`${__dirname}/../node_modules/babel-preset-es2015`,
+					// `${__dirname}/../node_modules/babel-preset-babili`,
+					// { "modules": false }
+				],
+				"plugins": [
+					// `${__dirname}/../node_modules/babel-plugin-transform-custom-element-classes`,
+					// `${__dirname}/../node_modules/babel-plugin-transform-es2015-classes`,
+				]
+			})
+		)
+	)
 	// .pipe(gulpif(/\.js$/, uglify()))
 
 	// Inline HTML
@@ -57,44 +64,21 @@ function webcomponent(sources, destination) {
 	// .pipe(polyclean.uglifyJs())
 	// .pipe(polyclean.cleanCss())
 
+	// .pipe(plugins.plumber())
+	// .pipe(babelInline({
+	// 	"presets": ["es2015"],
+	// 	// "plugins": ["babel-plugin-transform-runtime", "babel-plugin-add-module-exports"],
+	// 	"babelrc": false
+	// }))
+	// .pipe(babelInline({
+	// 	"presets": ["es2015", "stage-0"],
+	// 	"plugins": ["babel-plugin-transform-runtime", "babel-plugin-add-module-exports"]
+	// }))
+
     .pipe(gulp.dest(destination))
 	.pipe(plugins.size({
 		title: 'html task (webcomponent)'
 	}));
-}
-
-function pureHTML(sources, destination) {
-	let hbAttrWrapOpen = /\{\{(#|\^)[^}]+\}\}/;
-	let hbAttrWrapClose = /\{\{\/[^}]+\}\}/;
-	let hbAttrWrapPair = [hbAttrWrapOpen, hbAttrWrapClose];
-	return gulp.src(sources)
-		// .pipe(plugins.plumber())
-		// .pipe(babelInline({
-		// 	"presets": ["es2015"],
-		// 	// "plugins": ["babel-plugin-transform-runtime", "babel-plugin-add-module-exports"],
-		// 	"babelrc": false
-		// }))
-		// .pipe(babelInline({
-		// 	"presets": ["es2015", "stage-0"],
-		// 	"plugins": ["babel-plugin-transform-runtime", "babel-plugin-add-module-exports"]
-		// }))
-
-		.pipe(plugins.htmlmin({
-			collapseWhitespace: true,
-			removeComments: true,
-			removeCommentsFromCDATA: true,
-			minifyURLs: true,
-			// minifyJS: true,
-			minifyCSS: true,
-			ignoreCustomFragments: ignoreCustomFragments,
-			// preserveLineBreaks: true
-		}))
-		// .pipe(plugins.minifyInline())
-
-		.pipe(gulp.dest(destination))
-		.pipe(plugins.size({
-			title: 'html task (pureHTML)'
-		}));
 }
 
 module.exports = (sources, destination, type = null) => {
@@ -102,11 +86,8 @@ module.exports = (sources, destination, type = null) => {
 		let result;
 		switch (type) {
 			case 'webcomponent':
-				result = webcomponent(sources, destination)
-				break;
-			case 'pureHTML':
 			default:
-				result = pureHTML(sources, destination)
+				result = webcomponent(sources, destination)
 				break;
 		}
 		return result;
