@@ -33,6 +33,10 @@ let webappGithubModule = [
         name: 'jenkins_continuousDeploymentServer.js',
         url: 'https://raw.githubusercontent.com/myuseringithub/appDeploymentLifecycle/master/jenkins_continuousDeploymentServer/reverseProxy/production.redbirdConf.js'
     },
+    {
+        name: 'husseinWebapp.js',
+        url: 'https://github.com/HusseinSheme/husseinSheme/master/setup/reverseProxy/production.redbirdConf.js'
+    },
 ]
 
 let proxy = require('redbird')({
@@ -62,7 +66,7 @@ filesystemPromise.ensureDir('/app/server/' + webappGithubModuleFolder).then(func
 })
 Promise.all(promiseArray).then(function() {
     filesystem.readdirSync('/app/server/webappProxyConfig').forEach(function(file) {
-        require("/app/server/webappProxyConfig/" + file)(proxy);
+        if(file.substr(file.lastIndexOf('.')+1)) require("/app/server/webappProxyConfig/" + file)(proxy);
     });
 })
 
