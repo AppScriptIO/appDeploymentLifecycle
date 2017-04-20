@@ -29,35 +29,72 @@ function x(rootSource, source, destination) {
 };
 
 // NOTE: joinPath.js module was used instead of path.join module. If any problems appear, rollback.
-module.exports = (rootSource, source, destination, extraOptions) => {
-  return () => {
-    let options = {
-      'a': true, // archive
-      // 'v': true, // verbose
-      'z': true, // compress
-      'R': false, // relative
-      'r': true // recursive
-    };
-    if(typeof extraOptions !== 'undefined') {
-      options = Object.assign(options, extraOptions);
-    } 
-    var rsync = new Rsync()
-    .flags(options)
-    // .exclude('+ */')
-    // .include('/tmp/source/**/*')
-    .source(path.join(rootSource, source))
-    .destination(path.join(destination, source));
-    
-    // Create directory.
-    return new Promise(resolve => {
-      mkdirp(path.join(destination, source), function(err) {     
-        // Execute the command 
-        rsync.execute(function(error, code, cmd) {
-          resolve();
-        }, function(data) {
-          console.log(' ' + data);
+module.exports = (rootSource, source, destination, type = null, extraOptions) => {
+  
+  switch (type) {
+    case 'sourceToSame':
+      return () => {
+        let options = {
+          'a': true, // archive
+          // 'v': true, // verbose
+          'z': true, // compress
+          'R': false, // relative
+          'r': true // recursive
+        };
+        if(typeof extraOptions !== 'undefined') {
+          options = Object.assign(options, extraOptions);
+        } 
+        var rsync = new Rsync()
+        .flags(options)
+        // .exclude('+ */')
+        // .include('/tmp/source/**/*')
+        .source(path.join(rootSource, source))
+        .destination(path.join(destination, source));
+        
+        // Create directory.
+        return new Promise(resolve => {
+          mkdirp(path.join(destination, source), function(err) {     
+            // Execute the command 
+            rsync.execute(function(error, code, cmd) {
+              resolve();
+            }, function(data) {
+              console.log(' ' + data);
+            });
+          });
         });
-      });
-    });
+      }
+      break;
+    default:
+      return () => {
+        let options = {
+          'a': true, // archive
+          // 'v': true, // verbose
+          'z': true, // compress
+          'R': false, // relative
+          'r': true // recursive
+        };
+        if(typeof extraOptions !== 'undefined') {
+          options = Object.assign(options, extraOptions);
+        } 
+        var rsync = new Rsync()
+        .flags(options)
+        // .exclude('+ */')
+        // .include('/tmp/source/**/*')
+        .source('/tmp/source/clientSide/')
+        .destination(path.join(destination, source));
+        
+        // Create directory.
+        return new Promise(resolve => {
+          mkdirp(path.join(destination, source), function(err) {     
+            // Execute the command 
+            rsync.execute(function(error, code, cmd) {
+              resolve();
+            }, function(data) {
+              console.log(' ' + data);
+            });
+          });
+        });
+      }
+    break;
   }
 };

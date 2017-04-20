@@ -22,22 +22,29 @@ const self = class FragmentIndentation extends stream.Transform {
 
     static TransformToFragmentKeys() {
         return new (class extends self {
-            _transform(file, encoding, callback){
+            constructor() {
+                super()
+                self.fragmentArray = Array()
+            }
+            async _transform(file, encoding, callback){
                 if (file.isStream()) return callback(new Error('☕ SZN - fragmentIndentation does not support streams'));
                 let contents = file.contents.toString()
-                file.contents = new Buffer(self.replaceIndentationWithFragmentKey(contents))
-                callback(null, file);
+                file.contents = await new Buffer(self.replaceIndentationWithFragmentKey(contents))
+                await callback(null, file);
             }
         })()
     }
 
     static TransformBackToFragment() {
-        return new  (class extends self {
-            _transform(file, encoding, callback){
+        return new (class extends self {
+            constructor() {
+                super()
+            }
+            async _transform(file, encoding, callback){
                 if (file.isStream()) return callback(new Error('☕ SZN - fragmentIndentation does not support streams'));
                 let contents = file.contents.toString()
-                file.contents = new Buffer(self.replaceOriginalFragment(contents))
-                callback(null, file);
+                file.contents = await new Buffer(self.replaceOriginalFragment(contents))
+                await callback(null, file);
             }
         })()
     }
@@ -46,7 +53,6 @@ const self = class FragmentIndentation extends stream.Transform {
         for (var fragmentKey in self.fragmentArray) {
             string = string.replace(fragmentKey, self.fragmentArray[fragmentKey])            
         }
-        self.fragmentArray = []
         return string
     }
 
@@ -77,28 +83,28 @@ const self = class FragmentIndentation extends stream.Transform {
         return string.substring(0, startIndex) + insertedString + string.substring(endIndex);
     };
 
-    static indexRangeOfFragmentOccurence(string, indentationOpenning, indentationClosing) {
-        let arrayOpenning = self.indexOfOccurence(string, indentationOpenning)
-        let arrayClosing = self.indexOfOccurence(string, indentationClosing)
-        let combinedIndexArray = self.mergeArraysToArrayObjectOfSameSize(arrayOpenning, arrayClosing)
-    }
+    // static indexRangeOfFragmentOccurence(string, indentationOpenning, indentationClosing) {
+    //     let arrayOpenning = self.indexOfOccurence(string, indentationOpenning)
+    //     let arrayClosing = self.indexOfOccurence(string, indentationClosing)
+    //     let combinedIndexArray = self.mergeArraysToArrayObjectOfSameSize(arrayOpenning, arrayClosing)
+    // }
 
-    static indexOfOccurence(string, indentation) {
-        let match, matches = [];
-        while ((match = indentation.regex.exec(string)) != null) {
-            matches.push(match.index);
-        }
-        return matches
-    }
+    // static indexOfOccurence(string, indentation) {
+    //     let match, matches = [];
+    //     while ((match = indentation.regex.exec(string)) != null) {
+    //         matches.push(match.index);
+    //     }
+    //     return matches
+    // }
 
-    static mergeArraysToArrayObjectOfSameSize(arrayOpenning, arrayClosing) {
-        let length = arrayOpenning.length
-        let combined = []
-        for (var index = 0; index < length; index++) {
-            combined.push({ openning: arrayOpenning[index], closing: arrayClosing[index] })
-        }
-        return combined
-    }
+    // static mergeArraysToArrayObjectOfSameSize(arrayOpenning, arrayClosing) {
+    //     let length = arrayOpenning.length
+    //     let combined = []
+    //     for (var index = 0; index < length; index++) {
+    //         combined.push({ openning: arrayOpenning[index], closing: arrayClosing[index] })
+    //     }
+    //     return combined
+    // }
     
 
 }
