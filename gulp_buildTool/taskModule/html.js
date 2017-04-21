@@ -9,9 +9,6 @@ const htmlMinifier = require('gulp-html-minifier')
 const cssSlam = require('css-slam').gulp
 const polyclean = require('polyclean')
 const HtmlSplitter = require('polymer-build').HtmlSplitter
-const sourcesHtmlSplitter1 = new HtmlSplitter()
-const sourcesHtmlSplitter2 = new HtmlSplitter()
-const sourcesHtmlSplitter3 = new HtmlSplitter()
 const FragmentIndentation = require('../utilityModule/fragmentIndentation.js').FragmentIndentation
 const babelPresetES2015 = require('babel-preset-es2015');
 const babelPresetES2015NoModules = babelPresetES2015.buildPreset({}, {modules: false});
@@ -23,9 +20,10 @@ let hbAttrWrapClose = /\{\{\/[^}]+\}\}/;
 let hbAttrWrapPair = [hbAttrWrapOpen, hbAttrWrapClose];
 
 function webcomponent(sources, destination) {
+	const sourcesHtmlSplitter = new HtmlSplitter()
   return gulp.src(sources)
 	.pipe(FragmentIndentation.TransformToFragmentKeys())
-	.pipe(sourcesHtmlSplitter1.split()) // split inline JS & CSS out into individual .js & .css files
+	.pipe(sourcesHtmlSplitter.split()) // split inline JS & CSS out into individual .js & .css files
 	
 	// Inline CSS
 	.pipe(gulpif(/\.css$/, cssSlam()))
@@ -59,7 +57,7 @@ function webcomponent(sources, destination) {
 			ignoreCustomFragments: ignoreCustomFragments
 	})))
 
-	.pipe(sourcesHtmlSplitter1.rejoin()) // rejoins those files back into their original location
+	.pipe(sourcesHtmlSplitter.rejoin()) // rejoins those files back into their original location
 	.pipe(FragmentIndentation.TransformBackToFragment())
 
 	// .pipe(plugins.plumber())
@@ -87,9 +85,10 @@ function webcomponent(sources, destination) {
 }
 
 function webcomponentES5(sources, destination) {
+	const sourcesHtmlSplitter = new HtmlSplitter()
   return gulp.src(sources)
 	.pipe(FragmentIndentation.TransformToFragmentKeys())
-	.pipe(sourcesHtmlSplitter2.split()) // split inline JS & CSS out into individual .js & .css files
+	.pipe(sourcesHtmlSplitter.split()) // split inline JS & CSS out into individual .js & .css files
 	
 	// Inline CSS
 	.pipe(gulpif(/\.css$/, cssSlam()))
@@ -99,7 +98,7 @@ function webcomponentES5(sources, destination) {
 		babel({
 			"presets": [
 				`${__dirname}/../node_modules/babel-preset-es2015`,
-				`${__dirname}/../node_modules/babel-preset-babili`,
+				// `${__dirname}/../node_modules/babel-preset-babili`,
 				// { "modules": false }
 			],
 			"plugins": [
@@ -110,19 +109,19 @@ function webcomponentES5(sources, destination) {
 	))
 	// .pipe(gulpif(/\.js$/, uglify()))
 
-	// Inline HTML
-	.pipe(gulpif(/\.html$/, htmlMinifier()))
-    .pipe(gulpif(/\.html$/, plugins.htmlmin({
-			collapseWhitespace: true,
-			removeComments: true,
-			removeCommentsFromCDATA: true,
-			minifyURLs: true,
-			minifyJS: true,
-			minifyCSS: true, 
-			ignoreCustomFragments: ignoreCustomFragments
-	})))
+	// // Inline HTML
+	// .pipe(gulpif(/\.html$/, htmlMinifier()))
+    // .pipe(gulpif(/\.html$/, plugins.htmlmin({
+	// 		collapseWhitespace: true,
+	// 		removeComments: true,
+	// 		removeCommentsFromCDATA: true,
+	// 		minifyURLs: true,
+	// 		minifyJS: true,
+	// 		minifyCSS: true, 
+	// 		ignoreCustomFragments: ignoreCustomFragments
+	// })))
 
-	.pipe(sourcesHtmlSplitter2.rejoin()) // rejoins those files back into their original location
+	.pipe(sourcesHtmlSplitter.rejoin()) // rejoins those files back into their original location
 	.pipe(FragmentIndentation.TransformBackToFragment())
 
 	// .pipe(plugins.plumber())
@@ -150,9 +149,10 @@ function webcomponentES5(sources, destination) {
 }
 
 function polymer(sources, destination) {
+	const sourcesHtmlSplitter = new HtmlSplitter()
   return gulp.src(sources)
 	// .pipe(FragmentIndentation.TransformToFragmentKeys())
-	.pipe(sourcesHtmlSplitter3.split()) // split inline JS & CSS out into individual .js & .css files
+	.pipe(sourcesHtmlSplitter.split()) // split inline JS & CSS out into individual .js & .css files
 	
 	// Inline CSS
 	// .pipe(gulpif(/\.css$/, cssSlam()))
@@ -187,7 +187,7 @@ function polymer(sources, destination) {
 	// 		ignoreCustomFragments: ignoreCustomFragments
 	// })))
 
-	.pipe(sourcesHtmlSplitter3.rejoin()) // rejoins those files back into their original location
+	.pipe(sourcesHtmlSplitter.rejoin()) // rejoins those files back into their original location
 	// .pipe(FragmentIndentation.TransformBackToFragment())
 
 	// .pipe(plugins.plumber())
