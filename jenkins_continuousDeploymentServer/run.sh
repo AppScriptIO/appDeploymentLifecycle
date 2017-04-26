@@ -24,6 +24,8 @@ jenkins.server() {
 }
 
 jenkins.agent() { # local
+    # IMPORTANT: To reconnect try leaving swarn and them rejoining with ip of vm.
+    
     # Jenkins agent:
     # https://github.com/vfarcic/docker-flow-stacks/tree/master/jenkins
     # 1. Folder agent local wordspace
@@ -37,5 +39,5 @@ jenkins.agent() { # local
     docker stack deploy -c ./jenkinsAgent.dockerStack.yml jenkins-agent
 
     # 3. validate connection by navigating to jenkins server nodes settings.
-
+    
 }
