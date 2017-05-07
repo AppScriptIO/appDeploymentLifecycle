@@ -11,8 +11,9 @@ networks:
 services:
 
   jenkins:
-    # image: jenkins:2.32.1-alpine
-    image: jenkinsci/blueocean:latest
+    image: jenkins:latest
+    # OR use extra visual interface by BlueOcean
+    # image: jenkinsci/blueocean:latest
     ports:
       - 50000:50000
     environment:
