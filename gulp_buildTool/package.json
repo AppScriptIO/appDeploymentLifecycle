@@ -30,6 +30,7 @@
     "eventemitter2": ">=4.1.0",
     "glob-all": ">=3.1.0",
     "gulp": "github:gulpjs/gulp#4.0",
+    "gulp-4.0.build": "^4.0.0-build.a271520",
     "gulp-autoprefixer": ">=3.1.1",
     "gulp-babel": ">=6.1.2",
     "gulp-babel-inline": ">=0.0.1-alpha.1",
