@@ -8,7 +8,9 @@ function requireJSON(filePath) { return JSON.parse(filesystem.readFileSync(fileP
 const babelDefaultConfig = require(`${__dirname}/babelConfig.js`) // load babelrc json.
 // babelDefaultConfig.babelrc = false; // don't search for babelrc in transpiled file location.
 
-module.exports = function(nodePath, appFilePath, babelConfig = babelDefaultConfig) {
+module.exports = async function(nodePath, appFilePath, babelConfig = babelDefaultConfig) {
+    if(typeof babelConfig == 'string') babelConfig = await require(`${__dirname}/${babelConfig}`)
+
     // Define server base path. Hackish way to make sure the path is always consistent. Base path in Nodejs is where the closest parent node_modules is located to the initiated js script.
     process.env.NODE_PATH = path.normalize(`${nodePath}/`)
     mainModule.Module._initPaths()

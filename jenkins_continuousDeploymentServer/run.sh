@@ -24,6 +24,8 @@ jenkins.server() {
 }
 
 jenkins.agent() { # local
+    # IMPORTANT: To reconnect try leaving swarn and them rejoining with ip of vm.
+    
     # Jenkins agent:
     # https://github.com/vfarcic/docker-flow-stacks/tree/master/jenkins
     # 1. Folder agent local wordspace
@@ -37,5 +39,29 @@ jenkins.agent() { # local
     docker stack deploy -c ./jenkinsAgent.dockerStack.yml jenkins-agent
 
     # 3. validate connection by navigating to jenkins server nodes settings.
+    
+}
+jenkins.agent-secrets() { # local
+    # IMPORTANT: To reconnect try leaving swarn and them rejoining with ip of vm.
+    
+    # Jenkins agent:
+    # https://github.com/vfarcic/docker-flow-stacks/tree/master/jenkins
+    # 1. Folder agent local wordspace
+    sudo adduser -G root -D jenkins
+    sudo mkdir /workspace; sudo chmod -R 777 /workspace; sudo chown jenkins /workspace
 
+        
+    # create secrets
+    echo "admin" | docker secret create jenkins-user -
+    echo "password" | docker secret create jenkins-pass -
+    # 2. run agent
+    export HOME=/c/Users/<...>
+    export JenkinsServerIP=<...>
+    # export JenkinsServerPassword=<...>
+    JENKINS_USER_SECRET=jenkins-user \
+    JENKINS_PASS_SECRET=jenkins-pass \
+    docker stack deploy -c ./jenkinsAgent-secrets.dockerStack.yml jenkins-agent
+    
+    # 3. validate connection by navigating to jenkins server nodes settings.
+    
 }
