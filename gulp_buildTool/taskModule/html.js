@@ -1,6 +1,6 @@
 const gulp = require('gulp')
 const plugins = require('gulp-load-plugins')({ camelize: true })
-const babelInline = require('gulp-babel-inline')
+// const babelInline = require('gulp-babel-inline')
 const babel = require('gulp-babel')
 const merge = require('merge-stream')
 const gulpif = require('gulp-if')
