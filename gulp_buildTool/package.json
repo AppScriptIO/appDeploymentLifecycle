@@ -33,7 +33,6 @@
     "gulp-4.0.build": "^4.0.0-build.a271520",
     "gulp-autoprefixer": ">=3.1.1",
     "gulp-babel": ">=6.1.2",
-    // "gulp-babel-inline": "*",
     "gulp-cache": ">=0.4.6",
     "gulp-changed": ">=2.0.0",
     "gulp-chown": ">=1.1.0",
