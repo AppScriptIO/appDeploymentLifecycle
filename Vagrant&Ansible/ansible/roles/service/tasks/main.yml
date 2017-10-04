@@ -1,5 +1,0 @@
-- include: pre-deployment.yml
-
-- include: deployment.yml
-
-- include: post-deployment.yml
