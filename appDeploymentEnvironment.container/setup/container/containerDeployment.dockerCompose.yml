@@ -1,0 +1,49 @@
+##
+ # docker-compose command should be called from the same directory of the dockerCompose.yml file.
+ #
+##
+
+version: '2.2'
+
+# USAGE (from root directory): docker-compose -f <filePath> up <service>
+services:
+    
+    dockerfile: # used as image, not meant to be run.
+        build: # change context to project's root folder.
+            context: ../../../ # /project/application/setup/container/.dockerfile
+            # dockerfile path relative to the context specified above.
+            dockerfile: ./application/setup/container/containerBuild.dockerFile
+            args: 
+                - DEPLOYMENT=${DEPLOYMENT}
+                - instructionConfigurationFilePath=${instructionConfigurationFilePath}
+                - instructionOption=${instructionOption}
+        image: myuserindocker/deployment-environment:latest # name of built image cannot be uppercase.
+        # command: bash -c "sleep 100000"
+    
+    # Previously myuserindocker/deployment-environment:latest wad used by extending "dockerfile" service. which requires solving the issue of first build, where the image doesn't exist locally. 
+    # either download last version from repo, or use direct build, or switch between docker-compose services for each case.
+    sharedForRunning: 
+        extends: dockerfile        
+        environment: # pass variable to the command executed & to the dockerfile when used.
+            dockerImage: ${dockerImage}
+            DEPLOYMENT: ${DEPLOYMENT}
+            instructionConfigurationFilePath: ${instructionConfigurationFilePath:-/project/application/source/instructionConfiguration.js}
+            instructionOption: ${instructionOption:-run}
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+            - ../../../babel_javascriptTranspilation.js:/project/dependency/babel_javascriptTranspilation.js/
+            - ../../:/project/application
+        command: bash -c "node --experimental-modules /project/application/source/containerDeploymentManagement.js.container/entrypoint.js"
+        working_dir: /project/application
+
+    containerDeploymentManagement:
+        extends: sharedForRunning
+        image: ${dockerImage:-myuserindocker/deployment-environment:latest}
+
+    # # for testing purposes - to check if all commands exist: (i.e. by running the docker built image and checking if the commands work.)
+    # deploymentEnvironmentImageTest:
+    #     image: myuserindocker/deployment-environment:latest
+    #     volumes:
+    #         - /var/run/docker.sock:/var/run/docker.sock
+    #         - ./:/app/
+    #     working_dir: /app/
