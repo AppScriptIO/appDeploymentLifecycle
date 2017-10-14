@@ -80,7 +80,7 @@ module.exports = (rootSource, source, destination, type = null, extraOptions) =>
         .flags(options)
         // .exclude('+ */')
         // .include('/tmp/source/**/*')
-        .source('/tmp/source/clientSide/')
+        .source('/project/application/source/clientSide/')
         .destination(path.join(destination, source));
         
         // Create directory.
