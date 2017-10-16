@@ -101,8 +101,8 @@ module.exports = Generator.extend({
       );
 
       this.fs.copy(
-        this.templatePath('run.sh'),
-        this.destinationPath('./setup/run.sh')
+        this.templatePath('entrypoint.sj'),
+        this.destinationPath('./setup/entrypoint.sj')
       );
 
       this.fs.copy(

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# ./setup/run.sh <functionName>
+# ./setup/entrypoint.sj <functionName>
 
 deployment() { # Run container that will handle generator manipulations.
     
@@ -12,7 +12,7 @@ deployment() { # Run container that will handle generator manipulations.
 }
 
 createGenerator() {
-    # 1. ./setup/run.sh
+    # 1. ./setup/entrypoint.sj
 
     # 2. (inside conctainer) 
     mkdir <name> && cd $_

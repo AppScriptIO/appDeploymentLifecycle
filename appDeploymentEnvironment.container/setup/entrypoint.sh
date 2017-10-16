@@ -54,7 +54,7 @@ else
     if [[ $1 != *"="* ]]; then # if first argument is a command, rather than a key-value pair.
         echo 'Shell Script • Command as argument passed.'
         # run first argument as function.
-        $@ # Important: call arguments verbatim. i.e. allows first argument to call functions inside file. So that it could be called as "./setup/run.sh <functionName>".
+        $@ # Important: call arguments verbatim. i.e. allows first argument to call functions inside file. So that it could be called as "./setup/entrypoint.sj <functionName>".
     else
         echo 'Shell Script • Key-Value arguments passed.'
         run
