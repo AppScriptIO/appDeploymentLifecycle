@@ -19,6 +19,7 @@ function babelJSCompiler({
     // Add babel node_modules to module resolving paths - Define server base path. Hackish way to make sure the path is always consistent. Base path in Nodejs is where the closest parent node_modules is located to the initiated js script.
     const babelModulesPath = path.normalize(`${__dirname}/node_modules`)
     process.env.NODE_PATH = `${process.env.NODE_PATH || ''}:${babelModulesPath}`.replace(/(^\:+)/, '') // add another path by separating with ":"
+    console.log(`• Node additional module resolution paths: ${process.env.NODE_PATH}`)   
     moduleSystem._initPaths()
     
     const babelRegister = require(`${__dirname}/node_modules/babel-register`)
