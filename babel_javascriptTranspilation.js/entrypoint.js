@@ -4,7 +4,6 @@
 const path = require('path')
 const filesystem = require('fs')
 const moduleSystem = require('module')
-const babelRegister = require('babel-register')
 // const babelDefaultConfig = requireJSON(`${__dirname}/.babelrc`) // load babelrc json.
 // babelDefaultConfig.babelrc = false; // don't search for babelrc in transpiled file location.
 
@@ -15,15 +14,16 @@ function requireJSON(filePath) { return JSON.parse(filesystem.readFileSync(fileP
  * Used to initialize nodejs app with transpiled code using Babel.
  */
 function babelJSCompiler({
-    appRootPath, // {string} node app root path.
     babelConfigurationFile // {string} file containing bable configurations to be used.
 }) {
+    // Add babel node_modules to module resolving paths - Define server base path. Hackish way to make sure the path is always consistent. Base path in Nodejs is where the closest parent node_modules is located to the initiated js script.
+    const babelModulesPath = path.normalize(`${__dirname}/node_modules`)
+    process.env.NODE_PATH = `${process.env.NODE_PATH || ''}:${babelModulesPath}`.replace(/(^\:+)/, '') // add another path by separating with ":"
+    moduleSystem._initPaths()
+    
+    const babelRegister = require(`${__dirname}/node_modules/babel-register`)
     babelConfiguration = require(`${__dirname}/compilerConfiguration/${babelConfigurationFile}`)
     
-    // Define server base path. Hackish way to make sure the path is always consistent. Base path in Nodejs is where the closest parent node_modules is located to the initiated js script.
-    process.env.NODE_PATH = path.normalize(`${appRootPath}`)
-    moduleSystem.Module._initPaths()
-
     // Compile code on runtime.
     babelRegister(babelConfiguration)
 }
