@@ -9,8 +9,7 @@
   },
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-  },
+  "devDependencies": {},
   "engines": {
     "node": ">=0.12.0"
   },
