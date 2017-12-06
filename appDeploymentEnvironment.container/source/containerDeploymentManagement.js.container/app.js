@@ -2,7 +2,7 @@ import path from 'path'
 import Docker from 'dockerode'
 import { exec, spawn } from 'child-process-promise'
 const configuration = require('./configuration/configuration.export.js')
-import spawnNext from './spawnShellSquence.js'
+import { spawnNext } from './utilityFunction/spawnShellSquence.js'
 
 console.log('• instructionConfigurationFilePath:' + process.env.instructionConfigurationFilePath)
 console.log('• instructionOption:' + process.env.instructionOption)
@@ -10,7 +10,10 @@ console.log(configuration)
 
 switch (process.env.instructionOption) {
     case 'build': {
-        const instructionConfiguration = require(path.join(configuration.directory.projectContainerRootFolder, process.env.instructionConfigurationFilePath))[process.env.instructionOption]
+        const instructionConfiguration = require(path.join(
+            configuration.directory.projectContainerRootFolder,
+            process.env.instructionConfigurationFilePath
+        ))[process.env.instructionOption]
         
         let shellSequence = [
             // Install Docker Compose
@@ -42,7 +45,10 @@ switch (process.env.instructionOption) {
             // run dockerfile build
             {
                 command: 'docker-compose',
-                argument: [`-f ${configuration.directory.projectContainerRootFolder}/application/setup/container/containerDeployment.dockerCompose.yml build dockerfile`],
+                argument: [
+                    `-f ${configuration.directory.projectContainerRootFolder}/application/setup/container/containerDeployment.dockerCompose.yml`,
+                    `build dockerfile`
+                ],
                 option: {
                     // cwd: '/',
                     shell: true,
@@ -70,7 +76,7 @@ switch (process.env.instructionOption) {
         setInterval(() => {  console.log('setTimeout/setInterval (sleep) command ended. The process will exit now.'); }, 10000 * 60 * 60);
     break;
     default:
-        console.log('default')
+        console.log('Reached switch default - instructionOption does not match any case/kide/option')
         // var docker = new Docker({socketPath: '/var/run/docker.sock'})
         // var container = docker.getContainer('4ba04235356e8f07d16f2bd2d4aa351a97d50eb3775d7043b63a29861412735a');
         // container.inspect(function (err, data) {

@@ -7,7 +7,7 @@ import { exec, spawn } from 'child-process-promise'
  * - {array of strings} argument
  * - {object} option
  */
-export default async function spawnNext(shellSequence) {
+export async function spawnNext(shellSequence) {
     if(shellSequence.length > 0) {
         let currentShell = shellSequence.shift()
         console.log(`• EXECUTING: ${currentShell.command} ${currentShell.argument} \n USING: ${JSON.stringify(currentShell.option)}`)
@@ -20,3 +20,15 @@ export default async function spawnNext(shellSequence) {
             })            
     }
 }              
+
+export async function applyImplementationOnShellCommand({ commandSetting = [] }) {
+    for (let document of commandSetting) {
+        switch (document.implementation) {
+            case 'spawn':
+            default:
+            await spawnNext([document])
+            console.log('synchronous ?')
+            break;
+        }
+    }
+}

@@ -1,24 +1,25 @@
 ### Build docker container
 ### As this is a deployment image - number of layers and subsequently image size doesn't matter.
-FROM node:latest
+FROM myuserindocker/deployment-environment
 MAINTAINER SZN
 
+RUN n stable
+RUN npm install -g yarn
+# # Copy files and make them executable.
+# # Copy command in dockerfile is relative to the build context specified in docker-compose.
+# COPY ./application/ /project/appDeploymentEnvironment/application/
+# COPY ./dependency/ /project/appDeploymentEnvironment/dependency/
 
-# Copy files and make them executable.
-# Copy command in dockerfile is relative to the build context specified in docker-compose.
-COPY ./application/ /project/appDeploymentEnvironment/application/
-COPY ./dependency/ /project/appDeploymentEnvironment/dependency/
-
-### command for build installation - define defaults, which can be overriden by docker-compose file args.
-ARG instructionConfigurationFilePath
-ENV instructionConfigurationFilePath ${instructionConfigurationFilePath}
-ARG instructionOption
-ENV instructionOption ${instructionOption}
-ARG DEPLOYMENT
-ENV DEPLOYMENT ${DEPLOYMENT}
-# Apparently when copied from windows, execution permissions should be granted.
-RUN find /project/ -type f -exec chmod +x {} \;
-RUN node --experimental-modules /project/appDeploymentEnvironment/application/source/containerDeploymentManagement.js.container/entrypoint.js
+# ### command for build installation - define defaults, which can be overriden by docker-compose file args.
+# ARG instructionConfigurationFilePath
+# ENV instructionConfigurationFilePath ${instructionConfigurationFilePath}
+# ARG instructionOption
+# ENV instructionOption ${instructionOption}
+# ARG DEPLOYMENT
+# ENV DEPLOYMENT ${DEPLOYMENT}
+# # Apparently when copied from windows, execution permissions should be granted.
+# RUN find /project/ -type f -exec chmod +x {} \;
+# RUN node --experimental-modules /project/appDeploymentEnvironment/application/source/containerDeploymentManagement.js.container/entrypoint.js
 
 # ### Define command for runtime.
 # ARG instructionConfigurationFilePath=./instructionConfiguration.js

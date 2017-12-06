@@ -27,13 +27,13 @@ services:
         environment: # pass variable to the command executed & to the dockerfile when used.
             dockerImage: ${dockerImage}
             DEPLOYMENT: ${DEPLOYMENT}
-            instructionConfigurationFilePath: ${instructionConfigurationFilePath:-/project/application/source/instructionConfiguration.js}
+            instructionConfigurationFilePath: ${instructionConfigurationFilePath:-/project/application/setup/instructionConfiguration.js}
             instructionOption: ${instructionOption:-run}
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock
             - ../../../babel_javascriptTranspilation.js:/project/dependency/babel_javascriptTranspilation.js/
             - ../../:/project/application
-        command: bash -c "node --experimental-modules /project/application/source/containerDeploymentManagement.js.container/entrypoint.js"
+        command: bash -c "node -v; node /project/application/source/containerDeploymentManagement.js.container/entrypoint.js"
         working_dir: /project/application
 
     containerDeploymentManagement:
