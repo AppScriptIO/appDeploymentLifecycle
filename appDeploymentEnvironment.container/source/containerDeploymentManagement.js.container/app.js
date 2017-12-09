@@ -62,7 +62,6 @@ switch (process.env.instructionOption) {
                 }
             },
         ]
-
         spawnNext(shellSequence)
     } break;
     case 'install': {
