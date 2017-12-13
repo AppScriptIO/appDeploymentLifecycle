@@ -6,7 +6,8 @@
 
 # : ${DEPLOYMENT:=containerManagement}; export DEPLOYMENT # set variable only if if is unset or empty string.
 
-dockerComposeFilePath="../setup/container/containerDeployment.dockerCompose.yml"
+currentFilePath=$(dirname "$0")
+dockerComposeFilePath="${currentFilePath}/container/containerDeployment.dockerCompose.yml"
 
 ### DOESN'T WORK ANYMORE - as the dockerfile used to build the image, relies on a specific directory structure, which in the "containerManagement" is reorganized.
 ### Now builds are made only through nodejs app, not directly through docker-compose build.
@@ -19,11 +20,11 @@ dockerComposeFilePath="../setup/container/containerDeployment.dockerCompose.yml"
 # }
 
 # For managing the the development, build, & testing of this project.
-# USAGE: ./entrypoint.sh run instructionConfigurationFilePath=./instructionConfiguration.js instructionOption=build
-# USAGE: ./entrypoint.sh run instructionConfigurationFilePath=./instructionConfiguration.js instructionOption=run
+# USAGE: ./entrypoint.sh run instructionConfigurationFilePath=./application/setup/instructionConfiguration.js instructionOption=build
+# USAGE: ./entrypoint.sh run instructionConfigurationFilePath=./application/setup/instructionConfiguration.js instructionOption=run
 run() {
     # docker-compose -f $dockerComposeFilePath pull containerDeploymentManagement
-    DEPLOYMENT=containerManagement; export DEPLOYMENT;
+    DEPLOYMENT=containerManagement; 
     
     # Check if docker image exists
     dockerImage=myuserindocker/deployment-environment:latest;
@@ -31,9 +32,19 @@ run() {
         dockerImage=node:latest
     fi
     echo "• dockerImage=$dockerImage"
-    export dockerImage
 
-    docker-compose -f $dockerComposeFilePath up --force-recreate --no-build containerDeploymentManagement;
+    export dockerImage; export DEPLOYMENT;
+    # run container manager
+    docker-compose \
+        -f ${dockerComposeFilePath} \
+        --project-name appDeploymentEnvironment \
+        up --force-recreate --no-build --abort-on-container-exit containerDeploymentManagement;
+
+    # stop and remove containers related to project name.
+    docker-compose \
+        -f ${dockerComposeFilePath} \
+        --project-name appDeploymentEnvironment \
+        down; 
 }
 
 if [[ $# -eq 0 ]] ; then # if no arguments supplied, fallback to default

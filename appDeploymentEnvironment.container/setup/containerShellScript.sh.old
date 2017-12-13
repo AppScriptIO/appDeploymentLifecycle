@@ -1,5 +1,5 @@
 ##
- # OLD version now in use. this was directly invoked while currently more docker-compose options are called from nodejs container (containerManagement).
+ # OLD version now not in use. this was directly invoked while currently more docker-compose options are called from nodejs container (containerManagement).
 ##
 #!/usr/bin/env bash
 
