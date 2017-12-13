@@ -4,7 +4,7 @@ import { spawnNext } from './utilityFunction/spawnShellSquence.js'
 
 console.log('• instructionConfigurationFilePath:' + process.env.instructionConfigurationFilePath)
 console.log('• instructionOption:' + process.env.instructionOption)
-console.log(configuration)
+console.log(`• Configuration: ${JSON.stringify(configuration)}`)
 
 switch (process.env.instructionOption) {
     case 'build':

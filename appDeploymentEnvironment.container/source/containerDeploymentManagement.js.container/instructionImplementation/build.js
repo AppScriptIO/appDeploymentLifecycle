@@ -1,8 +1,11 @@
+process.env.SZN_DEBUG = true
+
 import path from 'path'
 import rethinkDB from 'rethinkdb'
 const configuration = require('../configuration/configuration.export.js')
 import { spawnNext } from '../utilityFunction/spawnShellSquence.js'
 let createStaticInstanceClasses = require('appscript/module/reusableNestedUnit')
+import initializeDatabaseData from '../databaseData/initializeDatabaseData.js'
 
 const instructionConfiguration = require(path.join(
     configuration.directory.projectContainerRootFolder,
@@ -35,12 +38,17 @@ function connect() {
         port: 28015,
     })
 
+    await initializeDatabaseData(connection)
+
     let ShellscriptController = await createStaticInstanceClasses({ 
         implementationType: 'Shellscript',
-        cacheName: true
+        cacheName: true, 
+        rethinkdbConnection: connection
     })
+
     // Initialize database data from files.
     let shellscriptController = await ShellscriptController.createContext()
+   
     await shellscriptController.initializeNestedUnit({ nestedUnitKey: '25f4a639-3fcf-4378-9c04-60cf245cd916' })
     
     // Run linux commands on container image OS.

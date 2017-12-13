@@ -4,15 +4,6 @@ import {default as getTableDocumentDefault} from "appscript/utilityFunction/data
 function initializeDatabaseData() {
     return () => {
         const connection = Application.rethinkdbConnection
-        async function createDatabase(databaseName) {
-            let databaseExists = await rethinkDB.dbList().contains(databaseName).run(connection);
-            if(!databaseExists) {
-                let dbCreationResponse = await rethinkDB.dbCreate(databaseName).run(connection)
-                if(dbCreationResponse.dbs_created > 0)  console.log(`📢 ${databaseName} database created !`)
-            } else {
-                console.log(`📢📁 ${databaseName} database already exists !`)            
-            }
-        }
 
         async function createTableAndInsertData(databaseName, databaseData) {
             for (let tableData of databaseData) {
