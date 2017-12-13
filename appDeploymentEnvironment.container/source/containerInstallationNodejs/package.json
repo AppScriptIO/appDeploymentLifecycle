@@ -1,0 +1,13 @@
+{
+  "name": "containerImageBuildNodejsUtility",
+  "version": "1.0.0",
+  "main": "entrypoint.js",
+  "license": "MIT",
+  "flat": false,
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "shelljs": "^0.7.8",
+    "appscript": "git+https://github.com/AppScriptIO/DecoupledCMS.git",
+    "rethinkdb": "^2.3.3"
+  }
+}

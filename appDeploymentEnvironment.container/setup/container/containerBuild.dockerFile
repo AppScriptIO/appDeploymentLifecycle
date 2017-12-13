@@ -18,7 +18,7 @@ ARG DEPLOYMENT
 ENV DEPLOYMENT ${DEPLOYMENT}
 # Apparently when copied from windows, execution permissions should be granted.
 RUN find /project/ -type f -exec chmod +x {} \;
-RUN node --experimental-modules /project/appDeploymentEnvironment/application/source/containerDeploymentManagement.js.container/entrypoint.js
+RUN node --experimental-modules /project/appDeploymentEnvironment/application/source/containerDeploymentManagement.js.container/
 
 # ### Define command for runtime.
 # ARG instructionConfigurationFilePath=./instructionConfiguration.js
