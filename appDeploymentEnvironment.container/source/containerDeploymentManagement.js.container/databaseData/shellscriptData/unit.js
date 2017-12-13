@@ -9,7 +9,7 @@ let data = [
         label: {
             name: 'Run this command to download the latest version of Docker Compose:', 
         },
-        command: 'curlfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff',
+        command: 'curl',
         argument: ['-L https://github.com/docker/compose/releases/download/1.16.1/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose'],
         option: {
             shell: true,
