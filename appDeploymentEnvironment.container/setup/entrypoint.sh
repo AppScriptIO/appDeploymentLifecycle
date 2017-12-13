@@ -32,9 +32,12 @@ run() {
         dockerImage=node:latest
     fi
     echo "• dockerImage=$dockerImage"
-    
+
     export dockerImage; export DEPLOYMENT;
-    docker-compose -f ${dockerComposeFilePath} up --force-recreate --no-build containerDeploymentManagement;
+    docker-compose \
+        -f ${dockerComposeFilePath} \
+        --project-name appDeploymentEnvironment \
+        up --force-recreate --no-build containerDeploymentManagement;
 }
 
 if [[ $# -eq 0 ]] ; then # if no arguments supplied, fallback to default

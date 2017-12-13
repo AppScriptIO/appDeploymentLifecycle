@@ -11,14 +11,19 @@ export async function spawnNext(shellSequence) {
     if(shellSequence.length > 0) {
         let currentShell = shellSequence.shift()
         console.log(`• EXECUTING: ${currentShell.command} ${currentShell.argument} \n USING: ${JSON.stringify(currentShell.option)}`)
-        spawn(currentShell.command, currentShell.argument, currentShell.option)
-            .then(buffer => {
-                spawnNext(shellSequence)
-            })
-            .catch(error => {
-                process.exit(1)
-                // console.error('[spawn] ERROR: ', error);
-            })         
+        if(currentShell.executionType == 'asynchronous') {
+            spawn(currentShell.command, currentShell.argument, currentShell.option)
+            spawnNext(shellSequence)
+        } else {
+            spawn(currentShell.command, currentShell.argument, currentShell.option)
+                .then(buffer => {
+                    spawnNext(shellSequence)
+                })
+                .catch(error => {
+                    process.exit(1)
+                    // console.error('[spawn] ERROR: ', error);
+                })         
+        }
     }
 }              
 

@@ -8,4 +8,5 @@ export default [
     require('./nestedUnit.js'),
 ].map(object => {
     object.databaseTableName = tablePrefix.concat(object.databaseTableName)
+    return object
 })
