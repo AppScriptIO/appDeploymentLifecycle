@@ -5,12 +5,13 @@ import rethinkDB from 'rethinkdb'
 const configuration = require('../configuration/configuration.export.js')
 let createStaticInstanceClasses = require('appscript/module/reusableNestedUnit')
 import initializeDatabaseData from '../databaseData/initializeDatabaseData.js'
+const { spawn, spawnSync } = require('child_process')
 
-(async function() {
+;(async function() {
     let connection = await rethinkDB.connect({ host: 'rethinkdb', port: 28015 })
 
     await initializeDatabaseData(connection)
-    
+        
     // Run linux commands on container image OS.
     console.log('Installing all necessary files.')
     let ShellscriptController = await createStaticInstanceClasses({

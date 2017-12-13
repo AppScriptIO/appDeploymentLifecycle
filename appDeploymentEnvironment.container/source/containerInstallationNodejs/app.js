@@ -4,7 +4,7 @@ import rethinkDB from 'rethinkdb'
 let createStaticInstanceClasses = require('appscript/module/reusableNestedUnit')
 import initializeDatabaseData from './databaseData/initializeDatabaseData.js'
 
-(async function() {
+;(async function() {
     let connection = await rethinkDB.connect({ host: 'rethinkdb', port: 28015 })
 
     await initializeDatabaseData(connection)
