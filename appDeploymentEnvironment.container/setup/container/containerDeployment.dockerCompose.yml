@@ -12,6 +12,9 @@ networks:
 #   "x":
     # driver: overlay # bridge for the same host, while overlay is for swarm hosts.
     # external: true
+  "build":
+    driver: bridge # bridge for the same host, while overlay is for swarm hosts.
+
 
 # USAGE (from root directory): docker-compose -f <filePath> up <service>
 services:
@@ -22,7 +25,7 @@ services:
             # dockerfile path relative to the context specified above.
             dockerfile: ./application/setup/container/containerBuild.dockerFile
             network: # add network for build runtime (dockerfile RUN commands).
-                "appdeploymentenvironment_default"
+                "appdeploymentenvironment_build"
             args: 
                 - DEPLOYMENT=${DEPLOYMENT}
                 - instructionConfigurationFilePath=${instructionConfigurationFilePath}
@@ -33,20 +36,20 @@ services:
     dockerfileBuild:
         extends: dockerfile        
         depends_on:
-            - rethinkdb
+            - rethinkdb_build
         networks:
-            - default
+            - build
 
-    rethinkdb:
+    rethinkdb_build:
         image: rethinkdb:latest
-        ports:
-            - "7080:8080"
+        # ports:
+        #     - "7080:8080"
         working_dir: /
         volumes:
             # volume inside docker-machine not through Windows volume. because it causes problems otherwise.
-            - /mnt/datadisk-1/appDeploymentEnvironment/rethinkdbData:/data/rethinkdb_data/
+            - /mnt/datadisk-1/appDeploymentEnvironment/rethinkdbData_build:/data/rethinkdb_data/
         networks:
-            default:
+            build:
                 aliases:
                     - rethinkdb
 
@@ -70,9 +73,22 @@ services:
         extends: sharedForRunning
         image: ${dockerImage:-myuserindocker/deployment-environment:latest}
         depends_on: 
-            - rethinkdb
+            - rethinkdb_manager
         networks:
             - default
+
+    rethinkdb_manager:
+        image: rethinkdb:latest
+        # ports:
+        #     - "7081:8080"
+        working_dir: /
+        volumes:
+            # volume inside docker-machine not through Windows volume. because it causes problems otherwise.
+            - /mnt/datadisk-1/appDeploymentEnvironment/rethinkdbData_manager:/data/rethinkdb_data/
+        networks:
+            default:
+                aliases:
+                    - rethinkdb
 
     # # for testing purposes - to check if all commands exist: (i.e. by running the docker built image and checking if the commands work.)
     # deploymentEnvironmentImageTest:

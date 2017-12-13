@@ -34,10 +34,17 @@ run() {
     echo "• dockerImage=$dockerImage"
 
     export dockerImage; export DEPLOYMENT;
+    # run container manager
     docker-compose \
         -f ${dockerComposeFilePath} \
         --project-name appDeploymentEnvironment \
-        up --force-recreate --no-build containerDeploymentManagement;
+        up --force-recreate --no-build --abort-on-container-exit containerDeploymentManagement;
+
+    # stop and remove containers related to project name.
+    docker-compose \
+        -f ${dockerComposeFilePath} \
+        --project-name appDeploymentEnvironment \
+        down; 
 }
 
 if [[ $# -eq 0 ]] ; then # if no arguments supplied, fallback to default

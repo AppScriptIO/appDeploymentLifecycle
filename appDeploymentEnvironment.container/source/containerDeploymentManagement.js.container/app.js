@@ -1,6 +1,5 @@
 import path from 'path'
 const configuration = require('./configuration/configuration.export.js')
-import { spawnNext } from './utilityFunction/spawnShellSquence.js'
 
 console.log('• instructionConfigurationFilePath:' + process.env.instructionConfigurationFilePath)
 console.log('• instructionOption:' + process.env.instructionOption)
@@ -21,7 +20,7 @@ switch (process.env.instructionOption) {
         setInterval(() => {  console.log('setTimeout/setInterval (sleep) command ended. The process will exit now.'); }, 10000 * 60 * 60);
     break;
     default:
-        console.log('Reached switch default - instructionOption does not match any case/kide/option')
+        console.log('Reached switch default - instructionOption does not match any case/kind/option')
         // var docker = new Docker({socketPath: '/var/run/docker.sock'})
         // var container = docker.getContainer('4ba04235356e8f07d16f2bd2d4aa351a97d50eb3775d7043b63a29861412735a');
         // container.inspect(function (err, data) {
