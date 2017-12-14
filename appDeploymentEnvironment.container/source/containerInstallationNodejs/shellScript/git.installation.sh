@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# `|| true` to ignore error (because git installation gets debian connection error - apparently servers are temporarly down)
 source $(dirname -- "$0")/repeatCommandTillSucceed.sh
 
 if [ -z "$1" ]; then 

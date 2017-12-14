@@ -17,7 +17,7 @@ if [ -z "$1" ]; then
     apt-get install php7.1-zip -y
     # install php zip extension using PECL (PEAR's sister) - http://blogs.fsfe.org/samtuke/?p=333
     # pecl install zip
-elif [ $1 == "installZipExtension" ]; then
+elif [ $1 == "installZipExtension" ]; then # in dockerfile :# RUN /tmp/shellScript/php7.installation.sh installZipExtension;
     apt-get update -y;
     apt-get install zlib1g-dev -y;
     pecl install zip -y;

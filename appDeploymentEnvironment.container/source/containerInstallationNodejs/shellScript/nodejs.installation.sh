@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# Previous execution in dockerfile
+# ARG NODEJS_VERSION=v8.0.0-nightly201702124cafa60c99
+# ARG NODEJS_VERSION=v8.5.0
+# ENV NODEJS_VERSION ${NODEJS_VERSION}
+# RUN /tmp/shellScript/nodejs.installation.sh; sleep 1;
+
+
 source $(dirname -- "$0")/isInstalled.sh
 source $(dirname -- "$0")/repeatCommandTillSucceed.sh
 

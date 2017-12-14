@@ -16,57 +16,14 @@ ARG instructionOption
 ENV instructionOption ${instructionOption}
 ARG DEPLOYMENT
 ENV DEPLOYMENT ${DEPLOYMENT}
-# Apparently when copied from windows, execution permissions should be granted.
-RUN find /project/ -type f -exec chmod +x {} \;
+# Apparently when copied from windows, execution permissions should be granted. for sehll scripts.
+RUN find /project/ -type f -exec chmod +x {} \; 
 RUN node --experimental-modules /project/appDeploymentEnvironment/application/source/containerDeploymentManagement.js.container/
 
-# ### Define command for runtime.
+# ### Define command for runtime. For using container from dockerhub immediately.
 # ARG instructionConfigurationFilePath=./instructionConfiguration.js
 # ENV instructionConfigurationFilePath ${instructionConfigurationFilePath}
 # ARG instructionOption=run
 # ENV instructionOption ${instructionOption}
 # # Executed only on runtime.
 # CMD node --experimental-modules /app/containerDeploymentManagement.js.container/entrypoint.js
-
-# # Copy all shellScript files and make them executable.
-# COPY ./shellScript/ /tmp/shellScript/
-# # Apparently when copied from windows, execution permissions should be granted.
-# RUN find /tmp/shellScript/ -type f -exec chmod +x {} \; 
-
-# RUN apt-get install apt-utils -y; \
-#     apt-get install wget -y; \
-#     apt-get install curl -y; \
-#     apt-get install nano -y; \
-#     apt-get install vim -y; \
-#     apt-get install zip unzip -y;
-
-# # Installing these messes up the package list in linux, and results in errors during apt-get update.
-# # for adding "add-apt-repository" command.
-# # RUN apt-get install python-software-properties -y;
-# # RUN apt-get install python3-software-properties -y;
-# # RUN apt-get install python-software-properties software-properties-common -y;
-
-# # `|| true` to ignore error (because git installation gets debian connection error - apparently servers are temporarly down)
-# RUN /tmp/shellScript/git.installation.sh; sleep 1;
-
-# # ARG NODEJS_VERSION=v8.0.0-nightly201702124cafa60c99
-# ARG NODEJS_VERSION=v8.5.0
-# ENV NODEJS_VERSION ${NODEJS_VERSION}
-# # RUN /tmp/shellScript/nodejs.installation.sh; sleep 1;
-
-# # RUN /tmp/shellScript/php7.installation.sh installZipExtension; sleep 1;
-# RUN /tmp/shellScript/yarn.installation.sh; sleep 1;
-# RUN /tmp/shellScript/bower.installation.sh; sleep 1;
-# RUN /tmp/shellScript/gulp.installation.sh; sleep 1;
-# RUN /tmp/shellScript/rsync.installation.sh; sleep 1;
-# RUN /tmp/shellScript/jspm.installation.sh; sleep 1;
-# RUN /tmp/shellScript/composer.installation.sh; sleep 1;
-
-# # install Yeoman
-# RUN npm install -g yo generator-generator; \
-#     # prevent error permission denied when using `yo` command.
-#     chmod g+rwx /root; \
-#     # nodmod - live server reloading
-#     npm install -g nodemon; \    
-#     # babel
-#     npm install -g babel-cli babel-register; 
