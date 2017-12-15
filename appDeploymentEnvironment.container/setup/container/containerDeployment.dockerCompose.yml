@@ -56,7 +56,7 @@ services:
     # Previously myuserindocker/deployment-environment:latest wad used by extending "dockerfile" service. which requires solving the issue of first build, where the image doesn't exist locally. 
     # either download last version from repo, or use direct build, or switch between docker-compose services for each case.
     sharedForRunning: 
-        extends: dockerfile        
+        image: myuserindocker/deployment-environment:latest
         environment: # pass variable to the command executed & to the dockerfile when used.
             dockerImage: ${dockerImage}
             DEPLOYMENT: ${DEPLOYMENT}

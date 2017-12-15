@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-# run on local host machine.
-cp -p ./.bashrc ~/
-
 # setup VM name
 if [[ -v VM ]]; then echo $VM; else VM=machine; fi
 
@@ -45,13 +42,7 @@ eval $(docker-machine env $VM)
     forwardPort 9902
     forwardPort 9903
 
-    docker-machine start $VM
-    VBoxManage showvminfo "${VM}"
-    eval $(docker-machine env $VM)
+docker-machine start $VM
+eval $(docker-machine env $VM)
+VBoxManage showvminfo "${VM}"
 
-# setup project directory
-cd ~/Projects/talebWebapp/
-
-# run container
-export DEPLOYMENT=development
-docker-compose -f ./setup/container/development.dockerCompose.yml up -d --force-recreate
