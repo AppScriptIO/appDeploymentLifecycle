@@ -9,6 +9,3 @@ elif [ $1 == "uninstall" ]; then
     npm uninstall gulpjs/gulp.git#4.0 -g
     npm uninstall gulp-cli -g;
 fi;
-
-# Print Horizontal Line
-source $(dirname -- "$0")/printHorizontalLine.sh

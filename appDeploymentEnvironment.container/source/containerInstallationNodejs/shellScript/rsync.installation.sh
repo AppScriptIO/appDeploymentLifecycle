@@ -6,6 +6,3 @@ if [ -z "$1" ]; then
 elif [ $1 == "uninstall" ]; then
     apt-get remove rsync -y
 fi;
-
-# Print Horizontal Line
-source $(dirname -- "$0")/printHorizontalLine.sh

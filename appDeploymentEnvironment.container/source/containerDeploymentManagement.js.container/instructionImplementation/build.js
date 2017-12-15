@@ -1,8 +1,8 @@
 process.env.SZN_DEBUG = true
-
 import path from 'path'
 import rethinkDB from 'rethinkdb'
-const configuration = require('../configuration/configuration.export.js')
+import configuration from '../../../setup/configuration.js'
+const instructionConfiguration = require('../configuration/configuration.export.js')
 let createStaticInstanceClasses = require('appscript/module/reusableNestedUnit')
 import initializeDatabaseData from '../databaseData/initializeDatabaseData.js'
 const { spawn, spawnSync } = require('child_process')
@@ -20,9 +20,9 @@ const { spawn, spawnSync } = require('child_process')
         rethinkdbConnection: connection
     })
     // Initialize database data from files.
-    let shellscriptController = await ShellscriptController.createContext()
+    let shellscriptController = await ShellscriptController.createContext({ appBasePath: configuration.appBasePath })
     await shellscriptController.initializeNestedUnit({ nestedUnitKey: '0676d0b7-aa35-47fa-ac63-59fc594356eb' })
-    
+
     connection.close()
 })()
 

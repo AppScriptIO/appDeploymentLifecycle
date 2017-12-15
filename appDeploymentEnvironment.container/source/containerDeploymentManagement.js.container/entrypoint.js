@@ -1,6 +1,6 @@
 const moduleSystem = require('module')
 const filesystem = require('fs')
-const { spawn, spawnSync } = require('child_process')
+const { execSync, spawn, spawnSync } = require('child_process')
 const path = require('path')
 const configuration = require('./configuration/configuration.export.js')
 const babelJSCompiler = require(`${configuration.directory.projectContainerRootFolder}/dependency/babel_javascriptTranspilation.js/entrypoint.js`)
@@ -53,9 +53,9 @@ switch (process.env.instructionOption) {
 console.log(title)
 
 installModule({ currentDirectory: `${configuration.directory.projectContainerRootFolder}/dependency/babel_javascriptTranspilation.js` })
-if(process.env.instructionOption == 'install') {
+// if(process.env.instructionOption == 'install') {
   installModule({ currentDirectory: `${configuration.directory.projectContainerRootFolder}/application/source/containerInstallationNodejs/` })
-}
+// }
 
 // install babel transpilation
 babelJSCompiler({

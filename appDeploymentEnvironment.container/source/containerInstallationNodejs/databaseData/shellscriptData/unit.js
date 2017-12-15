@@ -51,7 +51,7 @@ let data = [
             name: 'install apt-utils'
         },
         command: 'apt-get',
-        argument: ['install apt-utils -y'],
+        argument: ['install apt-utils -y'], // use --no-install-recommends (Doesn't WORK) to prevent errors
         option: {
             shell: true,
             stdio: [0, 1, 2]

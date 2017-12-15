@@ -45,9 +45,9 @@ services:
         # ports:
         #     - "7080:8080"
         working_dir: /
-        volumes:
-            # volume inside docker-machine not through Windows volume. because it causes problems otherwise.
-            - /mnt/datadisk-1/appDeploymentEnvironment/rethinkdbData_build:/data/rethinkdb_data/
+        # volumes:
+        #     # volume inside docker-machine not through Windows volume. because it causes problems otherwise.
+        #     - /mnt/datadisk-1/appDeploymentEnvironment/rethinkdbData_build:/data/rethinkdb_data/
         networks:
             build:
                 aliases:
@@ -82,9 +82,9 @@ services:
         # ports:
         #     - "7081:8080"
         working_dir: /
-        volumes:
-            # volume inside docker-machine not through Windows volume. because it causes problems otherwise.
-            - /mnt/datadisk-1/appDeploymentEnvironment/rethinkdbData_manager:/data/rethinkdb_data/
+        # volumes:
+        #     # volume inside docker-machine not through Windows volume. because it causes problems otherwise.
+        #     - /mnt/datadisk-1/appDeploymentEnvironment/rethinkdbData_manager:/data/rethinkdb_data/
         networks:
             default:
                 aliases:

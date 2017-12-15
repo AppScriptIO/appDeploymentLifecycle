@@ -7,15 +7,15 @@
 # RUN /tmp/shellScript/nodejs.installation.sh; sleep 1;
 
 
-source $(dirname -- "$0")/isInstalled.sh
-source $(dirname -- "$0")/repeatCommandTillSucceed.sh
+. $(dirname -- "$0")/isInstalled.sh
+. $(dirname -- "$0")/repeatCommandTillSucceed.sh
 
 if [ -z "$1" ]; then 
     if [ $(programIsInstalled node) == "false" ]; then
         # Install Nodejs
         echo 'SZN - Node not installed. Installing NodeJS...';
         cd ~ ;
-        repeatCommandTillSucceed "curl -sL https://deb.nodesource.com/setup_7.x | bash - && apt-get install -y nodejs";
+        repeatCommandTillSucceed "curl -sL https://deb.node..com/setup_7.x | bash - && apt-get install -y nodejs";
         # importatnt ! without problems are caused.
         sleep 5; 
     fi;
@@ -23,7 +23,7 @@ if [ -z "$1" ]; then
     #⭐ Nodejs installation: Already installed from image.
     # installer - https://github.com/tj/n .
     npm install n -g
-    # curl -sL https://deb.nodesource.com/setup_7.x | bash -
+    # curl -sL https://deb.node..com/setup_7.x | bash -
     # apt-get install -y nodejs
     # Or using n installer:
     # n stable
@@ -44,6 +44,3 @@ elif [ $1 == "uninstall" ]; then
     rm -rf /usr/local/n;
     rm -rf /usr/local/{lib/node{,/.npm,_modules},bin,share/man}/{npm*,node*,man1/node*}
 fi;
-
-# Print Horizontal Line
-source $(dirname -- "$0")/printHorizontalLine.sh

@@ -1,7 +1,7 @@
 #!/bin/bash
 # USAGE: repeatCommandTillSucceed "<command>"
 
-function repeatCommandTillSucceed {
+repeatCommandTillSucceed() {
     while true; do 
         eval "$1";
         if [ $? -eq 0 ]; then
