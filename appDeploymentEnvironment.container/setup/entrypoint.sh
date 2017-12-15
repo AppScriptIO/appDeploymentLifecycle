@@ -20,7 +20,7 @@ dockerComposeFilePath="${currentFilePath}/container/containerDeployment.dockerCo
 # }
 
 # For managing the the development, build, & testing of this project.
-# USAGE: ./entrypoint.sh run instructionConfigurationFilePath=./application/setup/instructionConfiguration.js instructionOption=build
+# USAGE: ./entrypoint.sh run instructionConfigurationFilePath=./application/setup/instructionConfiguration.js instructionOption=build dockerImageTag=X
 # USAGE: ./entrypoint.sh run instructionConfigurationFilePath=./application/setup/instructionConfiguration.js instructionOption=run
 run() {
     # docker-compose -f $dockerComposeFilePath pull containerDeploymentManagement
@@ -58,6 +58,7 @@ else
         case "$KEY" in
                 instructionConfigurationFilePath)     instructionConfigurationFilePath=${VALUE}; export instructionConfigurationFilePath ;;
                 instructionOption)         instructionOption=${VALUE}; export instructionOption ;;
+                dockerImageTag)         dockerImageTag=${VALUE}; export dockerImageTag ;;
                 *)
         esac
     done

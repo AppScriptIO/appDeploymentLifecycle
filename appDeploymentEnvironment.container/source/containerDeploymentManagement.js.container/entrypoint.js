@@ -15,14 +15,16 @@ const nodeModuleFolderPath = __dirname + "/node_modules"
 // Install nodejs packages before  
 function installModule({ currentDirectory }) {
   let yarnInstall = spawnSync('yarn', ["install"], { cwd: currentDirectory, shell: true, stdio:[0,1,2] });
-  // spawnSync('yarn', ["upgrade appscript"], { cwd: currentDirectory, shell: true, stdio:[0,1,2] });
   // yarnInstall.on('close', (code) => {
   // console.log(`Yarn Install - child process exited with code ${code}`);
   // })
 }
 
 let isNodeModuleExist = filesystem.existsSync(nodeModuleFolderPath)
-if (!isNodeModuleExist) installModule({ currentDirectory: __dirname })
+if (!isNodeModuleExist) {
+  installModule({ currentDirectory: __dirname })
+  spawnSync('yarn', ["upgrade appscript"], { cwd: currentDirectory, shell: true, stdio:[0,1,2] });
+}
 
 let title;
 switch (process.env.instructionOption) {
@@ -54,7 +56,12 @@ console.log(title)
 
 installModule({ currentDirectory: `${configuration.directory.projectContainerRootFolder}/dependency/babel_javascriptTranspilation.js` })
 // if(process.env.instructionOption == 'install') {
+let isNodeModuleInstallExist = filesystem.existsSync(`${configuration.directory.projectContainerRootFolder}/application/source/containerInstallationNodejs/node_modules`)
+if (!isNodeModuleInstallExist) {
   installModule({ currentDirectory: `${configuration.directory.projectContainerRootFolder}/application/source/containerInstallationNodejs/` })
+  spawnSync('yarn', ["upgrade appscript"], { cwd: currentDirectory, shell: true, stdio:[0,1,2] });
+}
+
 // }
 
 // install babel transpilation

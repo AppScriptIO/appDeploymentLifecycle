@@ -20,7 +20,11 @@ import initializeDatabaseData from '../databaseData/initializeDatabaseData.js'
         rethinkdbConnection: connection
     })
     // Initialize database data from files.
-    let shellscriptController = await ShellscriptController.createContext({ appBasePath: configuration.appBasePath })
+    let shellscriptController = await ShellscriptController.createContext({
+        appBasePath: configuration.appBasePath, 
+        dockerImageTag: process.env.dockerImageTag,
+        dockerImageName: process.env.dockerImageName
+    })
     await shellscriptController.initializeNestedUnit({ nestedUnitKey: '0676d0b7-aa35-47fa-ac63-59fc594356eb' })
 
     connection.close()

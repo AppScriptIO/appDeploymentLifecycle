@@ -30,7 +30,7 @@ any-promise@^1.0.0, any-promise@^1.1.0:
 
 "appscript@git+https://github.com/AppScriptIO/DecoupledCMS.git":
   version "0.1.0"
-  resolved "git+https://github.com/AppScriptIO/DecoupledCMS.git#0f516e9fa57efd68870e7d8b7ac18031cbefea72"
+  resolved "git+https://github.com/AppScriptIO/DecoupledCMS.git#6211d82d3b0640038a6c81694c954d5fc63f055e"
   dependencies:
     colors "^1.1.2"
     kcors "^1.3.2"

@@ -14,11 +14,15 @@ ARG instructionConfigurationFilePath
 ENV instructionConfigurationFilePath ${instructionConfigurationFilePath}
 ARG instructionOption
 ENV instructionOption ${instructionOption}
+ARG dockerImageTag
+ENV dockerImageTag ${dockerImageTag}
+ARG dockerImageName
+ENV dockerImageName ${dockerImageName}
 ARG DEPLOYMENT
 ENV DEPLOYMENT ${DEPLOYMENT}
 # Apparently when copied from windows, execution permissions should be granted. for sehll scripts.
 RUN find /project/ -type f -exec chmod +x {} \; 
-RUN node --experimental-modules /project/appDeploymentEnvironment/application/source/containerDeploymentManagement.js.container/
+RUN node /project/appDeploymentEnvironment/application/source/containerDeploymentManagement.js.container/
 
 # ### Define command for runtime. For using container from dockerhub immediately.
 # ARG instructionConfigurationFilePath=./instructionConfiguration.js

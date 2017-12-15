@@ -110,6 +110,54 @@ let data = [
         },
         implementation: 'spawn' 
     },
+    {
+        key: '02ic4cd8-9399-471c-a14f-a281ea086550',
+        label: {
+            name: 'tag image with specific tag name.'
+        },
+        command: 'docker',
+        argument: [
+            `tag ${process.env.dockerImageName}:latest ${process.env.dockerImageName}:${process.env.dockerImageTag}`
+        ],
+        option: {
+            shell: true,
+            stdio: [0, 1, 2],
+            env: {}
+        },
+        implementation: 'spawn' 
+    },
+    {
+        key: '93cv6e28-9399-471c-a14f-a281ea086550',
+        label: {
+            name: 'push image to docker hub latest.'
+        },
+        command: 'docker',
+        argument: [
+            `push ${process.env.dockerImageName}:latest`
+        ],
+        option: {
+            shell: true,
+            stdio: [0, 1, 2],
+            env: {}
+        },
+        implementation: 'spawn' 
+    },
+    {
+        key: '3f6e9f56-9399-471c-a14f-a281ea086550',
+        label: {
+            name: 'push image to docker hub tagged.'
+        },
+        command: 'docker',
+        argument: [
+            `push ${process.env.dockerImageName}:${process.env.dockerImageTag}`
+        ],
+        option: {
+            shell: true,
+            stdio: [0, 1, 2],
+            env: {}
+        },
+        implementation: 'spawn' 
+    },
 ];
 
 export default {

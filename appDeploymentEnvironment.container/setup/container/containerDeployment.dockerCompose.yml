@@ -30,6 +30,8 @@ services:
                 - DEPLOYMENT=${DEPLOYMENT}
                 - instructionConfigurationFilePath=${instructionConfigurationFilePath}
                 - instructionOption=${instructionOption}
+                - dockerImageTag=${dockerImageTag}
+                - dockerImageName="myuserindocker/deployment-environment"
         image: myuserindocker/deployment-environment:latest # name of built image cannot be uppercase.
         # command: bash -c "sleep 100000"
 
