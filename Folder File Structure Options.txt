@@ -1,3 +1,5 @@
+// Possible suggestions for organization and folder naming.
+
 test / spec,
 library / assets / vendor,
 source (raw code) app,
