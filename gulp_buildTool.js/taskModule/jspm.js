@@ -12,7 +12,8 @@ let config = require('configuration/configuration.js'),
 module.exports = (nodejsVersion, jspmLocation)=> {
 	return async ()=> {
 		// In gulp 4, you can return a child process to signal task completion
-		var process = childProcess.execSync('n stable; jspm install; n ' + nodejsVersion, { cwd: jspmLocation, shell: true, stdio:[0,1,2] });
+		// var process = childProcess.execSync('n stable; jspm install; n ' + nodejsVersion, { cwd: jspmLocation, shell: true, stdio:[0,1,2] });
+		var process = childProcess.execSync('jspm install', { cwd: jspmLocation, shell: true, stdio:[0,1,2] });
 		return await process;
 	}
 }

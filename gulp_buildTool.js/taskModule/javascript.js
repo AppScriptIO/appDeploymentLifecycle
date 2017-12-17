@@ -1,5 +1,6 @@
 'use strict';
 
+import path from 'path'
 let gulp = require('gulp');
 let plugins = require('gulp-load-plugins')({ camelize: true });
 const babel = require(`${__dirname}/../node_modules/gulp-babel`),
@@ -23,6 +24,11 @@ function pureJavascript(sources, destination) {
         // "plugins": ["babel-plugin-transform-runtime", "babel-plugin-add-module-exports"],
         "babelrc": false
       }))
+      .on('error', function(e) {
+        console.log('>>> ERROR', e);
+        // emit here
+        this.emit('end');
+      })
       .pipe(sourcemaps.write('.'))
       .pipe(plugins.if('*.js', plugins.uglify({
         // preserveComments: 'license'
@@ -37,10 +43,20 @@ function babelTranspile(sources, destination, gulpPath) {
         // Therefore, babel settings need to be configured here.
         .pipe(sourcemaps.init())
         .pipe(babel({
-            "presets": [`${__dirname}/../node_modules/babel-preset-es2015`, `${__dirname}/../node_modules/babel-preset-stage-0`],
-            "plugins": [`${__dirname}/../node_modules/babel-plugin-transform-runtime`, `${__dirname}/../node_modules/babel-plugin-add-module-exports`],
+            "presets": [
+              path.normalize(`${__dirname}/../node_modules/babel-preset-es2015`), 
+              path.normalize(`${__dirname}/../node_modules/babel-preset-stage-0`)
+            ],
+            "plugins": [
+              path.normalize(`${__dirname}/../node_modules/babel-plugin-transform-runtime`), 
+              path.normalize(`${__dirname}/../node_modules/babel-plugin-add-module-exports`),
+              path.normalize(`${__dirname}/../node_modules/babel-plugin-transform-decorators-legacy`),
+              path.normalize(`${__dirname}/../node_modules/babel-plugin-transform-function-parameter-decorators`),
+              [path.normalize(`${__dirname}/../node_modules/babel-plugin-transform-class-properties`), { "spec": false }],
+            ],
             "babelrc": false
         }))
+        .on('error', console.error.bind(console))
         .pipe(sourcemaps.write('.'))
         // .pipe(babel())
         .pipe(gulp.dest(destination));

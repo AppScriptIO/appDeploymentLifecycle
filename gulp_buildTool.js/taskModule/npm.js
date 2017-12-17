@@ -12,6 +12,6 @@ let config = require('configuration/configuration.js'),
 module.exports = (npmLocation) => {
 	return async ()=> {
 		// In gulp 4, you can return a child process to signal task completion
-		return childProcess.execSync('npm install; npm install --only=dev;', { cwd: npmLocation, shell: true, stdio:[0,1,2] });
+		return childProcess.execSync('yarn install --pure-lockfile --production=false;', { cwd: npmLocation, shell: true, stdio:[0,1,2] });
 	};
 }

@@ -30,4 +30,4 @@ RUN node /project/appDeploymentEnvironment/application/source/containerDeploymen
 # ARG instructionOption=run
 # ENV instructionOption ${instructionOption}
 # # Executed only on runtime.
-# CMD node --experimental-modules /app/containerDeploymentManagement.js.container/entrypoint.js
+# CMD node /app/containerDeploymentManagement.js.container/entrypoint.js
