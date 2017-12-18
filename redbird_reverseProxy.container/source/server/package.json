@@ -4,14 +4,9 @@
   "description": "",
   "main": "proxy.js",
   "dependencies": {
-    "child-process-promise": "^2.2.0",
-    "fs-promise": "^2.0.1",
-    "http-proxy": "^1.16.2",
-    "redbird": "^0.6.15"
-  },
-  "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "child-process-promise": "*",
+    "fs-promise": "^2.0.3",
+    "redbird": "*"
   },
   "keywords": [],
   "author": "",

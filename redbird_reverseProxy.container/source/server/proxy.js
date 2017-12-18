@@ -1,10 +1,14 @@
+let path = require('path') 
 let filesystem = require('fs');
 let filesystemPromise = require('fs-promise'); // supports "fs-extra" functionality.
-var childProcessPromise = require('child-process-promise');
+let childProcessPromise = require('child-process-promise');
 
 let letsencryptPort = process.env.LETSENCRYPT_PORT;
 let email = process.env.EMAIL;
-let webappGithubModule = [
+let proxyConfigFolder = 'webappProxyConfig'
+let proxyFolderPath = `/app/server/${proxyConfigFolder}`
+
+let webappGithubProxyModule = [
     {
         name: 'talebWebapp.js',
         url: 'https://raw.githubusercontent.com/myuseringithub/talebWebapp/master/setup/reverseProxy/production.redbirdConf.js',
@@ -31,11 +35,7 @@ let webappGithubModule = [
     },
     {
         name: 'jenkins_continuousDeploymentServer.js',
-        url: 'https://raw.githubusercontent.com/myuseringithub/appDeploymentLifecycle/master/jenkins_continuousDeploymentServer/reverseProxy/production.redbirdConf.js'
-    },
-    {
-        name: 'husseinWebapp.js',
-        url: 'https://github.com/HusseinSheme/husseinSheme/master/setup/reverseProxy/production.redbirdConf.js'
+        url: 'https://raw.githubusercontent.com/myuseringithub/appDeploymentLifecycle/master/jenkins_continuousDeploymentServer.container/reverseProxy/production.redbirdConf.js'
     },
 ]
 
@@ -57,18 +57,28 @@ let proxy = require('redbird')({
 });
 
 let promiseArray = []
-let webappGithubModuleFolder = 'webappProxyConfig'
-filesystemPromise.ensureDir('/app/server/' + webappGithubModuleFolder).then(function() {
-    webappGithubModule.map((file, i) => {
-        let promise = childProcessPromise.exec('curl -o /app/server/webappProxyConfig/' + file.name + ' ' + file.url)
-        promiseArray.push(promise)
+filesystemPromise
+    .ensureDir(proxyFolderPath) // directory should be present
+    .then(function() { // retrieve proxy configuration for each project.
+        webappGithubProxyModule.map((file, i) => {
+            let toFile = `${proxyFolderPath}/${file.name}`
+            let rawData = file.url
+            let promise = childProcessPromise.exec(`curl -o ${toFile} ${rawData}`)
+            promiseArray.push(promise)
+        })
     })
-})
-Promise.all(promiseArray).then(function() {
-    filesystem.readdirSync('/app/server/webappProxyConfig').forEach(function(file) {
-        if(file.substr(file.lastIndexOf('.')+1)) require("/app/server/webappProxyConfig/" + file)(proxy);
-    });
-})
+    .catch(function(error) { throw error })
+
+Promise.all(promiseArray)
+    .then(function() {
+        filesystem.readdirSync(proxyFolderPath).forEach(function(file) {
+            if(file.substr(file.lastIndexOf('.')+1)) {
+                let filePath = path.join(proxyFolderPath, file)
+                require(filePath)(proxy) // initialize proxy configuration with the current running proxy app.
+            }
+        });
+    })
+    .catch(function(error) { throw error })
 
 // _____________________________________________________________________________
 // Using express with redbird - https://github.com/OptimalBits/redbird/issues/83
