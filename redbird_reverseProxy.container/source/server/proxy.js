@@ -69,7 +69,7 @@ filesystemPromise
             let rawData = file.url
             let promise = childProcessPromise.exec(`curl -o ${toFile} ${rawData}`)
             promiseArray.push(promise)
-            console.log(`• Downloading raw data from ${rawData}.`)
+            console.log(`• Downloading raw data from ${rawData}.\n`)
         })
     })
     .catch(function(error) { throw error })
@@ -79,7 +79,7 @@ filesystemPromise
                 filesystem.readdirSync(proxyFolderPath).forEach(function(file) {
                     if(file.substr(file.lastIndexOf('.')+1)) {
                         let filePath = path.join(proxyFolderPath, file)
-                        console.log(`• Adding ${filePath} to proxy.`)
+                        console.log(`\n\n\n\n• Adding ${filePath} to proxy.`)
                         let func;
                         try {
                             func = require(filePath)
