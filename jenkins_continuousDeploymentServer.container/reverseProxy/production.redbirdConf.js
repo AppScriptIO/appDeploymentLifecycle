@@ -1,7 +1,7 @@
 // This file would be required in Redbird reverseProxy. 
 // USAGE: 
 
-export default function reverseProxy(proxy) {
+module.exports = function reverseProxy(proxy) {
 
     let email = process.env.EMAIL
     let domain = 'jenkins.webapp.run'

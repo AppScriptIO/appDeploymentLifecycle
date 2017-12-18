@@ -56,6 +56,10 @@ let proxy = require('redbird')({
     }
 });
 
+if (!filesystem.existsSync(proxyFolderPath)){
+    filesystem.mkdirSync(proxyFolderPath);
+}
+
 let promiseArray = []
 filesystemPromise
     .ensureDir(proxyFolderPath) // directory should be present
@@ -65,20 +69,31 @@ filesystemPromise
             let rawData = file.url
             let promise = childProcessPromise.exec(`curl -o ${toFile} ${rawData}`)
             promiseArray.push(promise)
+            console.log(`• Downloading raw data from ${rawData}.`)
         })
     })
     .catch(function(error) { throw error })
-
-Promise.all(promiseArray)
     .then(function() {
-        filesystem.readdirSync(proxyFolderPath).forEach(function(file) {
-            if(file.substr(file.lastIndexOf('.')+1)) {
-                let filePath = path.join(proxyFolderPath, file)
-                require(filePath)(proxy) // initialize proxy configuration with the current running proxy app.
-            }
-        });
-    })
-    .catch(function(error) { throw error })
+        Promise.all(promiseArray)
+            .then(function() {
+                filesystem.readdirSync(proxyFolderPath).forEach(function(file) {
+                    if(file.substr(file.lastIndexOf('.')+1)) {
+                        let filePath = path.join(proxyFolderPath, file)
+                        console.log(`• Adding ${filePath} to proxy.`)
+                        let func;
+                        try {
+                            func = require(filePath)
+                        } catch (error) {
+                            throw error
+                        }
+                        console.log(func) 
+                        func(proxy) // initialize proxy configuration with the current running proxy app.
+                    }
+                });
+            })
+            .catch(function(error) { throw error })
+    }) 
+
 
 // _____________________________________________________________________________
 // Using express with redbird - https://github.com/OptimalBits/redbird/issues/83

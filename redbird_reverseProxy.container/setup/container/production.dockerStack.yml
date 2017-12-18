@@ -25,7 +25,7 @@ services:
     networks:
       - default
     volumes:
-      - "/mnt/datadisk-1/redbirdProxy/server:/app/server/"
+      # - "/mnt/datadisk-1/redbirdProxy/server/webappProxyConfig:/app/server/webappProxyConfig"
       - "/mnt/datadisk-1/redbirdProxy/certificate:/app/certificate/"
     deploy:
       replicas: 1
@@ -33,7 +33,7 @@ services:
       DEPLOYMENT: production
       EMAIL: ${EMAIL}
       LETSENCRYPT_PORT: ${LETSENCRYPT_PORT}
-    working_dir: /app/
+    working_dir: /app/server
     # command: bash -c "npm install; node entrypoint.js"
 
   # swarm-listener:
