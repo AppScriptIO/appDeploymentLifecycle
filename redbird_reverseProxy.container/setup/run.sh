@@ -15,6 +15,9 @@ development() {
 
 # push image
 producation() {
+    # Issue Case: Docker Swarm not exposing ports to host. The reason for that is a VM reset, stop&start, or docker engine upgrade. In these cases the routing mesh of docker swarm gets messed up for some reason.
+        # Solution - leave swarm and rejoin or recreate swarm. 
+
     # 1. add necessary ports
     export LETSENCRYPT_PORT=3000 
     gcloud compute firewall-rules create redbird-proxy --allow tcp:$LETSENCRYPT_PORT --description "allow3000usedforletsencrypt" --target-tags docker-machine
