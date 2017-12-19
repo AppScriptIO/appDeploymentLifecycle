@@ -1,9 +1,9 @@
-version: "3"
+version: "3.3"
 
 networks:
-  default:
-    external: false
-    driver: overlay
+  proxy:
+    external: true
+    # driver: overlay
 
 # volumes:
   # data:
@@ -23,7 +23,7 @@ services:
       - 443:443
       - 3000:3000
     networks:
-      - default
+      - proxy
     volumes:
       # - "/mnt/datadisk-1/redbirdProxy/server/webappProxyConfig:/app/server/webappProxyConfig"
       - "/mnt/datadisk-1/redbirdProxy/certificate:/app/certificate/"
