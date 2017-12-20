@@ -1,1 +1,0 @@
-Nodejs app that helps in building docker images and executing commands in a more manageble way, instead of having to deal with shell script or managing shell commands.
