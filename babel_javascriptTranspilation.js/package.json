@@ -2,7 +2,7 @@
   "name": "babelTranspilation",
   "version": "1.0.0",
   "description": "",
-  "main": "",
+  "main": "entrypoint.js",
   "scripts": {
     "test": "",
     "start": ""
