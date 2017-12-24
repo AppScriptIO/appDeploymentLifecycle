@@ -1,0 +1,16 @@
+{
+  "name": "testrunner",
+  "version": "1.0.0",
+  "description": "Mocha test runner for unit tests and integration tests.",
+  "main": "entrypoint.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mocha": "^4.0.1",
+    "moment": "^2.19.2",
+    "sinon": "^4.1.2"
+  }
+}
