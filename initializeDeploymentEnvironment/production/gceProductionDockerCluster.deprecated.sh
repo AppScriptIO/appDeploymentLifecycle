@@ -29,23 +29,6 @@ for i in 2; do \
         --google-machine-type g1-small --google-disk-type pd-standard --google-disk-size 10 ; \
 done
 
-########################### Join Docker swarm
-# Initialize swarm with one of the nodes.
-eval $(docker-machine env $VM-1)
-# Internal IP of Leader
-LeaderInternalIP=$(gcloud compute instances list --format=text --regexp .*$VM-1.* | grep '^networkInterfaces\[[0-9]\+\]\.networkIP:' | sed 's/^.* //g' );
-docker swarm init --advertise-addr $LeaderInternalIP
-
-# Join other nodes as manager to the swarm.
-TOKEN=$(docker swarm join-token -q manager)
-for i in 2; do
-    eval $(docker-machine env $VM-$i)
-    # InternalIP    
-    VMInternalIP=$(gcloud compute instances list --format=text --regexp .*$VM-$i.* | grep '^networkInterfaces\[[0-9]\+\]\.networkIP:' | sed 's/^.* //g' );
-    # join swarm on default port set by Docker.
-    docker swarm join --token $TOKEN --advertise-addr $VMInternalIP $LeaderInternalIP:2377
-done
-
 ########################### Open ports for internal use.
 # Open ports for swarm mode to work properly (as docker-machine doesn't open all required ports for nodes communication for example.)
 gcloud compute firewall-rules create docker-swarm --allow tcp:2377,tcp:7946,tcp:4789,udp:7946,udp:4789 --description "allowswarmtowork" --target-tags docker-machine
@@ -66,6 +49,23 @@ for i in 1 2; do
     ZONE=$(gcloud compute instances list --format=text --regexp .*$VM-$i.* | grep '^zone:' | sed 's/^.* //g' );
     gcloud config set compute/zone $ZONE
     gcloud compute instances add-tags $VM-$i --tags http-server,https-server
+done
+
+########################### Join Docker swarm
+# Initialize swarm with one of the nodes.
+eval $(docker-machine env $VM-1)
+# Internal IP of Leader
+LeaderInternalIP=$(gcloud compute instances list --format=text --regexp .*$VM-1.* | grep '^networkInterfaces\[[0-9]\+\]\.networkIP:' | sed 's/^.* //g' );
+docker swarm init --advertise-addr $LeaderInternalIP
+
+# Join other nodes as manager to the swarm.
+TOKEN=$(docker swarm join-token -q manager)
+for i in 2; do
+    eval $(docker-machine env $VM-$i)
+    # InternalIP    
+    VMInternalIP=$(gcloud compute instances list --format=text --regexp .*$VM-$i.* | grep '^networkInterfaces\[[0-9]\+\]\.networkIP:' | sed 's/^.* //g' );
+    # join swarm on default port set by Docker.
+    docker swarm join --token $TOKEN --advertise-addr $VMInternalIP $LeaderInternalIP:2377
 done
 
 ########################### IMPORTANT: Restart VMS
