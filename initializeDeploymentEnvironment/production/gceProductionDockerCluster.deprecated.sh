@@ -6,7 +6,7 @@ VM=vm
 
 ########################### In case of existing VMs:
 # Add already existing compute instance.
-# `google_compute_engine` = allows connection to all compute engines on google cloud. Created when authentecating or sshing using glcoud command.
+# IMPORTANT: `google_compute_engine` = allows connection to all compute engines on google cloud. Created when authentecating or sshing using glcoud command.
 docker-machine create --driver generic --generic-ip-address <ExternalIP> --generic-ssh-user <OSUser> --generic-ssh-key ~/.ssh/google_compute_engine <VM>
 docker-machine create --driver generic --generic-ip-address <ExternalIP> --generic-ssh-user docker-user --generic-ssh-key ~/.ssh/<SSHKey> <VM>
 # regenerate certificates & provision

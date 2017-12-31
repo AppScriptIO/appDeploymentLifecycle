@@ -28,8 +28,29 @@ const regionName = 'europe-west1',
   await assignStaticIPToVM({ addressIP: address })
   await openPort()
 
-  // Provision machine with docker and initialize cluster manager.
-  
+  /*
+   * Provision machine with docker and initialize cluster manager.
+   */
+  // https://cloud.google.com/compute/docs/instances/connecting-to-instance#sshingcloud
+  // gcloud compute ssh <vmName> // create ssh keys automatically using gcloud - will produce the keys in .ssh folder.
+  // docker-machine create --driver generic --generic-ip-address=<IP> --generic-ssh-user=<user> --generic-ssh-key=<id_rsa or google_compute_engine> <vmName>
+  // IMPORTANT - issue in windows when calling docker-machine from host the path should be "c:/Users/<user>/.ssh/id_rsa" not "/c/Users/<user>/.ssh/id_rsa"
+  // IMPORTANT - If a machine is failling and showing error after trying to add it locally on host, it shouldn't be removed as doing so removes the cloud instance also, therefore reconfiguring by deleting the related folder in the ~/.docker/machines .
+  // Docker --driver google : used for creating provisionning vms if doesn't exist.
+  // Docker --driver generic : for adding & provisioning existing vms or creatng new vm & provision.
+  // docker with google driver when creating vms assigns user for ssh as "docker-user" (not sure about this one), but the "gcloud compute ssh <vm>" should be called again to provision the newlly created vm with the necessary ssh to use e.g. google_compute_engine.
+  // while creating ssh for existing vms using "gcloud compute ssh <vm>" assigns the host os username as ssh user.
+
+  //[1] machine created using gcloud api
+  //[2] gcloud compute ssh vm
+  //[3] docker-machine create --driver generic --generic-ip-address=<> --generic-ssh-user=<windowsUser> --generic-ssh-key="c:/Users/<user>/.ssh/google_compute_engine" vm
+  //[4] docker-machine provision vm
+  //[5] fix issues with docker starting command: https://github.com/docker/machine/issues/4166 https://github.com/docker/machine/issues/4156#issuecomment-311955380 
+  //    $ nano /etc/systemd/system/docker.service.d/10-machine.conf
+  //    change "--storage-driver aufs" to "--engine-storage-driver=overlay2"
+  //    $ sudo systemctl daemon-reload
+  //    $ sudo systemctl -f start docker
+  //[6] initialize vm
 
 })()
 
