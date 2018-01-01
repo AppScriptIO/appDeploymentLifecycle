@@ -8,6 +8,11 @@ privateKeyPath="$keyPath/google_compute_engine"
 
 run() {
     docker-machine create --driver generic --generic-ip-address=${address} --generic-ssh-user=${OSUsername} --generic-ssh-key="${privateKeyPath}" ${vmName}
+
+    # after which should fix issue with docker compatibility configuration (side effect of docker-machine create/provision)
+    sudo sed -i 's/--storage-driver aufs//g' /etc/systemd/system/docker.service.d/10-machine.conf
+    sudo systemctl daemon-reload
+    sudo systemctl -f start docker
 }
 
 
