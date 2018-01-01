@@ -14,6 +14,7 @@ docker run \
     --volume $keyPath:/project/key \
     --volume /var/run/docker.sock:/var/run/docker.sock \
     --env "hostPath=$applicationHostPath" \
+    --env "sshUsername=$OSUsername" \
     --env "entrypointConfigurationPath=/project/application/entrypoint/configuration.js" \
     --env "entrypointOption=createNodeCluster" \
     myuserindocker/deployment-environment:latest \
