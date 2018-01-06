@@ -12,6 +12,7 @@ const HtmlSplitter = require('polymer-build').HtmlSplitter
 const FragmentIndentation = require('../utilityModule/fragmentIndentation.js').FragmentIndentation
 const babelPresetES2015 = require('babel-preset-es2015');
 const babelPresetES2015NoModules = babelPresetES2015.buildPreset({}, {modules: false});
+const debug = require('gulp-debug');
 
 
 let ignoreCustomFragments = [ /{%[\s\S]*?%}/, /<%[\s\S]*?%>/, /<\?[\s\S]*?\?>/ ]
@@ -22,6 +23,7 @@ let hbAttrWrapPair = [hbAttrWrapOpen, hbAttrWrapClose];
 function webcomponent(sources, destination) {
 	const sourcesHtmlSplitter = new HtmlSplitter()
   return gulp.src(sources)
+  	.pipe(debug({title: 'debug:'}))
 	.pipe(FragmentIndentation.TransformToFragmentKeys())
 	.pipe(sourcesHtmlSplitter.split()) // split inline JS & CSS out into individual .js & .css files
 	
@@ -87,6 +89,7 @@ function webcomponent(sources, destination) {
 function webcomponentES5(sources, destination) {
 	const sourcesHtmlSplitter = new HtmlSplitter()
   return gulp.src(sources)
+	  .pipe(debug({title: 'debug:'}))
 	.pipe(FragmentIndentation.TransformToFragmentKeys())
 	.pipe(sourcesHtmlSplitter.split()) // split inline JS & CSS out into individual .js & .css files
 	
@@ -107,19 +110,19 @@ function webcomponentES5(sources, destination) {
 			]
 		})
 	))
-	// .pipe(gulpif(/\.js$/, uglify()))
+	.pipe(gulpif(/\.js$/, uglify()))
 
-	// // Inline HTML
-	// .pipe(gulpif(/\.html$/, htmlMinifier()))
-    // .pipe(gulpif(/\.html$/, plugins.htmlmin({
-	// 		collapseWhitespace: true,
-	// 		removeComments: true,
-	// 		removeCommentsFromCDATA: true,
-	// 		minifyURLs: true,
-	// 		minifyJS: true,
-	// 		minifyCSS: true, 
-	// 		ignoreCustomFragments: ignoreCustomFragments
-	// })))
+	// Inline HTML
+	.pipe(gulpif(/\.html$/, htmlMinifier()))
+    .pipe(gulpif(/\.html$/, plugins.htmlmin({
+			collapseWhitespace: true,
+			removeComments: true,
+			removeCommentsFromCDATA: true,
+			minifyURLs: true,
+			minifyJS: true,
+			minifyCSS: true, 
+			ignoreCustomFragments: ignoreCustomFragments
+	})))
 
 	.pipe(sourcesHtmlSplitter.rejoin()) // rejoins those files back into their original location
 	.pipe(FragmentIndentation.TransformBackToFragment())
@@ -146,11 +149,14 @@ function webcomponentES5(sources, destination) {
 	.pipe(plugins.size({
 		title: 'html task (webcomponent)'
 	}));
+
 }
 
 function polymer(sources, destination) {
 	const sourcesHtmlSplitter = new HtmlSplitter()
   return gulp.src(sources)
+	  .pipe(debug({title: 'debug:'}))
+  
 	// .pipe(FragmentIndentation.TransformToFragmentKeys())
 	.pipe(sourcesHtmlSplitter.split()) // split inline JS & CSS out into individual .js & .css files
 	
@@ -173,19 +179,19 @@ function polymer(sources, destination) {
 			})
 		)
 	)
-	// .pipe(gulpif(/\.js$/, uglify()))
+	.pipe(gulpif(/\.js$/, uglify()))
 
 	// Inline HTML
-	// .pipe(gulpif(/\.html$/, htmlMinifier()))
-    // .pipe(gulpif(/\.html$/, plugins.htmlmin({
-	// 		collapseWhitespace: true,
-	// 		removeComments: true,
-	// 		removeCommentsFromCDATA: true,
-	// 		minifyURLs: true,
-	// 		minifyJS: true,
-	// 		minifyCSS: true, 
-	// 		ignoreCustomFragments: ignoreCustomFragments
-	// })))
+	.pipe(gulpif(/\.html$/, htmlMinifier()))
+    .pipe(gulpif(/\.html$/, plugins.htmlmin({
+			collapseWhitespace: true,
+			removeComments: true,
+			removeCommentsFromCDATA: true,
+			minifyURLs: true,
+			minifyJS: true,
+			minifyCSS: true, 
+			ignoreCustomFragments: ignoreCustomFragments
+	})))
 
 	.pipe(sourcesHtmlSplitter.rejoin()) // rejoins those files back into their original location
 	// .pipe(FragmentIndentation.TransformBackToFragment())

@@ -30,7 +30,6 @@ function x(rootSource, source, destination) {
 
 // NOTE: joinPath.js module was used instead of path.join module. If any problems appear, rollback.
 module.exports = (rootSource, source, destination, type = null, extraOptions) => {
-  
   switch (type) {
     case 'sourceToSame':
       return () => {
