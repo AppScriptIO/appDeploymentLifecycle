@@ -27,8 +27,6 @@ function webcomponent(sources, destination) {
 	.pipe(FragmentIndentation.TransformToFragmentKeys())
 	.pipe(sourcesHtmlSplitter.split()) // split inline JS & CSS out into individual .js & .css files
 	
-	// Inline CSS
-	.pipe(gulpif(/\.css$/, cssSlam()))
 	
 	// Inline JAVASCRIPT
 	.pipe(gulpif(/\.js$/, 
@@ -54,10 +52,12 @@ function webcomponent(sources, destination) {
 			removeComments: true,
 			removeCommentsFromCDATA: true,
 			minifyURLs: true,
-			minifyJS: true,
-			minifyCSS: true, 
+			// minifyJS: true,
+			// minifyCSS: true, 
 			ignoreCustomFragments: ignoreCustomFragments
 	})))
+	// Inline CSS
+	.pipe(gulpif(/\.css$/, cssSlam()))
 
 	.pipe(sourcesHtmlSplitter.rejoin()) // rejoins those files back into their original location
 	.pipe(FragmentIndentation.TransformBackToFragment())
@@ -110,19 +110,19 @@ function webcomponentES5(sources, destination) {
 			]
 		})
 	))
-	.pipe(gulpif(/\.js$/, uglify()))
+	// .pipe(gulpif(/\.js$/, uglify()))
 
-	// Inline HTML
-	.pipe(gulpif(/\.html$/, htmlMinifier()))
-    .pipe(gulpif(/\.html$/, plugins.htmlmin({
-			collapseWhitespace: true,
-			removeComments: true,
-			removeCommentsFromCDATA: true,
-			minifyURLs: true,
-			minifyJS: true,
-			minifyCSS: true, 
-			ignoreCustomFragments: ignoreCustomFragments
-	})))
+	// // Inline HTML
+	// .pipe(gulpif(/\.html$/, htmlMinifier()))
+    // .pipe(gulpif(/\.html$/, plugins.htmlmin({
+	// 		collapseWhitespace: true,
+	// 		removeComments: true,
+	// 		removeCommentsFromCDATA: true,
+	// 		minifyURLs: true,
+	// 		minifyJS: true,
+	// 		minifyCSS: true, 
+	// 		ignoreCustomFragments: ignoreCustomFragments
+	// })))
 
 	.pipe(sourcesHtmlSplitter.rejoin()) // rejoins those files back into their original location
 	.pipe(FragmentIndentation.TransformBackToFragment())
@@ -179,19 +179,19 @@ function polymer(sources, destination) {
 			})
 		)
 	)
-	.pipe(gulpif(/\.js$/, uglify()))
+	// .pipe(gulpif(/\.js$/, uglify()))
 
-	// Inline HTML
-	.pipe(gulpif(/\.html$/, htmlMinifier()))
-    .pipe(gulpif(/\.html$/, plugins.htmlmin({
-			collapseWhitespace: true,
-			removeComments: true,
-			removeCommentsFromCDATA: true,
-			minifyURLs: true,
-			minifyJS: true,
-			minifyCSS: true, 
-			ignoreCustomFragments: ignoreCustomFragments
-	})))
+	// // Inline HTML
+	// .pipe(gulpif(/\.html$/, htmlMinifier()))
+    // .pipe(gulpif(/\.html$/, plugins.htmlmin({
+	// 		collapseWhitespace: true,
+	// 		removeComments: true,
+	// 		removeCommentsFromCDATA: true,
+	// 		minifyURLs: true,
+	// 		minifyJS: true,
+	// 		minifyCSS: true, 
+	// 		ignoreCustomFragments: ignoreCustomFragments
+	// })))
 
 	.pipe(sourcesHtmlSplitter.rejoin()) // rejoins those files back into their original location
 	// .pipe(FragmentIndentation.TransformBackToFragment())
