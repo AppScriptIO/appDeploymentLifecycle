@@ -1,0 +1,39 @@
+version: '3.3'
+
+networks: 
+  internal:
+    external: false
+  proxy:
+    external: true
+
+# volumes: 
+#   dentrist:
+#     driver: rexray
+
+services:
+
+  # https://hub.docker.com/r/myuserindocker/taleb-webapp/tags/
+  # internal ports = 80, 443
+  nodejs:
+    image: myuserindocker/${imageName}:${imageTag:-latest}
+    environment:
+      DEPLOYMENT: production
+      HOST: ${domain}
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 1
+        delay: 10s
+    networks:
+      - internal
+      - proxy
+  
+  # RethinkDB - https://hub.docker.com/r/library/rethinkdb/tags/
+  # internal port = 8080
+  rethinkdb:
+    image: rethinkdb:2.3.6
+    volumes:
+      - "/mnt/datadisk-1/${hostStorageFolderName}/rethinkdbData:/data/rethinkdb_data/"
+    networks:
+      - internal
+      - proxy

@@ -1,0 +1,73 @@
+version: '2.2'
+
+networks: 
+  "default":
+    driver: bridge # bridge for the same host, while overlay is for swarm hosts.
+    # external: false
+
+# USAGE (from root directory): docker-compose -f ./setup/<docker-compose>.yml up
+services:
+
+  nodejs: 
+    image: myuserindocker/deployment-environment:latest # 2.2 working
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8081:8081"
+      - "8082:8082"
+      - "8083:8083"
+      - "8084:8084"
+      - "8085:8085"
+      - "8086:8086"
+      - "8087:8087"
+      - "8088:8088"
+      - "8089:8089"
+      - "8090:8090"
+      # BrowserSync ports:
+      - "9901:9901"
+      - "9902:9902"
+      - "9903:9903"
+      - "3000:3000"
+      - "9229:9229"
+    depends_on:
+      - rethinkdb
+    networks:
+        - default
+    environment:
+        DEPLOYMENT: ${DEPLOYMENT:-development}
+    volumes:
+      - ${hostPath}/dependency:/project/application/dependency # The hostPath is forwarded from the manager contaienr to the host vm. i.e. the manager doesn't container `/c/Users/` but the host vm does.
+      - ${hostPath}/setup:/project/application/setup
+      - ${hostPath}/source:/project/application/source
+      - ${hostPath}/distribution:/project/application/distribution
+    working_dir: /project/application
+    command: bash -c "sleep 100000000;"
+
+  rethinkdb:
+    image: rethinkdb:latest
+    ports:
+      - "8080:8080"
+    environment:
+        DEPLOYMENT: ${DEPLOYMENT:-development}
+    working_dir: /
+    # volumes:
+      # volume inside docker-machine not through Windows volume. because it causes problems otherwise.
+      # - /mnt/datadisk-1/taleb/rethinkdbData:/data/rethinkdb_data/
+    networks:
+        default:
+            aliases:
+                - rethinkdb
+
+  production-like: 
+    image: myuserindocker/${imageName}:latest # application dockerhub image name
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - rethinkdb
+    networks:
+        - default
+    environment:
+        HOST: localhost
+        DEPLOYMENT: ${DEPLOYMENT:-production}
+    # command: bash -c "sleep 100000" # doesn't override the image command.
