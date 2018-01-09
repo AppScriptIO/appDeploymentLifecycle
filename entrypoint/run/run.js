@@ -19,7 +19,7 @@ console.log(process.argv)
  */
 let ymlFile = `${appDeploymentLifecycle}/deploymentContainer/development.dockerCompose.yml`
 let serviceName = 'nodejs'
-let containerPrefix = 'gaziteng'
+let containerPrefix = 'app'
 let debug, command, environmentVariable
 switch (process.argv[0]) {
     case 'livereload':

@@ -12,7 +12,7 @@ console.log(process.argv)
  */
 let ymlFile = `${applicationPath}/setup/container/development.dockerCompose.yml`
 let serviceName = 'nodejs'
-let containerPrefix = 'talebwebapp_build'
+let containerPrefix = 'app_build'
 let debug, command, environmentVariable
 switch (process.argv[0]) {
     default:
