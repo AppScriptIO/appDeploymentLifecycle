@@ -1,9 +1,20 @@
 const { execSync, spawn, spawnSync } = require('child_process')
 import path from 'path'
+import filesystem from 'fs'
 import configuration from '../../../../setup/configuration/configuration.js'
 const applicationPath = path.join(configuration.projectPath, 'application')
 const appDeploymentLifecycle = path.join(applicationPath, 'dependency/appDeploymentLifecycle')
 console.log(process.argv)
+
+let nodeModuleFolder = `${applicationPath}/source/serverSide/node_modules`
+let packageManagerFolder = `${applicationPath}/source/packageManager/server.yarn/`
+if(!filesystem.existsSync(nodeModuleFolder)) {
+    spawnSync('yarn', [ `install` ], {
+        cwd: packageManagerFolder, 
+        shell: true, 
+        stdio: [0,1,2],
+    })
+}
 
 /*
  * Usage:

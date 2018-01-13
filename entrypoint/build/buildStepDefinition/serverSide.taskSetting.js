@@ -9,7 +9,7 @@ const FileSource = [
         gulpTaskFunction: {
             path: path.join(config.TaskModulePath, 'npm.js'),
             argument: [
-				source('/../setup/packageManager/server.yarn')
+				source('/packageManager/server.yarn/')
 			]
         }
     },
@@ -29,8 +29,35 @@ const FileSource = [
             argument: [
 				source(),
 				'serverSide/',
-				'/project/application/distribution/',
+				destination(),
                 'sourceToSame'
+			]
+        }
+    },
+    {
+        key: 'copy:databaseData',
+        gulpTaskFunction: {
+            path: path.join(config.TaskModulePath, 'rsync.js'),
+            argument: [
+				source(),
+				'databaseData/',
+				destination(),
+                'sourceToSame'
+			]
+        }
+    },
+    {
+        key: 'javascript:databaseData',
+        gulpTaskFunction: {
+            path: path.join(config.TaskModulePath, 'javascript.js'),
+            argument: [
+                [
+                    source('databaseData/**/*.js'),
+                    '!'+ source('databaseData/node_modules/**/*.js'),
+                ],	
+                destination('databaseData/'),
+                'babelTranspile',
+                config.GulpPath,
 			]
         }
     },

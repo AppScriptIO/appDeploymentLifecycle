@@ -19,6 +19,9 @@ const GulpTaskDependency = [
             {
                 label: 'serverSide'
             },
+            {
+                label: 'copy:databaseData'
+            }
         ]
     },
     {
@@ -30,7 +33,10 @@ const GulpTaskDependency = [
             },
             {
                 label: 'javascript:appscript'
-            }
+            },
+            {
+                label: 'javascript:databaseData'
+            },
         ]
     },
     {

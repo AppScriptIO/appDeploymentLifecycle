@@ -53,8 +53,8 @@ services:
     # Used only to build image.
     buildImage:
         build:
-            context: ../../
-            dockerfile: ./setup/container/service.dockerfile
+            context: ../../../
+            dockerfile: ./dependency/appDeploymentLifecycle/deploymentContainer/service.dockerfile
             args:
                 - DEPLOYMENT=${DEPLOYMENT:-production}
         image: myuserindocker/${imageName}:latest # tag for created/built image # name of local image to be built

@@ -11,7 +11,7 @@ module.exports = (rootDir, callback) => {
       rootDir + 'app/**/*.{js,html,css}',
       rootDir + 'routing/**/*.{html,css}',
 
-      // rootDir + 'content/mu-plugins/SZN_bower_components/**/*.{js,html,css}',
+      // rootDir + 'content/mu-plugins/SZN_component.package/**/*.{js,html,css}',
 
 
       // rootDir + 'content/mu-plugins/SZN_scripts_styles/css/**/*.{js,html,css,png,jpg,gif}',

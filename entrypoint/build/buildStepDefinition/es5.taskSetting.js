@@ -10,7 +10,7 @@ const FileSource = [
             path: path.join(config.TaskModulePath, `jspm.js`),
             argument: [
 				process.env.NODEJS_VERSION,
-				source(`/../setup/packageManager/browser.jspm`)
+				source(`/packageManager/browser.jspm`)
 			]
         }
     },
@@ -19,7 +19,7 @@ const FileSource = [
         gulpTaskFunction: {
             path: path.join(config.TaskModulePath, `bower.js`),
             argument: [
-				source(`/../setup/packageManager/browser.bower/`)
+				source(`/packageManager/browser.bower/`)
 			]
         }
     },
@@ -43,7 +43,7 @@ const FileSource = [
             argument: [
                 [
                     source(`clientSide/**/*.json`),
-                    `!` + source(`clientSide/asset/webcomponent/bower_components/**/*.json`),
+                    `!` + source(`clientSide/asset/webcomponent/component.package/**/*.json`),
                     `!` + source(`clientSide/asset/javascript/js.package/**/*.json`),
                 ],
                 destination(`clientSide-${prefix}/`)
@@ -84,10 +84,10 @@ const FileSource = [
             argument: [
                 [
                     source(`clientSide/asset/webcomponent/**/*.html`),  
-                    // `!`+ source(`clientSide/asset/webcomponent/bower_components/**/*.html`),
-                    `!`+ source(`clientSide/asset/webcomponent/bower_components/webcomponentsjs/**/*.html`),
-                    `!`+ source(`clientSide/asset/webcomponent/bower_components/web-component-tester/**/*.html`),
-                    `!`+ source(`clientSide/asset/webcomponent/bower_components/polymer/**/*.html`),
+                    // `!`+ source(`clientSide/asset/webcomponent/component.package/**/*.html`),
+                    `!`+ source(`clientSide/asset/webcomponent/component.package/webcomponentsjs/**/*.html`),
+                    `!`+ source(`clientSide/asset/webcomponent/component.package/web-component-tester/**/*.html`),
+                    `!`+ source(`clientSide/asset/webcomponent/component.package/polymer/**/*.html`),
                 ],
                 destination(`clientSide-${prefix}/asset/webcomponent/`),
                 `webcomponentES5`
@@ -100,9 +100,9 @@ const FileSource = [
             path: path.join(config.TaskModulePath, `html.js`),
             argument: [
                 [
-                    source(`clientSide/asset/webcomponent/bower_components/polymer/**/*.html`),  
+                    source(`clientSide/asset/webcomponent/component.package/polymer/**/*.html`),  
                 ],
-                destination(`clientSide-${prefix}/asset/webcomponent/bower_components/polymer`),
+                destination(`clientSide-${prefix}/asset/webcomponent/component.package/polymer`),
                 `polymer`
 			],
         }
@@ -125,8 +125,8 @@ const FileSource = [
 				[
 					source(`clientSide/asset/javascript/**/*.js`),
 					source(`clientSide/asset/webcomponent/**/*.js`),
-					'!'+ source(`clientSide/asset/webcomponent/bower_components/**/*.js`),
-					source('clientSide/jspm_packageManager/**/*.js'),
+					'!'+ source(`clientSide/asset/webcomponent/component.package/**/*.js`),
+					source('packageManager/browser.jspm/**/*.js'), // TODO: fix non  existant folder path.
                     `!`+ source(`clientSide/asset/javascript/js.package/**/*.js`),
                     '!'+ source('**/node_modules/**/*.js'),                    
 				],
@@ -142,7 +142,7 @@ const FileSource = [
     //         argument: [
     //             [
     //                 source(`clientSide/**/*.js`),
-    //                 `!`+ source(`clientSide/asset/webcomponent/bower_components/**/*.js`),
+    //                 `!`+ source(`clientSide/asset/webcomponent/component.package/**/*.js`),
     //                 `!`+ source(`clientSide/asset/javascript/js.package/**/*.js`)
     //             ],	
     //             destination(`clientSide/`),

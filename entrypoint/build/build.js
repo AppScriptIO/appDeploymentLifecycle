@@ -1,23 +1,33 @@
 const { execSync, spawn, spawnSync } = require('child_process')
 import path from 'path'
+import filesystem from 'fs'
 import configuration from '../../../../setup/configuration/configuration.js'
 const applicationPath = path.join(configuration.projectPath, 'application')
-const appDeploymentLifecycle = path.join(configuration.projectPath, 'dependency/appDeploymentLifecycle')
+const appDeploymentLifecycle = path.join(applicationPath, 'dependency/appDeploymentLifecycle')
 console.log(process.argv)
+
+let nodeModuleFolder = `${appDeploymentLifecycle}/entrypoint/build`
+if(!filesystem.existsSync(`${nodeModuleFolder}/node_modules`)) {
+    spawnSync('yarn', [ `install` ], {
+        cwd: nodeModuleFolder, 
+        shell: true, 
+        stdio: [0,1,2],
+    })
+}
 
 /*
  * Usage:
  * • ./entrypoint.sh build imageName=<application image name>
  * • ./entrypoint.sh build debug
  */
-let ymlFile = `${applicationPath}/setup/container/development.dockerCompose.yml`
+let ymlFile = `${appDeploymentLifecycle}/deploymentContainer/development.dockerCompose.yml`
 let serviceName = 'nodejs'
 let containerPrefix = 'app_build'
 let debug, command, environmentVariable
 switch (process.argv[0]) {
     default:
         debug = (process.argv[1] == 'debug' || process.argv[2] == 'debug') ? '--inspect=localhost:9229 --debug-brk' : '';
-        let appEntrypointPath = `${applicationPath}/setup/build/`
+        let appEntrypointPath = `${appDeploymentLifecycle}/entrypoint/build/`
         command = `node ${debug} ${appEntrypointPath} build`
         environmentVariable = {
             DEPLOYMENT: "development",
