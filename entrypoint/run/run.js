@@ -41,14 +41,16 @@ switch (process.argv[0]) {
             additionalEnvironmentVariable.SZN_OPTION_ENTRYPOINT_NAME = "entrypoint.js"
             additionalEnvironmentVariable.SZN_OPTION_ENTRYPOINT_PATH = "/project/application/distribution/serverSide/"
         }
+        let debugCommand = (process.argv[1] == 'debug' || process.argv[2] == 'debug') ? '--inspect=localhost:9229 --debug-brk' : '';
         let sourceCodePath = path.join(configuration.SourceCodePath, 'serverSide')
         debug = (process.argv[1] == 'debug' || process.argv[2] == 'debug') ? true : false;
-        let command = `node ${appDeploymentLifecycle}/nodejsLivereload/ watch:livereload`
+        let command = `node ${debugCommand} ${appDeploymentLifecycle}/nodejsLivereload/ watch:livereload`
         let environmentVariable = {
             DEPLOYMENT: "development",
             SZN_DEBUG: debug,
             hostPath: process.env.hostPath
         }
+        console.log(`• nodejs command = ${command}`)
         spawnSync('docker-compose', [
                 `-f ${ymlFile} --project-name ${containerPrefix} run --service-ports --entrypoint '${command}' ${serviceName}`
             ], {
@@ -60,11 +62,12 @@ switch (process.argv[0]) {
     break;
     default:
         console.log('• Running entrypoint application in default mode.')    
-
-        debug = (process.argv[1] == 'debug' || process.argv[2] == 'debug') ? '--inspect=localhost:9229 --debug-brk' : '';
+        console.log(process.argv)
+        debug = (process.argv[1] == 'debug' || process.argv[0] == 'debug' || process.argv[2] == 'debug') ? '--inspect=localhost:9229 --debug-brk' : '';
         let appEntrypointPath = (process.argv[0] == 'distribution' || process.argv[1] == 'distribution') ? `${applicationPath}/distribution/serverSide/entrypoint.js`: `${applicationPath}/source/serverSide/entrypoint.js`;
         console.log(`App enrypoint path: ${appEntrypointPath}`)
         command = (process.argv[0] == 'sleep' || process.argv[1] == 'sleep') ? 'sleep 100000' : `node ${debug} ${appEntrypointPath}`;
+        console.log(`• nodejs command = ${command}`)
         environmentVariable = {
             DEPLOYMENT: "development",
             SZN_DEBUG: false,
