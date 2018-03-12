@@ -34,14 +34,7 @@ const entrypoint = {
     filePath: process.env.SZN_OPTION_ENTRYPOINT_PATH || '/project/application/source/serverSide/'
 }
 
-let debugArguments = []
-if (process.env.SZN_DEBUG == 'true') {
-    if(process.env.SZN_OPTION_BREAK == 'true') {
-        debugArguments = ["--inspect=0.0.0.0:9229", "--debug-brk"]
-    } else {
-        debugArguments = ["--inspect=0.0.0.0:9229"]
-    }
-}
+let debugArguments = (process.env.SZN_DEBUG == 'true') ? [process.env.SZN_DEBUG_COMMAND] : [];
 
 const $ = {} // shared object 
 
@@ -57,7 +50,8 @@ gulp.task('livereload:ServerSide', ()=> {
         ], // equals to '!/app/{node_modules,node_modules/**/*}'
 		{ interval: INTERVAL, usePolling: usePolling }, 
 		async (done) => {
-            setTimeout(function(){ 
+            setTimeout(function(){
+                console.info(`[nodejsLivereload] Reloading server...`)
                 $.serverLivereload.reload()
                 done()
             }, 1000);

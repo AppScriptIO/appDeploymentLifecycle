@@ -10,7 +10,7 @@ services:
 
   nodejs: 
     image: myuserindocker/deployment-environment:latest # 2.2 working
-    ports:
+    ports: # to change port interface (ip) use "127.0.0.1:80:80"
       - "80:80"
       - "443:443"
       - "8081:8081"
@@ -23,12 +23,12 @@ services:
       - "8088:8088"
       - "8089:8089"
       - "8090:8090"
+      - "3000:3000"
+      - "9229:9229" # Nodejs chrome inspection.
       # BrowserSync ports:
       - "9901:9901"
       - "9902:9902"
       - "9903:9903"
-      - "3000:3000"
-      - "9229:9229"
     depends_on:
       - rethinkdb
     networks:

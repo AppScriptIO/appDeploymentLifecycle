@@ -1,11 +1,15 @@
+console.log('• Running entrypoint application in Manager Container in default mode.')    
+console.log(`- passed process arguments: ${JSON.stringify(process.argv)}`)
+
 const { execSync, spawn, spawnSync } = require('child_process')
 import path from 'path'
 import filesystem from 'fs'
 import configuration from '../../../../setup/configuration/configuration.js'
+import sleep from './sleep.run.js'
 const applicationPath = path.join(configuration.projectPath, 'application')
 const appDeploymentLifecycle = path.join(applicationPath, 'dependency/appDeploymentLifecycle')
-console.log(process.argv)
 
+// Install modules for the app to be run in the spawn app container 
 let nodeModuleFolder = `${applicationPath}/source/serverSide/node_modules`
 let packageManagerFolder = `${applicationPath}/source/packageManager/server.yarn/`
 if(!filesystem.existsSync(nodeModuleFolder)) {
@@ -19,7 +23,7 @@ if(!filesystem.existsSync(nodeModuleFolder)) {
 /*
  * Usage:
  * • ./entrypoint.sh run
- * • ./entrypoint.sh run sleep // run app with no command, but sleep to keep the container running
+ * • ./entrypoint.sh run sleep // run app with no containerCommand, but sleep to keep the container running
  * • ./entrypoint.sh run debug
  * • ./entrypoint.sh run distribution
  * • ./entrypoint.sh run distribution debug
@@ -31,56 +35,69 @@ if(!filesystem.existsSync(nodeModuleFolder)) {
 let ymlFile = `${appDeploymentLifecycle}/deploymentContainer/development.dockerCompose.yml`
 let serviceName = 'nodejs'
 let containerPrefix = 'app'
-let debug, command, environmentVariable
 switch (process.argv[0]) {
-    case 'livereload':
-        console.log('• Running application in livereload mode.')    
-        
-        let additionalEnvironmentVariable = {}
-        if(process.argv[0] == 'distribution' || process.argv[1] == 'distribution') {
-            additionalEnvironmentVariable.SZN_OPTION_ENTRYPOINT_NAME = "entrypoint.js"
-            additionalEnvironmentVariable.SZN_OPTION_ENTRYPOINT_PATH = "/project/application/distribution/serverSide/"
-        }
-        let debugCommand = (process.argv[1] == 'debug' || process.argv[2] == 'debug') ? '--inspect=localhost:9229 --debug-brk' : '';
-        let sourceCodePath = path.join(configuration.SourceCodePath, 'serverSide')
-        debug = (process.argv[1] == 'debug' || process.argv[2] == 'debug') ? true : false;
-        let command = `node ${debugCommand} ${appDeploymentLifecycle}/nodejsLivereload/ watch:livereload`
-        let environmentVariable = {
-            DEPLOYMENT: "development",
-            SZN_DEBUG: debug,
-            hostPath: process.env.hostPath
-        }
-        console.log(`• nodejs command = ${command}`)
-        spawnSync('docker-compose', [
-                `-f ${ymlFile} --project-name ${containerPrefix} run --service-ports --entrypoint '${command}' ${serviceName}`
-            ], {
-                // cwd: `${applicationPath}`, 
-                shell: true, 
-                stdio: [0,1,2], 
-                env: Object.assign(environmentVariable, additionalEnvironmentVariable)
-            })
+    case 'sleep': 
+            sleep({ymlFile, serviceName, containerPrefix})
     break;
     default:
-        console.log('• Running entrypoint application in default mode.')    
-        console.log(process.argv)
-        debug = (process.argv[1] == 'debug' || process.argv[0] == 'debug' || process.argv[2] == 'debug') ? '--inspect=localhost:9229 --debug-brk' : '';
-        let appEntrypointPath = (process.argv[0] == 'distribution' || process.argv[1] == 'distribution') ? `${applicationPath}/distribution/serverSide/entrypoint.js`: `${applicationPath}/source/serverSide/entrypoint.js`;
+
+        let sourceCodePath = path.join(configuration.SourceCodePath, 'serverSide')
+
+        /***
+         *  TODO: Implement: 
+         * • livereload + distribution
+         * • distribution
+         * • livereload
+         * • & default normal mode.
+         * As livereaload + distribution != distribution alone
+         */
+        let appEntrypointPath = (process.argv.includes('distribution')) ? 
+            `${applicationPath}/distribution/serverSide/entrypoint.js`:
+            `${applicationPath}/source/serverSide/entrypoint.js`;
         console.log(`App enrypoint path: ${appEntrypointPath}`)
-        command = (process.argv[0] == 'sleep' || process.argv[1] == 'sleep') ? 'sleep 100000' : `node ${debug} ${appEntrypointPath}`;
-        console.log(`• nodejs command = ${command}`)
-        environmentVariable = {
+        
+        // when using `localhost` chrome shows the files in folders, while using `0.0.0.0` files appear as separated.
+        // `0.0.0.0` allows access from any port (could be usful in containers as external connections not always referred to localhost it seems.)
+        let debugCommand = (process.argv.includes('debug')) ? 
+            `--inspect${ process.argv.includes('break')?'-brk':'' }=0.0.0.0:9229`: 
+            '';
+        
+        let containerCommand = (process.argv.includes('livereload')) ? 
+            `node ${debugCommand} ${appDeploymentLifecycle}/nodejsLivereload/ watch:livereload` :
+            `node ${debugCommand} ${appEntrypointPath}`;
+        console.log(`• nodejs containerCommand = ${containerCommand}`)
+
+        let environmentVariable = {
             DEPLOYMENT: "development",
-            SZN_DEBUG: false,
+            SZN_DEBUG: (debugCommand) ? true : false,
+            SZN_DEBUG_COMMAND: debugCommand,
             hostPath: process.env.hostPath
         }
-        spawnSync('docker-compose', [
-                `-f ${ymlFile} --project-name ${containerPrefix} run --service-ports --entrypoint '${command}' ${serviceName}`
-            ], {
+        if(process.argv.includes('distribution')) 
+            Object.assign( // shallow merge
+                environmentVariable,
+                {
+                    SZN_OPTION_ENTRYPOINT_NAME: "entrypoint.js",
+                    SZN_OPTION_ENTRYPOINT_PATH: "/project/application/distribution/serverSide/"
+                }
+            );
+
+        // Run docker application container using yml configuration file.
+        let processCommand = 'docker-compose',
+            processCommandArgs = [
+                `-f ${ymlFile}`,
+                `--project-name ${containerPrefix}`,
+                `run --service-ports`,
+                `--entrypoint '${containerCommand}'`,
+                `${serviceName}`
+            ],
+            processOption = {
                 // cwd: `${applicationPath}`, 
                 shell: true, 
                 stdio: [0,1,2], 
                 env: environmentVariable
-            })
+            }
+        spawnSync(processCommand, processCommandArgs, processOption)
     break;
 }
 
