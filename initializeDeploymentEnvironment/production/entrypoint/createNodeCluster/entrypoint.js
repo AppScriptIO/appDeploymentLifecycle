@@ -63,11 +63,17 @@ const regionName = 'europe-west1',
     # Configure read and write access
     sudo chmod a+w /mnt/${storageDiskName}
     # Automatically mount when restarted: if 'nofail' doesn't work use 'nobootwait' option. If the string doesn't exist already in the machine
-    if ! grep -q 'sudo blkid -s UUID -o value /dev/disk/by-id/google-${storageDiskName}' /etc/fstab ; then
+    # Startup config file for partition mounting.
+    startupMountFile=/etc/fstab
+    # check if startup configuration is written in file
+    if ! grep -q '${storageDiskName}' $startupMountFile ; then
         echo "Dist mount on restart string is being added."
-        echo UUID="sudo blkid -s UUID -o value /dev/disk/by-id/google-${storageDiskName}" /mnt/${storageDiskName} ext4 discard,defaults,nofail 0 2 | sudo tee -a /etc/fstab
+        # Unique partition ID
+        partitionID=$(sudo blkid -s UUID -o value /dev/disk/by-id/google-${storageDiskName})
+        echo UUID=$partitionID /mnt/${storageDiskName} ext4 discard,defaults,nofail 0 2 | sudo tee -a $startupMountFile
     fi
-    cat /etc/fstab`)
+    # to execute fstab (startupMountFile) without restart use "sudo mount -a"
+    cat $startupMountFile`)
   .then(output => { console.log(output.stdout) })
 
   /*
