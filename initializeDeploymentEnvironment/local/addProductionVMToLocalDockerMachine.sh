@@ -1,4 +1,5 @@
 
+### This will add the vm in the 'docker-machine' list and allow for docker engine connections or ssh.
 # IMPORTANT NOT WORKING - will cause the provisionning of the remote machine which changs configuration and issues arise because of the bug in docker-machine provisionning compatibility
 # Usage: ./addProductionVMToLocalDockerMachine.sh address= vmName=
 

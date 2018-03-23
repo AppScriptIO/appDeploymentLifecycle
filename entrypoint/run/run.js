@@ -66,7 +66,7 @@ switch (process.argv[0]) {
             `node ${debugCommand} ${appDeploymentLifecycle}/nodejsLivereload/ watch:livereload` :
             `node ${debugCommand} ${appEntrypointPath}`;
         console.log(`• nodejs containerCommand = ${containerCommand}`)
-
+        
         let environmentVariable = {
             DEPLOYMENT: "development",
             SZN_DEBUG: (debugCommand) ? true : false,
