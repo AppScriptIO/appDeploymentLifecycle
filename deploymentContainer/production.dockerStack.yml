@@ -10,6 +10,8 @@ networks:
 #   dentrist:
 #     driver: rexray
 
+### USAGE: dockerexport imageName=taleb-webapp; export imageTag=2.5; export domain=taleb.io; export hostStorageFolderName=taleb; docker stack deploy -c ./production.dockerStack.yml talebwebapp
+
 services:
 
   # https://hub.docker.com/r/myuserindocker/taleb-webapp/tags/
@@ -31,7 +33,7 @@ services:
   # RethinkDB - https://hub.docker.com/r/library/rethinkdb/tags/
   # internal port = 8080
   rethinkdb:
-    image: rethinkdb:2.3.6
+    image: rethinkdb:2.3
     volumes:
       - "/mnt/datadisk-1/${hostStorageFolderName}/rethinkdbData:/data/rethinkdb_data/"
     networks:

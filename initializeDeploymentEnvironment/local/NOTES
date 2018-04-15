@@ -1,0 +1,5 @@
+# Locally on host machine in case of using "Docker for Windows"
+• ssh into hyper-v MobyLinuxVM : https://blog.jongallant.com/2017/11/ssh-into-docker-vm-windows/
+• install docker-windows-volume-watcher to allow inotify events to be triggered in linux container when host files mounted changes
+    http://blog.subjectify.us/miscellaneous/2017/04/24/docker-for-windows-watch-bindings.html
+• 

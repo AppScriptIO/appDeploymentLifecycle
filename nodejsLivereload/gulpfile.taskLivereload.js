@@ -8,7 +8,7 @@ const ServerLivereload = require(path.join(config.UtilityModulePath, 'serverLive
 // Fix high CPU usage for mounted filesystem in docker. And allow legacy file changes checking using flag 'usePolling' for chokidar.
 // IMPORTANT: should maybe increase fs limit for number files that can be watched https://github.com/gulpjs/gulp/issues/217 https://discourse.roots.io/t/gulp-watch-error-on-ubuntu-14-04-solved/3453/6
 const INTERVAL = 5000;
-const usePolling = true;
+const usePolling = false; // to allow Linux inotify to fire a file change event use - "docker-volume-watcher" on the Windows host (it is a python program that watches files on the host using native directory files change triggers, rather than polling).
 
 const browserSyncConfig = {
     host: 'localhost',
