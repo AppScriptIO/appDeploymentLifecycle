@@ -1,0 +1,1 @@
+docker-volume-watcher *node* -v
