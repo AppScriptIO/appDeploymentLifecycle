@@ -22,7 +22,7 @@ function babelJSCompiler({
     console.log(`• Node additional module resolution paths: ${process.env.NODE_PATH}`)   
     moduleSystem._initPaths()
     
-    const babelRegister = require(`${__dirname}/node_modules/babel-register`)
+    const babelRegister = require(`${__dirname}/node_modules/@babel/register`)
     babelConfiguration = require(`${__dirname}/compilerConfiguration/${babelConfigurationFile}`)
     
     // Compile code on runtime.

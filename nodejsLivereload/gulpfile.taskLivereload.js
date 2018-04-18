@@ -42,7 +42,7 @@ const entrypoint = {
 
 let debugArguments = (process.env.SZN_DEBUG == 'true') ? [process.env.SZN_DEBUG_COMMAND] : [];
 
-const $ = {} // shared object 
+let browserSync, serverLivereload;
 
 // ⌚ Watch file changes for livereload.
 // reload server & browser
@@ -52,19 +52,21 @@ gulp.task('livereload:ServerSide', ()=> {
             '/project/application/source/serverSide/**/*.js', 
             // '/project/application/source/serverSide/**/*.css', 
             // '/project/application/source/serverSide/**/*.html', 
-            '!/project/application/source/serverSide/**/node_modules{,/**/*}'
+            // '/project/application/source/serverSide/node_modules/appscript{/**/*.js,!/node_modules/**/*}', 
+            '!/project/application/source/serverSide/node_modules{,/**/*,!/appscript/**/*}',
+            // '!/project/application/source/serverSide/node_modules/appscript/node_modules{,/**/*}', 
         ], // equals to '!/app/{node_modules,node_modules/**/*}'
 		watchOptions, 
 		async (done) => {
             if(usePolling) 
                 setTimeout(function(){
                     console.info(`[nodejsLivereload] Reloading server...`)
-                    $.serverLivereload.reload()
+                    serverLivereload.reload()
                     done()
                 }, 1000);
             else {
                 console.info(`[nodejsLivereload] Reloading server...`)
-                $.serverLivereload.reload()
+                serverLivereload.reload()
                 done();
             }
 
@@ -94,11 +96,11 @@ gulp.task('livereload:clientSide', ()=> {
 		async (done) => {
             if(usePolling)
                 setTimeout(function(){
-                    $.browserSync.reload()
+                    browserSync.reload()
                     done()
                 }, 1000); // in polling was set to 1000
             else {
-                $.browserSync.reload()
+                browserSync.reload()
                 done()
             }
         }        
@@ -110,13 +112,13 @@ gulp.task('watch:livereload',
 		gulp.parallel(
             () => { // Initialize
                 console.info(`☕ SZN Gulp - Running script "${entrypoint.filePath}${entrypoint.filename}". With arguments: ${debugArguments.join()}`)
-                $.browserSync = BrowserSync.create('Info - locahost server')
-                $.browserSync.init(browserSyncConfig)
-                $.serverLivereload = new ServerLivereload(gulp, debugArguments, entrypoint)
-                $.serverLivereload.on('reload', () => {
-                    $.browserSync.reload()
+                browserSync = BrowserSync.create('Info - locahost server')
+                browserSync.init(browserSyncConfig)
+                serverLivereload = new ServerLivereload(gulp, debugArguments, entrypoint)
+                serverLivereload.on('reload', () => {
+                    browserSync.reload()
                 })
-                $.serverLivereload.reload()
+                serverLivereload.reload()
             },
             'livereload:ServerSide', 
             'livereload:clientSide'
