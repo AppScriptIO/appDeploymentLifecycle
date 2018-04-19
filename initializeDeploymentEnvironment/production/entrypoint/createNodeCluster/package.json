@@ -3,9 +3,9 @@
   "name": "app",
   "version": "0.1.0",
   "dependencies": {
-    "@google-cloud/compute": "^0.9.0",
-    "googleapis": "^23.0.0",
-    "node-ssh": "^5.0.0",
-    "ssh2": "^0.5.5"
+    "@google-cloud/compute": "^0.10.0",
+    "googleapis": "^28.1.0",
+    "node-ssh": "^5.1.1",
+    "ssh2": "^0.6.0"
   }
 }

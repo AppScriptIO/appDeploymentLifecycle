@@ -1,5 +1,4 @@
-import { promisify } from 'util'
-const google = require('googleapis');
+import { google } from 'googleapis'
 
 export function getVMTemplate({ templateName, projectName, applicationKeyPath }) {
     // Environment variables as required by Google's API client driver
@@ -27,7 +26,7 @@ export function getVMTemplate({ templateName, projectName, applicationKeyPath })
                 auth: authClient
             });
         
-            let result = await promisify(compute.instanceTemplates.get)({
+            let result = await compute.instanceTemplates.get({
                 project: projectId,
                 auth: authClient,
                 instanceTemplate: templateName
@@ -64,7 +63,7 @@ export function getVM({ vmName, projectName, applicationKeyPath }) {
                 auth: authClient
             })
         
-            let result = await promisify(compute.instances.get)({
+            let result = await compute.instances.get({
                 project: projectId,
                 auth: authClient,
                 zone: 'europe-west1-c',
@@ -105,37 +104,43 @@ export function addAccessConfig({ vmName, projectName, applicationKeyPath, zoneN
                 auth: authClient
             })
             
-            let accessConfigName = (await promisify(compute.instances.get)({
+            let getInstanceResponse = await compute.instances.get({
                 project: projectId,
                 auth: authClient,
                 zone: zoneName,
                 instance: vmName,
-            })).networkInterfaces[0].accessConfigs[0].name
-
-            let operation = await promisify(compute.instances.deleteAccessConfig)({
-                project: projectId,
-                auth: authClient,
-                zone: zoneName,
-                instance: vmName,
-                accessConfig: accessConfigName,  // default name appears when calling get on vm - "External NAT" or "external-nat"
-                networkInterface: 'nic0' // default name appears when calling get() on instance/vm
             })
-            let status = operation.status
-            while(status == 'PENDING' || status == 'RUNNING') {
-                console.log('pending...')
-                await new Promise(resolve => setTimeout(resolve, 5000))
-                let currentOperation = await promisify(compute.zoneOperations.get)({
+
+            // if an access config with external ip is already assign to the vm.
+            if(getInstanceResponse.data.networkInterfaces[0].accessConfigs && getInstanceResponse.data.networkInterfaces[0].accessConfigs[0]) {
+                let accessConfigName = getInstanceResponse.data.networkInterfaces[0].accessConfigs[0].name
+    
+                let operation = await compute.instances.deleteAccessConfig({
                     project: projectId,
                     auth: authClient,
                     zone: zoneName,
-                    operation: operation.name
+                    instance: vmName,
+                    accessConfig: accessConfigName,  // default name appears when calling get on vm - "External NAT" or "external-nat"
+                    networkInterface: 'nic0' // default name appears when calling get() on instance/vm
                 })
-                status = currentOperation.status
-                console.log(`Operation status: ${status}`)
+                let status = operation.status
+                while(status == 'PENDING' || status == 'RUNNING') {
+                    console.log('pending...')
+                    await new Promise(resolve => setTimeout(resolve, 5000))
+                    let currentOperation = await compute.zoneOperations.get({
+                        project: projectId,
+                        auth: authClient,
+                        zone: zoneName,
+                        operation: operation.name
+                    })
+                    status = currentOperation.status
+                    console.log(`Operation status: ${status}`)
+                }
             }
 
+            // add external ip to the vm
             let result;
-            result = await promisify(compute.instances.addAccessConfig)({
+            result = await compute.instances.addAccessConfig({
                 project: projectId,
                 auth: authClient,
                 zone: zoneName,

@@ -17,5 +17,6 @@ docker run \
     --env "sshUsername=$OSUsername" \
     --env "entrypointConfigurationPath=/project/application/entrypoint/configuration.js" \
     --env "entrypointOption=createNodeCluster" \
-    myuserindocker/deployment-environment:latest \
+    myuserindocker/container-manager:latest \
     containerCommand "$@"
+    # sleep 100000000000
