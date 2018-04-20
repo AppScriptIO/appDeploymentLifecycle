@@ -6,6 +6,8 @@ const applicationPath = path.join(configuration.projectPath, 'application')
 const appDeploymentLifecycle = path.join(applicationPath, 'dependency/appDeploymentLifecycle')
 console.log(process.argv)
 
+// ../utility/parseKeyValuePairSeparatedBySymbol.js is needed for 'imageName' argument.
+
 let nodeModuleFolder = `${appDeploymentLifecycle}/entrypoint/build`
 if(!filesystem.existsSync(`${nodeModuleFolder}/node_modules`)) {
     spawnSync('yarn', [ `install` ], {

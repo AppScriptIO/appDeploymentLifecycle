@@ -58,7 +58,7 @@ const compute = new Compute({ projectId: config.projectName, keyFilename: config
   // to generate keys
   // then execut: gcloud auth application-default print-access-token
   console.group('• Connecting through SSH')
-  externalIpAddress = externalIpAddress || '35.195.72.82' // for debugging - incase above code is commeted out 
+  externalIpAddress = externalIpAddress || 'x.x.x.x' // for debugging - incase above code is commeted out 
   const ssh = new sshModule()
   await ssh.connect({
     host: externalIpAddress,
