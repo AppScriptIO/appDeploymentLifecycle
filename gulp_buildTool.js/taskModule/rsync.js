@@ -1,5 +1,3 @@
-'use strict';
-
 let gulp = require('gulp');
 let plugins = require('gulp-load-plugins')({ camelize: true });
 let Rsync = require('rsync');
@@ -7,11 +5,11 @@ let path = require('path');
 let mkdirp = require('mkdirp');
 
 // using gulp-rsync
-function x(rootSource, source, destination) {
+function x(baseSource, source, destination) {
   return gulp.src(source)
     .pipe(plugins.rsync({
       // paths outside of root cannot be specified.
-      root: rootSource,
+      root: baseSource,
       destination: destination,
       incremental: true,
       compress: true,
@@ -29,40 +27,42 @@ function x(rootSource, source, destination) {
 };
 
 // NOTE: joinPath.js module was used instead of path.join module. If any problems appear, rollback.
-module.exports = (rootSource, source, destination, type = null, extraOptions) => {
-  switch (type) {
+export default ({ source, destination, algorithm = null, copyContentOnly = false, extraOptions } = {}) => {
+
+  if(copyContentOnly) source = `${source}/` // add trailing slash - as rsync will copy only contants when trailing slash is present.
+
+  switch (algorithm) {
     case 'sourceToSame':
       return () => {
         let options = {
           'a': true, // archive
           // 'v': true, // verbose
           'z': true, // compress
-          'R': false, // relative
+          'R': false, // relative - will create a nested path inside the destination using the full path of the source folder.
           'r': true // recursive
         };
-        if(typeof extraOptions !== 'undefined') {
-          options = Object.assign(options, extraOptions);
-        } 
-        var rsync = new Rsync()
-        .flags(options)
-        // .exclude('+ */')
-        // .include('/tmp/source/**/*')
-        .source(path.join(rootSource, source))
-        .destination(path.join(destination, source));
+        if(typeof extraOptions !== 'undefined') options = Object.assign(options, extraOptions)
+        let rsync = new Rsync()
+          .flags(options)
+          // .exclude('+ */')
+          // .include('/tmp/source/**/*')
+          .source(source)
+          .destination(destination)
         
         // Create directory.
         return new Promise(resolve => {
-          mkdirp(path.join(destination, source), function(err) {     
+          mkdirp(destination, function(err) {     
             // Execute the command 
             rsync.execute(function(error, code, cmd) {
-              resolve();
+              console.log(`• RSync ${source} to ${destination}`)
+              resolve()
             }, function(data) {
-              console.log(' ' + data);
-            });
-          });
-        });
+              console.log(' ' + data)
+            })
+          })
+        })
       }
-      break;
+    break;
     default:
       return () => {
         let options = {
@@ -79,12 +79,12 @@ module.exports = (rootSource, source, destination, type = null, extraOptions) =>
         .flags(options)
         // .exclude('+ */')
         // .include('/tmp/source/**/*')
-        .source('/project/application/source/clientSide/')
-        .destination(path.join(destination, source));
+        .source(source)
+        .destination(destination);
         
         // Create directory.
         return new Promise(resolve => {
-          mkdirp(path.join(destination, source), function(err) {     
+          mkdirp(destination, function(err) {     
             // Execute the command 
             rsync.execute(function(error, code, cmd) {
               resolve();

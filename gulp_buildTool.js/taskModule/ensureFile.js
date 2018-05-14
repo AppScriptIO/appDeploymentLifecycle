@@ -1,4 +1,4 @@
-'use strict';
+
 
 let gulp = require('gulp');
 let plugins = require('gulp-load-plugins')({ camelize: true });
@@ -8,7 +8,7 @@ let filesystem = require('fs');
  * @param {Array<string>} files
  * @param {Function} cb
  */
-module.exports = (files, cb) => {
+export default (files, cb) => {
   var missingFiles = files.reduce(function(prev, filePath) {
     var fileFound = false;
 

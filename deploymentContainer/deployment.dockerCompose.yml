@@ -1,28 +1,22 @@
-version: '2.1'
+version: '2.2'
 # Tests & Build: source code --> distribution code
 
 # USAGE (from root directory): docker-compose -f <filePath> up <service>
 services:
     
-    deploymentEnvironment:
+    nodejs: # Build source code & download project dependencies.
         image: myuserindocker/deployment-environment:latest
-
-    buildDistributionCode: # Build source code & download project dependencies.
-        extends: deploymentEnvironment
-        container_name: build
         environment:
             DEPLOYMENT: ${DEPLOYMENT:-production}
         volumes:
-          - ../../source:/project/application/source/
-          - ../../setup/container/shellScript:/project/application/setup/container/shellScript/
-          - ../../setup/build:/project/application/setup/build/
-          - ../../setup/utility:/project/application/setup/utility/
-          - ../../setup/configuration/configuration.js:/project/application/setup/configuration/configuration.json
-          - ../../dependency/appDeploymentLifecycle:/project/dependency/appDeploymentLifecycle/
-          - ../../distribution:/project/application/distribution/
+            - ${hostPath}/dependency:/project/application/dependency # The hostPath is forwarded from the manager contaienr to the host vm. i.e. the manager doesn't container `/c/Users/` but the host vm does.
+            - ${hostPath}/setup:/project/application/setup
+            - ${hostPath}/source:/project/application/source
+            - ${hostPath}/distribution:/project/application/distribution
         working_dir: /project/application/setup/build/
         entrypoint: /project/application/setup/container/shellScript/buildSourceCode.entrypoint.sh
-        # command: bash -c "sleep 100000"
+        working_dir: /project/application
+        command: bash -c "sleep 100000000;"
 
     # localUnitTest:
     #     extends: deploymentEnvironment
@@ -54,7 +48,7 @@ services:
     buildImage:
         build:
             context: ../../../
-            dockerfile: ./dependency/appDeploymentLifecycle/deploymentContainer/service.dockerfile
+            dockerfile: ${hostPath}/appDeploymentLifecycle/deploymentContainer/service.dockerfile
             args:
                 - DEPLOYMENT=${DEPLOYMENT:-production}
         image: myuserindocker/${imageName}:latest # tag for created/built image # name of local image to be built

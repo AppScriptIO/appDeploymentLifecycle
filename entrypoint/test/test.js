@@ -1,39 +1,55 @@
 const { execSync, spawn, spawnSync } = require('child_process')
 import path from 'path'
-import configuration from '../configuration/configuration.js'
-const applicationPath = path.join(configuration.projectPath, 'application')
-const appDeploymentLifecycle = path.join(configuration.projectPath, 'dependency/appDeploymentLifecycle')
-console.log(process.argv)
+import configuration from '../../../../setup/configuration/configuration.js'
+const applicationPath = path.join(configuration.directory.projectPath, 'application')
+const appDeploymentLifecycle = path.join(applicationPath, 'dependency/appDeploymentLifecycle')
+import { parseKeyValuePairSeparatedBySymbolFromArray, combineKeyValueObjectIntoString } from '../utility/parseKeyValuePairSeparatedBySymbol.js'
+
+console.group('• Running entrypoint application in Manager Container:')    
+console.log(`- passed process arguments: ${JSON.stringify(process.argv)}`)
+const namedArgs = parseKeyValuePairSeparatedBySymbolFromArray({ array: process.argv }) // ['x=y'] --> { x: y }
 
 /*
  * Usage:
  * • ./entrypoint.sh test unitTest
  * • ./entrypoint.sh test unitTest debug
+ * • ./entrypoint.sh test unitTest path=<pathToFile>/entrypoint.test.js // single test file execution.
  */
-switch (process.argv.shift()) {
+let ymlFile = `${appDeploymentLifecycle}/deploymentContainer/deployment.dockerCompose.yml`
+let serviceName = 'nodejs'
+let containerPrefix = 'app_test'
+let sourceCodePath = path.join(configuration.directory.SourceCodePath, 'serverSide')
+switch (process.argv[0]) {
     case 'unitTest':
+    default:
         console.log('Running unit tests.')
-        let ymlFile = `${applicationPath}/setup/container/development.dockerCompose.yml`
-        let serviceName = 'nodejs'
-        let containerPrefix = 'talebwebapp'
-        let sourceCodePath = path.join(configuration.SourceCodePath, 'serverSide')
-        let debug = (process.argv.shift() == 'debug') ? '--harmony --inspect=0.0.0.0:9229 --debug-brk' : '';
-        let command = `node ${debug} ${appDeploymentLifecycle}/javascriptTestRunner/ ${sourceCodePath}`
-        spawnSync('docker-compose', [
-                `-f ${ymlFile} --project-name ${containerPrefix} run --service-ports --entrypoint '${command}' ${serviceName}`
-            ], {
+        let debugCommand = (process.argv.includes('debug')) ? 
+            `--inspect${ process.argv.includes('break')?'-brk':'' }=0.0.0.0:9229`: 
+            '';
+        let appEntrypointPath = `${appDeploymentLifecycle}/javascriptTestRunner/`
+        let firstNodeCommand = namedArgs['path'] || sourceCodePath // command passed to node module environment
+        let containerCommand = `node ${debugCommand} ${appEntrypointPath} ${firstNodeCommand}`
+        let environmentVariable = {
+            DEPLOYMENT: "development",
+            SZN_DEBUG: false,
+            hostPath: process.env.hostPath,
+            imageName: namedArgs.imageName || process.env.imageName || configuration.dockerImageName 
+        }
+
+        let processCommand = 'docker-compose',
+            processCommandArgs = [
+                `-f ${ymlFile}`,
+                `--project-name ${containerPrefix}`,
+                `run --service-ports`,
+                `--entrypoint '${containerCommand}'`,
+                `${serviceName}`
+            ],
+            processOption = {
                 // cwd: `${applicationPath}`, 
                 shell: true, 
                 stdio: [0,1,2], 
-                env: {
-                    DEPLOYMENT: "development",
-                    SZN_DEBUG: false,
-                    hostPath: process.env.hostPath
-                }
-            })
+                env: environmentVariable
+            }
+        spawnSync(processCommand, processCommandArgs, processOption)
     break;
-    default:
-    break;
-}    
-
-
+}

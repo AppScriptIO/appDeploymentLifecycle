@@ -1,9 +1,7 @@
-'use strict';
+const checktype = require('type-of-is');
+const path = require("path");
 
-let checktype = require('type-of-is');
-let path = require("path");
-
-let joinPath = (mainpath, subpath) => {
+export default function joinPath(mainpath, subpath) {
 
   if (typeof(subpath)==='undefined') subpath = null;
 
@@ -21,5 +19,3 @@ let joinPath = (mainpath, subpath) => {
   }
 
 };
-
-module.exports = joinPath;

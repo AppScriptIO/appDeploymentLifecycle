@@ -24,7 +24,7 @@ function installModule({ currentDirectory }) { spawnSync('yarn', ["install --pur
 }
 const babelJSCompiler = require(babelJSCompilerPath)
 babelJSCompiler({
-    babelConfigurationFile: 'es2015.BabelConfig.js'
+    babelConfigurationFile: 'serverRuntime.BabelConfig.js'
 })
 
 //TODO: Work with JSDom module for frontend testing using nodejs.

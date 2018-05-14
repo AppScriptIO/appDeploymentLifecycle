@@ -1,4 +1,4 @@
-const stream = require('stream');
+import stream from 'stream'
 
 const self = class FragmentIndentation extends stream.Transform {
     static indentation = {

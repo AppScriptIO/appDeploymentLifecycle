@@ -12,7 +12,7 @@ moduleSystem._initPaths()
 const babelJSCompilerPath = path.normalize(`../babel_javascriptTranspilation.js/entrypoint.js`)
 const babelJSCompiler = require(babelJSCompilerPath)
 babelJSCompiler({
-    babelConfigurationFile: 'es2015.BabelConfig.js'
+    babelConfigurationFile: 'serverRuntime.BabelConfig.js'
 })
 
 

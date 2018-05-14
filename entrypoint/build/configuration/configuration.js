@@ -1,9 +1,9 @@
 const path = require('path')
 const confJson = require('../../../../../setup/configuration/configuration.js')
 const ConfigPath = __dirname,
-    TaskModulePath = path.join(confJson.appDeploymentLifecyclePath, 'gulp_buildTool.js' , 'taskModule/'),
-    UtilityModulePath = path.join(confJson.appDeploymentLifecyclePath, 'gulp_buildTool.js', 'utilityModule/'),
-    TaskImplementationPath = path.join(confJson.GulpPath, 'taskImplementation/')
+    TaskModulePath = path.join(confJson.directory.appDeploymentLifecyclePath, 'gulp_buildTool.js' , 'taskModule/'),
+    UtilityModulePath = path.join(confJson.directory.appDeploymentLifecyclePath, 'gulp_buildTool.js', 'utilityModule/'),
+    TaskImplementationPath = path.join(confJson.directory.gulpPath, 'taskImplementation/')
 
 module.exports = Object.assign({}, 
     confJson, 

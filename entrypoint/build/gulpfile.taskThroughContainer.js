@@ -2,20 +2,26 @@ import gulp from 'gulp'
 import path from 'path'
 import { include, joinPath, source, destination, plugins } from 'gulpfile.js'
 const config = require('configuration/configuration.js') // configuration
-const gulpTaskExecution = require(path.join(config.UtilityModulePath, 'gulpTaskExecution.js'))(gulp)
+const gulpTaskExecution = require(path.join(config.UtilityModulePath, 'gulpTaskExecution.js')).default(gulp)
 
-let es6TaskSettingPath = require('./buildStepDefinition/es6.taskSetting.js')
-let es5TaskSettingPath = require('./buildStepDefinition/es5.taskSetting.js')
-let serverSideTaskSettingPath = require('./buildStepDefinition/serverSide.taskSetting.js')
-let es6TaskAggregator = require('./buildStepDefinition/es6.taskAggregator.js')
-let es5TaskAggregator = require('./buildStepDefinition/es5.taskAggregator.js')
-let serverSideTaskAggregator = require('./buildStepDefinition/serverSide.taskAggregator.js')
+import { taskSetting as clientSideTaskSetting, taskAggregationSetting as clientsideTaskAggregationSetting } from './buildStepDefinition/clientSide.taskSetting.js'
+import { taskSetting as nativeTaskSetting, taskAggregationSetting as nativeTaskAggregationSetting } from './buildStepDefinition/native.taskSetting.js'
+import { taskSetting as polyfillTaskSetting, taskAggregationSetting as polyfillTaskAggregationSetting } from './buildStepDefinition/polyfill.taskSetting.js'
+import { taskSetting as serverSideTaskSetting, taskAggregationSetting as serverSideTaskAggregationSetting } from './buildStepDefinition/serverSide.taskSetting.js'
 
-let FileSource = Array.concat(es6TaskSettingPath, es5TaskSettingPath, serverSideTaskSettingPath)
-let GulpTaskDependency = Array.concat(
-	es6TaskAggregator,
-	es5TaskAggregator,
-	serverSideTaskAggregator,
+// for registring Task functions
+let taskSetting = Array.prototype.concat(
+	clientSideTaskSetting,
+	nativeTaskSetting,
+	polyfillTaskSetting,
+	serverSideTaskSetting
+)
+// for executing task chain/aggregation
+let taskAggregationSetting = Array.prototype.concat(
+	clientsideTaskAggregationSetting,
+	nativeTaskAggregationSetting,
+	polyfillTaskAggregationSetting,
+	serverSideTaskAggregationSetting,
 	[{
 		name: 'build',
 		executionType: 'series',
@@ -24,16 +30,19 @@ let GulpTaskDependency = Array.concat(
 				label: 'serverSide:build'
 			},
 			{
-				label: 'es6:build'
-			}, 
-			{
-				label: 'es5:build'
+				label: 'clientSide:build'
 			},
+			{
+				label: 'nativeClientSide:build'
+			}, 
+			// {
+			// 	label: 'polyfillClientSide:build'
+			// },
 		]
 	}]
 )
 
-gulpTaskExecution(FileSource, GulpTaskDependency) // register tasks.
+gulpTaskExecution({ taskSetting, taskAggregationSetting }) // register tasks.
 
 // ⌚ Watch file changes from sources to destination folder.
 gulp.task('watch:source', ()=> {

@@ -6,7 +6,7 @@ import path from 'path'
 import filesystem from 'fs'
 import configuration from '../../../../setup/configuration/configuration.js'
 import sleep from './sleep.run.js'
-const applicationPath = path.join(configuration.projectPath, 'application')
+const applicationPath = path.join(configuration.directory.projectPath, 'application')
 const appDeploymentLifecycle = path.join(applicationPath, 'dependency/appDeploymentLifecycle')
 
 // Install modules for the app to be run in the spawn app container 
@@ -41,7 +41,7 @@ switch (process.argv[0]) {
     break;
     default:
 
-        let sourceCodePath = path.join(configuration.SourceCodePath, 'serverSide')
+        let sourceCodePath = path.join(configuration.directory.SourceCodePath, 'serverSide')
 
         /***
          *  TODO: Implement: 
@@ -52,8 +52,8 @@ switch (process.argv[0]) {
          * As livereaload + distribution != distribution alone
          */
         let appEntrypointPath = (process.argv.includes('distribution')) ? 
-            `${applicationPath}/distribution/serverSide/entrypoint.js`:
-            `${applicationPath}/source/serverSide/entrypoint.js`;
+            `${configuration.directory.DestinationPath}/serverSide/entrypoint.js`:
+            `${configuration.directory.SourceCodePath}/serverSide/entrypoint.js`;
         console.log(`App enrypoint path: ${appEntrypointPath}`)
         
         // when using `localhost` chrome shows the files in folders, while using `0.0.0.0` files appear as separated.

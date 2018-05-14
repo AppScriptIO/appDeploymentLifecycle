@@ -3,7 +3,7 @@ import path from 'path'
 import filesystem from 'fs'
 import sshModule from 'node-ssh'
 import configuration from '../../../../setup/configuration/configuration.js'
-const applicationPath = path.join(configuration.projectPath, 'application')
+const applicationPath = path.join(configuration.directory.projectPath, 'application')
 const appDeploymentLifecycle = path.join(applicationPath, 'dependency/appDeploymentLifecycle')
 import { parseKeyValuePairSeparatedBySymbolFromArray, combineKeyValueObjectIntoString } from '../utility/parseKeyValuePairSeparatedBySymbol.js'
 
@@ -34,7 +34,7 @@ async function deployProjectionStack({}) {
         host: namedArgs.remoteIP,
         port: '22',
         username: process.env.sshUsername,
-        privateKey: path.join(configuration.projectPath, '.ssh/google_compute_engine'),
+        privateKey: path.join(configuration.directory.projectPath, '.ssh/google_compute_engine'),
         readyTimeout: 120000
     }).catch(error => { throw error }).then(() => { console.log('SSH Connection successful') })
     

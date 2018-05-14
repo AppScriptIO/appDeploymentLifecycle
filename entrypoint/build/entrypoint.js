@@ -12,7 +12,7 @@ console.log(`• Node additional module resolution paths: ${process.env.NODE_PAT
 moduleSystem._initPaths()
 
 // Run babel runtime compiler
-const gulpBuildToolFolder = path.normalize(`${confJson.appDeploymentLifecyclePath}/gulp_buildTool.js/`)
+const gulpBuildToolFolder = path.normalize(`${confJson.directory.appDeploymentLifecyclePath}/gulp_buildTool.js/`)
 function installModule({ currentDirectory }) { spawnSync('yarn', ["install --pure-lockfile --production=false"], { cwd: currentDirectory, shell: true, stdio:[0,1,2] }) }
 {
     let directory = gulpBuildToolFolder
@@ -22,10 +22,10 @@ function installModule({ currentDirectory }) { spawnSync('yarn', ["install --pur
         // spawnSync('yarn', ["upgrade appscript"], { cwd: directory, shell: true, stdio:[0,1,2] });
     }
 }
-const babelJSCompilerPath = path.normalize(`${confJson.appDeploymentLifecyclePath}/babel_javascriptTranspilation.js/entrypoint.js`)
+const babelJSCompilerPath = path.normalize(`${confJson.directory.appDeploymentLifecyclePath}/babel_javascriptTranspilation.js/entrypoint.js`)
 const babelJSCompiler = require(babelJSCompilerPath)
 babelJSCompiler({
-    babelConfigurationFile: 'es2015.BabelConfig.js'
+    babelConfigurationFile: 'serverRuntime.BabelConfig.js'
 })
 
 // run app code

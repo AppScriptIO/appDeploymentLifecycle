@@ -1,4 +1,4 @@
-'use strict';
+
 
 let config = require('configuration/configuration.js'),
 	gulp = require('gulp'),
@@ -6,12 +6,10 @@ let config = require('configuration/configuration.js'),
 	childProcess = require('child_process'),
 	path = require("path"),
 	joinPath = require(path.join(config.UtilityModulePath, 'joinPath.js')),
-	source = subpath => { return joinPath(config.SourceCodePath, subpath) },
-	destination = subpath => { return joinPath(config.DestinationPath, subpath) }
+	source = subpath => { return joinPath(config.directory.SourceCodePath, subpath) },
+	destination = subpath => { return joinPath(config.directory.DestinationPath, subpath) }
 
-module.exports = (bowerLocation) => {
-	return async ()=> {
+export default ({ yarnPath }) => async ()=> {
 		// In gulp 4, you can return a child process to signal task completion
-		return childProcess.execSync('bower install --allow-root;', { cwd: bowerLocation, shell: true, stdio:[0,1,2] });
-	};
+		return childProcess.execSync('yarn install -y;', { cwd: yarnPath, shell: true, stdio:[0,1,2] });
 }

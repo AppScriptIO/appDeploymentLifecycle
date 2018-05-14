@@ -1,4 +1,4 @@
-'use strict';
+
 
 let gulp = require('gulp');
 let plugins = require('gulp-load-plugins')({ camelize: true });
@@ -18,18 +18,16 @@ let AUTOPREFIXER_BROWSERS = [
   'bb >= 10'
 ];
 
-module.exports = (sources, destination) => {
-  return () => {
-    return gulp.src(sources)
-      .pipe(plugins.plumber())
-      .pipe(plugins.autoprefixer({
-        browsers: AUTOPREFIXER_BROWSERS,
-        cascade: false
-      }))
-      .pipe(plugins.if('*.css', cleanCSS()))
-      .pipe(gulp.dest(destination))
-      .pipe(plugins.size({
-        title: 'styleTask'
-      }));
-  }
-};
+export default ({ sources, destination }) => () => {
+  return gulp.src(sources)
+    .pipe(plugins.plumber())
+    .pipe(plugins.autoprefixer({
+      browsers: AUTOPREFIXER_BROWSERS,
+      cascade: false
+    }))
+    .pipe(plugins.if('*.css', cleanCSS()))
+    .pipe(gulp.dest(destination))
+    .pipe(plugins.size({
+      title: 'styleTask'
+    }))
+}
