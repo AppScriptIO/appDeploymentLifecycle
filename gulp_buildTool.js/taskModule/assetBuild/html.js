@@ -1,98 +1,83 @@
-const gulp = require('gulp')
-const plugins = require('gulp-load-plugins')({ camelize: true })
-// const babelInline = require('gulp-babel-inline')
-const babel = require('gulp-babel')
-const merge = require('merge-stream')
-const gulpif = require('gulp-if')
-const uglify = require('gulp-uglify')
-const htmlMinifier = require('gulp-html-minifier')
-const cssSlam = require('css-slam').gulp
-const HtmlSplitter = require('polymer-build').HtmlSplitter
-const FragmentIndentation = require('../../utilityModule/fragmentIndentation.js').FragmentIndentation
-const babelPresetES2015 = require('babel-preset-es2015');
-const babelPresetES2015NoModules = babelPresetES2015.buildPreset({}, {modules: false});
-const debug = require('gulp-debug');
+import path from 'path'
+import gulp from 'gulp'
+import merge from 'merge-stream'
+const plugins = require('gulp-load-plugins')({ 
+	pattern: ['*'],
+	camelize: false, 
+	replaceString: /(?!)/ /* regex that never matches, i.e. don't replace "gulp-" */ 
+})
+const HtmlSplitter = plugins['polymer-build'].HtmlSplitter
+const FragmentIndentation = require('../../utilityModule/fragmentIndentation.gulp.js').FragmentIndentation
+const regex = {
+	js: /\.js$/,
+	css: /\.css$/,
+	html: /\.html$/,
+	ignoreCustomFragments: [ /{%[\s\S]*?%}/, /<%[\s\S]*?%>/, /<\?[\s\S]*?\?>/ ],
+	hbAttrWrap: {
+		open: /\{\{(#|\^)[^}]+\}\}/,
+		close: /\{\{\/[^}]+\}\}/
+	}
+}
 
-
-let ignoreCustomFragments = [ /{%[\s\S]*?%}/, /<%[\s\S]*?%>/, /<\?[\s\S]*?\?>/ ]
-let hbAttrWrapOpen = /\{\{(#|\^)[^}]+\}\}/;
-let hbAttrWrapClose = /\{\{\/[^}]+\}\}/;
-let hbAttrWrapPair = [hbAttrWrapOpen, hbAttrWrapClose];
-
-export const webcomponent = ({sources, destination, babelPath}) => () => {
+export const htmlNative = ({ sources, destination, babelPath, babelConfigFileName }) => () => {
+	const babelConfig = require(path.join(babelPath, `/compilerConfiguration/${babelConfigFileName}`))
 	const sourcesHtmlSplitter = new HtmlSplitter()
+	
 	return gulp.src(sources)
-		.pipe(debug({title: 'debug:'}))
+		// .pipe(plugins['gulp-debug']({ title: 'file:' }))
 		.pipe(FragmentIndentation.TransformToFragmentKeys())
 		.pipe(sourcesHtmlSplitter.split()) // split inline JS & CSS out into individual .js & .css files
 		
-		
-		// Inline JAVASCRIPT
-		.pipe(gulpif(/\.js$/, 
-				babel({
-					"presets": [
-						// `${__dirname}/../node_modules/babel-preset-es2015`,
-						path.join(babelPath, `/node_modules/babel-minify`),
-						// { "modules": false }
-					],
-					"plugins": [
-						// `${__dirname}/../node_modules/babel-plugin-transform-custom-element-classes`,
-						// `${__dirname}/../node_modules/babel-plugin-transform-es2015-classes`,
-					]
-				})
-			)
-		)
-		// .pipe(gulpif(/\.js$/, uglify()))
+		/* JAVASCRIPT */
+		.pipe(plugins['gulp-if']( regex.js, 
+			plugins['gulp-babel']({
+				"presets": babelConfig.presets,
+				"plugins": babelConfig.plugins
+			})
+		))
 
-		// Inline HTML
-		.pipe(gulpif(/\.html$/, htmlMinifier()))
-		.pipe(gulpif(/\.html$/, plugins.htmlmin({
+		/* HTML (also minimize any left or non detected sections - css, js, html tags that were not separated) */
+		.pipe(plugins['gulp-if']( regex.html, 
+			plugins['gulp-htmlmin']({
 				collapseWhitespace: true,
 				removeComments: true,
 				removeCommentsFromCDATA: true,
 				minifyURLs: true,
-				// minifyJS: true,
-				// minifyCSS: true, 
-				ignoreCustomFragments: ignoreCustomFragments
-		})))
-		// Inline CSS
-		.pipe(gulpif(/\.css$/, cssSlam()))
+				minifyJS: true,
+				minifyCSS: true, 
+				ignoreCustomFragments: regex.ignoreCustomFragments
+			})
+		))
+
+		/* CSS */
+		.pipe(plugins['gulp-if']( regex.css, 
+			plugins['css-slam'].gulp()
+		))
+		.pipe(plugins['gulp-if']( regex.css, 
+			plugins['gulp-clean-css']()
+		))
 
 		.pipe(sourcesHtmlSplitter.rejoin()) // rejoins those files back into their original location
 		.pipe(FragmentIndentation.TransformBackToFragment())
-
-		// .pipe(plugins.plumber())
-		// .pipe(plugins.minifyInline())
-
-		// .pipe(plugins.plumber())
-		// .pipe(babelInline({
-		// 	"presets": ["es2015"],
-		// 	// "plugins": ["babel-plugin-transform-runtime", "babel-plugin-add-module-exports"],
-		// 	"babelrc": false
-		// }))
-		// .pipe(babelInline({
-		// 	"presets": ["es2015", "stage-0"],
-		// 	"plugins": ["babel-plugin-transform-runtime", "babel-plugin-add-module-exports"]
-		// }))
-
 		.pipe(gulp.dest(destination))
-		.pipe(plugins.size({
-			title: 'html task (webcomponent)'
+		.pipe(plugins['gulp-size']({
+			title: 'HTML - htmlNative'
 		}))
+	  
 }
 
-export const webcomponentES5 = ({ sources, destination, babelPath }) => () => {
+export const htmlPolyfill = ({ sources, destination, babelPath }) => () => {
 	const sourcesHtmlSplitter = new HtmlSplitter()
-  return gulp.src(sources)
-	  .pipe(debug({title: 'debug:'}))
+	return gulp.src(sources)
+	.pipe(debug({title: 'debug:'}))
 	.pipe(FragmentIndentation.TransformToFragmentKeys())
 	.pipe(sourcesHtmlSplitter.split()) // split inline JS & CSS out into individual .js & .css files
 	
 	// Inline CSS
-	.pipe(gulpif(/\.css$/, cssSlam()))
+	.pipe(gulpif(regex.css, plugins['css-slam'].gulp()))
 	
 	// Inline JAVASCRIPT
-	.pipe(gulpif(/\.js$/, 
+	.pipe(gulpif(regex.js, 
 		babel({
 			"presets": [
 				path.join(babelPath, `/node_modules/babel-preset-es2015`),
@@ -105,19 +90,6 @@ export const webcomponentES5 = ({ sources, destination, babelPath }) => () => {
 			]
 		})
 	))
-	// .pipe(gulpif(/\.js$/, uglify()))
-
-	// // Inline HTML
-	// .pipe(gulpif(/\.html$/, htmlMinifier()))
-    // .pipe(gulpif(/\.html$/, plugins.htmlmin({
-	// 		collapseWhitespace: true,
-	// 		removeComments: true,
-	// 		removeCommentsFromCDATA: true,
-	// 		minifyURLs: true,
-	// 		minifyJS: true,
-	// 		minifyCSS: true, 
-	// 		ignoreCustomFragments: ignoreCustomFragments
-	// })))
 
 	.pipe(sourcesHtmlSplitter.rejoin()) // rejoins those files back into their original location
 	.pipe(FragmentIndentation.TransformBackToFragment())
@@ -141,68 +113,4 @@ export const webcomponentES5 = ({ sources, destination, babelPath }) => () => {
 		title: 'html task (webcomponent)'
 	}));
 
-}
-
-export const polymer = ({sources, destination, babelPath}) => () => {
-	const sourcesHtmlSplitter = new HtmlSplitter()
-  return gulp.src(sources)
-	  .pipe(debug({title: 'debug:'}))
-  
-	// .pipe(FragmentIndentation.TransformToFragmentKeys())
-	.pipe(sourcesHtmlSplitter.split()) // split inline JS & CSS out into individual .js & .css files
-	
-	// Inline CSS
-	// .pipe(gulpif(/\.css$/, cssSlam()))
-	
-	// Inline JAVASCRIPT
-	.pipe(gulpif(/\.js$/, 
-			babel({
-				"presets": [
-					babelPresetES2015NoModules
-					// `${__dirname}/../node_modules/babel-preset-es2015`,
-					// `${__dirname}/../node_modules/babel-minify`,
-					// { "modules": false }
-				]
-				// "plugins": [
-				// 	// `${__dirname}/../node_modules/babel-plugin-transform-custom-element-classes`,
-				// // 	// `${__dirname}/../node_modules/babel-plugin-transform-es2015-classes`,
-				// ]
-			})
-		)
-	)
-	// .pipe(gulpif(/\.js$/, uglify()))
-
-	// // Inline HTML
-	// .pipe(gulpif(/\.html$/, htmlMinifier()))
-    // .pipe(gulpif(/\.html$/, plugins.htmlmin({
-	// 		collapseWhitespace: true,
-	// 		removeComments: true,
-	// 		removeCommentsFromCDATA: true,
-	// 		minifyURLs: true,
-	// 		minifyJS: true,
-	// 		minifyCSS: true, 
-	// 		ignoreCustomFragments: ignoreCustomFragments
-	// })))
-
-	.pipe(sourcesHtmlSplitter.rejoin()) // rejoins those files back into their original location
-	// .pipe(FragmentIndentation.TransformBackToFragment())
-
-	// .pipe(plugins.plumber())
-	// .pipe(plugins.minifyInline())
-
-	// .pipe(plugins.plumber())
-	// .pipe(babelInline({
-	// 	"presets": ["es2015"],
-	// 	// "plugins": ["babel-plugin-transform-runtime", "babel-plugin-add-module-exports"],
-	// 	"babelrc": false
-	// }))
-	// .pipe(babelInline({
-	// 	"presets": ["es2015", "stage-0"],
-	// 	"plugins": ["babel-plugin-transform-runtime", "babel-plugin-add-module-exports"]
-	// }))
-
-    .pipe(gulp.dest(destination))
-	.pipe(plugins.size({
-		title: 'html task (polymer)'
-	}))
 }

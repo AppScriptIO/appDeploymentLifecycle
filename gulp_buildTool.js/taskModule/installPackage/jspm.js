@@ -5,7 +5,7 @@ let config = require('configuration/configuration.js'),
 	plugins = require('gulp-load-plugins')({ camelize: true }),
 	childProcess = require('child_process'),
 	path = require("path"),
-	joinPath = require(path.join(config.UtilityModulePath, 'joinPath.js')),
+	joinPath = require(path.join(config.UtilityModulePath, 'joinPath.js')).default,
 	source = subpath => { return joinPath(config.directory.SourceCodePath, subpath) },
 	destination = subpath => { return joinPath(config.directory.DestinationPath, subpath) };
 
