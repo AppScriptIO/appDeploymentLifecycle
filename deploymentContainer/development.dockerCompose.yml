@@ -35,6 +35,7 @@ services:
         - default
     environment:
         DEPLOYMENT: ${DEPLOYMENT:-development}
+        DISTRIBUTION: ${DISTRIBUTION}
     volumes:
       - ${hostPath}/dependency:/project/application/dependency # The hostPath is forwarded from the manager contaienr to the host vm. i.e. the manager doesn't container `/c/Users/` but the host vm does.
       - ${hostPath}/setup:/project/application/setup
@@ -49,6 +50,7 @@ services:
       - "8080:8080"
     environment:
         DEPLOYMENT: ${DEPLOYMENT:-development}
+        DISTRIBUTION: ${DISTRIBUTION}
     working_dir: /
     # volumes:
       # volume inside docker-machine not through Windows volume. because it causes problems otherwise.
@@ -69,5 +71,5 @@ services:
         - default
     environment:
         HOST: localhost
-        DEPLOYMENT: ${DEPLOYMENT:-production}
+        DISTRIBUTION: ${DISTRIBUTION}
     # command: bash -c "sleep 100000" # doesn't override the image command.

@@ -8,6 +8,7 @@ services:
         image: myuserindocker/deployment-environment:latest
         environment:
             DEPLOYMENT: ${DEPLOYMENT:-production}
+            DISTRIBUTION: ${DISTRIBUTION}
         volumes:
             - ${hostPath}/dependency:/project/application/dependency # The hostPath is forwarded from the manager contaienr to the host vm. i.e. the manager doesn't container `/c/Users/` but the host vm does.
             - ${hostPath}/setup:/project/application/setup
@@ -51,4 +52,6 @@ services:
             dockerfile: ${hostPath}/appDeploymentLifecycle/deploymentContainer/service.dockerfile
             args:
                 - DEPLOYMENT=${DEPLOYMENT:-production}
+                - DISTRIBUTION=${DISTRIBUTION}
+
         image: myuserindocker/${imageName}:latest # tag for created/built image # name of local image to be built

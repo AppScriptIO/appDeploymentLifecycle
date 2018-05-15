@@ -36,7 +36,7 @@ export const htmlNative = ({ sources, destination, babelPath, babelConfigFileNam
 			})
 		))
 
-		/* HTML (also minimize any left or non detected sections - css, js, html tags that were not separated) */
+		/* HTML (also minimize any left or non detected sections - css, js, html tags that were not separated), e.g. css's transform property  */
 		.pipe(plugins['gulp-if']( regex.html, 
 			plugins['gulp-htmlmin']({
 				collapseWhitespace: true,

@@ -11,23 +11,29 @@ const gulp = require('gulp'),
       sourcemaps = require('gulp-sourcemaps'),
       FragmentIndentation = require('../../utilityModule/fragmentIndentation.gulp.js').FragmentIndentation
 
-export const clientJS = ({ sources, destination, babelPath }) => () => {
+export const clientJS = ({ sources, destination, babelPath, includeSourceMap = true }) => () => {
   const babelConfig = require(path.join(babelPath, `/compilerConfiguration/nativeClientSideBuild.BabelConfig.js`))
-  return gulp.src(sources)
+  let stream;
+  stream = gulp.src(sources)
     .pipe(FragmentIndentation.TransformToFragmentKeys())
+  if(includeSourceMap) stream = stream
     .pipe(sourcemaps.init())
+  stream = stream
     .pipe(plugins['gulp-babel']({
       "presets": babelConfig.presets,
       "plugins": babelConfig.plugins,
       "babelrc": false
     })).on('error', function(e) { console.log('>>> ERROR', e); this.emit('end'); })
+  if(includeSourceMap) stream = stream
     .pipe(sourcemaps.write('.'))
+  stream
     .pipe(FragmentIndentation.TransformBackToFragment())
     .pipe(gulp.dest(destination))
     .pipe(plugins['gulp-size']({
       title: 'Javascript - clientJS'
     }))
 
+  return stream
 }
 
 export const serverJS = ({ sources, destination, babelPath }) => () => {

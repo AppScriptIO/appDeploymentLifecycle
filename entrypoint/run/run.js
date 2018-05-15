@@ -8,6 +8,8 @@ import configuration from '../../../../setup/configuration/configuration.js'
 import sleep from './sleep.run.js'
 const applicationPath = path.join(configuration.directory.projectPath, 'application')
 const appDeploymentLifecycle = path.join(applicationPath, 'dependency/appDeploymentLifecycle')
+const distributionServerSide = configuration.distribution.serverSide
+const serverSidePath = configuration.directory.serverSidePath
 
 // Install modules for the app to be run in the spawn app container 
 let nodeModuleFolder = `${applicationPath}/source/serverSide/node_modules`
@@ -41,8 +43,6 @@ switch (process.argv[0]) {
     break;
     default:
 
-        let sourceCodePath = path.join(configuration.directory.SourceCodePath, 'serverSide')
-
         /***
          *  TODO: Implement: 
          * • livereload + distribution
@@ -51,9 +51,9 @@ switch (process.argv[0]) {
          * • & default normal mode.
          * As livereaload + distribution != distribution alone
          */
-        let appEntrypointPath = (process.argv.includes('distribution')) ? 
-            `${configuration.directory.DestinationPath}/serverSide/entrypoint.js`:
-            `${configuration.directory.SourceCodePath}/serverSide/entrypoint.js`;
+        let appEntrypointPath = (process.argv.includes('distribution') && false/* disable loading built serverSide entrypoint */) ? 
+            `${distributionServerSide}/entrypoint.js` : 
+            `${serverSidePath}/entrypoint.js`;
         console.log(`App enrypoint path: ${appEntrypointPath}`)
         
         // when using `localhost` chrome shows the files in folders, while using `0.0.0.0` files appear as separated.
@@ -73,6 +73,7 @@ switch (process.argv[0]) {
             SZN_DEBUG_COMMAND: debugCommand,
             hostPath: process.env.hostPath
         }
+        if(process.argv.includes('distribution')) environmentVariable['DISTRIBUTION'] = true
         if(process.argv.includes('distribution')) 
             Object.assign( // shallow merge
                 environmentVariable,
