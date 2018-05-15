@@ -35,9 +35,9 @@ let taskAggregationSetting = Array.prototype.concat(
 			{
 				label: 'nativeClientSide:build'
 			}, 
-			// {
-			// 	label: 'polyfillClientSide:build'
-			// },
+			{
+				label: 'polyfillClientSide:build'
+			},
 		]
 	}]
 )
