@@ -19,7 +19,7 @@ const regex = {
 	}
 }
 
-export const htmlNative = ({ sources, destination, babelPath, babelConfigFileName }) => () => {
+export const html = ({ sources, destination, babelPath, babelConfigFileName }) => () => {
 	const babelConfig = require(path.join(babelPath, `/compilerConfiguration/${babelConfigFileName}`))
 	const sourcesHtmlSplitter = new HtmlSplitter()
 	
@@ -61,56 +61,7 @@ export const htmlNative = ({ sources, destination, babelPath, babelConfigFileNam
 		.pipe(FragmentIndentation.TransformBackToFragment())
 		.pipe(gulp.dest(destination))
 		.pipe(plugins['gulp-size']({
-			title: 'HTML - htmlNative'
+			title: `HTML - ${babelConfigFileName}`
 		}))
 	  
-}
-
-export const htmlPolyfill = ({ sources, destination, babelPath }) => () => {
-	const sourcesHtmlSplitter = new HtmlSplitter()
-	return gulp.src(sources)
-	.pipe(debug({title: 'debug:'}))
-	.pipe(FragmentIndentation.TransformToFragmentKeys())
-	.pipe(sourcesHtmlSplitter.split()) // split inline JS & CSS out into individual .js & .css files
-	
-	// Inline CSS
-	.pipe(gulpif(regex.css, plugins['css-slam'].gulp()))
-	
-	// Inline JAVASCRIPT
-	.pipe(gulpif(regex.js, 
-		babel({
-			"presets": [
-				path.join(babelPath, `/node_modules/babel-preset-es2015`),
-				// `${__dirname}/../node_modules/babel-minify`,
-				// { "modules": false }
-			],
-			"plugins": [
-				// `${__dirname}/../node_modules/babel-plugin-transform-custom-element-classes`,
-				// `${__dirname}/../node_modules/babel-plugin-transform-es2015-classes`,
-			]
-		})
-	))
-
-	.pipe(sourcesHtmlSplitter.rejoin()) // rejoins those files back into their original location
-	.pipe(FragmentIndentation.TransformBackToFragment())
-
-	// .pipe(plugins.plumber())
-	// .pipe(plugins.minifyInline())
-
-	// .pipe(plugins.plumber())
-	// .pipe(babelInline({
-	// 	"presets": ["es2015"],
-	// 	// "plugins": ["babel-plugin-transform-runtime", "babel-plugin-add-module-exports"],
-	// 	"babelrc": false
-	// }))
-	// .pipe(babelInline({
-	// 	"presets": ["es2015", "stage-0"],
-	// 	"plugins": ["babel-plugin-transform-runtime", "babel-plugin-add-module-exports"]
-	// }))
-
-    .pipe(gulp.dest(destination))
-	.pipe(plugins.size({
-		title: 'html task (webcomponent)'
-	}));
-
 }

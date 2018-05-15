@@ -11,10 +11,11 @@ const gulp = require('gulp'),
       sourcemaps = require('gulp-sourcemaps'),
       FragmentIndentation = require('../../utilityModule/fragmentIndentation.gulp.js').FragmentIndentation
 
-export const clientJS = ({ sources, destination, babelPath, includeSourceMap = true }) => () => {
-  const babelConfig = require(path.join(babelPath, `/compilerConfiguration/nativeClientSideBuild.BabelConfig.js`))
+export const clientJS = ({ sources, destination, babelPath, includeSourceMap = true, babelConfigFileName }) => () => {
+  const babelConfig = require(path.join(babelPath, `/compilerConfiguration/${babelConfigFileName}`))
   let stream;
   stream = gulp.src(sources)
+    .pipe(plugins['gulp-debug']({title: 'clientJS:'}))
     .pipe(FragmentIndentation.TransformToFragmentKeys())
   if(includeSourceMap) stream = stream
     .pipe(sourcemaps.init())
@@ -26,14 +27,12 @@ export const clientJS = ({ sources, destination, babelPath, includeSourceMap = t
     })).on('error', function(e) { console.log('>>> ERROR', e); this.emit('end'); })
   if(includeSourceMap) stream = stream
     .pipe(sourcemaps.write('.'))
-  stream
+  return stream // IMPORTANT: return must be appended here, as later addition will not work for some reason.
     .pipe(FragmentIndentation.TransformBackToFragment())
     .pipe(gulp.dest(destination))
-    .pipe(plugins['gulp-size']({
-      title: 'Javascript - clientJS'
+    .pipe(plugins['gulp-size']({ // doesn't work in this case for some reason
+      title: `JAVASCRIPT - clientJS using ${babelConfigFileName}`
     }))
-
-  return stream
 }
 
 export const serverJS = ({ sources, destination, babelPath }) => () => {

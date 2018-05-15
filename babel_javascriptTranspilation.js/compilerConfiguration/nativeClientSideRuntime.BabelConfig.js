@@ -1,5 +1,5 @@
 import path from 'path'
-import { transformNamedModuleToPath } from '../utility/transformPlugin.babel.js'
+import { transformNamedModuleToPath, minifyHtmlTemplateLiterals } from '../utility/transformPlugin.babel.js'
 
 let presets = {
   "presets": [
@@ -14,6 +14,7 @@ let plugins = {
     [ path.normalize(`${__dirname}/../node_modules/@babel/plugin-proposal-decorators`), { "legacy": true } ], // https://github.com/babel/babel/issues/7786
     [ path.normalize(`${__dirname}/../node_modules/@babel/plugin-proposal-class-properties`), { "loose" : true } ],
     transformNamedModuleToPath,
+    // minifyHtmlTemplateLiterals // TODO: transform tagged template literals in js files (minify).
   ],
 }
 

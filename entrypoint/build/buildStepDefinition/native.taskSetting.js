@@ -57,7 +57,7 @@ export const taskSetting = [
         key: `${prefix}:html`,
         data: {
             path: path.join(config.TaskModulePath, 'assetBuild/html.js'),
-            module: 'htmlNative',
+            module: 'html',
             argument: {
                 sources: [
                     path.join(config.directory.clientSidePath, '/**/*.html'),
@@ -89,11 +89,14 @@ export const taskSetting = [
             module: 'clientJS',
             argument: {
 				sources: [
-                    path.join(config.directory.clientSidePath, '/**/*.js'),
+                    path.join(config.directory.clientSidePath, '/**/*.js'), // including package js to allow named import path transformation.
                     '!' + path.join(config.directory.clientSidePath, '/**/@package/**/*.js'),
+                    path.join(config.directory.clientSidePath, '/**/webcomponent/@package/@polymer/**/*.js'),
                 ],
                 destination: destination(prefix),
                 babelPath: config.directory.babelPath,
+                babelConfigFileName: 'nativeClientSideBuild.BabelConfig.js',
+                includeSourceMap: false
             }
         }
     },
