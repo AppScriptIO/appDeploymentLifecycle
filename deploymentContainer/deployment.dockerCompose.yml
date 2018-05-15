@@ -49,7 +49,7 @@ services:
     buildImage:
         build:
             context: ../../../
-            dockerfile: ${hostPath}/appDeploymentLifecycle/deploymentContainer/service.dockerfile
+            dockerfile: /project/application/dependency/appDeploymentLifecycle/deploymentContainer/service.dockerfile
             args:
                 - DEPLOYMENT=${DEPLOYMENT:-production}
                 - DISTRIBUTION=${DISTRIBUTION}

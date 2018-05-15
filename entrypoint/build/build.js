@@ -23,15 +23,41 @@ if(!filesystem.existsSync(`${nodeModuleFolder}/node_modules`)) {
 
 /*
  * Usage:
- * • ./entrypoint.sh build imageName=<application image name>
+ * • ./entrypoint.sh build dockerImage imageName=<application image name>
  * • ./entrypoint.sh build debug
  * • ./entrypoint.sh build task=<a gulpTask> // e.g. ./setup/entrypoint.sh build task=nativeClientSide:html:metadata
  */
 let ymlFile = `${appDeploymentLifecycle}/deploymentContainer/deployment.dockerCompose.yml`
-let serviceName = 'nodejs'
 let containerPrefix = 'app_build'
 switch (process.argv[0]) {
-    default:
+    // TODO: separate buildSourceCode from buildContainerImage
+    // TODO: implement image build - example implementation in appDeploymentEnvironment -> entrypoint "buildEnvironmentImage.js"
+    case 'dockerImage': {
+        let serviceName = 'buildImage'
+        let environmentVariable = {
+            SZN_DEBUG: false,
+            hostPath: process.env.hostPath,
+            imageName: namedArgs.imageName || process.env.imageName || configuration.dockerImageName 
+        }
+
+        let processCommand = 'docker-compose',
+            processCommandArgs = [
+                `-f ${ymlFile}`,
+                `--project-name ${containerPrefix}`,
+                `build --no-cache ${serviceName}`
+            ],
+            processOption = {
+                // cwd: `${applicationPath}`, 
+                shell: true, 
+                stdio: [0,1,2], 
+                env: environmentVariable
+            }
+        spawnSync(processCommand, processCommandArgs, processOption)
+    } break;
+
+    case 'sourceCode':
+    default: {
+        let serviceName = 'nodejs'
         let debugCommand = (process.argv.includes('debug')) ? 
         `--inspect${ process.argv.includes('break')?'-brk':'' }=0.0.0.0:9229`: 
         '';
@@ -60,5 +86,5 @@ switch (process.argv[0]) {
                 env: environmentVariable
             }
         spawnSync(processCommand, processCommandArgs, processOption)
-    break;
+    } break;
 }
