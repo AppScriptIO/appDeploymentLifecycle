@@ -11,8 +11,8 @@ ENV PROJECT=${PROJECT}
 ARG DEPLOYMENT=production
 ENV DEPLOYMENT ${DEPLOYMENT}
 
-COPY ./distribution $PROJECT/application/
-COPY ./setup $PROJECT/setup
+COPY ./distribution $PROJECT/application/distribution
+COPY ./setup $PROJECT/application/setup
 
-WORKDIR $PROJECT/application/serverSide
-ENTRYPOINT $PROJECT/application/serverSide/entrypoint.sh run
+WORKDIR $PROJECT/application/distribution/serverSide
+ENTRYPOINT $PROJECT/application/distribution/serverSide/entrypoint.sh run
