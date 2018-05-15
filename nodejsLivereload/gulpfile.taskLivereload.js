@@ -37,7 +37,7 @@ const browserSyncConfig = {
 
 const entrypoint = {
     filename: process.env.SZN_OPTION_ENTRYPOINT_NAME || 'entrypoint.js',
-    filePath: process.env.SZN_OPTION_ENTRYPOINT_PATH || '/project/application/source/serverSide/'
+    filePath: process.env.SZN_OPTION_ENTRYPOINT_PATH || config.directory.serverSidePath
 }
 
 let debugArguments = (process.env.SZN_DEBUG == 'true') ? [process.env.SZN_DEBUG_COMMAND] : [];

@@ -2,6 +2,7 @@ const path = require('path')
 const ConfigPath = __dirname,
     TaskModulePath = path.normalize(path.join(__dirname, '../../', 'gulp_buildTool.js' , 'taskModule/')),
     UtilityModulePath = path.normalize(path.join(__dirname, '../../', 'gulp_buildTool.js', 'utilityModule/'))
+const confJson = require('../../../../setup/configuration/configuration.js')
 
 
 module.exports = Object.assign ({}, {
@@ -9,4 +10,5 @@ module.exports = Object.assign ({}, {
     ConfigPath,
     TaskModulePath,
     UtilityModulePath,
-})
+}, 
+confJson)

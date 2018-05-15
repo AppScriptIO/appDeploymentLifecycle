@@ -13,7 +13,7 @@ const namedArgs = parseKeyValuePairSeparatedBySymbolFromArray({ array: process.a
 
 /*
  * Usage:
- * • ./entrypoint.sh production remoteIP=<remote prod vm> [imageTag=<version saved in dockerhub>]
+ * • ./entrypoint.sh production remoteIP=<remote prod vm> [imageTag=<version saved in dockerhub >]
  */
 let ymlFile = `${appDeploymentLifecycle}/deploymentContainer/production.dockerStack.yml`
 let serviceName = 'nodejs'

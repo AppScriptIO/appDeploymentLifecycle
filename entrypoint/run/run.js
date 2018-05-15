@@ -79,7 +79,7 @@ switch (process.argv[0]) {
                 environmentVariable,
                 {
                     SZN_OPTION_ENTRYPOINT_NAME: "entrypoint.js",
-                    SZN_OPTION_ENTRYPOINT_PATH: "/project/application/distribution/serverSide/"
+                    SZN_OPTION_ENTRYPOINT_PATH: path.join(configuration.directory.distributionPath, configuration.directory.serverSide.folderName)
                 }
             );
 
