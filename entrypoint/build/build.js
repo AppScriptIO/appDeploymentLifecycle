@@ -32,7 +32,7 @@ let containerPrefix = 'app_build'
 switch (process.argv[0]) {
     // TODO: separate buildSourceCode from buildContainerImage
     // TODO: implement image build - example implementation in appDeploymentEnvironment -> entrypoint "buildEnvironmentImage.js"
-    case 'dockerImage': {
+    case 'containerImage': {
         let serviceName = 'buildImage'
         let environmentVariable = {
             SZN_DEBUG: false,

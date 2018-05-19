@@ -5,14 +5,19 @@ let presets = {
   ],
 }
 
+// TODO: cannot use "plugin-syntax-decorators" with "plugin-transform-function-parameter-decorators" - in compatible with babel 7 beta 47
 let plugins = {
   "plugins": [
+    /* Syntax */
     path.normalize(`${__dirname}/../node_modules/@babel/plugin-syntax-dynamic-import`),
-    path.normalize(`${__dirname}/../node_modules/@babel/plugin-transform-runtime`), 
+    // path.normalize(`${__dirname}/../node_modules/@babel/plugin-syntax-decorators`),
+    /* Runtime */
+    path.normalize(`${__dirname}/../node_modules/@babel/plugin-transform-runtime`), // runtime required
+    /* Transform */
     path.normalize(`${__dirname}/../node_modules/@babel/plugin-transform-modules-commonjs`),  // transform static import
     path.normalize(`${__dirname}/../node_modules/babel-plugin-dynamic-import-node`), // transform dynamic import
-    [ path.normalize(`${__dirname}/../node_modules/@babel/plugin-proposal-decorators`), { "legacy": true } ], // https://github.com/babel/babel/issues/7786
-    [ path.normalize(`${__dirname}/../node_modules/@babel/plugin-proposal-class-properties`), { "loose" : true } ], // static class parameter
+    [ path.normalize(`${__dirname}/../node_modules/@babel/plugin-proposal-decorators`), { "legacy": true } ], // transform decorators - // https://github.com/babel/babel/issues/7786
+    [ path.normalize(`${__dirname}/../node_modules/@babel/plugin-proposal-class-properties`), { "loose" : true } ], // transform static class parameter
     path.normalize(`${__dirname}/../node_modules/babel-plugin-transform-function-parameter-decorators`), // function parameter decorator
   ],
 }

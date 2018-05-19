@@ -9,7 +9,10 @@ let presets = {
 
 let plugins = {
   "plugins": [
+    /* Syntax */
     path.normalize(`${__dirname}/../node_modules/@babel/plugin-syntax-dynamic-import`),
+    // path.normalize(`${__dirname}/../node_modules/@babel/plugin-syntax-decorators`),
+    /* Transform */
     path.normalize(`${__dirname}/../node_modules/@babel/plugin-transform-modules-commonjs`),  // transform static import
     path.normalize(`${__dirname}/../node_modules/babel-plugin-dynamic-import-node`), // transform dynamic import
     [ path.normalize(`${__dirname}/../node_modules/@babel/plugin-proposal-decorators`), { "legacy": true } ], // https://github.com/babel/babel/issues/7786
