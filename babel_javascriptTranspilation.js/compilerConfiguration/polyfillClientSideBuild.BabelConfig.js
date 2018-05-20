@@ -1,12 +1,13 @@
 import path from 'path'
 import { transformNamedModuleToPath, minifyHtmlTemplateLiterals } from '../utility/transformPlugin.babel.js'
+import babelPresetMinifyConfig from './babelPresetMinifyModuleConfig.js'
 
 // TODO: fix polyfill - add polyfill for native import, es2015 currently causes errors, etc.
 
 let presets = {
   "presets": [
     path.normalize(`${__dirname}/../node_modules/@babel/preset-es2015`),  
-    path.normalize(`${__dirname}/../node_modules/babel-preset-minify`),
+    babelPresetMinifyConfig,
     // path.normalize(`${__dirname}/../node_modules/@babel/preset-stage-0`),
   ],
 }

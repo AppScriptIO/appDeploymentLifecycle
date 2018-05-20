@@ -1,9 +1,10 @@
 import path from 'path'
 import { transformNamedModuleToPath, minifyHtmlTemplateLiterals } from '../utility/transformPlugin.babel.js'
+import babelPresetMinifyConfig from './babelPresetMinifyModuleConfig.js'
 
 let presets = {
   "presets": [
-    path.normalize(`${__dirname}/../node_modules/babel-preset-minify`),    
+    babelPresetMinifyConfig
   ],
 }
 

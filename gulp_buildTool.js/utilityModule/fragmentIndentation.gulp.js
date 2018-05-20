@@ -64,6 +64,7 @@ const self = class FragmentIndentation extends stream.Transform {
             let endIndex = string.lastIndexOf(self.indentation.closing.symbol) + self.indentation.closing.length
             let generatedKey = self.generateKey(7, fragmentArray)
             let insertedString = self.fragmentKey + generatedKey
+            // insertedString = `${insertedString}` // Not in use - fix issue with babel transform plugins that add period mark/symbol in case a fragrment is replaced with a simple text string.
             self.fragmentArray[`${insertedString}`] = string.substring(startIndex, endIndex)
             string = self.replaceBetweenIndexes(string, startIndex, endIndex, insertedString)
         }
