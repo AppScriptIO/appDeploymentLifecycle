@@ -92,6 +92,7 @@ export const taskSetting = [
                     path.join(config.directory.clientSidePath, '/**/*.js'), // including package js to allow named import path transformation.
                     '!' + path.join(config.directory.clientSidePath, '/**/@package/**/*.js'),
                     path.join(config.directory.clientSidePath, '/**/webcomponent/@package/@polymer/**/*.js'),
+                    '!' + path.join(config.directory.clientSidePath, '/**/webcomponent/@package/@polymer/**/bower_components/**/*.js'), // polymer 3 contains a bower_components folder.
                 ],
                 destination: destination(prefix),
                 babelPath: config.directory.babelPath,
