@@ -41,13 +41,15 @@ services:
       - ${hostPath}/setup:/project/application/setup
       - ${hostPath}/source:/project/application/source
       - ${hostPath}/distribution:/project/application/distribution
+      - ${hostPath}/documentation:/project/application/documentation # for testing different libraries
     working_dir: /project/application
     command: bash -c "sleep 100000000;"
 
-  rethinkdb:
+  rethinkdb: # https://github.com/dockerfile/rethinkdb/blob/master/Dockerfile
     image: rethinkdb:latest
     ports:
-      - "8080:8080"
+      - "8080:8080" # webui
+      - "28015:28015" # driver port / process port
     environment:
         DEPLOYMENT: ${DEPLOYMENT:-development}
         DISTRIBUTION: ${DISTRIBUTION}
