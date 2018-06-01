@@ -1,0 +1,6 @@
+localhost:8081      cdn.localhost
+localhost:8082      api.localhost
+localhost:8083      test.localhost
+localhost:8084      oidc.localhost
+localhost:8087      websocket.localhost
+localhost:8088      oauth.localhost
