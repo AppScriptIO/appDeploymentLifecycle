@@ -75,7 +75,7 @@ switch (process.argv[0]) {
             processCommandArgs = [
                 `-f ${ymlFile}`,
                 `--project-name ${containerPrefix}`,
-                `run --service-ports`,
+                `run --service-ports --use-aliases`,
                 `--entrypoint '${containerCommand}'`,
                 `${serviceName}`
             ],

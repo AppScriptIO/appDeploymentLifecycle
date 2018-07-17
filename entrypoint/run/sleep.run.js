@@ -6,7 +6,7 @@ export default function({ ymlFile, serviceName, containerPrefix }) {
     let processArg = [
         `-f ${ymlFile}`,
         `--project-name ${containerPrefix}`,
-        `run --service-ports`,
+        `run --service-ports --use-aliases`,
         `--entrypoint '${containerCommand}'`,
         `${serviceName}`
     ]

@@ -1,9 +1,11 @@
-version: '2.2'
+version: '3'
 
 networks: 
   "default":
     driver: bridge # bridge for the same host, while overlay is for swarm hosts.
-    # external: false
+    # external: true
+  "sharedExternal":
+    external: true
 
 # USAGE (from root directory): docker-compose -f ./setup/<docker-compose>.yml up
 services:
@@ -32,7 +34,10 @@ services:
     depends_on:
       - rethinkdb
     networks:
-        - default
+      "default":
+      "sharedExternal":
+          aliases:
+              - oidc # NOT WORKING FOR SOME REASON (other containers cannot connect to it) when server is run as oidc for other containers 
     environment:
         DEPLOYMENT: ${DEPLOYMENT:-development}
         DISTRIBUTION: ${DISTRIBUTION}
