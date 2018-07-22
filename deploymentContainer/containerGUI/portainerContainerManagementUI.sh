@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Portainer is a docker management ui.
 docker-compose \
         -f ./portainerContainerGUI.dockerCompose.yml \

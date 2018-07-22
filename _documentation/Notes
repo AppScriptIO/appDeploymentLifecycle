@@ -7,3 +7,12 @@ Shell scripts:
 
 Docker yml: 
 • # bridge for the same host, while overlay is for swarm hosts.
+
+package.json: 
+• For installing latest commit of a branch-
+    "multiplePrototypeChain": "git+https://github.com/AppScriptIO/multiplePrototypeChain.git#build",
+Where package-lock.json will contain the exact commit hash.
+• For installing from github tags that follow the semver standard: 
+    "multiplePrototypeChain": "git+https://github.com/AppScriptIO/multiplePrototypeChain.git#1.0.1", 
+    or using v1.0.1
+
