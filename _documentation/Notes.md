@@ -1,0 +1,29 @@
+Shell scripts: 
+• # : ${X:=value}; export X # set variable only if if is unset or empty string.
+• color formatting - https://misc.flogisoft.com/bash/tip_colors_and_formatting
+• console.log with color - https://stackoverflow.com/questions/9781218/how-to-change-node-jss-console-font-color
+• pwd - current working directory in host machine.
+• shellscript add tab/indentation to echo - https://stackoverflow.com/questions/34689887/indent-lines-equally-with-echo
+
+Docker yml: 
+• # bridge for the same host, while overlay is for swarm hosts.
+
+package.json: 
+• For installing latest commit of a branch-
+    "multiplePrototypeChain": "git+https://github.com/AppScriptIO/multiplePrototypeChain.git#build",
+Where package-lock.json will contain the exact commit hash.
+• For installing from github tags that follow the semver standard: 
+    "multiplePrototypeChain": "git+https://github.com/AppScriptIO/multiplePrototypeChain.git#1.0.1", 
+    or using v1.0.1
+
+.yarnrc: 
+• The --*. will make the flag apply to all commands (install, add, etc)
+ for example 
+    --*.modules-folder "../../node_modules" 
+ which changes the install directory
+
+Organization of files: 
+• dependencies should be able to: 
+    1. Be loaded using their name or scope/name (e.g. exist in node_modules folder).
+    2. Share similar dependencies/packages that exist in the module's package.json and the encompassing module's package.json
+• nesting package can be made by adding a path to the name.

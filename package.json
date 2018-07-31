@@ -1,0 +1,5 @@
+{
+    "name": "@dependency/appDeploymentLifecycle",
+    "main": "entrypoint.js",
+    "version": "1.0.0"
+}  

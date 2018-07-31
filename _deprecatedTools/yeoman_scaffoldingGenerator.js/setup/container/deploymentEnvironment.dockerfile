@@ -1,1 +1,0 @@
-FROM myuserindocker/deployment-environment:latest
