@@ -1,5 +1,8 @@
 {
     "name": "@dependency/appDeploymentLifecycle",
-    "main": "entrypoint.js",
-    "version": "1.0.0"
+    "main": "noEntrypoint",
+    "version": "1.0.0",
+    "scripts": {
+        "postinstall": "yarn install --modules-folder ./containerScript/build; yarn install --modules-folder ./containerScript/production; "
+    }
 }  

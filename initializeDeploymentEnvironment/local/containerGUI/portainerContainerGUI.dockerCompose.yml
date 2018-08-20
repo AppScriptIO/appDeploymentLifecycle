@@ -3,6 +3,8 @@ version: '3.3'
 services:
   portainer:
     image: portainer/portainer
+    container_name: portainer
+    restart: always # always restart even after docker restart
     ports:
       - "9000:9000"
     command: -H unix:///var/run/docker.sock
