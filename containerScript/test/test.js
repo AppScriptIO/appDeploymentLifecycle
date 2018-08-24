@@ -2,8 +2,8 @@ const { execSync, spawn, spawnSync } = require('child_process')
 import path from 'path'
 import configuration from '../../../../setup/configuration/configuration.js'
 const applicationPath = path.join(configuration.directory.projectPath, 'application')
-const appDeploymentLifecycle = path.join(applicationPath, 'dependency/appDeploymentLifecycle')
-import { parseKeyValuePairSeparatedBySymbolFromArray, combineKeyValueObjectIntoString } from '../utility/parseKeyValuePairSeparatedBySymbol.js'
+const appDeploymentLifecycle = path.join(applicationPath, '@dependency/appDeploymentLifecycle')
+import { parseKeyValuePairSeparatedBySymbolFromArray, combineKeyValueObjectIntoString } from '@dependency/parseKeyValuePairSeparatedBySymbol'
 
 console.group('• Running entrypoint application in Manager Container:')    
 console.log(`- passed process arguments: ${JSON.stringify(process.argv)}`)

@@ -1,0 +1,9 @@
+{
+  "main": "./entrypoint.js",
+  "name": "@script/localHostMachineScript",
+  "version": "1.0.0",
+  "dependencies": {
+    "@dependency/javascriptTranspilation": "https://github.com/AppScriptIO/javascriptTranspilation",
+    "@dependency/parseKeyValuePairSeparatedBySymbol": "https://github.com/AppScriptIO/parseKeyValuePairSeparatedBySymbol"
+  }
+}
