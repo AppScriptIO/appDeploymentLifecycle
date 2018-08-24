@@ -1,5 +1,0 @@
-{
-    "name": "xyz",
-    "loadPattern": "appscriptModule", 
-    "entrypoint": "./entrypoint.js"
-}

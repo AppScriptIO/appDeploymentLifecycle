@@ -1,5 +1,6 @@
 {
-  "name": "gulp",
+  "name": "@script/build",
+  "version": "1.0.0",
   "main": "entrypoint.js",
   "dependencies": {
     "gulp": "next",
