@@ -1,0 +1,13 @@
+*.DS_Store
+*.vagrant
+node_modules
+builtApp
+volume
+content
+distribution
+Thumbs.db
+privateRepository
+bower_components
+jspm_packages
+npm-debug.log
+source/serverSide/yarn-error\.log
