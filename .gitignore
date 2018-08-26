@@ -8,5 +8,4 @@ distribution
 Thumbs.db
 privateRepository
 webappProxyConfig
-appDeploymentEnvironment\.container/source/containerInstallationNodejs/yarn-error\.log
 yarn-error.log
