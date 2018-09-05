@@ -1,23 +1,17 @@
-version: '2.2'
+version: '3.7'
 # Tests & Build: source code --> distribution code
-
+# The 'applicationPathOnHostMachine' is the path on the machine which docker engine runs in. In case of containers the docker client usually forwards commands to the host machine, therefore paths should be absolute to host machine        working_dir: /project/application
 # USAGE (from root directory): docker-compose -f <filePath> up <service>
 services:
     
-    nodejs: # Build source code & download project dependencies.
-        image: myuserindocker/deployment-environment:latest
+    nodejs: 
+        image: node:latest
         environment:
             DEPLOYMENT: ${DEPLOYMENT:-production}
             DISTRIBUTION: ${DISTRIBUTION}
         volumes:
-            - ${hostPath}/dependency:/project/application/dependency # The hostPath is forwarded from the manager contaienr to the host vm. i.e. the manager doesn't container `/c/Users/` but the host vm does.
-            - ${hostPath}/setup:/project/application/setup
-            - ${hostPath}/source:/project/application/source
-            - ${hostPath}/distribution:/project/application/distribution
-        working_dir: /project/application/setup/build/
-        entrypoint: /project/application/setup/container/shellScript/buildSourceCode.entrypoint.sh
-        working_dir: /project/application
-        command: bash -c "sleep 100000000;"
+            - ${applicationPathOnHostMachine}/:/project/application/
+        command: bash -c "echo '[dockerCompose yml] No command or entrypoint specifies for the container.';"
 
     # localUnitTest:
     #     extends: deploymentEnvironment
