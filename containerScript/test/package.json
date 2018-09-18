@@ -6,6 +6,6 @@
         "postinstall": ""
     },
     "dependencies": {
-        
+        "@dependency/parseKeyValuePairSeparatedBySymbol": "https://github.com/AppScriptIO/parseKeyValuePairSeparatedBySymbol"
     }
 }

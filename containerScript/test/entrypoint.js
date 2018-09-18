@@ -1,7 +1,6 @@
 /**
  * This script requires that the container 
  */
-
 import path from 'path'
 const { execSync, spawn, spawnSync } = require('child_process')
 import { parseKeyValuePairSeparatedBySymbolFromArray, combineKeyValueObjectIntoString } from '@dependency/parseKeyValuePairSeparatedBySymbol'
