@@ -6,6 +6,8 @@ services:
     
     nodejs: 
         image: node:latest
+        stdin_open: true # to allow for passing kill signals to the container from the terminal.
+        tty: true
         environment:
             DEPLOYMENT: ${DEPLOYMENT:-production}
             DISTRIBUTION: ${DISTRIBUTION}

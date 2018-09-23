@@ -63,14 +63,24 @@ function unitTest({
         processOption = {
             // cwd: `${applicationPath}`, 
             shell: true, 
-            stdio: [0,1,2], 
+            detached: false,
+            stdio: [ 'inherit', 'inherit', 'inherit', 'ipc' ],
             env: Object.assign(
                 process.env, // PATH environment variable is required for docker-composer to run.  PATH - specifies the directories in which executable programs
                 environmentVariable
             )
         }
     console.log(`%s %s`, processCommand, processCommandArgs.join(' '))
-    spawnSync(processCommand, processCommandArgs, processOption)
+    let childProcess = spawn(processCommand, processCommandArgs, processOption)
+    childProcess.on('error', function( err ){ throw err })
+    childProcess.on('exit', () => { console.log(`PID: Child ${childProcess.pid} terminated.`) })
+    // childProcess.unref() // prevent parent from waiting to child process and un reference child from parent's event loop.
+    console.log(`PID: Child ${childProcess.pid}`)
+    process.on('SIGINT', () => { // when docker is using `-it` option this event won't be fired in this process, as the SIGINT signal is passed directly to the docker container.
+        console.log("• Caught interrupt signal - host machine level")
+        childProcess.kill('SIGINT')
+    })
+
 
 }
 
