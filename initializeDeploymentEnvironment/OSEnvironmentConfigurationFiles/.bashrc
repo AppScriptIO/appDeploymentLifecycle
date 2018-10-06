@@ -1,10 +1,11 @@
+echo ".bashrc loaded from user's folder. (.bashrc executed for interactive non-login shells)"
+# cd ~/Projects
+alias gcloud="gcloud.cmd"
+
 # This configuration file is for GitBash, fixing common issues and settings defaults. This file should be symlinked to user's folder.
 export MSYS_NO_PATH=1
 # export MSYS_NO_PATHCONV=1 // fixes issue with docker, but sets the setting for all other commands
-# cd ~/Projects
-alias gcloud="gcloud.cmd"
 export COMPOSE_CONVERT_WINDOWS_PATHS=1 # fix issue with windows error when mounting docker socket (/var/run/docker.sock:/var/run/docker.sock)  - https://github.com/docker/for-win/issues/1829
-
 # FIx issues with docker but prevent MSYS_NO_PATHCONV from affecting other script - https://github.com/docker/toolbox/issues/456
 docker () {
   MSYS_NO_PATHCONV=1 docker.exe "$@"

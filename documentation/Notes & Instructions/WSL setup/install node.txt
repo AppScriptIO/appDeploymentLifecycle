@@ -1,0 +1,4 @@
+# https://github.com/nodesource/distributions#debinstall
+# Using Debian, as root
+curl -sL https://deb.nodesource.com/setup_10.x | bash -
+apt-get install -y nodejs
