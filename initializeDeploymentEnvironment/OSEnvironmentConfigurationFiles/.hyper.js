@@ -9,7 +9,7 @@ module.exports = {
     updateChannel: 'canary',
 
     // default font size in pixels for all tabs
-    fontSize: 20,
+    fontSize: 24,
 
     // font family with optional fallbacks
     fontFamily: 'Menlo, "DejaVu Sans Mono", Consolas, "Lucida Console", monospace',
@@ -100,7 +100,8 @@ module.exports = {
     
     //external terminal setting for visual studio code C:\Program Files\Git\usr\bin\mintty.exe
 
-    // cygwin/mingw64 bash shell: 'C:\\Program Files\\Git\\bin\\bash.exe',
+    // cygwin/mingw64 bash 
+	//shell: 'C:\\Program Files\\Git\\bin\\bash.exe',
     // wsl  C:\\Windows\\System32\\wsl.exe
     // shell: `C:\\Windows\\System32\\bash.exe`, // wsl bash
     shell: 'C:\\Windows\\System32\\wsl.exe', // wsl with default shell (bash)

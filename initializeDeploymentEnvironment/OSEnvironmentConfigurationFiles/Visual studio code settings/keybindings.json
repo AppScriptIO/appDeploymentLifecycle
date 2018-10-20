@@ -1,0 +1,17 @@
+// Place your key bindings in this file to overwrite the defaults
+[
+    { "key": "ctrl+shift+v+k+s", "command": "markdown.showPreview", "when": "editorFocus" },
+    { "key": "ctrl+shift+q", "command": "workbench.action.toggleMaximizedPanel" },
+    { 
+        "key": "ctrl+tab",
+        "command": "workbench.action.toggleZenMode"
+    },
+    { 
+        "key": "ctrl+up",
+        "command": "spaceBlockJumper.moveUp"
+    },
+    { 
+        "key": "ctrl+down",
+        "command": "spaceBlockJumper.moveDown"
+    }
+]
