@@ -11,6 +11,8 @@ services:
         environment:
             DEPLOYMENT: ${DEPLOYMENT:-production}
             DISTRIBUTION: ${DISTRIBUTION}
+        ports:
+            - "9229:9229" # Node's remote debugger 
         volumes:
             - ${applicationPathOnHostMachine}/:/project/application/
         command: bash -c "echo '[dockerCompose yml] No command or entrypoint specifies for the container.';"

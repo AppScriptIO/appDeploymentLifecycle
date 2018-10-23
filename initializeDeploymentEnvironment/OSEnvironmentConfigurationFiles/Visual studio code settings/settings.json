@@ -1,11 +1,11 @@
 {
-    "window.zoomLevel": 1.4,
+    "window.zoomLevel": 1,
     "workbench.activityBar.visible": true,
     "window.menuBarVisibility": "toggle",
     "editor.minimap.enabled": false,
     "editor.minimap.maxColumn": 120,
     "workbench.iconTheme": "material-icon-theme",
-    "workbench.colorTheme": "One Dark Pro Vivid",
+    "workbench.colorTheme": "Monokai Dimmed",
     "material-icon-theme.showUpdateMessage": false,
     "vsicons.dontShowNewVersionMessage": true,
     "typescript.check.npmIsInstalled": false,
@@ -56,5 +56,6 @@
         "editor.background": "#000000",
         "activityBar.background": "#000000", 
         "sideBar.background": "#000000"
-    }
+    },
+    "files.autoSave": "off"
 }
