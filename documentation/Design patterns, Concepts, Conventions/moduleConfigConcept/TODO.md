@@ -1,0 +1,1 @@
+This is a concept of module declaration files with dependency configurations that could replace the bloated package.json file.

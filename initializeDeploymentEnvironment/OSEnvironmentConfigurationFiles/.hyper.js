@@ -141,15 +141,17 @@ module.exports = {
   //   `@company/project`
   //   `project#1.0.1`
   plugins: [
+    `hyper-pane`, 
+    // `hyperpower`, 
+    `hyper-search`, 
+    `hyper-alt-click`, 
+    `hypercwd`, 
+    `hyperlinks`, 
+
+
     // `hyper-history`,
     // `hyperterm-tabs `,
     // `hyper-dark-scrollbar`,
-    `hyperpower`, 
-    `hyper-pane`, 
-    `hyper-search`, 
-    `hypercwd`, 
-    `hyper-alt-click`, 
-    `hyperlinks`, 
     // `hyper-statusline`,
     // `hyper-visual`
     ],
