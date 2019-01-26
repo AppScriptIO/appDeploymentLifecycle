@@ -1,3 +1,4 @@
+# Use `Fiddler` program to remap localhost ports in the OS.
 localhost:8081      cdn.localhost
 localhost:8082      api.localhost
 localhost:8087      websocket.localhost
