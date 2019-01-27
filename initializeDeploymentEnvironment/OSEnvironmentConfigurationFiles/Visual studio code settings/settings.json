@@ -1,5 +1,4 @@
 {
-    "window.zoomLevel": 1,
     "workbench.activityBar.visible": true,
     "window.menuBarVisibility": "default",
     "editor.minimap.enabled": false,
@@ -58,5 +57,6 @@
         "sideBar.background": "#000000"
     },
     "files.autoSave": "off",
-    "workbench.sideBar.location": "left"
+    "workbench.sideBar.location": "left",
+    "window.zoomLevel": 0.7
 }
