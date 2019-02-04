@@ -54,7 +54,10 @@
     "workbench.colorCustomizations": {
         "editor.background": "#000000",
         "activityBar.background": "#000000", 
-        "sideBar.background": "#000000"
+        "sideBar.background": "#000000",
+        "editor.selectionBackground": "#135564",
+        "editor.selectionHighlightBorder": "#135564"
+
     },
     "files.autoSave": "off",
     "workbench.sideBar.location": "left",
