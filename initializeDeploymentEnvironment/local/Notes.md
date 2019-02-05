@@ -9,3 +9,15 @@ Steps:
 • Run docker for windows
 • Run "docker-volume-watcher *node* -v"
 • Run container manager
+
+____
+
+- Handling line endings on Windows for git, preventing false modified status for git repos because of line endings: 
+    
+```
+        git config --global core.autocrlf true
+        # Configure Git on Windows to properly handle line endings
+```
+
+- 
+
