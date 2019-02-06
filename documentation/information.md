@@ -6,3 +6,7 @@
 - **Projects Generator** 
 
 [Glossary for terms used in related projects](./documentation/glossary.md)
+
+___
+
+### 🔑 License: [MIT](/.github/LICENSE)
