@@ -64,6 +64,8 @@
     "window.zoomLevel": 0.7, 
     "files.exclude": {
         "**/.git": false
-    }
+    }, 
+
+
    
 }
