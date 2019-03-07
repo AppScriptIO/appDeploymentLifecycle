@@ -1,5 +1,8 @@
 {
-    "workbench.activityBar.visible": true,
+    /*
+    // extensions folder 
+    cd %USERPROFILE%\.vscode\extensions
+    */ 
     "window.menuBarVisibility": "default",
     "editor.minimap.enabled": false,
     "editor.minimap.maxColumn": 120,
@@ -44,7 +47,6 @@
             
         ]
     },
-    "javascript.updateImportsOnFileMove.enabled": "never",
     "git.enabled": true,
     "terminal.integrated.shell.windows": "C:\\\\Windows\\\\System32\\\\wsl.exe",
     "terminal.integrated.copyOnSelection": true,
@@ -61,11 +63,31 @@
     },
     "files.autoSave": "off",
     "workbench.sideBar.location": "left",
-    "window.zoomLevel": 0.7, 
+    "window.zoomLevel": null, 
     "files.exclude": {
         "**/.git": false
-    }, 
-
+    },
+    "ConEmu.showTitlebarIcon": true,
+    "ConEmu.reuseInstance": false,
+    "ConEmu.path": "c:\\Program Files\\ConEmu\\ConEmu64.exe",
+    "problems.autoReveal": false,
+    "workbench.editor.highlightModifiedTabs": true,
+    "explorer.autoReveal": true,
+    "javascript.validate.enable": false, //disable default javascript validator replaced by eslint
+    "eslint.packageManager": "yarn",
+    "eslint.run": "onType",
+    "eslint.alwaysShowStatus": true,
+    "eslint.provideLintTask": true,
+    "eslint.validate": [
+        "javascript"
+    ], 
+    "eslint.codeAction.showDocumentation": {
+        "enable": true
+    },
+    "editor.fontLigatures": true,
+    "editor.fontFamily": "'Fira Code Retina', Consolas, 'Courier New', monospace",
+    "editor.tabSize": 2,
+    "prettier.eslintIntegration": true,
 
    
 }
