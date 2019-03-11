@@ -63,7 +63,7 @@
     },
     "files.autoSave": "off",
     "workbench.sideBar.location": "left",
-    "window.zoomLevel": 0, 
+    "window.zoomLevel": -0.5, 
     "files.exclude": {
         "**/.git": false
     },
