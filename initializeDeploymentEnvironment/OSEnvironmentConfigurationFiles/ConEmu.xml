@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <key name="Software">
 	<key name="ConEmu">
-		<key name=".Vanilla" modified="2019-03-12 12:53:41" build="190310">
+		<key name=".Vanilla" modified="2019-03-14 10:43:29" build="190310">
 			<value name="Language" type="string" data="en"/>
 			<value name="StartType" type="hex" data="02"/>
 			<value name="CmdLine" type="string" data=""/>
@@ -145,11 +145,11 @@
 			<value name="Cascaded" type="hex" data="01"/>
 			<value name="IntegralSize" type="hex" data="00"/>
 			<value name="WindowMode" type="dword" data="00000520"/>
-			<value name="ConWnd X" type="long" data="609"/>
-			<value name="ConWnd Y" type="long" data="46"/>
-			<value name="LastMonitor" type="string" data="0,30,1920,1080"/>
-			<value name="ConWnd Width" type="dword" data="0000006e"/>
-			<value name="ConWnd Height" type="dword" data="00000039"/>
+			<value name="ConWnd X" type="long" data="-629"/>
+			<value name="ConWnd Y" type="long" data="331"/>
+			<value name="LastMonitor" type="string" data="0,0,0,0"/>
+			<value name="ConWnd Width" type="dword" data="00000027"/>
+			<value name="ConWnd Height" type="dword" data="00000046"/>
 			<value name="16bit Height" type="ulong" data="0"/>
 			<value name="QuakeStyle" type="hex" data="00"/>
 			<value name="Restore2ActiveMon" type="hex" data="00"/>
@@ -606,8 +606,8 @@
 				<value name="DndRKey" type="hex" data="A2"/>
 				<value name="WndDragKey" type="dword" data="00121101"/>
 			</key>
-			<key name="Tasks" modified="2019-03-12 11:46:39" build="190310">
-				<value name="Count" type="long" data="11"/>
+			<key name="Tasks" modified="2019-03-15 04:40:16" build="190310">
+				<value name="Count" type="long" data="12"/>
 				<key name="Task1" modified="2019-03-12 12:39:11" build="190310">
 					<value name="Name" type="string" data="{WSL(Bash::bash) with default shell}"/>
 					<value name="Flags" type="dword" data="00000007"/>
@@ -707,6 +707,15 @@
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="1"/>
 					<value name="Cmd1" type="string" data='*cmd.exe /k Title Chocolatey &amp; "%ConEmuBaseDir%\Addons\ChocolateyAbout.cmd"'/>
+				</key>
+				<key name="Task12" modified="2019-03-15 04:40:16" build="190310">
+					<value name="Name" type="string" data="{Bash::bash}"/>
+					<value name="Flags" type="dword" data="00000004"/>
+					<value name="Hotkey" type="dword" data="00000000"/>
+					<value name="GuiArgs" type="string" data='/dir %CD% /icon "%USERPROFILE%\AppData\Local\lxss\bash.ico"'/>
+					<value name="Active" type="long" data="0"/>
+					<value name="Count" type="long" data="1"/>
+					<value name="Cmd1" type="string" data='set "PATH=%ConEmuBaseDirShort%\wsl;%PATH%" &amp; %ConEmuBaseDirShort%\conemu-cyg-64.exe --wsl -cur_console:pm:/mnt -t zsh'/>
 				</key>
 			</key>
 			<key name="Apps" modified="2019-03-05 00:36:01" build="190108">
