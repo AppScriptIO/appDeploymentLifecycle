@@ -168,4 +168,50 @@
             ]
         }
     },
+
+    // Add to status bar - https://marketplace.visualstudio.com/items?itemName=fabiospampinato.vscode-commands
+    // icons - https://octicons.github.com/
+    "commands.commands": [{
+            "text": "$(file-directory)",
+            "command": "workbench.view.explorer",
+            "tooltip": "Explorer",
+            "priority": 1,
+            "alignment": "left",
+        }, {
+            "text": "$(search)",
+            "command": "workbench.view.search",
+            "tooltip": "Search",
+            "priority": 1,
+            "alignment": "left",
+
+        }, {
+            "text": "$(repo-forked)",
+            "command": "workbench.view.scm",
+            "tooltip": "Source Control"
+        }, {
+            "text": "$(bug)",
+            "command": "workbench.view.debug",
+            "tooltip": "Debug"
+        }, {
+            "text": "$(package)",
+            "command": "workbench.view.extensions",
+            "tooltip": "Extensions"
+        },
+        {
+            "text": "$(bookmark)",
+            "command": "workbench.view.extension.bookmarks",
+            "tooltip": "Bookmarks"
+        },
+        {
+            "text": "$(book)",
+            "command": "workbench.action.showCommands",
+            "tooltip": "Show commands"
+        },
+        {
+            "text": "$(gear)",
+            "command": "workbench.action.openGlobalSettings",
+            "tooltip": "Settings"
+        },
+    ],
+    "workbench.activityBar.visible": false,
 }
