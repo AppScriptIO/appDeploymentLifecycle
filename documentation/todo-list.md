@@ -1,1 +1,1 @@
-- 
+- Switch to using Kubernetes instead of Docker Swarm. As Kubernetes is much more supported by the community and feature rich.
