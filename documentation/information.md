@@ -8,6 +8,9 @@
         Similar terminology of https://github.com/material-components/material-components-web/tree/master/docs/code. 
 
 [Glossary for terms used in related projects](./documentation/glossary.md)
+___
+
+[TODO list](/documentation/todo-list.md)
 
 ___
 
