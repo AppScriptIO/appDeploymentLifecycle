@@ -16,10 +16,8 @@
     },
     "editor.minimap.enabled": false,
     "editor.minimap.maxColumn": 120,
-    "workbench.iconTheme": "vscode-icons",
     "workbench.colorTheme": "Tomorrow Night Bright Operator Mono",
     "material-icon-theme.showUpdateMessage": false,
-    "vsicons.dontShowNewVersionMessage": true,
     "window.menuBarVisibility": "default",
     "guides.enabled": false,
     "workbench.sideBar.location": "left",
@@ -27,7 +25,6 @@
     "problems.autoReveal": false,
     "workbench.editor.highlightModifiedTabs": true,
     "explorer.autoReveal": true,
-    "vsicons.projectDetection.disableDetect": true,
 
     /* Debugger */
     "files.eol": "\n",
@@ -213,5 +210,5 @@
             "tooltip": "Settings"
         },
     ],
-    "workbench.activityBar.visible": false,
+    "workbench.activityBar.visible": false
 }
