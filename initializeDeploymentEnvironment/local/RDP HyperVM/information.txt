@@ -1,0 +1,2 @@
+Remote Desktop Connection HyperV VM + RasberryPi: 
+Allow connection to a HyperV VM directly through Ethernet connection to the host machine, from another computer e.g. RasberryPi

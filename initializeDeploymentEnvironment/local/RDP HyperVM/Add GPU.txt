@@ -1,0 +1,2 @@
+# GPU option (remoteFX) was removed from the GUI interface but still accessible from powershell
+Add-VMRemoteFx3dVideoAdapter -VMName "<name>"
