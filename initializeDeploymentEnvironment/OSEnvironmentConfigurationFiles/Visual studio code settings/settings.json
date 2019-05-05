@@ -16,17 +16,25 @@
     },
     "editor.minimap.enabled": false,
     "editor.minimap.maxColumn": 120,
-    "workbench.colorTheme": "Tomorrow Night Bright Operator Mono",
     "material-icon-theme.showUpdateMessage": false,
     "window.menuBarVisibility": "default",
     "guides.enabled": false,
     "workbench.sideBar.location": "left",
-    "window.zoomLevel": 0,
+    "window.zoomLevel": -0.2,
     "problems.autoReveal": false,
     "workbench.editor.highlightModifiedTabs": true,
     "explorer.autoReveal": true,
+    "workbench.colorTheme": "Tomorrow Night Bright Operator Mono",
+    "editor.fontSize": 16,
+    "debug.console.fontSize": 15,
+    "terminal.integrated.fontSize": 15,
+    "editor.selectionHighlight": true,
+    "editor.occurrencesHighlight": true,
+    "editor.matchBrackets": true,
 
     /* Debugger */
+    "debug.toolBarLocation": "floating",
+    "debug.node.autoAttach": "on",
     "files.eol": "\n",
     "launch": {
         "configurations": [
@@ -63,10 +71,11 @@
     },
 
     /* Terminal */
-    "terminal.integrated.shell.windows": "C:\\\\Windows\\\\System32\\\\wsl.exe",
+    "terminal.integrated.shell.windows": "C:\\Windows\\System32\\wsl.exe",
+    // "terminal.integrated.shell.linux": "/bin/zsh",
     "terminal.integrated.copyOnSelection": true,
     "terminal.integrated.cursorBlinking": true,
-    "terminal.external.windowsExec": "C:\\\\\\\\Windows\\\\\\\\System32\\\\\\\\wsl.exe",
+    "terminal.external.windowsExec": "C:\\Windows\\System32\\wsl.exe",
     "ConEmu.showTitlebarIcon": true,
     "ConEmu.reuseInstance": false,
     "ConEmu.path": "c:\\Program Files\\ConEmu\\ConEmu64.exe",
@@ -210,5 +219,5 @@
             "tooltip": "Settings"
         },
     ],
-    "workbench.activityBar.visible": false
+    "workbench.activityBar.visible": false,
 }

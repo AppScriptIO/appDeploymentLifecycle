@@ -1,0 +1,8 @@
+# https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/Where-system-global-and-local-Windows-Git-config-files-are-saved
+
+# Change location of .gitignore for git repositories - Changes should be made in Windows git command and in WSL git, as visual git programs use Windows git.
+[1] # local user OS git configuration.
+git config --global --edit 
+git config --global core.excludesfile ./configuration/.gitignore
+
+[2] # gitignore is symlinked to the root directory to allow `GitKraken` visual tool to work, as it doesn't read the `core.excludesfile` option
