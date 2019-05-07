@@ -1,0 +1,30 @@
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+[core]
+	autocrlf = false
+	excludesfile = ./configuration/.gitignore
+	symlinks = false
+	# eol = lf
+	# editor = \"C:/Program Files (x86)/GitExtensions/GitExtensions.exe\" fileeditor
+	editor = \"C:\\\\Program Files\\\\Microsoft VS Code Insiders\\\\Code - Insiders.exe\" --wait
+[merge]
+	tool = kdiff3
+[mergetool "kdiff3"]
+	path = C:/Program Files (x86)/KDiff3/kdiff3.exe
+[diff]
+	guitool = kdiff3
+[difftool "kdiff3"]
+	path = C:/Program Files (x86)/KDiff3/kdiff3.exe
+[pull]
+	rebase = false
+[fetch]
+	prune = false
+[rebase]
+	autoStash = false
+[cola]
+	spellcheck = false
+[gc]
+	autoDetach = false
