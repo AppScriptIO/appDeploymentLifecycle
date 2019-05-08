@@ -31,6 +31,7 @@
     "editor.selectionHighlight": true,
     "editor.occurrencesHighlight": true,
     "editor.matchBrackets": true,
+    "editor.renderIndentGuides": false,
 
     /* Debugger */
     "debug.toolBarLocation": "floating",
