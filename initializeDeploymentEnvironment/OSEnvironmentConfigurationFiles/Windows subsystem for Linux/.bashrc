@@ -22,4 +22,8 @@
 export DOCKER_HOST=tcp://127.0.0.1:2375
 
 # host machine node scripts require following symlinks
-export NODE_PRESERVE_SYMLINKS=1
+export NODE_PRESERVE_SYMLINKS=0
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).

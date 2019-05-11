@@ -3,72 +3,13 @@
  - 
 */
 {
-    /** Style & Font */
-    "editor.fontLigatures": true,
-    "editor.fontFamily": "'Operator Mono Lig', 'Fira Code Retina', Consolas, 'Courier New', monospace",
-    "editor.tabSize": 2,
-    "workbench.colorCustomizations": {
-        "editor.background": "#000000",
-        "activityBar.background": "#000000",
-        "sideBar.background": "#000000",
-        "editor.selectionBackground": "#135564",
-        "editor.selectionHighlightBorder": "#135564"
-    },
-    "editor.minimap.enabled": false,
-    "editor.minimap.maxColumn": 120,
-    "material-icon-theme.showUpdateMessage": false,
-    "window.menuBarVisibility": "default",
-    "guides.enabled": false,
-    "workbench.sideBar.location": "left",
-    "window.zoomLevel": -0.2,
-    "problems.autoReveal": false,
-    "workbench.editor.highlightModifiedTabs": true,
-    "explorer.autoReveal": true,
-    "workbench.colorTheme": "Tomorrow Night Bright Operator Mono",
-    "editor.fontSize": 16,
-    "debug.console.fontSize": 15,
-    "terminal.integrated.fontSize": 15,
-    "editor.selectionHighlight": true,
-    "editor.occurrencesHighlight": true,
-    "editor.matchBrackets": true,
-    "editor.renderIndentGuides": false,
-
     /* Debugger */
+    "debug.showSubSessionsInToolBar": true,
     "debug.toolBarLocation": "floating",
     "debug.node.autoAttach": "on",
     "files.eol": "\n",
     "launch": {
-        "configurations": [
-            // {
-            //     "name": "Remote nodejs",
-            //     "type": "node",
-            //     "request": "attach",
-            //     "processId": "${command:PickProcess}",
-            //     "protocol": "inspector",
-            //     "address": "localhost",
-            //     "port": 9229,
-            //     "restart": true,
-            //     "stopOnEntry": false,
-            //     "sourceMaps": false,
-            //     "localRoot": "${workspaceRoot}/",
-
-            // },
-            // {
-            //     "name": "Launch localhost",
-            //     "type": "chrome",
-            //     "request": "launch",
-            //     "url": "http://localhost/",
-            //     "webRoot": "${workspaceFolder}/"
-            // },
-            // {
-            //     "name": "Launch index.html (disable sourcemaps)",
-            //     "type": "chrome",
-            //     "request": "launch",
-            //     "sourceMaps": false,
-            //     "file": "${workspaceFolder}/"
-            // },
-
-        ]
+        "configurations": []
     },
 
     /* Terminal */
@@ -76,7 +17,7 @@
     // "terminal.integrated.shell.linux": "/bin/zsh",
     "terminal.integrated.copyOnSelection": true,
     "terminal.integrated.cursorBlinking": true,
-    "terminal.external.windowsExec": "C:\\Windows\\System32\\wsl.exe",
+    "terminal.external.windowsExec": "C:\\Windows\\System32\\wsl.exe", //  "c:\\windows\\sysnative\\bash.exe"
     "ConEmu.showTitlebarIcon": true,
     "ConEmu.reuseInstance": false,
     "ConEmu.path": "c:\\Program Files\\ConEmu\\ConEmu64.exe",
@@ -221,4 +162,110 @@
         },
     ],
     "workbench.activityBar.visible": false,
+
+    /** Style & Font */
+    "editor.fontLigatures": true,
+    "editor.fontFamily": "'Operator Mono Lig', 'Fira Code Retina', Consolas, 'Courier New', monospace",
+    "editor.tabSize": 2,
+    "workbench.colorCustomizations": {
+        "editor.background": "#000000",
+        "activityBar.background": "#000000",
+        "sideBar.background": "#000000",
+        "editor.selectionBackground": "#135564",
+        "editor.selectionHighlightBorder": "#135564"
+    },
+    "editor.minimap.enabled": false,
+    "editor.minimap.maxColumn": 120,
+    "material-icon-theme.showUpdateMessage": false,
+    "window.menuBarVisibility": "default",
+    "guides.enabled": false,
+    "workbench.sideBar.location": "left",
+    "window.zoomLevel": -0.2,
+    "problems.autoReveal": false,
+    "workbench.editor.highlightModifiedTabs": true,
+    "explorer.autoReveal": true,
+    "workbench.colorTheme": "Tomorrow Night Bright Operator Mono",
+    "editor.fontSize": 16,
+    "debug.console.fontSize": 15,
+    "terminal.integrated.fontSize": 15,
+    "editor.selectionHighlight": true,
+    "editor.occurrencesHighlight": true,
+    "editor.matchBrackets": true,
+    "editor.renderIndentGuides": false,
+    "peacock.favoriteColors": [{
+            "name": "Angular Red",
+            "value": "#b52e31"
+        },
+        {
+            "name": "Auth0 Orange",
+            "value": "#eb5424"
+        },
+        {
+            "name": "Azure Blue",
+            "value": "#007fff"
+        },
+        {
+            "name": "C# Purple",
+            "value": "#68217A"
+        },
+        {
+            "name": "Gatsby Purple",
+            "value": "#639"
+        },
+        {
+            "name": "Java Blue-Gray",
+            "value": "#557c9b"
+        },
+        {
+            "name": "JavaScript Yellow",
+            "value": "#f9e64f"
+        },
+        {
+            "name": "Mandalorian Blue",
+            "value": "#1857a4"
+        },
+        {
+            "name": "Node Green",
+            "value": "#215732"
+        },
+        {
+            "name": "React Blue",
+            "value": "#00b3e6"
+        },
+        {
+            "name": "Something Different",
+            "value": "#832561"
+        },
+        {
+            "name": "Vue Green",
+            "value": "#42b883"
+        }
+    ],
+    "peacock.affectStatusBar": true,
+    "peacock.affectActivityBar": true,
+    "peacock.surpriseMeOnStartup": true,
+    "peacock.elementAdjustments": {
+        "activityBar": "darken",
+        "statusBar": "darken",
+        "titleBar": "darken"
+    },
+    "workbench.colorCustomizations": {
+        "editor.background": "#000000",
+        "sideBar.background": "#000000",
+        "editor.selectionBackground": "#135564",
+        "editor.selectionHighlightBorder": "#135564",
+        "activityBar.background": "#1a1a1a",
+        "activityBar.foreground": "#e7e7e7",
+        "activityBar.inactiveForeground": "#e7e7e799",
+        "activityBarBadge.background": "#606020",
+        "activityBarBadge.foreground": "#e7e7e7",
+        "titleBar.activeBackground": "#000000",
+        "titleBar.inactiveBackground": "#00000099",
+        "titleBar.activeForeground": "#e7e7e7",
+        "titleBar.inactiveForeground": "#e7e7e799",
+        "statusBar.background": "#000000",
+        "statusBarItem.hoverBackground": "#1a1a1a",
+        "statusBar.foreground": "#e7e7e7"
+    }
+
 }

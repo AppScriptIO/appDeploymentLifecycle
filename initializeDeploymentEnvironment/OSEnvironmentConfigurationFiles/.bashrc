@@ -14,7 +14,7 @@ export -f docker
 
 # Add Nodejs Flags/Environmebt variables for host machine Nodejs scripts - (This could be changed to a js script with module for controlling Windows OS)
 # • NODE_PRESERVE_SYMLINKS should be turned on for host machine scripts, as symlinks are used for node_modules for quicker development.
-export NODE_PRESERVE_SYMLINKS=1
+export NODE_PRESERVE_SYMLINKS=0
 
 # For LCOW (Windows containers mode) - Set default platform for Docker (Windows containers mode), to allow LCOW (Linux Containers On Windows) to run without the `--platform=linux` flag for `docker` command. https://medium.com/@joni2nja/lcow-docker-compose-vs-2017-net-core-2-1-178946b36acb
 # LCOW requires to turn docker experimental features on. 

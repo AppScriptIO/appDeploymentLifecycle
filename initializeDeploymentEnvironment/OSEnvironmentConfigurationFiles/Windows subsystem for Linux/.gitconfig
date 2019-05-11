@@ -1,0 +1,7 @@
+[user]
+        # name = 
+        # email = 
+[core]
+        autocrlf = false
+        excludesfile = ./configuration/.gitignore
+        eol = lf
