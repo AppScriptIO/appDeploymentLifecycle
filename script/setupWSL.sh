@@ -22,9 +22,9 @@ if grep -q Microsoft /proc/version; then
   if hash yarn 2>/dev/null; then
     echo '✔ yarn is installed.'
   else
-    curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-    echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-    sudo apt-get install -y yarn
+    curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - && \
+    echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list && \
+    sudo apt-get -y update && sudo apt-get install -y yarn
   fi
 
   if hash zsh 2>/dev/null; then
