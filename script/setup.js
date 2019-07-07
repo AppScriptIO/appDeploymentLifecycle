@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 // Create configuration symlinks to OS local user.
 const filesystem = require('fs'), path = require('path'), operatingSystem = require('os')
 const userFolder = operatingSystem.homedir()

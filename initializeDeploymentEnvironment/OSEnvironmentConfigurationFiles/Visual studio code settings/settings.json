@@ -11,6 +11,7 @@
     "launch": {
         "configurations": []
     },
+    "editor.maxTokenizationLineLength": 20000, // default 20,000 - if issues with sourcemap tokens persist, increase this value.
 
     /* Terminal */
     "terminal.integrated.shell.windows": "C:\\Windows\\System32\\wsl.exe",
@@ -180,7 +181,7 @@
     "window.menuBarVisibility": "default",
     "guides.enabled": false,
     "workbench.sideBar.location": "left",
-    "window.zoomLevel": -0.2,
+    "window.zoomLevel": 1,
     "problems.autoReveal": false,
     "workbench.editor.highlightModifiedTabs": true,
     "explorer.autoReveal": true,
@@ -192,7 +193,8 @@
     "editor.occurrencesHighlight": true,
     "editor.matchBrackets": true,
     "editor.renderIndentGuides": false,
-    "peacock.favoriteColors": [{
+    "peacock.favoriteColors": [
+        {
             "name": "Angular Red",
             "value": "#b52e31"
         },
@@ -211,6 +213,10 @@
         {
             "name": "Gatsby Purple",
             "value": "#639"
+        },
+        {
+            "name": "Go Cyan",
+            "value": "#5dc9e2"
         },
         {
             "name": "Java Blue-Gray",
@@ -266,6 +272,7 @@
         "statusBar.background": "#000000",
         "statusBarItem.hoverBackground": "#1a1a1a",
         "statusBar.foreground": "#e7e7e7"
-    }
+    },
+    "terminal.integrated.rendererType": "dom"
 
 }

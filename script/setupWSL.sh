@@ -1,14 +1,34 @@
+#### `./script/setupWSL.sh`
+
 if grep -q Microsoft /proc/version; then
   echo "Running in WSL: Name of user must be matching the zsh configuration 'unixuser'"
+  
+  # sudo apt-get update -y && sudo apt-get upgrade -y
 
   if hash git 2>/dev/null; then
     echo '✔ git is installed.'
   else
       sudo apt install git
-      echo 'not installed'
   fi
 
-  # sudo apt-get update -y && sudo apt-get upgrade -y
+  if hash docker 2>/dev/null; then
+    echo '✔ docker is installed.'
+  else
+    sudo apt-get install -y \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    gnupg2 \
+    software-properties-common && \
+    curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add - && \
+    sudo add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/debian \
+   $(lsb_release -cs) \
+   stable nightly" && \
+    sudo apt-get update -y && \
+    sudo apt-get install -y docker-ce docker-ce-cli containerd.io && \
+    export DOCKER_HOST=tcp://127.0.0.1:2375
+  fi
 
   if hash node 2>/dev/null; then
     echo '✔ node is installed.'

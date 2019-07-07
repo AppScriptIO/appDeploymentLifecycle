@@ -1,3 +1,6 @@
+# Connect to Windows Docker Engine
+export DOCKER_HOST=tcp://127.0.0.1:2375
+
 # If you come from bash you might have to change your $PATH.
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$HOME/bin:/usr/local/bin:$PATH"
 

@@ -22,7 +22,7 @@
 export DOCKER_HOST=tcp://127.0.0.1:2375
 
 # host machine node scripts require following symlinks
-export NODE_PRESERVE_SYMLINKS=0
+# export NODE_PRESERVE_SYMLINKS=0
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
