@@ -1,0 +1,1 @@
+- Relaying on Symbols to check the type of an instance (e.g. exposing through a symbol property the original target of a proxy, and checking if it is an instance of a proxy producing class) causes issues when a module is duplicated and loaded in different versions, as each loaded module would have a different symbol created, and relies on a different reference.

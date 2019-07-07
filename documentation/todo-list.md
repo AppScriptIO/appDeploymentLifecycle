@@ -1,1 +1,4 @@
 - Switch to using Kubernetes instead of Docker Swarm. As Kubernetes is much more supported by the community and feature rich.
+- Copy Visio stencil to Documents\My Shapes during environment setup.
+- Visual programming - "Control flow graphs". https://www.youtube.com/watch?v=0lVA7TPpxUE
+- 
