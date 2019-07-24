@@ -37,7 +37,7 @@ const symlinkTarget = [
         get destination() { return path.join(userFolder, 'AppData/Roaming/Code - Insiders/User', path.basename(this.source)) }
     }, 
     { // TODO: install windows-docker-volume from script
-        source: path.resolve(__dirname, '../resource/localOSEnvironment/DockerWindowsVolumeWatcher'),
+        source: path.resolve(__dirname, '../resource/localOSEnvironment/virtualization/DockerWindowsVolumeWatcher'),
         get destination() { return path.join(userFolder, 'Desktop', 'DockerWindowsVolumeWatcher') }
     }, 
     { 
