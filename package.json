@@ -1,0 +1,10 @@
+{
+  "name": "@dependency/appDeploymentLifecycle",
+  "version": "0.0.0",
+  "main": "./",
+  "scripts": {},
+  "dependencies": {
+    "command-exists": "^1.2.8",
+    "shelljs": "^0.8.3"
+  }
+}
