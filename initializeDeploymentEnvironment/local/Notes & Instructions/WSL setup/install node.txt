@@ -1,5 +1,0 @@
-# https://github.com/nodesource/distributions#debinstall
-https://tecadmin.net/install-latest-nodejs-npm-on-ubuntu/
-# Using Debian, as root
-curl -sL https://deb.nodesource.com/setup_10.x | bash -
-apt-get install -y nodejs

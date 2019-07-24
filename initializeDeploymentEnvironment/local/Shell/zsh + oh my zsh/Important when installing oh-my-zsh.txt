@@ -1,2 +1,0 @@
-To prevent issues with line endings when installing `oh-my-zsh` from curl or get from github repo, set git config for crlf to false. 
-i.e. using shell `git config --global core.autocrlf false`

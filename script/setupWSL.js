@@ -2,6 +2,9 @@
 
 const filesystem = require('fs'), path = require('path'), operatingSystem = require('os')
 const userFolder = operatingSystem.homedir()
+const assert = require('assert')
+
+assert(operatingSystem.platform().toLowerCase().includes('linux'), `• This script must be run in WSL, not Windows OS.`)
 
 const targetArray = [
   {
