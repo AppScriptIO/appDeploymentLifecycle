@@ -1,0 +1,59 @@
+{
+  // for the documentation about the tasks.json format https://go.microsoft.com/fwlink/?LinkId=733558 
+  "version": "2.0.0",
+  "windows": {
+    "options": {
+      "shell": {
+        "executable": "C:\\Windows\\System32\\wsl.exe",
+      }
+    }
+  },
+  "tasks": [{
+      "label": "build",
+      "type": "shell",
+      "command": "./node_modules/@dependency/deploymentScript/script/build.sh ${input:transpileTest} ${input:copyCli}",
+      "options": {
+        "cwd": "${workspaceRoot}",
+      },
+      "group": "build",
+      "presentation": {
+        "reveal": "silent",
+        "panel": "dedicated"
+      }
+    },
+    {
+      "label": "release",
+      "type": "shell",
+      "command": "./node_modules/@dependency/deploymentScript/script/release.sh ${input:version}",
+      "options": {
+        "cwd": "${workspaceRoot}",
+      },
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      }
+    },
+  ],
+  "inputs": [{
+      "id": "version",
+      "description": "Semver version number:",
+      "default": "1.0.0",
+      "type": "promptString"
+    },
+    {
+      "id": "copyCli",
+      "description": "Should copyCli entrypoint:",
+      "options": ["true", "false"],
+      "default": "true",
+      "type": "pickString"
+    },
+    {
+      "id": "transpileTest",
+      "description": "Should transpileTest:",
+      "options": ["true", "false"],
+      "default": "false",
+      "type": "pickString"
+    }
+  ]
+}

@@ -1,10 +1,19 @@
 {
   "name": "@dependency/appDeploymentLifecycle",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "main": "./",
-  "scripts": {},
-  "dependencies": {
-    "command-exists": "^1.2.8",
-    "shelljs": "^0.8.3"
+  "scripts": {
+    "installNodejsWSL": "./node_modules/deploymentScript/script/provisionLocalMachine/WSLInstallNodejs.sh",
+    "installNodejsWindows": "./node_modules/deploymentScript/script/provisionLocalMachine/WidnowsInstallNodejs.sh",
+    "setupWSL": "yarn run scriptManager shouldCompileScript=true setupWSL.js \".nonElevatedCallback()\"",
+    "setupWindowsOS": "yarn run scriptManager shouldCompileScript=true setupWindowsOS.js "
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@dependency/deploymentScript": "https://github.com/AppScriptIO/deploymentScript#semver:^1.x.x",
+    "@dependency/javascriptStaticAnalysis": "https://github.com/AppScriptIO/javascriptStaticAnalysis#semver:^1.x.x",
+    "@dependency/javascriptTranspilation": "https://github.com/AppScriptIO/javascriptTranspilation#semver:^1.x.x",
+    "@dependency/scriptManager": "https://github.com/AppScriptIO/scriptManager#semver:^1.x.x",
+    "typescript": "^3.3.3333"
   }
 }

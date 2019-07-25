@@ -1,0 +1,50 @@
+{
+  /**
+    Usage: 
+    - run node process `node --inspect-brk --nolazy <path to script>` 
+    - run vscode debugger, restart mode is on which will make vscode attach automatically when the tool watching files restarts the process.
+      While the option Auto Attach in VSCode settings.json doesn't support processes in the vscode integrated console.
+
+      e.g. node --inspect-brk --nolazy ./node_modules/@dependency/scriptManager/source/entrypoint/cli/invokeCli.js test "({ testPath: './test/script.test.js' })"
+  */
+  "version": "0.2.0",
+  "configurations": [{
+    "preLaunchTask": "build",
+    "name": "Attach to node process invoked in WSL",
+    "type": "node",
+    "request": "attach",
+    "protocol": "inspector", // Nodejs debugger protocol.
+    "port": 9229,
+    "address": "localhost",
+    "timeout": 60000,
+    "restart": true, // restart debug session when terminated e.g. on failure.
+    // "useWSL": false, //! Do not use this flag as it will mess the breakpoints locations and cause them to `jump` to different locations. 
+    "stopOnEntry": true, // break immediately.
+    "autoAttachChildProcesses": true, // track all subprocesses of debuggee and automatically attach to those that are launched in debug mode
+    "trace": false /* true || "verbose" */ , // enable diagnostic output - outputs protocol communication to txt file (path is printed in debug console).
+    "internalConsoleOptions": "openOnFirstSessionStart",
+
+    "sourceMaps": true, // will read source maps even Babel runtime transformed.
+    "localRoot": "${workspaceFolder}", // on Windows system
+    "remoteRoot": "${command:extension.vscode-wsl-workspaceFolder}", // path in WSL
+    /**
+    fix mappings between Windows (location on disk) and WSL (source map paths). This will find the source file in disk location instead of transferring it through the debugger socker.
+    https: //github.com/Microsoft/vscode-chrome-debug#sourcemaps
+    https: //github.com/Microsoft/vscode-chrome-debug/issues/524
+    */
+    "sourceMapPathOverrides": {
+      // For some reason it is not mapped automatically, and sould be specifically declared. 
+      "${command:extension.vscode-wsl-workspaceFolder}/*": "${workspaceFolder}/*"
+    },
+    "outFiles": [
+      "${workspaceFolder}/distribution/**/*.js",
+    ],
+    "skipFiles": [
+      "<node_internals>/**/*.js", // Built-in core modules of Node.js can be referred to by the 'magic name' <node_internals> in a glob pattern
+      "${workspaceFolder}/node_modules/**/*.js",
+      // "!${workspaceFolder}/**/*", // negate glob is ignored in `inspector` protocol - doesn't work in inspector protocol only on older debugger.
+    ],
+    "smartStep": true, // try to automatically step over code that doesn't map to source files
+    "showAsyncStacks": true,
+  }, ]
+}

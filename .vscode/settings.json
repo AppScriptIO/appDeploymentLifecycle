@@ -1,4 +1,56 @@
 {
+    /** Linter & Formater & Static type checker
+     * Default VSCode validator for Typescript provides more features than ESLint equivalint (@typescript-eslint/parser).
+     * ESLint - https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint
+     * Pritier - 
+     */
+    "editor.formatOnSave": true, // enable builtin formater for all languages.
+    "editor.formatOnPaste": true,
+    "json.format.enable": true, // Enable builtin formatter as ESLint is not the best formatter for JSON, it was designed for JS.
+    "typescript.format.enable": false,
+    "javascript.format.enable": false,
+    "[typescript]": {
+        "editor.formatOnSave": false,
+        "editor.formatOnPaste": false,
+    },
+    "[javascript]": {
+        "editor.formatOnSave": false,
+        "editor.formatOnPaste": false,
+    },
+    "typescript.validate.enable": true, // enable/disable default VSCode Typescript validator.
+    "javascript.validate.enable": false, // disable default VSCode Javascript validator.
+    "javascript.implicitProjectConfig.experimentalDecorators": true,
+    "eslint.enable": true,
+    "eslint.options": {
+        "configFile": "./configuration/eslint.config.js"
+    },
+    "eslint.run": "onType",
+    "eslint.autoFixOnSave": true,
+    "eslint.validate": [ // https://code.visualstudio.com/docs/languages/identifiers
+        {
+            "language": "javascript",
+            "autoFix": true
+        },
+        {
+            "language": "javascriptreact",
+            "autoFix": true
+        },
+        {
+            "language": "typescript",
+            "autoFix": true
+        },
+        {
+            "language": "typescriptreact",
+            "autoFix": true
+        }
+    ],
+    "eslint.packageManager": "yarn",
+    "eslint.alwaysShowStatus": true,
+    "eslint.provideLintTask": true,
+    "eslint.codeAction.showDocumentation": {
+        "enable": true
+    },
+    "typescript.check.npmIsInstalled": false,
     "workbench.colorCustomizations": {
         "editor.background": "#000000",
         "sideBar.background": "#000000",
