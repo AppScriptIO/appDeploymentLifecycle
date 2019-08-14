@@ -11,6 +11,7 @@ import { install as installDocker } from '@dependency/deploymentScript/script/pr
 import { install as installGit } from '@dependency/deploymentScript/script/provisionOS/installUnixPackage/installGit.js'
 import { install as installShellZsh } from '@dependency/deploymentScript/script/provisionOS/installUnixPackage/installShellZsh.js'
 import { install as installYarn } from '@dependency/deploymentScript/script/provisionOS/installUnixPackage/installYarn.js'
+import { install as installJSPM } from '@dependency/deploymentScript/script/provisionOS/installUnixPackage/installJSPM.js'
 
 assert(
   operatingSystem
@@ -36,6 +37,7 @@ export const nonElevatedCallback = () => {
   installGit()
   installShellZsh()
   installYarn()
+  installJSPM()
 
   /*
       ____             __ _                       _   _               _____ _ _           
