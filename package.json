@@ -1,12 +1,12 @@
 {
   "name": "@dependency/appDeploymentLifecycle",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "./",
   "scripts": {
-    "installNodejsWSL": "./node_modules/deploymentScript/script/provisionLocalMachine/WSLInstallNodejs.sh",
-    "installNodejsWindows": "./node_modules/deploymentScript/script/provisionLocalMachine/WidnowsInstallNodejs.sh",
-    "setupWSL": "yarn run scriptManager shouldCompileScript=true setupWSL.js \".nonElevatedCallback()\"",
-    "setupWindowsOS": "yarn run scriptManager shouldCompileScript=true setupWindowsOS.js "
+    "runManually-windows": "./entrypoint/windows.ps1",
+    "runManually-wsl": "./entrypoint/wsl.sh",
+    "setupWindowsOS": "yarn run scriptManager shouldCompileScript=true setupWindowsOS.js",
+    "setupWSL": "yarn run scriptManager shouldCompileScript=true setupWSL.js \".nonElevatedCallback()\""
   },
   "dependencies": {},
   "devDependencies": {
