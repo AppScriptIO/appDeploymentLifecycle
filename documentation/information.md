@@ -8,7 +8,15 @@
 - Architecture of modules includes the main application code (foundation) and the other adapter code (adapter). [CLI & API adateprs](/documentation/DesignPatternsConceptsConventions/cliAndApi.md)
         Similar terminology of https://github.com/material-components/material-components-web/tree/master/docs/code. 
 
+Resources folder -
+•  contains configuration files that are version controlled for WSL, Windows OS, and deployment VMs/Containers provisionning. In addition to setup instruction notes.
+
 [Glossary for terms used in related projects](./documentation/glossary.md)
+___
+
+# Usage: 
+# in elevated powershell: 
+./entrypoint/windows.ps1
 ___
 
 [TODO list](/documentation/todo-list.md)

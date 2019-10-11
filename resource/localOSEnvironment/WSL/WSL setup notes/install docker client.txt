@@ -1,6 +1,0 @@
-https://davidburela.wordpress.com/2018/06/27/running-docker-on-wsl-windows-subsystem-for-linux/
-
-# WSL 
-export DOCKER_HOST=tcp://127.0.0.1:2375
-docker ps # will run WSL Docker Client to Windows Docker Engine
-# & add `export DOCKER_HOST=tcp://127.0.0.1:2375` to .bashrc

@@ -1,2 +1,0 @@
-# https://github.com/zeit/hyper/issues/1613
-nano ~/.inputrc and type set bell-style none

@@ -3,10 +3,7 @@
   "version": "1.0.1",
   "main": "./",
   "scripts": {
-    "runManually-windows": "./entrypoint/windows.ps1",
-    "runManually-wsl": "./entrypoint/wsl.sh",
-    "setupWindowsOS": "yarn run scriptManager shouldCompileScript=true setupWindowsOS.js",
-    "setupWSL": "yarn run scriptManager shouldCompileScript=true setupWSL.js \".nonElevatedCallback()\""
+    "setup": "powershell.exe ./entrypoint/setup.ps1"
   },
   "dependencies": {},
   "devDependencies": {
