@@ -1,0 +1,10 @@
+Logical volumes needed for a linux installation: 
+- filesystem volume ext4
+- swap volume
+- Free Space for the snapshot volume
+& 
+- Partition (non-volume) for Grub boot loader installation.
+
+
+# create logical volume snapshot that will start writing the changes made to the origin logical volume, which will allow to reverse changes to the time the snapshot was created.
+lvcreate -l 100%FREE -s -n systemSnapshot_04102019 /dev/hostLinuxVolumeGroup/linuxFileSystem
