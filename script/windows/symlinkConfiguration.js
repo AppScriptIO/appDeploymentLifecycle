@@ -8,10 +8,15 @@ import assert from 'assert'
 import { createSymlink } from '@dependency/deploymentScript/source/utility/filesystemOperation/createSymlink.js'
 const userFolder = operatingSystem.homedir()
 
-assert(operatingSystem.platform().toLowerCase().includes('win'),  `• This script must be run in the Windows OS (powershell.exe, bash.exe, cmd.exe, mintty.exe), not WSL.`,)
+assert(
+  operatingSystem
+    .platform()
+    .toLowerCase()
+    .includes('win'),
+  `• This script must be run in the Windows OS (powershell.exe, bash.exe, cmd.exe, mintty.exe), not WSL.`,
+)
 
 export const symlinkFileConfig = () => {
-
   createSymlink([
     {
       source: path.resolve(__dirname, '../../resource/localDevelopmentEnvironment/WindowsOS/shell/bash/.bashrc'),
@@ -43,18 +48,19 @@ export const symlinkFileConfig = () => {
         return path.join(userFolder, 'AppData/Roaming', path.basename(this.source))
       },
     },
-    {
-      source: path.resolve(__dirname, '../../resource/localDevelopmentEnvironment/WindowsOS/vscode/keybindings.json'),
-      get destination() {
-        return path.join(userFolder, 'AppData/Roaming/Code - Insiders/User', path.basename(this.source))
-      },
-    },
-    {
-      source: path.resolve(__dirname, '../../resource/localDevelopmentEnvironment/WindowsOS/vscode/settings.json'),
-      get destination() {
-        return path.join(userFolder, 'AppData/Roaming/Code - Insiders/User', path.basename(this.source))
-      },
-    },
+    // vscode settngs are synced with gist using "Settings Sync" extension
+    // {
+    //   source: path.resolve(__dirname, '../../resource/localDevelopmentEnvironment/WindowsOS/vscode/keybindings.json'),
+    //   get destination() {
+    //     return path.join(userFolder, 'AppData/Roaming/Code - Insiders/User', path.basename(this.source))
+    //   },
+    // },
+    // {
+    //   source: path.resolve(__dirname, '../../resource/localDevelopmentEnvironment/WindowsOS/vscode/settings.json'),
+    //   get destination() {
+    //     return path.join(userFolder, 'AppData/Roaming/Code - Insiders/User', path.basename(this.source))
+    //   },
+    // },
     {
       source: path.resolve(__dirname, '../../resource/localDevelopmentEnvironment/WindowsOS/autoHotKey-switchDesktopUsingScroll.ahk'),
       get destination() {
@@ -75,5 +81,4 @@ export const symlinkFileConfig = () => {
     //   },
     // },
   ])
-  
 }

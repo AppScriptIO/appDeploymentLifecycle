@@ -28,6 +28,10 @@ ___
     - Add options to file explorer context menu - _registry script folder_ (./contextMenuRegistryScript).
 - 
 ___
+# VSCode: 
+- Synchronize settings with gist `90e15820071cc7bdef5507c8b75d9bf8` using `settings sync` vscode extension.
+
+___
 
 # WSL Installation: ✔️
 - Download & install distro from Windows store. Lunch the distro and set username & password.
@@ -93,4 +97,7 @@ __
 - dockerShareDrive - For sharing local drive with docker for windows:	
 •	Use “DockerUser” with it’s password. As the main user doesn’t have a password, and Docker enforces using passwords for shared drives users.
 
--
+___
+# Windows start menu
+- https://docs.microsoft.com/en-us/windows/configuration/customize-and-export-start-layout#customize-the-start-screen-on-your-test-computer
+___
