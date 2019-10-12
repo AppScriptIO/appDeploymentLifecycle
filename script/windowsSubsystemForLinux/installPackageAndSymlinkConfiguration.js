@@ -1,4 +1,4 @@
-// execute through `setupWSL.sh` shell file.
+console.log(' heelooo ')
 
 const childProcess = require('child_process')
 import path from 'path'
@@ -57,25 +57,25 @@ export const nonElevatedCallback = async () => {
   const userFolder = operatingSystem.homedir()
   copyFile([
     {
-      source: path.resolve(__dirname, '../resource/localOSEnvironment/WSL/.gitconfig'),
+      source: path.resolve(__dirname, '../../resource/localDevelopmentEnvironment/WindowsSubSystemForLinux/.gitconfig'),
       get destination() {
         return path.join(userFolder, path.basename(this.source))
       },
     },
     {
-      source: path.resolve(__dirname, '../resource/localOSEnvironment/WSL/shell/bash/.bashrc'),
+      source: path.resolve(__dirname, '../../resource/localDevelopmentEnvironment/WindowsSubSystemForLinux/shell/bash/.bashrc'),
       get destination() {
         return path.join(userFolder, path.basename(this.source))
       },
     },
     {
-      source: path.resolve(__dirname, '../resource/localOSEnvironment/WSL/shell/zsh/.zshrc'),
+      source: path.resolve(__dirname, '../../resource/localDevelopmentEnvironment/WindowsSubSystemForLinux/shell/zsh/.zshrc'),
       get destination() {
         return path.join(userFolder, path.basename(this.source))
       },
     },
     {
-      source: path.resolve(__dirname, '../resource/localOSEnvironment/WSL/shell/zsh/powerlevel9k.zsh-theme'),
+      source: path.resolve(__dirname, '../../resource/localDevelopmentEnvironment/WindowsSubSystemForLinux/shell/zsh/powerlevel9k.zsh-theme'),
       get destination() {
         return path.join(userFolder, '.oh-my-zsh/custom/themes/powerlevel10k/', path.basename(this.source))
       },
@@ -94,7 +94,7 @@ export const elevatedCallback = () => {
   const userFolder = operatingSystem.homedir()
   copyFile([
     {
-      source: path.resolve(__dirname, '../resource/localOSEnvironment/WSL/wsl.conf'),
+      source: path.resolve(__dirname, '../../resource/localDevelopmentEnvironment/WindowsSubSystemForLinux/wsl.conf'),
       get destination() {
         return path.join('/etc/', path.basename(this.source))
       },

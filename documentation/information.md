@@ -11,6 +11,8 @@
 Resources folder -
 •  contains configuration files that are version controlled for WSL, Windows OS, and deployment VMs/Containers provisionning. In addition to setup instruction notes.
 
+[Guide to setting up Windows environment for development](./"Guide to setting up Windows environment for development.md")
+
 [Glossary for terms used in related projects](./documentation/glossary.md)
 ___
 

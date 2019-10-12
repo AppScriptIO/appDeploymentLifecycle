@@ -18,8 +18,8 @@ try {
     cd $PSScriptRoot/.. # $PSScriptRoot = This is an automatic variable set to the current file's/module's directory
     
     # wsl wslpath -a . # check wsl path
-    wsl ./script/windowsSubsystemForLinux/wslInstallMinimalRequiredPackage.sh
-    if ($shouldInstallNodeModule -eq 'y') { 
+    wsl ./script/windowsSubsystemForLinux/installPackageAndSymlinkConfiguration.sh
+    if ($shouldInstallNodeModule -eq 'y') {
         wsl --user root yarn install 
     }
 
@@ -28,10 +28,10 @@ try {
     echo 'Using `choco` to install.'
     choco install -y nodejs yarn
     refreshenv # refresh path commands
-    node ./node_modules/.bin/scriptManager shouldCompileScript=true ./script/windows/symlinkConfiguration.js ".symlinkFileConfig()"
+    node ./node_modules/.bin/scriptManager shouldCompileScript=true windows/symlinkConfiguration.js ".symlinkFileConfig()"
 
     ## Setup WSL 
-    wsl yarn run scriptManager shouldCompileScript=true ./script/windowsSubsystemForLinux/installPackage&SymlinkConfiguration.js ".evatedCallback()"
+    wsl yarn run scriptManager shouldCompileScript=true script/windowsSubsystemForLinux/installPackageAndSymlinkConfiguration.js '".nonElevatedCallback()"'
 }
 catch {
     Write-Error $_.Exception.ToString()

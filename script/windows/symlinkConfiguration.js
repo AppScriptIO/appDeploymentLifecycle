@@ -14,66 +14,66 @@ export const symlinkFileConfig = () => {
 
   createSymlink([
     {
-      source: path.resolve(__dirname, '../resource/localOSEnvironment/shell/.bashrc'),
+      source: path.resolve(__dirname, '../../resource/localDevelopmentEnvironment/WindowsOS/shell/bash/.bashrc'),
       get destination() {
         return path.join(userFolder, path.basename(this.source))
       },
     },
     {
-      source: path.resolve(__dirname, '../resource/localOSEnvironment/shell/.bash_profile'),
+      source: path.resolve(__dirname, '../../resource/localDevelopmentEnvironment/WindowsOS/shell/bash/.bash_profile'),
       get destination() {
         return path.join(userFolder, path.basename(this.source))
       },
     },
     {
-      source: path.resolve(__dirname, '../resource/localOSEnvironment/Git/.gitconfig'),
+      source: path.resolve(__dirname, '../../resource/localDevelopmentEnvironment/WindowsOS/git/.gitconfig'),
       get destination() {
         return path.join(userFolder, path.basename(this.source))
       },
     },
     {
-      source: path.resolve(__dirname, '../resource/localOSEnvironment/terminal/.hyper.js'),
+      source: path.resolve(__dirname, '../../resource/localDevelopmentEnvironment/WindowsOS/terminal/.hyper.js'),
       get destination() {
         return path.join(userFolder, path.basename(this.source))
       },
     },
     {
-      source: path.resolve(__dirname, '../resource/localOSEnvironment/terminal/ConEmu.xml'),
+      source: path.resolve(__dirname, '../../resource/localDevelopmentEnvironment/WindowsOS/terminal/ConEmu.xml'),
       get destination() {
         return path.join(userFolder, 'AppData/Roaming', path.basename(this.source))
       },
     },
     {
-      source: path.resolve(__dirname, '../resource/localOSEnvironment/VSCode/keybindings.json'),
+      source: path.resolve(__dirname, '../../resource/localDevelopmentEnvironment/WindowsOS/vscode/keybindings.json'),
       get destination() {
         return path.join(userFolder, 'AppData/Roaming/Code - Insiders/User', path.basename(this.source))
       },
     },
     {
-      source: path.resolve(__dirname, '../resource/localOSEnvironment/VSCode/settings.json'),
+      source: path.resolve(__dirname, '../../resource/localDevelopmentEnvironment/WindowsOS/vscode/settings.json'),
       get destination() {
         return path.join(userFolder, 'AppData/Roaming/Code - Insiders/User', path.basename(this.source))
       },
     },
     {
-      source: path.resolve(__dirname, '../resource/localOSEnvironment/AutoHotkey/switchDesktopUsingScroll.ahk'),
+      source: path.resolve(__dirname, '../../resource/localDevelopmentEnvironment/WindowsOS/autoHotKey-switchDesktopUsingScroll.ahk'),
       get destination() {
         return path.join(userFolder, 'Desktop', path.basename(this.source))
       },
     },
     {
-      source: path.resolve(__dirname, '../resource/localOSEnvironment/MicrosoftVisioStencils.vssx'),
+      source: path.resolve(__dirname, '../../resource/localDevelopmentEnvironment/WindowsOS/MicrosoftVisioStencils.vssx'),
       get destination() {
         return path.join(userFolder, 'Documents/My Shapes', path.basename(this.source))
       },
     },
-    {
-      // TODO: install windows-docker-volume from script
-      source: path.resolve(__dirname, '../resource/localOSEnvironment/virtualization/DockerWindowsVolumeWatcher'),
-      get destination() {
-        return path.join(userFolder, 'Desktop', 'DockerWindowsVolumeWatcher')
-      },
-    },
+    // {
+    //   // TODO: install windows-docker-volume from script
+    //   source: path.resolve(__dirname, '../../resource/localDevelopmentEnvironment/WindowsOS/virtualization/DockerWindowsVolumeWatcher'),
+    //   get destination() {
+    //     return path.join(userFolder, 'Desktop', 'DockerWindowsVolumeWatcher')
+    //   },
+    // },
   ])
   
 }
