@@ -2,7 +2,6 @@
 
 Google Translate 
 Just Black 
-Web Store 
 ColorZilla 
 Lighthouse 
 Dark Reader 
@@ -15,16 +14,9 @@ Wappalyzer
 Wizmage Image Hider 
 WhatFont 
 Apollo Client Developer Tools 
-Brave Rewards 
-CryptoTokenExtension 
-Brave WebTorrent 
-Cloud Print 
 Google Dictionary (by Google) 
 Chrome PDF Viewer 
-Brave 
 Prayer Times 
-Google Hangouts 
-Crypto Wallets 
 Privacy Badger 
 
 
