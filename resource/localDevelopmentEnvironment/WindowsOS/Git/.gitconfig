@@ -28,3 +28,5 @@
 	spellcheck = false
 [gc]
 	autoDetach = false
+[credential]
+	helper = wincred

@@ -158,9 +158,15 @@ localhost:8083      test.localhost
 ### Acronis True Image 2020:
     - disable startup using task manager and from msconfig. As the app does not have an option to uncheck startuping on boot.
 
+### Git: 
+    - Save github credentials in windows Credential Manager: `git config --global credential.helper wincred`, afterwards the next login from git command will save the credentials in Credential Manager.
+    Note the github global configuration should have already contain the entry for credntial helper "wincred", as the config is symlinked.
+
 ### SmartGit:
-    - log into github to create a token for the app or for windows git installation.
     - Change to dark theme.
+    - configure github intergration: preferences > hosting providers > Add (place token from github account or autogenerate one from SmartGit.)
+    - Allow manipulating pushed commits: Preferences > Commands > Push - Allow modifying pushed commeits.
+
 ___
 
 # Setup Windows & WSL environment: ✔️
