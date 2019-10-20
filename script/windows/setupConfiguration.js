@@ -3,9 +3,11 @@
 // Create configuration symlinks to OS local user.
 import filesystem from 'fs'
 import path from 'path'
+const childProcess = require('child_process')
 import operatingSystem from 'os'
 import assert from 'assert'
 import { createSymlink } from '@dependency/deploymentScript/source/utility/filesystemOperation/createSymlink.js'
+import { readInput } from '@dependency/deploymentScript/source/utility/readInput.js'
 const userFolder = operatingSystem.homedir()
 
 assert(
@@ -15,6 +17,23 @@ assert(
     .includes('win'),
   `• This script must be run in the Windows OS (powershell.exe, bash.exe, cmd.exe, mintty.exe), not WSL.`,
 )
+
+export const setupGitConfig = async () => {
+  // set git profile information:
+  let email, name
+  try {
+    email = childProcess.execSync('git config --system user.email', { silent: true, encoding: 'utf8' })
+  } catch (error) {
+    /* ignore - usually throws if no username is set or config file exist */
+  }
+  try {
+    name = childProcess.execSync('git config --system user.name', { silent: true, encoding: 'utf8' })
+  } catch (error) {
+    /* ignore - usually throws if no username is set or config file exist */
+  }
+  if (!email) await readInput('• Provide git email address:  ').then(email => childProcess.execSync(`git config --system user.email ${email}`, { silent: true, encoding: 'utf8' }))
+  if (!name) await readInput('• Provide git name:  ').then(name => childProcess.execSync(`git config --system user.name ${name}`, { silent: true, encoding: 'utf8' }))
+}
 
 export const symlinkFileConfig = () => {
   createSymlink([
@@ -48,23 +67,11 @@ export const symlinkFileConfig = () => {
         return path.join(userFolder, 'AppData/Roaming', path.basename(this.source))
       },
     },
-    // vscode settngs are synced with gist using "Settings Sync" extension
-    // {
-    //   source: path.resolve(__dirname, '../../resource/localDevelopmentEnvironment/WindowsOS/vscode/keybindings.json'),
-    //   get destination() {
-    //     return path.join(userFolder, 'AppData/Roaming/Code - Insiders/User', path.basename(this.source))
-    //   },
-    // },
-    // {
-    //   source: path.resolve(__dirname, '../../resource/localDevelopmentEnvironment/WindowsOS/vscode/settings.json'),
-    //   get destination() {
-    //     return path.join(userFolder, 'AppData/Roaming/Code - Insiders/User', path.basename(this.source))
-    //   },
-    // },
     {
       source: path.resolve(__dirname, '../../resource/localDevelopmentEnvironment/WindowsOS/autoHotKey-switchDesktopUsingScroll.ahk'),
       get destination() {
-        return path.join(userFolder, 'Desktop', path.basename(this.source))
+        // symlink to `%appdata%\Microsoft\Windows\Start Menu\Programs\Startup`
+        return path.join(userFolder, 'AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup', path.basename(this.source))
       },
     },
     {

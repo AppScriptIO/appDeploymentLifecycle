@@ -7,17 +7,17 @@
 	autocrlf = false
 	excludesfile = ./configuration/.gitignore
 	symlinks = false
-	# eol = lf
-	# editor = \"C:/Program Files (x86)/GitExtensions/GitExtensions.exe\" fileeditor
-	editor = \"C:\\\\Program Files\\\\Microsoft VS Code Insiders\\\\Code - Insiders.exe\" --wait
+	eol = lf
+	# TODO: Check if the following works with `cd \\\\ &&`
+	editor = \"cd \\\\ && .\\\\Program Files\\\\Microsoft VS Code Insiders\\\\Code - Insiders.exe\" --wait
 [merge]
 	tool = kdiff3
 [mergetool "kdiff3"]
-	path = C:/Program Files (x86)/KDiff3/kdiff3.exe
+	path = C:/Program Files/KDiff3/kdiff3.exe
 [diff]
 	guitool = kdiff3
 [difftool "kdiff3"]
-	path = C:/Program Files (x86)/KDiff3/kdiff3.exe
+	path = C:/Program Files/KDiff3/kdiff3.exe
 [pull]
 	rebase = false
 [fetch]

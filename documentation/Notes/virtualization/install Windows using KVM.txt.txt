@@ -1,0 +1,5 @@
+Note that windows installation to a disk can be done without a physical flash media. Creating a virtual machine in KVM on linux, with a physical disk storage and an ISO attached will allow to install windows directly into the disk.
+
+One important thing to consider is the boot type used for the VM: 
+- MBR BIOS will lead to a windows installation with MBR partition.
+- UEFI BIOS for the VM will lead to a windows installation with GPT partions, which will work for the physical machine that the OS will end up used on.

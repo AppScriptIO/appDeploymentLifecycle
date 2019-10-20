@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <key name="Software">
 	<key name="ConEmu">
-		<key name=".Vanilla" modified="2019-08-15 11:27:51" build="190310">
+		<key name=".Vanilla" modified="2019-10-20 13:46:34" build="191012">
 			<value name="Language" type="string" data="en"/>
 			<value name="StartType" type="hex" data="02"/>
 			<value name="CmdLine" type="string" data=""/>
@@ -25,7 +25,7 @@
 			<value name="ColorTable12" type="dword" data="002929ef"/>
 			<value name="ColorTable13" type="dword" data="00a87fad"/>
 			<value name="ColorTable14" type="dword" data="004fe9fc"/>
-			<value name="ColorTable15" type="dword" data="00a4a4a4"/>
+			<value name="ColorTable15" type="dword" data="00ffffff"/>
 			<value name="TextColorIdx" type="hex" data="10"/>
 			<value name="BackColorIdx" type="hex" data="10"/>
 			<value name="PopTextColorIdx" type="hex" data="10"/>
@@ -116,7 +116,7 @@
 			<value name="FontName" type="string" data="Consolas"/>
 			<value name="FontName2" type="string" data="Consolas"/>
 			<value name="FontAutoSize" type="hex" data="00"/>
-			<value name="FontSize" type="ulong" data="14"/>
+			<value name="FontSize" type="ulong" data="16"/>
 			<value name="FontSizeX" type="ulong" data="0"/>
 			<value name="FontUseDpi" type="hex" data="01"/>
 			<value name="FontUseUnits" type="hex" data="01"/>
@@ -145,11 +145,11 @@
 			<value name="Cascaded" type="hex" data="01"/>
 			<value name="IntegralSize" type="hex" data="00"/>
 			<value name="WindowMode" type="dword" data="00000520"/>
-			<value name="ConWnd X" type="long" data="1610"/>
-			<value name="ConWnd Y" type="long" data="582"/>
+			<value name="ConWnd X" type="long" data="1345"/>
+			<value name="ConWnd Y" type="long" data="278"/>
 			<value name="LastMonitor" type="string" data="0,60,3840,2160"/>
-			<value name="ConWnd Width" type="dword" data="0000001c"/>
-			<value name="ConWnd Height" type="dword" data="00000013"/>
+			<value name="ConWnd Width" type="dword" data="00000035"/>
+			<value name="ConWnd Height" type="dword" data="00000027"/>
 			<value name="16bit Height" type="ulong" data="0"/>
 			<value name="QuakeStyle" type="hex" data="00"/>
 			<value name="Restore2ActiveMon" type="hex" data="00"/>
@@ -606,7 +606,7 @@
 				<value name="DndRKey" type="hex" data="A2"/>
 				<value name="WndDragKey" type="dword" data="00121101"/>
 			</key>
-			<key name="Tasks" modified="2019-03-15 04:40:16" build="190310">
+			<key name="Tasks" modified="2019-10-20 13:57:28" build="191012">
 				<value name="Count" type="long" data="12"/>
 				<key name="Task1" modified="2019-03-12 12:39:11" build="190310">
 					<value name="Name" type="string" data="{WSL(Bash::bash) with default shell}"/>
@@ -724,6 +724,9 @@
 			<key name="Colors" modified="2019-03-05 00:36:01" build="190108">
 				<value name="Count" type="long" data="0"/>
 			</key>
+			<value name="AnsiLogCodes" type="hex" data="00"/>
+			<value name="AutoReloadEnvironment" type="hex" data="01"/>
+			<value name="StatusBar.Hide.InputGrouping" type="hex" data="00"/>
 		</key>
 	</key>
 </key>

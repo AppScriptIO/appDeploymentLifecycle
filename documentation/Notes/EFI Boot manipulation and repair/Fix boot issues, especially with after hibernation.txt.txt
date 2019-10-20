@@ -1,0 +1,33 @@
+# Background: 
+After playing around with OS installations on different disks, creating partitions with multiple operating system installations, and changing UEFI records using differnt software, 
+an issue with Windows not booting up and showing up error `A required device cannot be accessed, xc000000f , File:\Windows\system32\winload.efi`started appearing, especially after starting from hibernate mode.
+
+# Notes to consider: 
+- Does any BIOS/UEFI settings prevent loading of the Windows and usage of Hibernation ? No. 
+	- Changing storage setting in the firmware menu, between RAID and AHCI modes causes Windows not to boot, even though the no RAID volume is created (all are non RAID disks).  But it is unrelated to the issue described, although could be solved with the same steps in the solution below. (this change results in a different error code `xc0000001`)
+	- Changing BIOS UEFI registered signatures to `standart` or default, doesn't affect the issue at all. 
+- Does drivers or some software prevents Windows from loading ? No.
+	- Neither turnning off all drivers and preventing services from loading, or uninstalling some drirvers, affect the issue. Non resolves the problem.
+- Does manipulating boot options in `msconfig.exe` or through `Winaero` applications affect the issue ? No.
+
+# Diagnosis: The issue is caused by BCD/UEFI data records corruption or errors. 
+
+Solution: 
+- May fix issue: Try accessing Safe Mode then running boot repair program, e.g. `dual-boot repair` or `visual boot editor`, which will fix the table records in the EFI partition.
+- Use Recovery Repair the Windows recovery menu or a Windows flash media to `startup repair`.
+
+# Partition creation manually for Windows 10 - EFI, MSR (Microsoft reserved partition) partitions
+https://medium.com/hetman-software/how-to-restore-the-structure-of-deleted-efi-partitions-in-windows-2019-598a44c7b8a1
+
+# detailed conclusion after trying to get Hibernation to work with dual boot setup (Windows & Linux):
+After manipulating paritions, moving and recreating EFI paritions between different disks, hibernation issue was not resolved.
+Even if the boot is fixed and both Windows and Linux boot with no issue, it seems that hibernation wouldn't work well when changes are made manually or through thirdparty programs,
+which add enteries to the EFI data store.
+Several things to consider: 
+- Grub/Grub2 boot loader which is installed in the main partition for the Linux System, is always read by the UEFI firmware on startup. 
+So even if the EFI partition was updated the Grub seems to hold old enteries which causes issues. Usually the UEFI firmware on stratup scans for the enteries in the different parititoins and those that do not load will be skipped.
+- Dual boot seems to be the main cause of issues for hibernation to work on Windows 10.
+- In clean installation of Windows 10 should be considered the exact EFI partition that Windows 10 will be installed on. If no parititon exists in the same disk of the intendent Windows System installation, the installer will choose an EFI from a different disk. Here issues start to rise.
+- Sharing the same EFI parititon with other OS installations seems to be an issue for Windows.
+
+# The problem was not fixed at the end and a removal of the Linux OS with removing all the EFI paritions on all disks, and clean installing Windows (letting the installer to create Recovery, MSR, EFI, OS partitions) seems to fix the hibernation issue.

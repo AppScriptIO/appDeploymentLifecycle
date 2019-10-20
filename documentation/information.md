@@ -11,14 +11,14 @@
 Resources folder -
 •  contains configuration files that are version controlled for WSL, Windows OS, and deployment VMs/Containers provisionning. In addition to setup instruction notes.
 
-[Guide to setting up Windows environment for development](./"Guide to setting up Windows environment for development.md")
+[Guide to setting up Windows environment for development](./systemProvisionGuide/"Guide to setting up Windows environment for development.md")
 
 [Glossary for terms used in related projects](./documentation/glossary.md)
 ___
 
 # Usage: 
 # in elevated powershell: 
-./entrypoint/windows.ps1
+yarn run setup
 ___
 
 [TODO list](/documentation/todo-list.md)

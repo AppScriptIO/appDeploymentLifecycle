@@ -142,3 +142,8 @@ prime-select query
 ## Disk cache mode: 
 https://doc.opensuse.org/documentation/leap/virtualization/html/book.virt/cha.cachemodes.html
 
+# turnoff swap and remove partition
+`swapoff -a`
+
+# repair boot -
+https://www.howtogeek.com/114884/how-to-repair-grub2-when-ubuntu-wont-boot/

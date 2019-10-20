@@ -1,7 +1,7 @@
-# Chromium extensions list:
+# Chromium extensions list: for brave or chrome
 
 Google Translate 
-Just Black 
+Just Black Respect (Theme - "Just Black: Respect")
 ColorZilla 
 Lighthouse 
 Dark Reader 
@@ -15,10 +15,5 @@ Wizmage Image Hider
 WhatFont 
 Apollo Client Developer Tools 
 Google Dictionary (by Google) 
-Chrome PDF Viewer 
 Prayer Times 
 Privacy Badger 
-
-
-# Settings for Chromium: 
-- Theme - "Just Black: Respect"

@@ -28,10 +28,11 @@ try {
     echo 'Using `choco` to install.'
     choco install -y nodejs yarn
     refreshenv # refresh path commands
-    node ./node_modules/.bin/scriptManager shouldCompileScript=true windows/symlinkConfiguration.js ".symlinkFileConfig()"
+    node ./node_modules/.bin/scriptManager shouldCompileScript=true windows/setupConfiguration.js ".setupGitConfig()"
+    node ./node_modules/.bin/scriptManager shouldCompileScript=true windows/setupConfiguration.js ".symlinkFileConfig()"
 
     ## Setup WSL 
-    wsl yarn run scriptManager shouldCompileScript=true script/windowsSubsystemForLinux/installPackageAndSymlinkConfiguration.js '".nonElevatedCallback()"'
+    wsl yarn run scriptManager shouldCompileScript=true windowsSubsystemForLinux/installPackageAndSymlinkConfiguration.js '".nonElevatedCallback()"'
 }
 catch {
     Write-Error $_.Exception.ToString()

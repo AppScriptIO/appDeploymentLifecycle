@@ -1,0 +1,4 @@
+
+https://askubuntu.com/questions/63610/how-do-i-remove-ubuntu-in-the-bios-boot-menu-uefi
+
+or use `grub customizer` in ubuntu store.

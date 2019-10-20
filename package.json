@@ -3,7 +3,7 @@
   "version": "1.0.1",
   "main": "./",
   "scripts": {
-    "setup": "powershell.exe ./entrypoint/setup.ps1"
+    "setup": "powershell.exe -executionpolicy bypass -file ./entrypoint/setup.ps1"
   },
   "dependencies": {},
   "devDependencies": {
