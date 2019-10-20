@@ -54,6 +54,7 @@ Install from CD ROM (ISO), where the following drivers should downloaded and use
 	- remove temporary storage files, activity history, recents explorer, before creating a restore point.
 
 # set Settings: 
+- Don't require sign-in after wakeup: settings > Accounts > Sign-in options > Require signin.
 - Networking: 
     - Change network workgroup name & computer name (random generated).
     - turn off network discovery.

@@ -28,6 +28,7 @@ try {
     echo 'Using `choco` to install.'
     choco install -y nodejs yarn
     refreshenv # refresh path commands
+    node ./node_modules/.bin/scriptManager shouldCompileScript=true windows/setupConfiguration.js ".installPackage()"
     node ./node_modules/.bin/scriptManager shouldCompileScript=true windows/setupConfiguration.js ".setupGitConfig()"
     node ./node_modules/.bin/scriptManager shouldCompileScript=true windows/setupConfiguration.js ".symlinkFileConfig()"
 

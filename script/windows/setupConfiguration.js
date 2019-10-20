@@ -8,6 +8,7 @@ import operatingSystem from 'os'
 import assert from 'assert'
 import { createSymlink } from '@dependency/deploymentScript/source/utility/filesystemOperation/createSymlink.js'
 import { readInput } from '@dependency/deploymentScript/source/utility/readInput.js'
+import { npmInstall as installJSHint } from '@dependency/deploymentScript/script/provisionOS/installJshint.js'
 const userFolder = operatingSystem.homedir()
 
 assert(
@@ -17,6 +18,10 @@ assert(
     .includes('win'),
   `• This script must be run in the Windows OS (powershell.exe, bash.exe, cmd.exe, mintty.exe), not WSL.`,
 )
+
+export const installPackage = () => {
+  installJSHint() // Installed globally for usage with VSCode extension
+}
 
 export const setupGitConfig = async () => {
   // set git profile information:
