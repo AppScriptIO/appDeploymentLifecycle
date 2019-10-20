@@ -14,7 +14,6 @@ Install Windows and make sure the installer creates it's own EFI & Recovery part
         - remove UEFI boot of previous insllations - using any BCD editor software (e.g. "visual BCD editor")
 	- Update Windows
 
-
 # Drivers: 
 Install drivers and control center for overclocking from pc manufacturer.
 Install from CD ROM (ISO), where the following drivers should downloaded and use an updated version:
@@ -159,6 +158,9 @@ localhost:8083      test.localhost
 ### Acronis True Image 2020:
     - disable startup using task manager and from msconfig. As the app does not have an option to uncheck startuping on boot.
 
+### SmartGit:
+    - log into github to create a token for the app or for windows git installation.
+    - Change to dark theme.
 ___
 
 # Setup Windows & WSL environment: ✔️
@@ -168,6 +170,7 @@ ___
 - Symlink .ssh folder to WSL: `ln -s /<.ssh location>/.ssh /root/.ssh`
 
 - TODO: (WSL2 may replace this option, as it allows calling wsl commands from Windows) setup wslgit which will allow to use a single installation of git on WSL - https://github.com/andy-5/wslgit or https://github.com/hangxingliu/wslgit
+
 ___
 
 # 💾 verify environment then: create `restore point` and remove all other restore points. (system properties > system protection > configure restore points for the system drive)
