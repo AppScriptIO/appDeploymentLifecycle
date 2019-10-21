@@ -8,8 +8,7 @@
 	excludesfile = ./configuration/.gitignore
 	symlinks = false
 	eol = lf
-	# TODO: Check if the following works with `cd \\\\ &&`
-	editor = \"cd \\\\ && .\\\\Program Files\\\\Microsoft VS Code Insiders\\\\Code - Insiders.exe\" --wait
+	editor = \"cd // && .//Program Files//Microsoft VS Code Insiders//Code - Insiders.exe\" --wait
 [merge]
 	tool = kdiff3
 [mergetool "kdiff3"]
