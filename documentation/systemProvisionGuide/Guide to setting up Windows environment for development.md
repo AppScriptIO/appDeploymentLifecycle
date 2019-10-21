@@ -149,6 +149,11 @@ localhost:8083      test.localhost
         `GPEDIT.MSC`> Computer Configuration\Windows Settings\Security Settings\Local Policies\User Rights Assignment > Deny Logon Locally
 - Expose daemon on localhost (for Docker Desktop settings) - for usage wit WSL Docker client
 - TODO: Enable Kubernates
+- download images: 
+    - Memgraph image - https://docs.memgraph.com/memgraph/quick-start#docker-installation
+    - docker pull neo4j; docker pull node; docker pull portainer/portainer
+- Run docker containers: 
+    - run portainer with autostart. (run appDeploymentLifecycle\resource\localDevelopmentEnvironment\WindowsOS\container\containerGUI\setup.windowsShellExecutableForm.bat)
 
 ### Winrar:
 - Settings > Integration > Cascaded context menu.
@@ -182,3 +187,9 @@ ___
 
 # 💾 verify environment then: create `restore point` and remove all other restore points. (system properties > system protection > configure restore points for the system drive)
 # 💾 Create a Windows ISO image full backup. - using "Acronis True Image 2020" (for Full partitions backup into .img files or iso)
+
+
+___
+
+Download other development tools: 
+    - Memgraph - https://docs.memgraph.com/memgraph/quick-start#docker-installation

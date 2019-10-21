@@ -3,6 +3,9 @@
 ___
 
 # Installed Windows software without a pacakge manager:
+Memgraph Lab (https://memgraph.com/download/)
+Neo4j Desktop (https://neo4j.com/download-neo4j-now/)
+
 webroot internet security (with license)
 VSCode insiders
 whatsapp desktop
