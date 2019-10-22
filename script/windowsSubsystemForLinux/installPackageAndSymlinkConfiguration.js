@@ -3,15 +3,7 @@ import path from 'path'
 import filesystem from 'fs'
 import operatingSystem from 'os'
 import assert from 'assert'
-import { copyFile } from '@dependency/deploymentProvisioning'
-import { isElevatedPermission } from '@dependency/deploymentProvisioning'
-import { readInput } from '@dependency/deploymentProvisioning'
-import { installDocker } from '@dependency/deploymentProvisioning'
-import { installGit } from '@dependency/deploymentProvisioning'
-import { installShellZsh } from '@dependency/deploymentProvisioning'
-import { installYarn } from '@dependency/deploymentProvisioning'
-import { installJSPM } from '@dependency/deploymentProvisioning'
-import { updateLinux } from '@dependency/deploymentProvisioning'
+import * as provision from '@dependency/deploymentProvisioning'
 
 assert(
   operatingSystem
@@ -23,7 +15,7 @@ assert(
 console.log(`• Executing on unix user "${operatingSystem.userInfo().username}"`)
 
 export const nonElevatedCallback = async () => {
-  assert(!isElevatedPermission.isRootPermission(), `• Must run as non-root, in which it will be eleveated in a separate process.`)
+  assert(!provision.permission.isElevatedPermissionCheck(), `• Must run as non-root, in which it will be eleveated in a separate process.`)
   /*
     ___           _        _ _   ____            _                         
    |_ _|_ __  ___| |_ __ _| | | |  _ \ __ _  ___| | ____ _  __ _  ___  ___ 
@@ -32,12 +24,12 @@ export const nonElevatedCallback = async () => {
     |_|_| |_|___/\__\__,_|_|_| |_|   \__,_|\___|_|\_\__,_|\__, |\___||___/
                                                           |___/           
   */
-  updateLinux.updateAndUpgrade()
-  installDocker.install()
-  installGit.install()
-  installShellZsh.install()
-  installYarn.install()
-  installJSPM.install()
+  provision.updateLinux.updateAndUpgrade()
+  provision.docker.install()
+  provision.git.install()
+  provision.zshShell.install()
+  provision.yarn.install()
+  provision.jspm.install()
 
   /*
       ____             __ _                       _   _               _____ _ _           
@@ -60,12 +52,12 @@ export const nonElevatedCallback = async () => {
   } catch (error) {
     /* ignore - usually throws if no username is set or config file exist */
   }
-  if (!email) await readInput('• Provide git email address:  ').then(email => childProcess.execSync(`sudo git config --system user.email ${email}`, { silent: true, encoding: 'utf8' }))
-  if (!name) await readInput('• Provide git name:  ').then(name => childProcess.execSync(`sudo git config --system user.name ${name}`, { silent: true, encoding: 'utf8' }))
+  if (!email) await provision.shellInput.readInput('• Provide git email address:  ').then(email => childProcess.execSync(`sudo git config --system user.email ${email}`, { silent: true, encoding: 'utf8' }))
+  if (!name) await provision.shellInput.readInput('• Provide git name:  ').then(name => childProcess.execSync(`sudo git config --system user.name ${name}`, { silent: true, encoding: 'utf8' }))
 
   // Note: permission error may be caused by non existant destination paths.
   const userFolder = operatingSystem.homedir()
-  copyFile([
+  provision.copy.copyFile([
     {
       source: path.resolve(__dirname, '../../resource/localDevelopmentEnvironment/WindowsSubSystemForLinux/.gitconfig'),
       get destination() {
@@ -106,11 +98,11 @@ export const nonElevatedCallback = async () => {
 export const elevatedCallback = () => {
   // 2nd argument passed to indicate trigger by child process.
   assert(process.argv[2], `• Script must be directly initialized as non root (non-elevated) process.`)
-  assert(isElevatedPermission.isRootPermission(), `• Must run with root permissions.`)
+  assert(provision.permission.isElevatedPermissionCheck(), `• Must run with root permissions.`)
 
   // copy files that require root permission.
   const userFolder = operatingSystem.homedir()
-  copyFile([
+  provision.copy.copyFile([
     {
       source: path.resolve(__dirname, '../../resource/localDevelopmentEnvironment/WindowsSubSystemForLinux/wsl.conf'),
       get destination() {

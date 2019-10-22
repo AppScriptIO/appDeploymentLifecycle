@@ -6,9 +6,7 @@ import path from 'path'
 const childProcess = require('child_process')
 import operatingSystem from 'os'
 import assert from 'assert'
-import { createSymlink } from '@dependency/deploymentProvisioning'
-import { readInput } from '@dependency/deploymentProvisioning'
-import { installJshint } from '@dependency/deploymentProvisioning'
+import * as provision from '@dependency/deploymentProvisioning'
 const userFolder = operatingSystem.homedir()
 
 assert(
@@ -20,7 +18,7 @@ assert(
 )
 
 export const installPackage = () => {
-  installJSHint.install() // Installed globally for usage with VSCode extension
+  provision.jshint.install() // Installed globally for usage with VSCode extension
 }
 
 export const setupGitConfig = async () => {
@@ -36,12 +34,12 @@ export const setupGitConfig = async () => {
   } catch (error) {
     /* ignore - usually throws if no username is set or config file exist */
   }
-  if (!email) await readInput('• Provide git email address:  ').then(email => childProcess.execSync(`git config --system user.email ${email}`, { silent: true, encoding: 'utf8' }))
-  if (!name) await readInput('• Provide git name:  ').then(name => childProcess.execSync(`git config --system user.name ${name}`, { silent: true, encoding: 'utf8' }))
+  if (!email) await provision.shellInput.readInput('• Provide git email address:  ').then(email => childProcess.execSync(`git config --system user.email ${email}`, { silent: true, encoding: 'utf8' }))
+  if (!name) await provision.shellInput.readInput('• Provide git name:  ').then(name => childProcess.execSync(`git config --system user.name ${name}`, { silent: true, encoding: 'utf8' }))
 }
 
 export const symlinkFileConfig = () => {
-  createSymlink([
+  provision.symlink.createSymlink([
     {
       source: path.resolve(__dirname, '../../resource/localDevelopmentEnvironment/WindowsOS/shell/bash/.bashrc'),
       get destination() {
