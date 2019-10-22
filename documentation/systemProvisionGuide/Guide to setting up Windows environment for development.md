@@ -132,6 +132,7 @@ localhost:8083      test.localhost
 
 ### VSCode: 
 - Synchronize settings with gist `90e15820071cc7bdef5507c8b75d9bf8` using `settings sync` vscode extension. after setting gist id, press ctrl+shift+d to download the settings (ctrl+shift+P -> Sync: Download).
+- TODO: add code fonts with recursive and different used fonts in same document
 
 ### RadioTray: 
 - Add recitation channels

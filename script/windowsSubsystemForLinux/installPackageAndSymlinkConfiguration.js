@@ -3,15 +3,15 @@ import path from 'path'
 import filesystem from 'fs'
 import operatingSystem from 'os'
 import assert from 'assert'
-import { copyFile } from '@dependency/deploymentScript/source/utility/filesystemOperation/copyFile.js'
-import { isRootPermission } from '@dependency/deploymentScript/source/utility/isElevatedPermission.js'
-import { readInput } from '@dependency/deploymentScript/source/utility/readInput.js'
-import { install as installDocker } from '@dependency/deploymentScript/script/provisionOS/installUnixPackage/installDocker.js'
-import { install as installGit } from '@dependency/deploymentScript/script/provisionOS/installUnixPackage/installGit.js'
-import { install as installShellZsh } from '@dependency/deploymentScript/script/provisionOS/installUnixPackage/installShellZsh.js'
-import { install as installYarn } from '@dependency/deploymentScript/script/provisionOS/installUnixPackage/installYarn.js'
-import { install as installJSPM } from '@dependency/deploymentScript/script/provisionOS/installUnixPackage/installJSPM.js'
-import { updateAndUpgrade } from '@dependency/deploymentScript/script/provisionOS/installUnixPackage/updateLinux.js'
+import { copyFile } from '@dependency/deploymentProvisioning'
+import { isElevatedPermission } from '@dependency/deploymentProvisioning'
+import { readInput } from '@dependency/deploymentProvisioning'
+import { installDocker } from '@dependency/deploymentProvisioning'
+import { installGit } from '@dependency/deploymentProvisioning'
+import { installShellZsh } from '@dependency/deploymentProvisioning'
+import { installYarn } from '@dependency/deploymentProvisioning'
+import { installJSPM } from '@dependency/deploymentProvisioning'
+import { updateLinux } from '@dependency/deploymentProvisioning'
 
 assert(
   operatingSystem
@@ -23,7 +23,7 @@ assert(
 console.log(`• Executing on unix user "${operatingSystem.userInfo().username}"`)
 
 export const nonElevatedCallback = async () => {
-  assert(!isRootPermission(), `• Must run as non-root, in which it will be eleveated in a separate process.`)
+  assert(!isElevatedPermission.isRootPermission(), `• Must run as non-root, in which it will be eleveated in a separate process.`)
   /*
     ___           _        _ _   ____            _                         
    |_ _|_ __  ___| |_ __ _| | | |  _ \ __ _  ___| | ____ _  __ _  ___  ___ 
@@ -32,12 +32,12 @@ export const nonElevatedCallback = async () => {
     |_|_| |_|___/\__\__,_|_|_| |_|   \__,_|\___|_|\_\__,_|\__, |\___||___/
                                                           |___/           
   */
-  updateAndUpgrade()
-  installDocker()
-  installGit()
-  installShellZsh()
-  installYarn()
-  installJSPM()
+  updateLinux.updateAndUpgrade()
+  installDocker.install()
+  installGit.install()
+  installShellZsh.install()
+  installYarn.install()
+  installJSPM.install()
 
   /*
       ____             __ _                       _   _               _____ _ _           
@@ -106,7 +106,7 @@ export const nonElevatedCallback = async () => {
 export const elevatedCallback = () => {
   // 2nd argument passed to indicate trigger by child process.
   assert(process.argv[2], `• Script must be directly initialized as non root (non-elevated) process.`)
-  assert(isRootPermission(), `• Must run with root permissions.`)
+  assert(isElevatedPermission.isRootPermission(), `• Must run with root permissions.`)
 
   // copy files that require root permission.
   const userFolder = operatingSystem.homedir()

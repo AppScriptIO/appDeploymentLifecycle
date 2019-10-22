@@ -6,9 +6,9 @@ import path from 'path'
 const childProcess = require('child_process')
 import operatingSystem from 'os'
 import assert from 'assert'
-import { createSymlink } from '@dependency/deploymentScript/source/utility/filesystemOperation/createSymlink.js'
-import { readInput } from '@dependency/deploymentScript/source/utility/readInput.js'
-import { npmInstall as installJSHint } from '@dependency/deploymentScript/script/provisionOS/installJshint.js'
+import { createSymlink } from '@dependency/deploymentProvisioning'
+import { readInput } from '@dependency/deploymentProvisioning'
+import { installJshint } from '@dependency/deploymentProvisioning'
 const userFolder = operatingSystem.homedir()
 
 assert(
@@ -20,7 +20,7 @@ assert(
 )
 
 export const installPackage = () => {
-  installJSHint() // Installed globally for usage with VSCode extension
+  installJSHint.install() // Installed globally for usage with VSCode extension
 }
 
 export const setupGitConfig = async () => {
