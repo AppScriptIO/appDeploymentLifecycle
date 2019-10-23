@@ -3,7 +3,7 @@
   "version": "1.0.1",
   "main": "./",
   "scripts": {
-    "setup": "powershell.exe -executionpolicy bypass -file ./entrypoint/setup.ps1",
+    "setup": "powershell.exe -executionpolicy bypass -file ./entrypoint/setup.ps1"
   },
   "dependencies": {
     "@dependency/deploymentProvisioning": "https://github.com/AppScriptIO/deploymentProvisioning#semver:^1.x.x"
