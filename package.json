@@ -1,18 +1,20 @@
 {
-  "name": "@dependency/appDeploymentLifecycle",
-  "version": "1.0.1",
-  "main": "./",
-  "scripts": {
-    "setup": "powershell.exe -executionpolicy bypass -file ./entrypoint/setup.ps1"
-  },
-  "dependencies": {
-    "@dependency/deploymentProvisioning": "https://github.com/AppScriptIO/deploymentProvisioning#semver:^1.x.x"
-  },
-  "devDependencies": {
-    "@dependency/deploymentScript": "https://github.com/AppScriptIO/deploymentScript#semver:^1.x.x",
-    "@dependency/javascriptStaticAnalysis": "https://github.com/AppScriptIO/javascriptStaticAnalysis#semver:^1.x.x",
-    "@dependency/javascriptTranspilation": "https://github.com/AppScriptIO/javascriptTranspilation#semver:^1.x.x",
-    "@dependency/scriptManager": "https://github.com/AppScriptIO/scriptManager#semver:^1.x.x",
-    "typescript": "^3.3.3333"
-  }
+	"name": "@dependency/appDeploymentLifecycle",
+	"version": "1.0.2",
+	"main": "./",
+	"scripts": {
+		"setup": "powershell.exe -executionpolicy bypass -file ./entrypoint/setup.ps1",
+		"buildAndRelease": "yarn run scriptManager shouldCompileScript=true JSProject/buildAndRelease \".moduleProject({})\"",
+		"build": "yarn run scriptManager shouldCompileScript=true JSProject/buildSourceCode \".moduleProject({}, {compile:[/**'./test'*/]})\""
+	},
+	"dependencies": {
+		"@dependency/deploymentProvisioning": "https://github.com/AppScriptIO/deploymentProvisioning#semver:^1.x.x"
+	},
+	"devDependencies": {
+		"@dependency/deploymentScript": "https://github.com/AppScriptIO/deploymentScript#semver:^1.x.x",
+		"@dependency/javascriptStaticAnalysis": "https://github.com/AppScriptIO/javascriptStaticAnalysis#semver:^1.x.x",
+		"@dependency/javascriptTranspilation": "https://github.com/AppScriptIO/javascriptTranspilation#semver:^1.x.x",
+		"@dependency/scriptManager": "https://github.com/AppScriptIO/scriptManager#semver:^1.x.x",
+		"typescript": "^3.3.3333"
+	}
 }
