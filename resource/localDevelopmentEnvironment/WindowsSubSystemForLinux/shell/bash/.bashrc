@@ -21,6 +21,10 @@
 # Connect to Windows Docker Engine
 export DOCKER_HOST=tcp://127.0.0.1:2375
 
+# always preserve environment variables when using sudo (this allows variables like DOCKER_HOST to exist in time of sudo usage).
+# To run the original command without removing the alias from memory use `command sudo` e.g. `command sudo --help`
+alias sudo='sudo --preserve-env'
+
 # host machine node scripts require following symlinks
 # export NODE_PRESERVE_SYMLINKS=0
 
