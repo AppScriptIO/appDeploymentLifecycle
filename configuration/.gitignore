@@ -31,3 +31,6 @@ Thumbs.db
 pids
 *.pid
 *.seed
+
+# Start Menu Backup program: 
+Info.ini
