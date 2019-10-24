@@ -39,6 +39,8 @@ Install from CD ROM (ISO), where the following drivers should downloaded and use
 	- enable Developer Mode (enables bash for wsl and other features.)
 
 # Install chocolatey pacakge manager and [Install Windows software](./installWindowsSoftwareAndChromiumExtensions.md) with chrome extensions to Brave browser✔️
+    - Afterwards, run `Auroruns` program to disable unneeded update services (e.g. office related).
+    - Add to firewall programs to prevent connection to the internet in case required.
 
 # Add software shortcuts to "Start Menu" & Taskbar: 
     - taskbar: Explorer, Brave, Chrome Canary, VSCodeInsiders, Powershell, ConEmu, GitBash, SmartGit, Microsoft Visio, Fiddler, Postman, StickyNotes, Email, Alarm, IslamicFinder Athan
