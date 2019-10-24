@@ -4,6 +4,8 @@ import filesystem from 'fs'
 import operatingSystem from 'os'
 import assert from 'assert'
 import * as provision from '@dependency/deploymentProvisioning'
+import { getRootDirectory } from '../utility/getRootUserFolder.js'
+const childProcessOption = { cwd: __dirname, shell: true, stdio: [0, 1, 2] }
 
 assert(
   operatingSystem
@@ -52,7 +54,8 @@ export const nonElevatedCallback = async () => {
   } catch (error) {
     /* ignore - usually throws if no username is set or config file exist */
   }
-  if (!email) await provision.shellInput.readInput('• Provide git email address:  ').then(email => childProcess.execSync(`sudo git config --system user.email ${email}`, { silent: true, encoding: 'utf8' }))
+  if (!email)
+    await provision.shellInput.readInput('• Provide git email address:  ').then(email => childProcess.execSync(`sudo git config --system user.email ${email}`, { silent: true, encoding: 'utf8' }))
   if (!name) await provision.shellInput.readInput('• Provide git name:  ').then(name => childProcess.execSync(`sudo git config --system user.name ${name}`, { silent: true, encoding: 'utf8' }))
 
   // Note: permission error may be caused by non existant destination paths.
@@ -100,7 +103,15 @@ export const elevatedCallback = () => {
   assert(process.argv[2], `• Script must be directly initialized as non root (non-elevated) process.`)
   assert(provision.permission.isElevatedPermissionCheck(), `• Must run with root permissions.`)
 
-  // copy files that require root permission.
+  /*
+      ____             __ _                       _   _               _____ _ _           
+    / ___|___  _ __  / _(_) __ _ _   _ _ __ __ _| |_(_) ___  _ __   |  ___(_) | ___  ___ 
+    | |   / _ \| '_ \| |_| |/ _` | | | | '__/ _` | __| |/ _ \| '_ \  | |_  | | |/ _ \/ __|
+    | |__| (_) | | | |  _| | (_| | |_| | | | (_| | |_| | (_) | | | | |  _| | | |  __/\__ \
+    \____\___/|_| |_|_| |_|\__, |\__,_|_|  \__,_|\__|_|\___/|_| |_| |_|   |_|_|\___||___/
+                            |___/                                                         
+    copy files that require root permission.
+  */
   const userFolder = operatingSystem.homedir()
   provision.copy.copyFile([
     {
@@ -109,7 +120,25 @@ export const elevatedCallback = () => {
         return path.join('/etc/', path.basename(this.source))
       },
     },
+    {
+      source: path.resolve(__dirname, '../../resource/localDevelopmentEnvironment/WindowsSubSystemForLinux/shell/bash/.bashrc'),
+      get destination() {
+        // root userfolder
+        return path.join(getRootDirectory(), path.basename(this.source))
+      },
+    },
   ])
+
+  /*
+     ____       _   _   _                                       _ _  __ _           _   _                 
+    / ___|  ___| |_| |_(_)_ __   __ _ ___   _ __ ___   ___   __| (_)/ _(_) ___ __ _| |_(_) ___  _ __  ___ 
+    \___ \ / _ \ __| __| | '_ \ / _` / __| | '_ ` _ \ / _ \ / _` | | |_| |/ __/ _` | __| |/ _ \| '_ \/ __|
+     ___) |  __/ |_| |_| | | | | (_| \__ \ | | | | | | (_) | (_| | |  _| | (_| (_| | |_| | (_) | | | \__ \
+    |____/ \___|\__|\__|_|_| |_|\__, |___/ |_| |_| |_|\___/ \__,_|_|_| |_|\___\__,_|\__|_|\___/|_| |_|___/
+                                |___/                                                                     
+  */
+
+  childProcess.execSync('sudo chsh root --shell /bin/bash', childProcessOption)
 }
 
 function runElevatedSection() {

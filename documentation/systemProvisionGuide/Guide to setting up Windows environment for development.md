@@ -176,6 +176,9 @@ localhost:8083      test.localhost
     - configure github intergration: preferences > hosting providers > Add (place token from github account or autogenerate one from SmartGit.)
     - Allow manipulating pushed commits: Preferences > Commands > Push - Allow modifying pushed commeits.
 
+### Postman: 
+    - change theme to dark
+
 ___
 
 # Setup Windows & WSL environment: ✔️
