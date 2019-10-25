@@ -1,6 +1,3 @@
-# Connect to Windows Docker Engine
-export DOCKER_HOST=tcp://127.0.0.1:2375
-
 # If you come from bash you might have to change your $PATH.
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$HOME/bin:/usr/local/bin:$PATH"
 
@@ -103,3 +100,13 @@ source $ZSH/oh-my-zsh.sh
 
  # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
+
+
+# Connect to Windows Docker Engine
+export DOCKER_HOST=tcp://127.0.0.1:2375
+
+# always preserve environment variables when using sudo (this allows variables like DOCKER_HOST to exist in time of sudo usage).
+# To run the original command without removing the alias from memory use `command sudo` e.g. `command sudo --help`
+# NOTE: zsh autocorrection plugin aliases sudo to `sudo='nocorrect sudo'` https://unix.stackexchange.com/questions/260563/sudo-nocorrect-command-not-found
+   # Therefore to override sudo and prevent aurocompletion from alises it's own alias, replace it with: 
+alias sudo='nocorrect sudo --preserve-env'
