@@ -1,0 +1,5 @@
+OperatorMonoSSm - Enhanced Clarity. H&Co’s Office Fonts have a larger lowercase, a more generous fit, and clearer gestures, making them easier to read both on screen and in print (compare the A columns, above.) They have a heightened contrast between regular and bold styles, to make boldface type unambiguous (A1), and are engineered with ScreenSmart™ technology to render crisp and clear text on Windows.
+Use OperatorMonoSSm instead of OperatorMono
+
+
+

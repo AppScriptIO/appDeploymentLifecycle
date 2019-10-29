@@ -31,3 +31,5 @@ So even if the EFI partition was updated the Grub seems to hold old enteries whi
 - Sharing the same EFI parititon with other OS installations seems to be an issue for Windows.
 
 # The problem was not fixed at the end and a removal of the Linux OS with removing all the EFI paritions on all disks, and clean installing Windows (letting the installer to create Recovery, MSR, EFI, OS partitions) seems to fix the hibernation issue.
+
+##### Update: the issue is in the Windows 10 pro latest versions, which are preventing Hibernation to work with Hyper-V feature turned on.

@@ -1,6 +1,10 @@
 # **Guide to setting up Windows environment for development**
 ___
 
+# Linux: 
+- Install a secondary Linux OS for recovery purposes. e.g. `Debian` > `Ubuntu` > `Pop OS`
+- Make sure to create a EFI Partition separate from the Windows OS one.
+
 # BIOS:
 	- storge management: Use AHCI instead of RAID. 
 	- Turn on secure boot with custom registered keys.
@@ -43,7 +47,7 @@ Install from CD ROM (ISO), where the following drivers should downloaded and use
     - Add to firewall programs to prevent connection to the internet in case required.
 
 # Add software shortcuts to "Start Menu" & Taskbar: 
-    - taskbar: Explorer, Brave, Chrome Canary, VSCodeInsiders, Powershell, ConEmu, GitBash, SmartGit, Microsoft Visio, Fiddler, Postman, StickyNotes, Email, Alarm, IslamicFinder Athan
+    - taskbar: Explorer, Brave, Chrome Canary, VSCodeInsiders, Powershell, ConEmu, GitBash, SmartGit, Microsoft Visio, Microsoft OneNote, Fiddler, Postman, StickyNotes, Email, Alarm, IslamicFinder Athan
     - System tray: IslamicFinder Athan, Radio, KeePassXC, docker desktop, bluetooth
     - Windows start menu: Use program "Backup Start Menu Layout v1.3
         Using terminal doesn't seem to be working (https://www.thewindowsclub.com/import-export-fix-start-menu-layout-windows-10)
@@ -134,7 +138,22 @@ localhost:8083      test.localhost
 
 ### VSCode: 
 - Synchronize settings with gist `90e15820071cc7bdef5507c8b75d9bf8` using `settings sync` vscode extension. after setting gist id, press ctrl+shift+d to download the settings (ctrl+shift+P -> Sync: Download).
-- TODO: add code fonts with recursive and different used fonts in same document
+- Fonts: 
+    - Generate `Operator Mono` font with ligature (or check resource folder for an already generated files):
+        Using docker https://github.com/kiliman/operator-mono-lig#docker
+        or 
+        Using local linux environment:
+        - FiraCode - download the latest version from https://github.com/tonsky/FiraCode or use resource in this repository.
+        - Operator Mono - use from resource folder.
+        - combine both symbol font (FiraCode) & syntax font (operator mono) into a single font using -  https://github.com/kiliman/operator-mono-lig
+            - install `sudo apt install -y python3-pip python-pip`
+            - `pip install fonttools` // https://github.com/fonttools/fonttools 
+            - `PATH=$PATH:~/.local/bin` // add python packages to command path.
+            - `cd /tmp && git clone https://github.com/kiliman/operator-mono-lig && cd ./operator-mono-lig && npm install`
+            - Copy the Operator Mono files into the `./origianal` folder. (filenames must not include spaces, and be as should in the repository documentation.)
+            - `./build.sh` will create a folder `build` folder with the newly combined fonts.
+    - install all the generated fonts (check resource for already generated files).
+    - Verify that VSCode settings contain the font wanted.
 
 ### RadioTray: 
 - Add recitation channels
@@ -153,7 +172,7 @@ localhost:8083      test.localhost
 - Expose daemon on localhost (for Docker Desktop settings) - for usage wit WSL Docker client
 - TODO: Enable Kubernates
 - download images: 
-    - Memgraph image - https://docs.memgraph.com/memgraph/quick-start#docker-installation
+    - Memgraph image - https://docs.memgraph.com/memgraph/quick-start#docker-installation 
     - docker pull neo4j; docker pull node; docker pull portainer/portainer
 - Run docker containers: 
     - run portainer with autostart. (run appDeploymentLifecycle\resource\localDevelopmentEnvironment\WindowsOS\container\containerGUI\setup.windowsShellExecutableForm.bat)
@@ -179,6 +198,11 @@ localhost:8083      test.localhost
 ### Postman: 
     - change theme to dark
 
+### Neo4j Desktop: 
+- install extensions from https://install.graphapp.io/: yFiles, GraphXR, graphlytic desktop.
+
+## TODO: OpenDNS: 
+- Setup openDNS client automatic ip update.
 ___
 
 # Setup Windows & WSL environment: ✔️
@@ -186,16 +210,9 @@ ___
 - Setup development environment using appDeploymentLifecycle repository powershell script.
     - `yarn run setup`, once reached `change default shell` exit the new zsh shell that will be opened to continue installation. Repeat execution if errors occur, and make sure all commands in installations where executed (e.g. powerlevel10K theme in ZSH command group). this command will also update linux `sudo apt update -y && sudo apt upgrade -y`
 - Symlink .ssh folder to WSL: `ln -s /<.ssh location>/.ssh /root/.ssh`
-
 - TODO: (WSL2 may replace this option, as it allows calling wsl commands from Windows) setup wslgit which will allow to use a single installation of git on WSL - https://github.com/andy-5/wslgit or https://github.com/hangxingliu/wslgit
 
 ___
 
 # 💾 verify environment then: create `restore point` and remove all other restore points. (system properties > system protection > configure restore points for the system drive)
 # 💾 Create a Windows ISO image full backup. - using "Acronis True Image 2020" (for Full partitions backup into .img files or iso)
-
-
-___
-
-Download other development tools: 
-    - Memgraph - https://docs.memgraph.com/memgraph/quick-start#docker-installation
