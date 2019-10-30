@@ -97,6 +97,7 @@ git
 git-lfs.install
 kdiff3
 gitextensions
+github-desktop
 
 #_NOTE: git usually installs git bash with cygwin unix emulator for windows._
 #_NOTE: After installation is complete install " "Additional tools for Nodejs" from the shortcut created in start menu.
