@@ -49,10 +49,12 @@ Install from CD ROM (ISO), where the following drivers should downloaded and use
 # Add software shortcuts to "Start Menu" & Taskbar: 
     - taskbar: Explorer, Brave, Chrome Canary, VSCodeInsiders, Powershell, ConEmu, GitBash, SmartGit, Microsoft Visio, Microsoft OneNote, Fiddler, Postman, StickyNotes, Email, Alarm, IslamicFinder Athan
     - System tray: IslamicFinder Athan, Radio, KeePassXC, docker desktop, bluetooth
-    - Windows start menu: Use program "Backup Start Menu Layout v1.3
+    - Windows start menu: Use program "Backup Start Menu Layout v1.3"
+        - make sure when saving backup using the program to remove "Info.ini", as it contans personal user data.
         Using terminal doesn't seem to be working (https://www.thewindowsclub.com/import-export-fix-start-menu-layout-windows-10)
         - `export-startlayout –path <path><file name>.xml`
         - `Import-StartLayout –LayoutPath <path><file name>.xml –MountPath C:\`  (%systemdrive% => is the drive where windows is installed)
+    - pin shortcuts in the resource > startMenuWindows folder, if they do not exist. (a registry script is used to allow adding any file to the pin start menu).
     - Remove shortcuts from desktop
 
 # 💾 create a restore point for recovery in case the next settings messed up the system:
