@@ -1,10 +1,25 @@
-.mtk7,
-.mtk3,
-.mtk13,
-.mtk16,
+/* This file should be loaded to VSCode through 'custom css and js' extension.
+The css rules allows for multiple fonts usage in the same file in vscode, which is not possible through the settings.json as it is limited to using the same font for syntax highlighting/analysing.
+
+custom css to allow multiple fonts in the document. - https://gist.github.com/nickytonline/8086319bf5836797ee3dea802a77000d & https://medium.com/@zamamohammed/multiple-fonts-alternative-to-operator-mono-in-vscode-7745b52120a0
+Windows Environment Path Variables https://superuser.com/questions/217504/is-there-a-list-of-windows-special-directories-shortcuts-like-temp
+variable reference in vscode https://code.visualstudio.com/docs/editor/variables-reference
+NOTE: VSCode doesn't support usage of OS environment variables in settings.json, therefore the file is loaded from Users folder to prevent exposing username in settings file.
+
+*/
+
+/* Language specific declarations and keywords - e.g. import, export, function, switch, case, const, let */
 .mtk12,
 .mtki {
-  margin-left: 1px;
-  font-family: "Consolas";
-  font-size: 1.6em;
+  /* margin-left: 1px; */
+  font-family: "Operator Mono SSm Lig Light";
+  /* font-size: 1.6em; */
+}
+
+
+/* For Comments */
+.mtk3,
+.mtk13,
+.mtk16 {
+  font-family: "Operator Mono SSm Lig Light";
 }
