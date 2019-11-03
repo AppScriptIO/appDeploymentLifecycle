@@ -7,7 +7,8 @@ const childProcess = require('child_process')
 import operatingSystem from 'os'
 import assert from 'assert'
 import * as provision from '@dependency/deploymentProvisioning'
-const userFolder = operatingSystem.homedir()
+const userFolder = operatingSystem.homedir(),
+  publicUserFolder = path.join(userFolder, '../Public')
 
 assert(
   operatingSystem
@@ -18,7 +19,7 @@ assert(
 )
 
 export const installPackage = () => {
-  provision.jshint.install() // Installed globally for usage with VSCode extension
+  // ESlint is used insread of jshint. // provision.jshint.install() // Installed globally for usage with VSCode extension
 }
 
 export const setupGitConfig = async () => {
@@ -90,5 +91,15 @@ export const symlinkFileConfig = () => {
     //     return path.join(userFolder, 'Desktop', 'DockerWindowsVolumeWatcher')
     //   },
     // },
+  ])
+
+  provision.copy.copyFile([
+    {
+      // vscode settings.json `custom CSS & JS` extension doesn't seem to recognized symlink files.
+      source: path.resolve(__dirname, '../../resource/localDevelopmentEnvironment/WindowsOS/vscode/vscodeCustomStyle.css'),
+      get destination() {
+        return path.join(publicUserFolder, path.basename(this.source))
+      },
+    },
   ])
 }

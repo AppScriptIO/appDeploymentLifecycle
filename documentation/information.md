@@ -18,7 +18,7 @@ ___
 
 # Usage: 
 # in elevated powershell: 
-yarn run setup
+yarn run provisionOS
 ___
 
 [TODO list](/documentation/todo-list.md)

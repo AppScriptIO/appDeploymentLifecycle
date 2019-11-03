@@ -3,7 +3,7 @@
 	"version": "1.0.2",
 	"main": "./",
 	"scripts": {
-		"setup": "powershell.exe -executionpolicy bypass -file ./entrypoint/setup.ps1",
+		"provisionOS": "powershell.exe -executionpolicy bypass -file ./entrypoint/setup.ps1",
 		"buildAndRelease": "echo '• Attention ! This repository is not meant to be build, as it is used as a script through modules that transpile it on runtime (e.g. `scriptManager`)' >&2"
 	},
 	"dependencies": {
