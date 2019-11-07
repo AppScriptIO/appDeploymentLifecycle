@@ -222,7 +222,10 @@ ___
 # 💾 verify environment then: create `restore point` and remove all other restore points. (system properties > system protection > configure restore points for the system drive)
 # 💾 Create a Windows ISO image full backup. - using "Acronis True Image 2020" (for Full partitions backup into .img files or iso)
 
-
 # from time to time execute: 
     - `choco upgrade all -y` on Windows
     - `apt update -y && apt upgrade -y` on WSL
+
+___ 
+
+# Clone all project repositories to allow bulk changes accross repositories in related projects.
