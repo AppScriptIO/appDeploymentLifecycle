@@ -205,6 +205,8 @@ localhost:8083      test.localhost
 
 ### Neo4j Desktop: 
 - install extensions from https://install.graphapp.io/: yFiles, GraphXR, graphlytic desktop.
+- Resources: 
+    - https://neo4j.com/graphgists/
 
 ## TODO: OpenDNS: 
 - Setup openDNS client automatic ip update.
