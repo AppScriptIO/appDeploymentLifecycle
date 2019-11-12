@@ -32,6 +32,7 @@ export const nonElevatedCallback = async () => {
   provision.zshShell.install()
   provision.yarn.install()
   provision.jspm.install()
+  provision.nodeVersionManagement.install()
 
   /*
       ____             __ _                       _   _               _____ _ _           

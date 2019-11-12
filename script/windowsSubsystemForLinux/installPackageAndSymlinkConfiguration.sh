@@ -2,6 +2,7 @@
 
 if grep -q Microsoft /proc/version && grep -q Linux /proc/version; then
 
+  # TODO: install `n` npm package and then use it to install nodejs.
   # if needed: package that can manage several versions of nodejs - https://github.com/tj/n
   if hash node 2>/dev/null; then
     echo '✔ node is installed.'
