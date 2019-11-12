@@ -10,6 +10,10 @@
 https://stackoverflow.com/questions/10763006/plugin-architecture-in-web-apps-examples-or-code-snippets
 • **Meta-API:** Regarding Api of Api - Data about data is called metadata, and therefore api about an api is metaApi. e.g. Usage - to create visual programming app, that reads the language api to choose AST options.
 - "Big O" (order of complexity) / complexity analysis of memory space and of operation time.
+- **Project aware code** - this is code that checks for the existence of project files and needs a bigger picture than the code exposed in the built distribution prject. e.g. entrypoint files in the JS module projects, where the code in the entrypoints checks for the existence of distribution folder or distribution builds in the local repository, used for development or in production to generally integrate different distributions without having to specify their names specifically.
 
 ## Notes: 
 - project that do not use a version will contain `independent` as the version value.
+
+# Words that could be used for defining terms of different concepts: 
+- interface, exposing endpoint, 
