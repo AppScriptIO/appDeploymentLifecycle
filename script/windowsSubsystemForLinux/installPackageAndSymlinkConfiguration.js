@@ -33,6 +33,7 @@ export const nonElevatedCallback = async () => {
   provision.yarn.install()
   provision.jspm.install()
   provision.nodeVersionManagement.install()
+  // Installing globally didn't fix the issue // // TODO: Install `nodegit` 0.25.* as global dependency, because sometimes after yarn upgrade the nodegit module is for some reason cannot be found.
 
   /*
       ____             __ _                       _   _               _____ _ _           

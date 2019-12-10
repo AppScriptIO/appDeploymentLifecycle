@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <key name="Software">
 	<key name="ConEmu">
-		<key name=".Vanilla" modified="2019-11-12 16:18:24" build="191012">
+		<key name=".Vanilla" modified="2019-12-09 18:08:44" build="191012">
 			<value name="Language" type="string" data="en"/>
 			<value name="StartType" type="hex" data="02"/>
 			<value name="CmdLine" type="string" data=""/>
@@ -145,11 +145,11 @@
 			<value name="Cascaded" type="hex" data="01"/>
 			<value name="IntegralSize" type="hex" data="00"/>
 			<value name="WindowMode" type="dword" data="00000520"/>
-			<value name="ConWnd X" type="long" data="1631"/>
-			<value name="ConWnd Y" type="long" data="283"/>
-			<value name="LastMonitor" type="string" data="0,60,3840,2160"/>
-			<value name="ConWnd Width" type="dword" data="0000006b"/>
-			<value name="ConWnd Height" type="dword" data="00000035"/>
+			<value name="ConWnd X" type="long" data="-1130"/>
+			<value name="ConWnd Y" type="long" data="193"/>
+			<value name="LastMonitor" type="string" data="-1080,253,0,2143"/>
+			<value name="ConWnd Width" type="dword" data="00000077"/>
+			<value name="ConWnd Height" type="dword" data="0000005f"/>
 			<value name="16bit Height" type="ulong" data="0"/>
 			<value name="QuakeStyle" type="hex" data="00"/>
 			<value name="Restore2ActiveMon" type="hex" data="00"/>
@@ -361,7 +361,7 @@
 			<value name="MinimizeOnLoseFocus" type="hex" data="00"/>
 			<value name="DisableFarFlashing" type="hex" data="00"/>
 			<value name="DisableAllFlashing" type="hex" data="00"/>
-			<value name="FindText" type="string" data="script"/>
+			<value name="FindText" type="string" data="created"/>
 			<value name="FindMatchCase" type="hex" data="01"/>
 			<value name="FindMatchWholeWords" type="hex" data="00"/>
 			<value name="FindTransparent" type="hex" data="01"/>

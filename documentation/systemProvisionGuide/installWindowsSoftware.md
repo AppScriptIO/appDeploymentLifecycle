@@ -17,6 +17,7 @@ azan basic (prayer times windows tray)
 debian WSL distro (Windows store)
 radiotray
 
+procmon - Process Monitor from microsoft - https://docs.microsoft.com/en-us/sysinternals/downloads/procmon allows to check if any process is being blocked.
 Acronis True Image 2020 (for Full partitions backup into .img files or iso)
 Microsoft Visio
 Adobe Acrobat XI Pro 
@@ -131,6 +132,7 @@ obs-studio
 telegram.install
 slack
 signal
+4k-video-downloader
 
 
 ### Errors for Chocolatey pacakge installation failures caused usually because of a newer version being installed in source that has a different hash that what is already published in the Chocolatey packages registry.

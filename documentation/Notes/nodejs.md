@@ -18,3 +18,19 @@
     - check the firewall settings - node maybe blocked or VSCode editor.
     - Try installing with sudo permissions.
     - Try cleaning cache `yarn cache clean`
+
+### publish to github packages:
+https://help.github.com/en/github/managing-packages-with-github-packages/configuring-npm-for-use-with-github-packages#publishing-multiple-packages-to-the-same-repository
+- in package.json: 
+```
+{
+	"publishConfig": {
+		"registry": "https://npm.pkg.github.com"
+	},
+	"repository": {
+		"type": "git",
+		"url": "ssh://git@github.com/AppScriptIO/deploymentProvisioning.git",
+		"directory": "packages/deployment-provisioning"
+	},
+}
+```

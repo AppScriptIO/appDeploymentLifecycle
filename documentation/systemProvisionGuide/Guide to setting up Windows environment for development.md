@@ -161,8 +161,13 @@ localhost:8083      test.localhost
 - Add recitation channels
 - remove up down volume hotkeys control (configuration > hotkeys)
 
-### webroot: 
-    - ~~remove shortcut from desktop (as it keeps being automatically created.)~~
+### Antiverus: 
+    // TODO:  switched from webroot as it was conflicting and blocking WSL 1 (after a while of monitoring it starts blocking, couldn't find a way to solve it.). Check if WSL 2 is released and try webroot with it.
+    ### webroot: 
+        - ~~remove shortcut from desktop (as it keeps being automatically created.)~~
+    ### Bitdefender:
+        - sign in using a created account.
+        - install VPN of bitdefender
 
 ### Docker
 - Increase RAM and CPU cores.
@@ -202,6 +207,8 @@ localhost:8083      test.localhost
 
 ### Postman: 
     - change theme to dark
+    - Login to the postman account.
+    - add schemas for api/graphql - e.g. Github graphql (https://github.com/octokit/graphql-schema) ...
 
 ### Neo4j Desktop: 
 - install extensions from https://install.graphapp.io/: yFiles, GraphXR, graphlytic desktop.
