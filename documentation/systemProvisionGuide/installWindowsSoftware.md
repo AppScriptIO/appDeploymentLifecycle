@@ -8,6 +8,8 @@ Neo4j Desktop (https://neo4j.com/download-neo4j-now/)
 Simple drag drop graph creation tools:
   - Install http://www.apcjones.com/arrows/
   - Install https://graphileon.com/
+https://insomnia.rest/ - debug api (similar to postman)
+
 
 webroot internet security (with license)
 VSCode insiders
@@ -28,6 +30,7 @@ Paragon Hard Disk Manager 15
 SD Card Formatter 
 easyUEFI Hasleo
 shutup10
+https://github.com/da2x/EdgeDeflector - conrtana searches change to default system browser 
 
 ### TODO: Checkout and install following or similar apps: 
 - App for caching open windows to restart windows after a reboot. (an alternative to hibernate)

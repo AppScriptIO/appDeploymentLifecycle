@@ -1,6 +1,6 @@
 import assert from 'assert'
 import { ClassProducer } from './dynamicClassExtention.js'
-// const ModuleContext = require('appscript/module/ModuleContext')
+// const {ModuleContext} = require('@dependency/handleModuleSystem')
 
 describe.skip('Testing different implementation concepts', () => {
   describe('Creating static classes from function', () => {

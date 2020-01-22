@@ -217,6 +217,13 @@ localhost:8083      test.localhost
 
 ## TODO: OpenDNS: 
 - Setup openDNS client automatic ip update.
+
+## Web filitering: 
+    - K9 web protection (Not supported anymore): Github copy https://github.com/romanov999/K9-Web-Protection-Copy use the provided link to generate license key.
+Alternatives: 
+    - Qustodio
+    - Cold Turkey
+
 ___
 
 # Setup Windows & WSL environment: ✔️
