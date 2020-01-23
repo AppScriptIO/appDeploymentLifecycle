@@ -1,4 +1,4 @@
 const configuration = require('./'),
-  { getBabelConfig } = require('@dependency/javascriptTranspilation')
+  { getBabelConfig } = require('@deployment/javascriptTranspilation')
 
 module.exports = getBabelConfig(configuration.transpilation.babelConfigKey, { configType: 'functionApi' })

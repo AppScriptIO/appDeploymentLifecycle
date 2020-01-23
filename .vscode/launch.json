@@ -5,7 +5,7 @@
     - run vscode debugger, restart mode is on which will make vscode attach automatically when the tool watching files restarts the process.
       While the option Auto Attach in VSCode settings.json doesn't support processes in the vscode integrated console.
 
-      e.g. node --inspect-brk --nolazy ./node_modules/@dependency/scriptManager/source/entrypoint/cli/invokeCli.js test "({ testPath: './test/script.test.js' })"
+      e.g. node --inspect-brk --nolazy ./node_modules/@deployment/scriptManager/source/entrypoint/cli/invokeCli.js test "({ testPath: './test/script.test.js' })"
   */
   "version": "0.2.0",
   "configurations": [{

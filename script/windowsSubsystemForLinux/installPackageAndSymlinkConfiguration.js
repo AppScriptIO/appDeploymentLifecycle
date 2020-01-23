@@ -3,7 +3,7 @@ import path from 'path'
 import filesystem from 'fs'
 import operatingSystem from 'os'
 import assert from 'assert'
-import * as provision from '@dependency/deploymentProvisioning'
+import * as provision from '@deployment/deploymentProvisioning'
 import { getRootDirectory } from '../utility/getRootUserFolder.js'
 const childProcessOption = { cwd: __dirname, shell: true, stdio: [0, 1, 2] }
 

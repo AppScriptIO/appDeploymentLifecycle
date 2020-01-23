@@ -11,7 +11,7 @@
   "tasks": [{
       "label": "build",
       "type": "shell",
-      "command": "./node_modules/@dependency/deploymentScript/script/build.sh ${input:transpileTest} ${input:copyCli}",
+      "command": "./node_modules/@deployment/deploymentScript/script/build.sh ${input:transpileTest} ${input:copyCli}",
       "options": {
         "cwd": "${workspaceRoot}",
       },
@@ -24,7 +24,7 @@
     {
       "label": "release",
       "type": "shell",
-      "command": "./node_modules/@dependency/deploymentScript/script/release.sh ${input:version}",
+      "command": "./node_modules/@deployment/deploymentScript/script/release.sh ${input:version}",
       "options": {
         "cwd": "${workspaceRoot}",
       },

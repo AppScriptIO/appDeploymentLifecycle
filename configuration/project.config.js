@@ -29,7 +29,7 @@ const ownConfig = {
   transpilation: {
     babelConfigKey: 'serverRuntime.BabelConfig.js',
     get babelConfig() {
-      const { getBabelConfig } = require('@dependency/javascriptTranspilation')
+      const { getBabelConfig } = require('@deployment/javascriptTranspilation')
       return getBabelConfig(ownConfig.transpilation.babelConfigKey, { configType: 'json' })
     },
   },

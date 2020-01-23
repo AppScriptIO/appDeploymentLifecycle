@@ -6,7 +6,7 @@ import path from 'path'
 const childProcess = require('child_process')
 import operatingSystem from 'os'
 import assert from 'assert'
-import * as provision from '@dependency/deploymentProvisioning'
+import * as provision from '@deployment/deploymentProvisioning'
 const userFolder = operatingSystem.homedir(),
   publicUserFolder = path.join(userFolder, '../Public')
 

@@ -1,19 +1,19 @@
 {
-	"name": "@dependency/appDeploymentLifecycle",
-	"version": "1.0.2",
+	"name": "@deployment/appDeploymentLifecycle",
+	"version": "1.1.0",
 	"main": "./",
 	"scripts": {
 		"provisionOS": "powershell.exe -executionpolicy bypass -file ./entrypoint/setup.ps1",
 		"buildAndRelease": "echo '• Attention ! This repository is not meant to be build, as it is used as a script through modules that transpile it on runtime (e.g. `scriptManager`)' >&2"
 	},
 	"dependencies": {
-		"@dependency/deploymentProvisioning": "https://github.com/AppScriptIO/deploymentProvisioning#semver:^1.x.x"
+		"@deployment/deploymentProvisioning": "https://github.com/AppScriptIO/deploymentProvisioning#semver:^1.x.x"
 	},
 	"devDependencies": {
-		"@dependency/deploymentScript": "https://github.com/AppScriptIO/deploymentScript#semver:^2.x.x",
-		"@dependency/javascriptStaticAnalysis": "https://github.com/AppScriptIO/javascriptStaticAnalysis#semver:^1.x.x",
-		"@dependency/javascriptTranspilation": "https://github.com/AppScriptIO/javascriptTranspilation#semver:^2.x.x",
-		"@dependency/scriptManager": "https://github.com/AppScriptIO/scriptManager#semver:^1.x.x",
+		"@deployment/deploymentScript": "https://github.com/AppScriptIO/deploymentScript#semver:^2.x.x",
+		"@deployment/javascriptStaticAnalysis": "https://github.com/AppScriptIO/javascriptStaticAnalysis#semver:^1.x.x",
+		"@deployment/javascriptTranspilation": "https://github.com/AppScriptIO/javascriptTranspilation#semver:^2.x.x",
+		"@deployment/scriptManager": "https://github.com/AppScriptIO/scriptManager#semver:^1.x.x",
 		"typescript": "^3.3.3333"
 	}
 }
