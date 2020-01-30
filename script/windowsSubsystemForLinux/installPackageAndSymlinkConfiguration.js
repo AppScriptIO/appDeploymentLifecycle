@@ -27,6 +27,7 @@ export const nonElevatedCallback = async () => {
     |_|_| |_|___/\__\__,_|_|_| |_|   \__,_|\___|_|\_\__,_|\__, |\___||___/
                                                           |___/           
   */
+  console.group('•-------- install packages')
   provision.updateLinux.updateAndUpgrade()
   provision.docker.install()
   provision.git.install()
@@ -36,6 +37,7 @@ export const nonElevatedCallback = async () => {
   provision.nodeVersionManagement.install()
   provision.rsync.install()
   // Installing globally didn't fix the issue // // TODO: Install `nodegit` 0.25.* as global dependency, because sometimes after yarn upgrade the nodegit module is for some reason cannot be found.
+  console.groupEnd() && console.log('\n\n')
 
   /*
       ____             __ _                       _   _               _____ _ _           
@@ -46,6 +48,7 @@ export const nonElevatedCallback = async () => {
                             |___/                                                         
     copy configuration files to WSL filesystem
   */
+  console.group('•-------- setupGitConfig')
   // set git profile information:
   let email, name
   try {
@@ -61,7 +64,9 @@ export const nonElevatedCallback = async () => {
   if (!email)
     await provision.shellInput.readInput('• Provide git email address:  ').then(email => childProcess.execSync(`sudo git config --system user.email ${email}`, { silent: true, encoding: 'utf8' }))
   if (!name) await provision.shellInput.readInput('• Provide git name:  ').then(name => childProcess.execSync(`sudo git config --system user.name ${name}`, { silent: true, encoding: 'utf8' }))
+  console.groupEnd() && console.log('\n\n')
 
+  console.group('•-------- configuration files')
   // Note: permission error may be caused by non existant destination paths.
   const userFolder = operatingSystem.homedir()
   copyFile([
@@ -100,6 +105,7 @@ export const nonElevatedCallback = async () => {
   ])
 
   runElevatedSection()
+  console.groupEnd() && console.log('\n\n')
 }
 
 export const elevatedCallback = () => {

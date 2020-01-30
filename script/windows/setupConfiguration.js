@@ -24,6 +24,7 @@ export const installPackage = () => {
 }
 
 export const setupGitConfig = async () => {
+  console.group('•-------- setupGitConfig')
   // set git profile information:
   let email, name
   try {
@@ -38,9 +39,11 @@ export const setupGitConfig = async () => {
   }
   if (!email) await provision.shellInput.readInput('• Provide git email address:  ').then(email => childProcess.execSync(`git config --system user.email ${email}`, { silent: true, encoding: 'utf8' }))
   if (!name) await provision.shellInput.readInput('• Provide git name:  ').then(name => childProcess.execSync(`git config --system user.name ${name}`, { silent: true, encoding: 'utf8' }))
+  console.groupEnd() && console.log('\n\n')
 }
 
 export const symlinkFileConfig = () => {
+  console.group('•-------- symlinkFileConfig')
   createSymlink([
     {
       source: path.resolve(__dirname, '../../resource/localDevelopmentEnvironment/WindowsOS/shell/bash/.bashrc'),
@@ -103,4 +106,6 @@ export const symlinkFileConfig = () => {
       },
     },
   ])
+
+  console.groupEnd() && console.log('\n\n')
 }
