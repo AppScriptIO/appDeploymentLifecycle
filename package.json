@@ -7,8 +7,8 @@
 		"buildAndRelease": "echo '• Attention ! This repository is not meant to be build, as it is used as a script through modules that transpile it on runtime (e.g. `scriptManager`)' >&2"
 	},
 	"dependencies": {
-		"@deployment/deploymentProvisioning": "https://github.com/AppScriptIO/deploymentProvisioning#semver:^2.x.x",
-		"@dependency/handleFilesystemOperation": "https://github.com/AppScriptIO/handleFilesystemOperation#semver:^2.x.x"
+		"@dependency/handleFilesystemOperation": "https://github.com/AppScriptIO/handleFilesystemOperation#semver:^2.x.x",
+		"@deployment/deploymentProvisioning": "https://github.com/AppScriptIO/deploymentProvisioning#semver:^2.x.x"
 	},
 	"devDependencies": {
 		"@deployment/deploymentScript": "https://github.com/AppScriptIO/deploymentScript#semver:^2.x.x",
