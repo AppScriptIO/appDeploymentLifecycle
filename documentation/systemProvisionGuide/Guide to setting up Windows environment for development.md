@@ -97,6 +97,8 @@ Install from CD ROM (ISO), where the following drivers should downloaded and use
 - TODO (Tool isn't easy to use, need a way to backup current context settings): Using `Easy Context Menu` tool, manipulate the Windows context menu, creating nested menus for common tools.
 - TODO: set calibration configuration from original backup ISO.
 
+# Windows 10 themes: 
+- TODO: https://www.youtube.com/watch?v=X6FpuMqCghw
 ___
 
 # Specific Applications setup:
