@@ -4,6 +4,7 @@ import filesystem from 'fs'
 import operatingSystem from 'os'
 import assert from 'assert'
 import * as provision from '@deployment/deploymentProvisioning'
+import { copyFile } from '@dependency/handleFilesystemOperation'
 import { getRootDirectory } from '../utility/getRootUserFolder.js'
 const childProcessOption = { cwd: __dirname, shell: true, stdio: [0, 1, 2] }
 
@@ -62,7 +63,7 @@ export const nonElevatedCallback = async () => {
 
   // Note: permission error may be caused by non existant destination paths.
   const userFolder = operatingSystem.homedir()
-  provision.copy.copyFile([
+  copyFile([
     {
       source: path.resolve(__dirname, '../../resource/localDevelopmentEnvironment/WindowsSubSystemForLinux/.gitconfig'),
       get destination() {
@@ -115,7 +116,7 @@ export const elevatedCallback = () => {
     copy files that require root permission.
   */
   const userFolder = operatingSystem.homedir()
-  provision.copy.copyFile([
+  copyFile([
     {
       source: path.resolve(__dirname, '../../resource/localDevelopmentEnvironment/WindowsSubSystemForLinux/wsl.conf'),
       get destination() {

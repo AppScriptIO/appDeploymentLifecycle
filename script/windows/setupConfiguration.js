@@ -7,6 +7,7 @@ const childProcess = require('child_process')
 import operatingSystem from 'os'
 import assert from 'assert'
 import * as provision from '@deployment/deploymentProvisioning'
+import { createSymlink, copyFile } from '@dependency/handleFilesystemOperation'
 const userFolder = operatingSystem.homedir(),
   publicUserFolder = path.join(userFolder, '../Public')
 
@@ -40,7 +41,7 @@ export const setupGitConfig = async () => {
 }
 
 export const symlinkFileConfig = () => {
-  provision.symlink.createSymlink([
+  createSymlink([
     {
       source: path.resolve(__dirname, '../../resource/localDevelopmentEnvironment/WindowsOS/shell/bash/.bashrc'),
       get destination() {
@@ -93,7 +94,7 @@ export const symlinkFileConfig = () => {
     // },
   ])
 
-  provision.copy.copyFile([
+  copyFile([
     {
       // vscode settings.json `custom CSS & JS` extension doesn't seem to recognized symlink files.
       source: path.resolve(__dirname, '../../resource/localDevelopmentEnvironment/WindowsOS/vscode/vscodeCustomStyle.css'),
