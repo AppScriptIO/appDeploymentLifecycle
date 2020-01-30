@@ -3,7 +3,7 @@
 	"version": "1.1.0",
 	"main": "./",
 	"scripts": {
-		"provisionOS": "powershell.exe -executionpolicy bypass -file ./entrypoint/setup.ps1",
+		"provisionOS": "powershell.exe -executionpolicy bypass -file ./entrypoint/setup.ps1 # NOTE: sudo doesn't have all global executables (e.g. powershell.exe)",
 		"buildAndRelease": "echo '• Attention ! This repository is not meant to be build, as it is used as a script through modules that transpile it on runtime (e.g. `scriptManager`)' >&2"
 	},
 	"dependencies": {
@@ -11,6 +11,7 @@
 		"@dependency/handleFilesystemOperation": "https://github.com/AppScriptIO/handleFilesystemOperation#semver:^2.x.x"
 	},
 	"devDependencies": {
+		"@deployment/deploymentScript": "https://github.com/AppScriptIO/deploymentScript#semver:^2.x.x",
 		"@deployment/javascriptStaticAnalysis": "https://github.com/AppScriptIO/javascriptStaticAnalysis#semver:^2.x.x",
 		"@deployment/javascriptTranspilation": "https://github.com/AppScriptIO/javascriptTranspilation#semver:^2.x.x",
 		"@deployment/scriptManager": "https://github.com/AppScriptIO/scriptManager#semver:^2.x.x",
