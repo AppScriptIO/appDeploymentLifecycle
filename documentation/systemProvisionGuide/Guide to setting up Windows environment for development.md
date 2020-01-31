@@ -232,7 +232,6 @@ ___
 - Download & install distro from Windows store. Lunch the distro and set username & password.
 - Setup development environment using appDeploymentLifecycle repository powershell script.
     - `yarn run provisionOS`, once reached `change default shell` exit the new zsh shell that will be opened to continue installation. Repeat execution if errors occur, and make sure all commands in installations where executed (e.g. powerlevel10K theme in ZSH command group). this command will also update linux `sudo apt update -y && sudo apt upgrade -y`
-- Symlink mount drives (/mnt) to '/' folder
 - Symlink .ssh folder to WSL: `sudo ln -s /<.ssh location>/.ssh /root/.ssh`
 - TODO: (WSL2 may replace this option, as it allows calling wsl commands from Windows) setup wslgit which will allow to use a single installation of git on WSL - https://github.com/andy-5/wslgit or https://github.com/hangxingliu/wslgit
 
