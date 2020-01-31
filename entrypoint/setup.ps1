@@ -34,6 +34,10 @@ try {
 
     ## Setup WSL 
     wsl yarn run scriptManager shouldCompileScript=true windowsSubsystemForLinux/installPackageAndSymlinkConfiguration.js '".nonElevatedCallback()"'
+    
+    # restart WSL for /etc/wsl.conf to take effect
+    Write-Output ("- Restarting WSL service... (all wsl shells will be closed.)")
+    Restart-Service LxssManager
 }
 catch {
     Write-Error $_.Exception.ToString()
