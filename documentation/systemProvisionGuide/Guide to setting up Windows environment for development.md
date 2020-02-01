@@ -125,7 +125,16 @@ ___
 
 ### ConEmu 
 - ConEmu setting > integration > Add to context explorer menu
-- ConEmu WSL - This should be already configured as the ConEmu configuration file is version controlled in the repository. https://conemu.github.io/en/BashOnWindows.html
+- ConEmu WSL - This should be already configured as the ConEmu configuration file is version controlled in the repository. 
+    https://conemu.github.io/en/BashOnWindows.html
+    - Links for WSL2 with ConEmu setup: 
+    generally usage of `wsl.exe` works fine
+        - https://gist.github.com/meatcar/b8b6b756b9b33cbae62ee9d518c6f274
+        - https://github.com/Maximus5/ConEmu/issues/1930
+        - https://github.com/Maximus5/ConEmu/issues/1930
+
+### Windows Terminal (new from windows store)
+- Change setting of the default shell/command to WSL debian.
 
 ### Fiddler:
 - Host port remapping for development: Use `Fiddler` program to remap localhost ports in the OS. (Tools > HOSTS)
@@ -236,6 +245,7 @@ ___
     - hackish way to enroll into Windows insiders program without an account - https://github.com/myuseringithub/offlineinsiderenroll
     - switch to WSL2:  https://docs.microsoft.com/en-us/windows/wsl/wsl2-install
         - powershell (administrative privilages) `wsl --set-default-version 2` & `wsl --set-version Debian 2` then verify `wsl --list --verbose`
+        - WSL2 files can be access through path `\\wsl$` (network sharing can be kept disabled)
 - WSL2 related installations: (WSL2 update allows calling wsl commands from windows) 
     - TODO: setup wslgit which will allow to use a single installation of git on WSL - https://github.com/andy-5/wslgit or https://github.com/hangxingliu/wslgit
     - TODO: use native docker on wsl2

@@ -3,6 +3,8 @@
 ___
 
 # Installed Windows software without a pacakge manager:
+Windows Terminal (new) from windows store.
+
 Memgraph Lab (https://memgraph.com/download/)
 Neo4j Desktop (https://neo4j.com/download-neo4j-now/)
 Simple drag drop graph creation tools:
