@@ -102,8 +102,8 @@ source $ZSH/oh-my-zsh.sh
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
 
 
-# Connect to Windows Docker Engine
-export DOCKER_HOST=tcp://127.0.0.1:2375
+# Connect to Windows Docker Engine - only for WSL1 or WSL2 without integration of docker desktop.
+# export DOCKER_HOST=tcp://127.0.0.1:2375
 
 # always preserve environment variables when using sudo (this allows variables like DOCKER_HOST to exist in time of sudo usage).
 # To run the original command without removing the alias from memory use `command sudo` e.g. `command sudo --help`
