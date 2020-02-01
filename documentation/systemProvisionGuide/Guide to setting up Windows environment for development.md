@@ -33,7 +33,7 @@ Install from CD ROM (ISO), where the following drivers should downloaded and use
     Note that checking if hibernation works after turnning off a feature should be done in 2nd restart (as in the first restart the feature will not be turned off completely).
 
 # Windows features to enable:
-	- enable windows feature:
+	- enable windows feature: (Differences between featuers - https://superuser.com/questions/1510172/hyper-v-vs-virtual-machine-platform-vs-windows-hypervisor-platform-settings-in-p)
 		- Windows Subsystem for Linux
 		- Windows Hypervisor Platform (prerequisite of the future WSL2)
 		- Hyper-v feature
@@ -228,12 +228,27 @@ Alternatives:
 
 ___
 
+
 # Setup Windows & WSL environment: ✔️
+- Entroll into insiders program: 
+    - 💾 create a restore point for recovery in case the next settings messed up the system.
+    - Check which Window Insiders release cycle (preview/slow/fast) supports WSL2 (currently slow ring does).
+    - hackish way to enroll into Windows insiders program without an account - https://github.com/myuseringithub/offlineinsiderenroll
+    - switch to WSL2:  https://docs.microsoft.com/en-us/windows/wsl/wsl2-install
+        - powershell (administrative privilages) `wsl --set-default-version 2` & `wsl --set-version Debian 2` then verify `wsl --list --verbose`
+- WSL2 related installations: (WSL2 update allows calling wsl commands from windows) 
+    - TODO: setup wslgit which will allow to use a single installation of git on WSL - https://github.com/andy-5/wslgit or https://github.com/hangxingliu/wslgit
+    - TODO: use native docker on wsl2
 - Download & install distro from Windows store. Lunch the distro and set username & password.
 - Setup development environment using appDeploymentLifecycle repository powershell script.
     - `yarn run provisionOS`, once reached `change default shell` exit the new zsh shell that will be opened to continue installation. Repeat execution if errors occur, and make sure all commands in installations where executed (e.g. powerlevel10K theme in ZSH command group). this command will also update linux `sudo apt update -y && sudo apt upgrade -y`
 - Symlink .ssh folder to WSL: `sudo ln -s /<.ssh location>/.ssh /root/.ssh`
-- TODO: (WSL2 may replace this option, as it allows calling wsl commands from Windows) setup wslgit which will allow to use a single installation of git on WSL - https://github.com/andy-5/wslgit or https://github.com/hangxingliu/wslgit
+
+
+Notes: 
+- An attempt to install WSL2 in insiders program (slow ring): 
+    - OS biuld before switching to insiders = 18363.592 (version 1909) or 18363.628
+    - OS build after switching to insiders = 19041.21 
 
 ___
 
