@@ -188,7 +188,7 @@ localhost:8083      test.localhost
         Computer Management > local users & groups
     - prevent login for the user - https://superuser.com/questions/663531/can-i-create-a-windows-user-account-without-the-ability-for-an-interactive-user/663537
         `GPEDIT.MSC`> Computer Configuration\Windows Settings\Security Settings\Local Policies\User Rights Assignment > Deny Logon Locally
-- Expose daemon on localhost (for Docker Desktop settings) - for usage wit WSL Docker client
+- [Only for WSL1 or WSL2 without integration of docker desktop] Expose daemon on localhost (for Docker Desktop settings) - for usage wit WSL Docker client
 - TODO: Enable Kubernates
 - download images: 
     - Memgraph image - https://docs.memgraph.com/memgraph/quick-start#docker-installation 
