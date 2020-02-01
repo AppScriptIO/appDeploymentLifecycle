@@ -135,6 +135,7 @@ ___
 
 ### Windows Terminal (new from windows store)
 - Change setting of the default shell/command to WSL debian.
+    TODO: symlink the configuration used by the Window Terminal program, adding it to the resource folder.
 
 ### Fiddler:
 - Host port remapping for development: Use `Fiddler` program to remap localhost ports in the OS. (Tools > HOSTS)
@@ -251,7 +252,8 @@ ___
     - TODO: use native docker on wsl2
 - Download & install distro from Windows store. Lunch the distro and set username & password.
 - Setup development environment using appDeploymentLifecycle repository powershell script.
-    - `yarn run provisionOS`, once reached `change default shell` exit the new zsh shell that will be opened to continue installation. Repeat execution if errors occur, and make sure all commands in installations where executed (e.g. powerlevel10K theme in ZSH command group). this command will also update linux `sudo apt update -y && sudo apt upgrade -y`
+    - `yarn run provisionOS` run it through Windows Node's installation, rather than under the newly installed WSL.
+        once reached `change default shell` exit the new zsh shell that will be opened to continue installation. Repeat execution if errors occur, and make sure all commands in installations where executed (e.g. powerlevel10K theme in ZSH command group). this command will also update linux `sudo apt update -y && sudo apt upgrade -y`
 - Symlink .ssh folder to WSL: `sudo ln -s /<.ssh location>/.ssh /root/.ssh`
 
 

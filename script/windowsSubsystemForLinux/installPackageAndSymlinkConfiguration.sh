@@ -1,6 +1,7 @@
 # WSL environment:
 
-if grep -q Microsoft /proc/version && grep -q Linux /proc/version; then
+# Check works for both WSL1 & WSL2
+if grep -q Microsoft /proc/version && grep -q Linux /proc/version ||  grep -q microsoft /proc/version && grep -q Linux /proc/version ; then
 
   # TODO: install `n` npm package and then use it to install nodejs.
   # if needed: package that can manage several versions of nodejs - https://github.com/tj/n
