@@ -29,7 +29,7 @@ export const nonElevatedCallback = async () => {
   */
   console.group('•-------- install packages')
   provision.updateLinux.updateAndUpgrade()
-  provision.docker.install()
+  provision.docker.install({ assignDockerHost: false }) // use native docker desktop on top of WSL2
   provision.git.install()
   provision.zshShell.install()
   provision.yarn.install()

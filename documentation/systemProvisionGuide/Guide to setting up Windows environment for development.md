@@ -195,6 +195,7 @@ localhost:8083      test.localhost
     - docker pull neo4j; docker pull node; docker pull portainer/portainer
 - Run docker containers: 
     - run portainer with autostart. (run appDeploymentLifecycle\resource\localDevelopmentEnvironment\WindowsOS\container\containerGUI\setup.windowsShellExecutableForm.bat)
+- Turn on WSL2 integration of Docker Desktop.
 
 ### Winrar:
 - Settings > Integration > Cascaded context menu.
