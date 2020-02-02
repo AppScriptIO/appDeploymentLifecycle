@@ -199,6 +199,7 @@ localhost:8083      test.localhost
     <!-- !important: docker desktop engine on WSL2 (unreleased version) still has the following required features not implemented fully: 
         - [Supported ✔] ~/var/run/docker.sock volume still not supported as mentioned in https://www.docker.com/blog/new-docker-desktop-wsl2-backend/~
         - [Supported ✔ both host and bridge] WSL2 is now running with a host-only network adapter (While the WSL VM is still on a host-only network adapter, you can access things like docker containers through localhost on your Windows (host) machine) https://medium.com/faun/windows-subsystem-on-linux-wsl-2-first-impressions-96adaf2ebe76
+        Use --network="host" in your docker run command, then 127.0.0.1 in your docker container will point to your docker host. https://stackoverflow.com/questions/24319662/from-inside-of-a-docker-container-how-do-i-connect-to-the-localhost-of-the-mach
             The issue is that networking is messed up a little when using docker desktop on WSL2, from what I've observed, docker desktop WSL2 ports are exposed, they do not conflict with localhost but override their access (accessing localhost:8080 will be tranmitted to the WSL2 container, over the host's server/app).
             https://github.com/microsoft/WSL/issues/4212
             WSL2 will have it's own ip address https://docs.microsoft.com/en-us/windows/wsl/wsl2-ux-changes#accessing-network-applications
