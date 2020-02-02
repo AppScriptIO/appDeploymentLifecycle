@@ -183,12 +183,12 @@ localhost:8083      test.localhost
 
 ### Docker
 - Increase RAM and CPU cores.
-- dockerShareDrive - For sharing local drive with docker for windows:	
+- [Only for WSL1 or WSL2 without integration of docker desktop] dockerShareDrive - For sharing local drive with docker for windows:	
     - Create a new user “DockerUser” with a secure password with limited access permission and no desktop signin, rather than using the main user. (KeePassCX = location for storage)
         Computer Management > local users & groups
-    - prevent login for the user - https://superuser.com/questions/663531/can-i-create-a-windows-user-account-without-the-ability-for-an-interactive-user/663537
-        `GPEDIT.MSC`> Computer Configuration\Windows Settings\Security Settings\Local Policies\User Rights Assignment > Deny Logon Locally
-- [Only for WSL1 or WSL2 without integration of docker desktop] Expose daemon on localhost (for Docker Desktop settings) - for usage wit WSL Docker client
+        - prevent login for the user - https://superuser.com/questions/663531/can-i-create-a-windows-user-account-without-the-ability-for-an-interactive-user/663537
+            `GPEDIT.MSC`> Computer Configuration\Windows Settings\Security Settings\Local Policies\User Rights Assignment > Deny Logon Locally
+    - Expose daemon on localhost (for Docker Desktop settings) - for usage with WSL Docker client
 - TODO: Enable Kubernates
 - download images: 
     - Memgraph image - https://docs.memgraph.com/memgraph/quick-start#docker-installation 
@@ -196,9 +196,9 @@ localhost:8083      test.localhost
 - Run docker containers: 
     - run portainer with autostart. (run appDeploymentLifecycle\resource\localDevelopmentEnvironment\WindowsOS\container\containerGUI\setup.windowsShellExecutableForm.bat)
 - Turn on WSL2 integration of Docker Desktop.
-    <!-- !important: docker desktop engine on WSL2 still has the following required features not implemented fully: 
+    <!-- !important: docker desktop engine on WSL2 (unreleased version) still has the following required features not implemented fully: 
         - [Supported ✔] ~/var/run/docker.sock volume still not supported as mentioned in https://www.docker.com/blog/new-docker-desktop-wsl2-backend/~
-        - WSL2 is now running with a host-only network adapter (While the WSL VM is still on a host-only network adapter, you can access things like docker containers through localhost on your Windows (host) machine) https://medium.com/faun/windows-subsystem-on-linux-wsl-2-first-impressions-96adaf2ebe76
+        - [Supported ✔ both host and bridge] WSL2 is now running with a host-only network adapter (While the WSL VM is still on a host-only network adapter, you can access things like docker containers through localhost on your Windows (host) machine) https://medium.com/faun/windows-subsystem-on-linux-wsl-2-first-impressions-96adaf2ebe76
             The issue is that networking is messed up a little when using docker desktop on WSL2, from what I've observed, docker desktop WSL2 ports are exposed, they do not conflict with localhost but override their access (accessing localhost:8080 will be tranmitted to the WSL2 container, over the host's server/app).
             https://github.com/microsoft/WSL/issues/4212
             WSL2 will have it's own ip address https://docs.microsoft.com/en-us/windows/wsl/wsl2-ux-changes#accessing-network-applications
@@ -262,8 +262,8 @@ ___
         - powershell (administrative privilages) `wsl --set-default-version 2` & `wsl --set-version Debian 2` then verify `wsl --list --verbose`
         - WSL2 files can be access through path `\\wsl$` (network sharing can be kept disabled)
 - WSL2 related installations: (WSL2 update allows calling wsl commands from windows) 
-    - TODO: setup wslgit which will allow to use a single installation of git on WSL - https://github.com/andy-5/wslgit or https://github.com/hangxingliu/wslgit
-    - TODO: use native docker on wsl2
+    - use native docker integrated with WSl2.
+- [WSL1] TODO: setup wslgit which will allow to use a single installation of git on WSL - https://github.com/andy-5/wslgit or https://github.com/hangxingliu/wslgit
 - Download & install distro from Windows store. Lunch the distro and set username & password.
 - Setup development environment using appDeploymentLifecycle repository powershell script.
     - `yarn run provisionOS` run it through Windows Node's installation, rather than under the newly installed WSL.

@@ -37,6 +37,13 @@ export const nonElevatedCallback = async () => {
   provision.jspm.install()
   provision.nodeVersionManagement.install()
   provision.rsync.install()
+  // install other packages:
+  childProcess.execSync(
+    [
+      // `sudo apt install bridge-utils`,  // DOESN'T WORK on WSL2. `brctl show` allows to view bridge network switches which docker on WSL2 creates.
+    ].join(' && \\\n'),
+    { cwd: __dirname, shell: true, stdio: [0, 1, 2] },
+  )
   // Installing globally didn't fix the issue // // TODO: Install `nodegit` 0.25.* as global dependency, because sometimes after yarn upgrade the nodegit module is for some reason cannot be found.
   console.groupEnd() && console.log('\n\n')
 
