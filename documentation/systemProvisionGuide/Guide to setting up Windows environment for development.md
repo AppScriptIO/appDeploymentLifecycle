@@ -197,9 +197,10 @@ localhost:8083      test.localhost
     - run portainer with autostart. (run appDeploymentLifecycle\resource\localDevelopmentEnvironment\WindowsOS\container\containerGUI\setup.windowsShellExecutableForm.bat)
 - Turn on WSL2 integration of Docker Desktop.
     <!-- !important: docker desktop engine on WSL2 still has the following required features not implemented fully: 
-        - [?] /var/run/docker.sock volume still not supported as mentioned in https://www.docker.com/blog/new-docker-desktop-wsl2-backend/
+        - [Supported ✔] ~/var/run/docker.sock volume still not supported as mentioned in https://www.docker.com/blog/new-docker-desktop-wsl2-backend/~
         - WSL2 is now running with a host-only network adapter (While the WSL VM is still on a host-only network adapter, you can access things like docker containers through localhost on your Windows (host) machine) https://medium.com/faun/windows-subsystem-on-linux-wsl-2-first-impressions-96adaf2ebe76
-            The issue is that networking is messed up a little when using docker desktop on WSL2
+            The issue is that networking is messed up a little when using docker desktop on WSL2, from what I've observed, docker desktop WSL2 ports are exposed, they do not conflict with localhost but override their access (accessing localhost:8080 will be tranmitted to the WSL2 container, over the host's server/app).
+            https://github.com/microsoft/WSL/issues/4212
             WSL2 will have it's own ip address https://docs.microsoft.com/en-us/windows/wsl/wsl2-ux-changes#accessing-network-applications
             Important note about networking - https://github.com/microsoft/WSL/issues/4150#issuecomment-504209723
             Port exposure when using `--network="host"` in docker run command (e.g. relying on Windows host program like memgraph on host): When host network is used, the container for some reason stops being accessible through eaither WSL2 ip or localhost. Checkout - https://docs.docker.com/network/host/
