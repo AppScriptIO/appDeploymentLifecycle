@@ -194,7 +194,7 @@ localhost:8083      test.localhost
     - Memgraph image - https://docs.memgraph.com/memgraph/quick-start#docker-installation 
     - docker pull neo4j; docker pull node; docker pull portainer/portainer
 - Run docker containers: 
-    - run portainer with autostart. (run appDeploymentLifecycle\resource\localDevelopmentEnvironment\WindowsOS\container\containerGUI\setup.windowsShellExecutableForm.bat)
+    - run portainer with autostart. (run portainer from @deployment/deploymentScript package.)
 - Turn on WSL2 integration of Docker Desktop.
     <!-- !important: docker desktop engine on WSL2 (unreleased version) still has the following required features not implemented fully: 
         - [Supported ✔] ~/var/run/docker.sock volume still not supported as mentioned in https://www.docker.com/blog/new-docker-desktop-wsl2-backend/~
