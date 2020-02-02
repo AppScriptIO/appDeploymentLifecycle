@@ -47,7 +47,7 @@ Install from CD ROM (ISO), where the following drivers should downloaded and use
     - Add to firewall programs to prevent connection to the internet in case required.
 
 # Add software shortcuts to "Start Menu" & Taskbar: 
-    - taskbar: Explorer, Brave, Chrome Canary, VSCodeInsiders, Powershell, ConEmu, GitBash, SmartGit, Microsoft Visio, Microsoft OneNote, Fiddler, Postman, StickyNotes, Email, Alarm, IslamicFinder Athan
+    - taskbar: Explorer, Brave, Chrome Canary, VSCodeInsiders, ConEmu, WindowsTerminal, SmartGit, Microsoft Visio, Microsoft OneNote, Fiddler, Postman, StickyNotes, Email, Alarm, IslamicFinder Athan
     - System tray: IslamicFinder Athan, Radio, KeePassXC, docker desktop, bluetooth
     - Windows start menu: Use program "Backup Start Menu Layout v1.3"
         - make sure when saving backup using the program to remove "Info.ini", as it contans personal user data.
@@ -196,6 +196,18 @@ localhost:8083      test.localhost
 - Run docker containers: 
     - run portainer with autostart. (run appDeploymentLifecycle\resource\localDevelopmentEnvironment\WindowsOS\container\containerGUI\setup.windowsShellExecutableForm.bat)
 - Turn on WSL2 integration of Docker Desktop.
+    <!-- !important: docker desktop engine on WSL2 still has the following required features not implemented fully: 
+        - [?] /var/run/docker.sock volume still not supported as mentioned in https://www.docker.com/blog/new-docker-desktop-wsl2-backend/
+        - WSL2 is now running with a host-only network adapter (While the WSL VM is still on a host-only network adapter, you can access things like docker containers through localhost on your Windows (host) machine) https://medium.com/faun/windows-subsystem-on-linux-wsl-2-first-impressions-96adaf2ebe76
+            The issue is that networking is messed up a little when using docker desktop on WSL2
+            WSL2 will have it's own ip address https://docs.microsoft.com/en-us/windows/wsl/wsl2-ux-changes#accessing-network-applications
+            Important note about networking - https://github.com/microsoft/WSL/issues/4150#issuecomment-504209723
+            Port exposure when using `--network="host"` in docker run command (e.g. relying on Windows host program like memgraph on host): When host network is used, the container for some reason stops being accessible through eaither WSL2 ip or localhost. Checkout - https://docs.docker.com/network/host/
+            WSL2 ip = `ip addr show dev eth0` reveals the address that allows to access the containers ports in the VM.
+            host machine ip = `cat /etc/resolv.conf`
+            - Accessing WSL2 from Windows can be accessed with localhost.
+            - Accessing Windows from WSL2 can be accessed through host machine ip address.
+    -->
 
 ### Winrar:
 - Settings > Integration > Cascaded context menu.
@@ -241,7 +253,7 @@ ___
 
 
 # Setup Windows & WSL environment: ✔️
-- Entroll into insiders program: 
+- WSL2 Entroll into insiders program: 
     - 💾 create a restore point for recovery in case the next settings messed up the system.
     - Check which Window Insiders release cycle (preview/slow/fast) supports WSL2 (currently slow ring does).
     - hackish way to enroll into Windows insiders program without an account - https://github.com/myuseringithub/offlineinsiderenroll

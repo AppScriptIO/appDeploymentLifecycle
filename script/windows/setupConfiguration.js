@@ -83,6 +83,12 @@ export const symlinkFileConfig = () => {
       },
     },
     {
+      source: path.resolve(__dirname, '../../resource/localDevelopmentEnvironment/WindowsOS/terminal/windowsTerminal/profiles.json'),
+      get destination() {
+        return path.join(userFolder, 'AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState', path.basename(this.source))
+      },
+    },
+    {
       source: path.resolve(__dirname, '../../resource/localDevelopmentEnvironment/WindowsOS/MicrosoftVisioStencils.vssx'),
       get destination() {
         return path.join(userFolder, 'Documents/My Shapes', path.basename(this.source))
