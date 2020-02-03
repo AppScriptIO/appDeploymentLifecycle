@@ -168,6 +168,7 @@ localhost:8083      test.localhost
             - `./build.sh` will create a folder `build` folder with the newly combined fonts.
     - install all the generated fonts (check resource for already generated files).
     - Verify that VSCode settings contain the font wanted.
+- Setup Remote WSL (Check notes down after the WSL setup).
 
 ### RadioTray: 
 - Add recitation channels
@@ -209,6 +210,11 @@ localhost:8083      test.localhost
             host machine ip = `cat /etc/resolv.conf`
             - Accessing WSL2 from Windows can be accessed with localhost.
             - Accessing Windows from WSL2 can be accessed through host machine ip address.
+        - [Not supported ❌] iNotify from Windows to WSL2 
+            Workaround: move projects to WSL2 filesystem.
+            - https://www.youtube.com/watch?v=lwhMThePdIo&feature=youtu.be&t=2189
+            - https://github.com/microsoft/WSL/issues/1956
+            - https://github.com/microsoft/WSL/issues/4739
     -->
 
 ### Winrar:
@@ -270,7 +276,10 @@ ___
     - `yarn run provisionOS` run it through Windows Node's installation, rather than under the newly installed WSL.
         once reached `change default shell` exit the new zsh shell that will be opened to continue installation. Repeat execution if errors occur, and make sure all commands in installations where executed (e.g. powerlevel10K theme in ZSH command group). this command will also update linux `sudo apt update -y && sudo apt upgrade -y`
 - Symlink .ssh folder to WSL: `sudo ln -s /<.ssh location>/.ssh /root/.ssh`
-
+- Setup VSCode in WSL2: ctrl+shift+p and search for "Remote: WSL new window", in which VSCode will download WSL server automatically and set it up.
+Resources: 
+- https://github.com/shayne/wsl2-hacks
+    
 
 Notes: 
 - An attempt to install WSL2 in insiders program (slow ring): 
