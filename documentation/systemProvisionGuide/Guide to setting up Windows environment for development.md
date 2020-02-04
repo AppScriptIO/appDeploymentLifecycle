@@ -197,25 +197,6 @@ localhost:8083      test.localhost
 - Run docker containers: 
     - run portainer with autostart. (run portainer from @deployment/deploymentScript package.)
 - Turn on WSL2 integration of Docker Desktop.
-    <!-- !important: docker desktop engine on WSL2 (unreleased version) still has the following required features not implemented fully: 
-        - [Supported ✔] ~/var/run/docker.sock volume still not supported as mentioned in https://www.docker.com/blog/new-docker-desktop-wsl2-backend/~
-        - [Supported ✔ both host and bridge] WSL2 is now running with a host-only network adapter (While the WSL VM is still on a host-only network adapter, you can access things like docker containers through localhost on your Windows (host) machine) https://medium.com/faun/windows-subsystem-on-linux-wsl-2-first-impressions-96adaf2ebe76
-        Use --network="host" in your docker run command, then 127.0.0.1 in your docker container will point to your docker host. https://stackoverflow.com/questions/24319662/from-inside-of-a-docker-container-how-do-i-connect-to-the-localhost-of-the-mach
-            The issue is that networking is messed up a little when using docker desktop on WSL2, from what I've observed, docker desktop WSL2 ports are exposed, they do not conflict with localhost but override their access (accessing localhost:8080 will be tranmitted to the WSL2 container, over the host's server/app).
-            https://github.com/microsoft/WSL/issues/4212
-            WSL2 will have it's own ip address https://docs.microsoft.com/en-us/windows/wsl/wsl2-ux-changes#accessing-network-applications
-            Important note about networking - https://github.com/microsoft/WSL/issues/4150#issuecomment-504209723
-            Port exposure when using `--network="host"` in docker run command (e.g. relying on Windows host program like memgraph on host): When host network is used, the container for some reason stops being accessible through eaither WSL2 ip or localhost. Checkout - https://docs.docker.com/network/host/
-            WSL2 ip = `ip addr show dev eth0` reveals the address that allows to access the containers ports in the VM.
-            host machine ip = `cat /etc/resolv.conf`
-            - Accessing WSL2 from Windows can be accessed with localhost.
-            - Accessing Windows from WSL2 can be accessed through host machine ip address.
-        - [Not supported ❌] iNotify from Windows to WSL2 
-            Workaround: move projects to WSL2 filesystem.
-            - https://www.youtube.com/watch?v=lwhMThePdIo&feature=youtu.be&t=2189
-            - https://github.com/microsoft/WSL/issues/1956
-            - https://github.com/microsoft/WSL/issues/4739
-    -->
 
 ### Winrar:
 - Settings > Integration > Cascaded context menu.
@@ -234,6 +215,11 @@ localhost:8083      test.localhost
     - Change to dark theme.
     - configure github intergration: preferences > hosting providers > Add (place token from github account or autogenerate one from SmartGit.)
     - Allow manipulating pushed commits: Preferences > Commands > Push - Allow modifying pushed commeits.
+    - Preferences > Commands > Stash > Include tracked files.
+    - Preferences > Commands > Push > Push all tags.
+    - Preferences > Commands > Commit > Add untracked files.
+    - Preferences > Refresh > Referesh file system in background.
+
 
 ### Github Desktop: 
     - sign in to github account.
@@ -277,14 +263,40 @@ ___
         once reached `change default shell` exit the new zsh shell that will be opened to continue installation. Repeat execution if errors occur, and make sure all commands in installations where executed (e.g. powerlevel10K theme in ZSH command group). this command will also update linux `sudo apt update -y && sudo apt upgrade -y`
 - Symlink .ssh folder to WSL: `sudo ln -s /<.ssh location>/.ssh /root/.ssh`
 - Setup VSCode in WSL2: ctrl+shift+p and search for "Remote: WSL new window", in which VSCode will download WSL server automatically and set it up.
-Resources: 
-- https://github.com/shayne/wsl2-hacks
-    
+- Setup Linux graphical server and Windows client to access WSL2 graphical programs: https://medium.com/@chuckdries/installing-gitkraken-in-wsl-2-15bf6459f823
+    TODO: Install smartGit graphical program in WSL2 and access it through Windows to take advantage of `inotify` support for autorefresh (as not yet supported), and use wsl own git installation.
 
-Notes: 
+Notes & Resources: 
 - An attempt to install WSL2 in insiders program (slow ring): 
     - OS biuld before switching to insiders = 18363.592 (version 1909) or 18363.628
     - OS build after switching to insiders = 19041.21 
+- https://github.com/shayne/wsl2-hacks
+- https://www.hanselman.com/blog/CoolWSLWindowsSubsystemForLinuxTipsAndTricksYouOrIDidntKnowWerePossible.aspx
+<!-- !important: docker desktop engine on WSL2 (unreleased version) still has the following required features not implemented fully: 
+    - [Supported ✔] Access WSL2 executables from windows: e.g. ` \Windows\System32\wsl.exe git status` in Windows will use the wsl git executable.
+    - [Supported ✔] /var/run/docker.sock volume still not supported as mentioned in https://www.docker.com/blog/new-docker-desktop-wsl2-backend/ 
+    - [Supported ✔ both host and bridge] WSL2 is now running with a host-only network adapter (While the WSL VM is still on a host-only network adapter, you can access things like docker containers through localhost on your Windows (host) machine) https://medium.com/faun/windows-subsystem-on-linux-wsl-2-first-impressions-96adaf2ebe76
+    https://www.youtube.com/watch?v=Xxhhdo2e-DA
+    Use --network="host" in your docker run command, then 127.0.0.1 in your docker container will point to your docker host. https://stackoverflow.com/questions/24319662/from-inside-of-a-docker-container-how-do-i-connect-to-the-localhost-of-the-mach
+        The issue is that networking is messed up a little when using docker desktop on WSL2, from what I've observed, docker desktop WSL2 ports are exposed, they do not conflict with localhost but override their access (accessing localhost:8080 will be tranmitted to the WSL2 container, over the host's server/app).
+        https://github.com/microsoft/WSL/issues/4212
+        WSL2 will have it's own ip address https://docs.microsoft.com/en-us/windows/wsl/wsl2-ux-changes#accessing-network-applications
+        Important note about networking - https://github.com/microsoft/WSL/issues/4150#issuecomment-504209723
+        Port exposure when using `--network="host"` in docker run command (e.g. relying on Windows host program like memgraph on host): When host network is used, the container for some reason stops being accessible through eaither WSL2 ip or localhost. Checkout - https://docs.docker.com/network/host/
+        WSL2 ip = `ip addr show dev eth0` reveals the address that allows to access the containers ports in the VM.
+        host machine ip = `cat /etc/resolv.conf`
+        - Accessing WSL2 from Windows can be accessed with localhost.
+        - Accessing Windows from WSL2 can be accessed through host machine ip address.
+    - [Not supported ❌] iNotify from Windows to WSL2 
+        Workaround: move projects to WSL2 filesystem.
+        - https://www.youtube.com/watch?v=lwhMThePdIo&feature=youtu.be&t=2189
+        - https://github.com/microsoft/WSL/issues/1956
+        - https://github.com/microsoft/WSL/issues/4739
+
+- Use windows executable from WSL2: https://www.reddit.com/r/bashonubuntuonwindows/comments/evs4hr/do_you_like_using_wsl2_but_hate_how_slow_git_runs/
+- Run graphical applications of WSL2 from Windows: https://www.reddit.com/r/bashonubuntuonwindows/comments/evs4hr/do_you_like_using_wsl2_but_hate_how_slow_git_runs/ffypob0/
+https://medium.com/@chuckdries/installing-gitkraken-in-wsl-2-15bf6459f823
+-->
 
 ___
 

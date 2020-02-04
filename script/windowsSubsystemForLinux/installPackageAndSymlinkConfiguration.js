@@ -32,6 +32,7 @@ export const nonElevatedCallback = async () => {
   // NOTE: when using WSL2 there is no need to install docker client packages, as all will be handled by Docker Desktop integration with WSL2.
   // provision.docker.install({ assignDockerHost: false }) // use native docker desktop on top of WSL2
   provision.git.install()
+  // TODO: install zsh additional plugins for packge.json support, etc.. https://nickymeuleman.netlify.com/blog/linux-on-windows-wsl2-zsh-docker#pre-installed-plugins
   provision.zshShell.install()
   provision.yarn.install()
   provision.jspm.install()
