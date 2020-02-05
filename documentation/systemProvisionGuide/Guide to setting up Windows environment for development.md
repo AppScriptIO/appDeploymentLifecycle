@@ -197,6 +197,7 @@ localhost:8083      test.localhost
 - Run docker containers: 
     - run portainer with autostart. (run portainer from @deployment/deploymentScript package.)
 - Turn on WSL2 integration of Docker Desktop.
+    - Solve issue, every now and then the WSL2-Docker integration breaks: Make sure DOCKER_HOST environment is not set, Or reinstall docker or https://github.com/docker/for-win/issues/5096#issuecomment-572730439
 
 ### Winrar:
 - Settings > Integration > Cascaded context menu.
@@ -261,10 +262,18 @@ ___
 - Setup development environment using appDeploymentLifecycle repository powershell script.
     - `yarn run provisionOS` run it through Windows Node's installation, rather than under the newly installed WSL.
         once reached `change default shell` exit the new zsh shell that will be opened to continue installation. Repeat execution if errors occur, and make sure all commands in installations where executed (e.g. powerlevel10K theme in ZSH command group). this command will also update linux `sudo apt update -y && sudo apt upgrade -y`
+    - Make sure the apppDeploymentLifecycle scripts don't mess up some changes made by Docker on WSL2 and VSCode remote server for WSL2. If Issues found try disabling and reenabling docker engine on WSL2 and to trigger reinstallation.
 - Symlink .ssh folder to WSL: `sudo ln -s /<.ssh location>/.ssh /root/.ssh`
 - Setup VSCode in WSL2: ctrl+shift+p and search for "Remote: WSL new window", in which VSCode will download WSL server automatically and set it up.
-- Setup Linux graphical server and Windows client to access WSL2 graphical programs: https://medium.com/@chuckdries/installing-gitkraken-in-wsl-2-15bf6459f823
-    TODO: Install smartGit graphical program in WSL2 and access it through Windows to take advantage of `inotify` support for autorefresh (as not yet supported), and use wsl own git installation.
+    - make sure `code .` or `code-insiders .` works in WSL2 after vscode installed VSCode server in WSL2.
+    - Open extensions tab, and migrate all required extensions to debian side in order to enable them.
+        Note: VSCode will have 2 types of extensions UI, & Workspace (requires direct access to source code of projects) extensions. These are installed automatically by VSCode on the correct side - WSL2 server or Windows VScode client.
+        VS Code's APIs are designed to automatically run in the right location regardless of where your extension happens to be located. 
+- Setup Linux graphical server and Windows client to access WSL2 graphical programs: https://medium.com/@chuckdries/installing-gitkraken-in-wsl-2-15bf6459f823 https://wiki.ubuntu.com/WSL#Running_Graphical_Applications
+    - TODO: [FIX this not working...] Install smartGit graphical program in WSL2 and access it through Windows to take advantage of `inotify` support for autorefresh (as not yet supported), and use wsl own git installation.
+        - (follow steps of above link) Install X server e.g. VcXsrv, symlink configs (from this repo's resource folder), set firewall protocol to allow WSL2 own ip access.
+        - smartgit for linux https://www.syntevo.com/smartgit/download/#installation-instructions
+- Move all repositories to WSL2 filesystem for greater performance.
 
 Notes & Resources: 
 - An attempt to install WSL2 in insiders program (slow ring): 

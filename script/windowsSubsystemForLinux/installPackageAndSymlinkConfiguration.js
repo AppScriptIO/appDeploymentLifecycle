@@ -41,6 +41,7 @@ export const nonElevatedCallback = async () => {
   // install other packages:
   childProcess.execSync(
     [
+      `sudo apt-get install -y wget`,
       // `sudo apt install bridge-utils`,  // DOESN'T WORK on WSL2. `brctl show` allows to view bridge network switches which docker on WSL2 creates.
     ].join(' && \\\n'),
     { cwd: __dirname, shell: true, stdio: [0, 1, 2] },

@@ -4,6 +4,7 @@ ___
 
 # Installed Windows software without a pacakge manager:
 Windows Terminal (new) from windows store.
+WSL-DistroManager https://github.com/rkttu/WSL-DistroManager
 
 Memgraph Lab (https://memgraph.com/download/)
 Neo4j Desktop (https://neo4j.com/download-neo4j-now/)
@@ -11,7 +12,6 @@ Simple drag drop graph creation tools:
   - Install http://www.apcjones.com/arrows/
   - Install https://graphileon.com/
 https://insomnia.rest/ - debug api (similar to postman)
-
 
 webroot internet security (with license)
 VSCode insiders

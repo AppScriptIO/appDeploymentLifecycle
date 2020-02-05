@@ -101,6 +101,8 @@ export const symlinkFileConfig = () => {
     //     return path.join(userFolder, 'Desktop', 'DockerWindowsVolumeWatcher')
     //   },
     // },
+
+    // TODO: X-Server configuration symlink GUIServer > 'config.xlaunch'
   ])
 
   copyFile([
