@@ -273,7 +273,7 @@ ___
     - TODO: [FIX this not working...] Install smartGit graphical program in WSL2 and access it through Windows to take advantage of `inotify` support for autorefresh (as not yet supported), and use wsl own git installation.
         - (follow steps of above link) Install X server e.g. VcXsrv, symlink configs (from this repo's resource folder), set firewall protocol to allow WSL2 own ip access.
         - smartgit for linux https://www.syntevo.com/smartgit/download/#installation-instructions
-- Move all repositories to WSL2 filesystem for greater performance.
+- Split repositories between Windows and WSL2: Move most repositories to WSL2 filesystem for greater performance, and keep Window system provisioning and documentation related repositories in Windows.
 
 Notes & Resources: 
 - An attempt to install WSL2 in insiders program (slow ring): 
