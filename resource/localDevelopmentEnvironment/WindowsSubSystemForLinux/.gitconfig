@@ -1,6 +1,12 @@
 [user]
         # name = 
         # email = 
+
+# stores credentials for interacting with github
+# .ssh must be symlinked to the WSL filesystem
+[credential]
+        helper = store --file ~/.ssh/.git-credentials
+
 [core]
         autocrlf = false
         excludesfile = ./configuration/.gitignore

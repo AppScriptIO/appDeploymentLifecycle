@@ -197,7 +197,11 @@ localhost:8083      test.localhost
 - Run docker containers: 
     - run portainer with autostart. (run portainer from @deployment/deploymentScript package.)
 - Turn on WSL2 integration of Docker Desktop.
-    - Solve issue, every now and then the WSL2-Docker integration breaks: Make sure DOCKER_HOST environment is not set, Or reinstall docker or https://github.com/docker/for-win/issues/5096#issuecomment-572730439
+    - Solve issue, every now and then the WSL2-Docker integration breaks: 
+        - Remove containers with socket attached, disable WSL2 Docker and then re-enable it, & restart computer (complete shutdown, not logging out)
+        - Make sure DOCKER_HOST environment is not set, Or reinstall docker or https://github.com/docker/for-win/issues/5096#issuecomment-572730439
+        - IMPORTANT: Should add delayed startup for docker desktop to prevent failure of setting up itself with WSL2. Otherwise, WSL2 docker commands will not be able to connect to Docker deamon. Add delay to startup program using Windows Patrol program.
+
 
 ### Winrar:
 - Settings > Integration > Cascaded context menu.
@@ -263,7 +267,8 @@ ___
     - `yarn run provisionOS` run it through Windows Node's installation, rather than under the newly installed WSL.
         once reached `change default shell` exit the new zsh shell that will be opened to continue installation. Repeat execution if errors occur, and make sure all commands in installations where executed (e.g. powerlevel10K theme in ZSH command group). this command will also update linux `sudo apt update -y && sudo apt upgrade -y`
     - Make sure the apppDeploymentLifecycle scripts don't mess up some changes made by Docker on WSL2 and VSCode remote server for WSL2. If Issues found try disabling and reenabling docker engine on WSL2 and to trigger reinstallation.
-- Symlink .ssh folder to WSL: `sudo ln -s /<.ssh location>/.ssh /root/.ssh`
+- Symlink .ssh folder to WSL: `sudo ln -s /<.ssh location>/.ssh ~/.ssh`
+    - git will use 'credential store' (resource > .gitconfig) to lookup for `.git-credentials` file and automatically read token for github. Make sure .git-credentials have the current user as owner and has permissions (-rw-------), instead of root (which will allow usage without sudo),.
 - Setup VSCode in WSL2: ctrl+shift+p and search for "Remote: WSL new window", in which VSCode will download WSL server automatically and set it up.
     - make sure `code .` or `code-insiders .` works in WSL2 after vscode installed VSCode server in WSL2.
     - Open extensions tab, and migrate all required extensions to debian side in order to enable them.
@@ -276,6 +281,7 @@ ___
 - Split repositories between Windows and WSL2: Move most repositories to WSL2 filesystem for greater performance, and keep Window system provisioning and documentation related repositories in Windows.
 
 Notes & Resources: 
+- Access root user in WSL2 with `sudo su`
 - An attempt to install WSL2 in insiders program (slow ring): 
     - OS biuld before switching to insiders = 18363.592 (version 1909) or 18363.628
     - OS build after switching to insiders = 19041.21 
