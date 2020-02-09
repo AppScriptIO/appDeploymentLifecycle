@@ -122,6 +122,16 @@ ___
 - show bookmarks tab
 - make extensions run only when clicked.
 - Do not continue in background when closed.
+- Reopen where left.
+
+## Chrome Canary: 
+Use chrome canary as development browser.
+- Add necessary extensions. 
+- remove passwords, payment method, address saving.
+- show bookmarks tab
+- make extensions run only when clicked.
+- Do not continue in background when closed.
+- Reopen where left.
 
 ### ConEmu 
 - ConEmu setting > integration > Add to context explorer menu
@@ -269,6 +279,7 @@ ___
     - Make sure the apppDeploymentLifecycle scripts don't mess up some changes made by Docker on WSL2 and VSCode remote server for WSL2. If Issues found try disabling and reenabling docker engine on WSL2 and to trigger reinstallation.
 - Symlink .ssh folder to WSL: `sudo ln -s /<.ssh location>/.ssh ~/.ssh`
     - git will use 'credential store' (resource > .gitconfig) to lookup for `.git-credentials` file and automatically read token for github. Make sure .git-credentials have the current user as owner and has permissions (-rw-------), instead of root (which will allow usage without sudo),.
+    - TODO: change default path docker lookup for config file (default location `~/.docker/config.json`), to <.ssh folder>/.docker.
 - Setup VSCode in WSL2: ctrl+shift+p and search for "Remote: WSL new window", in which VSCode will download WSL server automatically and set it up.
     - make sure `code .` or `code-insiders .` works in WSL2 after vscode installed VSCode server in WSL2.
     - Open extensions tab, and migrate all required extensions to debian side in order to enable them.
