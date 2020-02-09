@@ -35,13 +35,16 @@ export const nonElevatedCallback = async () => {
   // TODO: install zsh additional plugins for packge.json support, etc.. https://nickymeuleman.netlify.com/blog/linux-on-windows-wsl2-zsh-docker#pre-installed-plugins
   provision.zshShell.install()
   provision.yarn.install()
-  provision.jspm.install()
   provision.nodeVersionManagement.install()
+
+  // required by build tool if executed on host directly. (NOTE: deployment-environment image requires the same dependencies.)
+  provision.jspm.install()
   provision.rsync.install()
+
   // install other packages:
   childProcess.execSync(
     [
-      `sudo apt-get install -y wget`,
+      `sudo apt install -y wget curl nano vim zip unzip`,
       // `sudo apt install bridge-utils`,  // DOESN'T WORK on WSL2. `brctl show` allows to view bridge network switches which docker on WSL2 creates.
     ].join(' && \\\n'),
     { cwd: __dirname, shell: true, stdio: [0, 1, 2] },
