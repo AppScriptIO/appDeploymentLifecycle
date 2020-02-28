@@ -13,6 +13,10 @@ Resources folder -
 
 [Guide to setting up Windows environment for development](./systemProvisionGuide/"Guide to setting up Windows environment for development.md")
 
+# Deployment methodology: two pipeline:  https://www.youtube.com/watch?v=Ru3Rj_hM8bo
+    1. development pipeline
+    2. production pipeline
+
 [Glossary for terms used in related projects](./documentation/glossary.md)
 
 # Version limits: 

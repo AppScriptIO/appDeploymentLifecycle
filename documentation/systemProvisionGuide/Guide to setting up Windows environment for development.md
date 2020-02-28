@@ -56,6 +56,7 @@ Install from CD ROM (ISO), where the following drivers should downloaded and use
         - `Import-StartLayout –LayoutPath <path><file name>.xml –MountPath C:\`  (%systemdrive% => is the drive where windows is installed)
     - pin shortcuts in the resource > startMenuWindows folder, if they do not exist. (a registry script is used to allow adding any file to the pin start menu).
     - Remove shortcuts from desktop
+    - Add Computer folder as a toolbar in taskbar, allowing quick view of filesystem folders.
 
 # 💾 create a restore point for recovery in case the next settings messed up the system:
 	- remove unnecessary default windows installed apps before creating a restore point.
@@ -206,6 +207,7 @@ localhost:8083      test.localhost
     - docker pull neo4j; docker pull node; docker pull portainer/portainer
 - Run docker containers: 
     - run portainer with autostart. (run portainer from @deployment/deploymentScript package.)
+    - run Swarmpit for docker swarm GUI. (run swarmpit from @deployment/deploymentScript package.)
 - Turn on WSL2 integration of Docker Desktop.
     - Solve issue, every now and then the WSL2-Docker integration breaks: 
         - Remove containers with socket attached, disable WSL2 Docker and then re-enable it, & restart computer (complete shutdown, not logging out)

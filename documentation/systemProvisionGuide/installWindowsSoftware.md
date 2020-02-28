@@ -85,7 +85,7 @@ wireshark
 winmerge
 beyondcompare
 fiddler
-
+deskpins
 
 ## Development
 cmder
