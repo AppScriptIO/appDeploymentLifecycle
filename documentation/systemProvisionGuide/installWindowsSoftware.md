@@ -86,6 +86,7 @@ winmerge
 beyondcompare
 fiddler
 deskpins
+aerozoom
 
 ## Development
 cmder

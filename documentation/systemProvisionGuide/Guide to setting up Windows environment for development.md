@@ -69,6 +69,8 @@ Install from CD ROM (ISO), where the following drivers should downloaded and use
     - turn off network discovery.
 - Run scripts to alter Windwos environment: 
     - Add options to file explorer context menu - _registry script folder_ (./contextMenuRegistryScript).
+    - Use Windows 10 Magnifier - run on startup minimized https://superuser.com/questions/1097802/start-magnifier-minimized-in-windows-10  
+        (shortcuts: Windows with +/- keys https://www.tenforums.com/tutorials/84190-open-close-magnifier-windows-10-a.html)
 - Set default apps to use with different file extensions. i.e. Brave, VLC
 - remove unnecessary startup apps and change setting in apps if necessary.
     - remove `clipboard compare` (Beyond compare product) from startup.
