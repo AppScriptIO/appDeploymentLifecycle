@@ -57,6 +57,7 @@
         "editor.selectionBackground": "#135564",
         "editor.selectionHighlightBorder": "#135564",
         "activityBar.background": "#000000",
+        "activityBar.activeBackground": "#000000",
         "activityBar.activeBorder": "#782828",
         "activityBar.foreground": "#e7e7e7",
         "activityBar.inactiveForeground": "#e7e7e799",

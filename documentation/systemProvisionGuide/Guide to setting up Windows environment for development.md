@@ -69,7 +69,7 @@ Install from CD ROM (ISO), where the following drivers should downloaded and use
     - turn off network discovery.
 - Run scripts to alter Windwos environment: 
     - Add options to file explorer context menu - _registry script folder_ (./contextMenuRegistryScript).
-    - Use Windows 10 Magnifier - run on startup minimized https://superuser.com/questions/1097802/start-magnifier-minimized-in-windows-10  
+    - Use Windows 10 Magnifier - Use lense mode & run on startup minimized https://superuser.com/questions/1097802/start-magnifier-minimized-in-windows-10  
         (shortcuts: Windows with +/- keys https://www.tenforums.com/tutorials/84190-open-close-magnifier-windows-10-a.html)
 - Set default apps to use with different file extensions. i.e. Brave, VLC
 - remove unnecessary startup apps and change setting in apps if necessary.
@@ -95,7 +95,7 @@ Install from CD ROM (ISO), where the following drivers should downloaded and use
     - set wallpapers to collection (copy from storage to user pictures fodler.).
     - ~~show all icons on desktop.~~
 - start menu: show most used apps.
-- change mouse & touchpad speed to fastest, change mouse color to yellow and size to 2 for mouse and cursor thickness.
+- change mouse & touchpad speed to fastest, change mouse color to yellow and size to 2 for mouse and cursor thickness, touchpad sentsitivity to "Most sensitive" to prevent mouse locking when pressing on keyboard at the same time.
 - `msconfig` > boot timeout = 3s, check OS boot information.
 - TODO (Tool isn't easy to use, need a way to backup current context settings): Using `Easy Context Menu` tool, manipulate the Windows context menu, creating nested menus for common tools.
 - TODO: set calibration configuration from original backup ISO.
