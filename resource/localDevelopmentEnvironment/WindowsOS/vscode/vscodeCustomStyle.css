@@ -6,10 +6,12 @@ Windows Environment Path Variables https://superuser.com/questions/217504/is-the
 variable reference in vscode https://code.visualstudio.com/docs/editor/variables-reference
 NOTE: VSCode doesn't support usage of OS environment variables in settings.json, therefore the file is loaded from Users folder to prevent exposing username in settings file.
 
+IMPORTANT: in order to get the extension working and loading css for a WSL remote vscode session, the applied settings should be in the regular vscode window of Windows, not the remote one. 1. Open vscode new window. 2. ctrl+p reload css. 3. reload a WSL vscode window to take effect.
 */
 
 /* Language specific declarations and keywords - e.g. import, export, function, switch, case, const, let */
 .mtk12,
+.mtk11,
 .mtki {
   /* margin-left: 1px; */
   font-family: "Operator Mono SSm Lig Light";
