@@ -83,6 +83,7 @@ Install from CD ROM (ISO), where the following drivers should downloaded and use
         - Guide to switch between multiple screen modes - https://superuser.com/questions/1322510/switch-between-multiple-displays-configuration-in-windows-10
 - Taskbar settings: Combine buttons when taskbar is full, peek preview, small taskbar buttons, Top position, Taskbar where windows is opened, select icons to show in system tray including all system icons.
 - Keyboard Languages, clock/date formats
+- Disable shift 5-times sticky key toggling in Settings > Device > keyboard.
 - Sign in automatically to windows: `netplwiz` command, then untick `users must enter a password to use this computer`
 - system performance - change settings for best performace by removing animations (system propertes > advanced > performace settings)
 - power settings:

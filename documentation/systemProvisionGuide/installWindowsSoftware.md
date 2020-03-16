@@ -33,6 +33,7 @@ SD Card Formatter
 easyUEFI Hasleo
 shutup10
 https://github.com/da2x/EdgeDeflector - conrtana searches change to default system browser 
+custom clock - https://github.com/White-Tiger/T-Clock
 
 ### TODO: Checkout and install following or similar apps: 
 - App for caching open windows to restart windows after a reboot. (an alternative to hibernate)
