@@ -119,6 +119,9 @@ ___
 - change mode for quiet, fan automatic, power balanced.
 - Optional - insert overclocking parameters from original supplier.
 
+## T-Clock taskbar clock: 
+- Setting from ./resource/localDevelopmentEnvironment/WindowsOS/T-Clock settings.
+
 ### Brave browser:
 - create profile for each email and sign in.
 - remove passwords, payment method, address saving.
