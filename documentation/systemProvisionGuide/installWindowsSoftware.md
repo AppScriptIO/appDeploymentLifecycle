@@ -1,5 +1,4 @@
 # Install software pacakges in Windows using a package manager:
-
 ___
 
 # Installed Windows software without a pacakge manager:
@@ -12,11 +11,14 @@ Simple drag drop graph creation tools:
   - Install http://www.apcjones.com/arrows/
   - Install https://graphileon.com/
 https://insomnia.rest/ - debug api (similar to postman)
+MongoDB installation (CLI and other tools) for Windows side & WSL2 side
+Advanced Rest Client - https://install.advancedrestclient.com/install
 
 webroot internet security (with license)
 VSCode insiders
 whatsapp desktop
 trello
+Miro (miro.com windows app)
 azan basic (prayer times windows tray)
 debian WSL distro (Windows store)
 radiotray
@@ -34,6 +36,7 @@ easyUEFI Hasleo
 shutup10
 https://github.com/da2x/EdgeDeflector - conrtana searches change to default system browser 
 custom clock - https://github.com/White-Tiger/T-Clock
+epub reader software
 
 ### TODO: Checkout and install following or similar apps: 
 - App for caching open windows to restart windows after a reboot. (an alternative to hibernate)

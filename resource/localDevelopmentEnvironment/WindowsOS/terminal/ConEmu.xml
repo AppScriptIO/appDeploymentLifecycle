@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <key name="Software">
 	<key name="ConEmu">
-		<key name=".Vanilla" modified="2020-03-08 23:48:33" build="191012">
+		<key name=".Vanilla" modified="2020-04-06 19:43:04" build="191012">
 			<value name="Language" type="string" data="en"/>
 			<value name="StartType" type="hex" data="02"/>
 			<value name="CmdLine" type="string" data=""/>
@@ -147,8 +147,8 @@
 			<value name="Cascaded" type="hex" data="01"/>
 			<value name="IntegralSize" type="hex" data="00"/>
 			<value name="WindowMode" type="dword" data="0000051f"/>
-			<value name="ConWnd X" type="long" data="0"/>
-			<value name="ConWnd Y" type="long" data="52"/>
+			<value name="ConWnd X" type="long" data="1352"/>
+			<value name="ConWnd Y" type="long" data="287"/>
 			<value name="LastMonitor" type="string" data="0,52,3840,2160"/>
 			<value name="ConWnd Width" type="dword" data="00000069"/>
 			<value name="ConWnd Height" type="dword" data="00000035"/>
