@@ -27,6 +27,7 @@ Miro (miro.com windows app)
 azan basic (prayer times windows tray)
 debian WSL distro (Windows store)
 radiotray
+Bulk Rename Utility
 
 procmon - Process Monitor from microsoft - https://docs.microsoft.com/en-us/sysinternals/downloads/procmon allows to check if any process is being blocked.
 Acronis True Image 2020 (for Full partitions backup into .img files or iso)
