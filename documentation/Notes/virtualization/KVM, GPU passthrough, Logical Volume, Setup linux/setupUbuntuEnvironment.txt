@@ -51,6 +51,9 @@ Run inside "module" folder `make`, then run `sudo insmod clevo-xsm-wmi.ko`
 	Fn * will turn the LED's on and off
 	Fn + & - will adjust the brightness
 
+# integrated camera can be turned off programmatically using the control panel provided: 
+	Fn + F10 turns off the camera and the device manager will show it as hidden.
+
 
 # fan control
 http://forum.notebookreview.com/threads/clevo-fan-control-for-linux.825658/

@@ -18,3 +18,4 @@ Google Dictionary (by Google)
 Prayer Times 
 Privacy Badger 
 React Developer Tools extension
+Redux DevTools extension

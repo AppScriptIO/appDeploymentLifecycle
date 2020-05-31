@@ -1,4 +1,5 @@
 # Install software pacakges in Windows using a package manager:
+- ninite.com : gives a web interface for installing multiple common applications at once.
 ___
 
 # Installed Windows software without a pacakge manager:
@@ -13,6 +14,10 @@ Simple drag drop graph creation tools:
 https://insomnia.rest/ - debug api (similar to postman)
 MongoDB installation (CLI and other tools) for Windows side & WSL2 side
 Advanced Rest Client - https://install.advancedrestclient.com/install
+Mongo GUIs: 
+  - https://robomongo.org/
+  - MongoDB Compass
+boostnote.io software
 
 webroot internet security (with license)
 VSCode insiders
@@ -37,6 +42,8 @@ shutup10
 https://github.com/da2x/EdgeDeflector - conrtana searches change to default system browser 
 custom clock - https://github.com/White-Tiger/T-Clock
 epub reader software
+
+https://www.safer-networking.org/ allows to remove spying in windows.
 
 ### TODO: Checkout and install following or similar apps: 
 - App for caching open windows to restart windows after a reboot. (an alternative to hibernate)
