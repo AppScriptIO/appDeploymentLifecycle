@@ -99,6 +99,7 @@ beyondcompare
 fiddler
 deskpins
 aerozoom
+WinHTTrack
 
 ## Development
 cmder
