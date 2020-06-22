@@ -19,3 +19,4 @@ Prayer Times
 Privacy Badger 
 React Developer Tools extension
 Redux DevTools extension
+User-Agent Switcher for Chrome
