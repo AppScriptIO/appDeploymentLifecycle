@@ -267,6 +267,11 @@ Alternatives:
     - Qustodio
     - Cold Turkey
 
+## Microsoft OneNote: 
+- Setup onenote notebooks and sync online notebooks.
+- Add-on https://github.com/stevencohn/OneMore
+
+
 ___
 
 
