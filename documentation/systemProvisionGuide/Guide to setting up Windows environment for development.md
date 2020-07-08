@@ -169,6 +169,7 @@ localhost:8083      test.localhost
 
 ### VSCode: 
 - Synchronize settings with gist `90e15820071cc7bdef5507c8b75d9bf8` using `settings sync` vscode extension. after setting gist id, press ctrl+shift+d to download the settings (ctrl+shift+P -> Sync: Download).
+    - Setup multi language settings: i.e. for JS, Java, C++, etc. https://code.visualstudio.com/docs/getstarted/settings
 - Fonts: 
     - Generate `Operator Mono` font with ligature (or check resource folder for an already generated files):
         Using docker https://github.com/kiliman/operator-mono-lig#docker
