@@ -269,7 +269,7 @@ Alternatives:
 
 ## Microsoft OneNote: 
 - Setup onenote notebooks and sync online notebooks.
-- Add-on https://github.com/stevencohn/OneMore
+- Add-on https://github.com/stevencohn/OneMore/releases
 
 
 ___
