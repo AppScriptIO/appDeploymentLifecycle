@@ -41,6 +41,7 @@ Install from CD ROM (ISO), where the following drivers should downloaded and use
 	        - Containers.
 		- Windows sandbox (created sandboxed environment to test applications without risking the main Windows OS)
 	- enable Developer Mode (enables bash for wsl and other features.)
+    - Windows long file path https://helpdeskgeek.com/how-to/how-to-fix-filename-is-too-long-issue-in-windows/
 
 # Install chocolatey pacakge manager and [Install Windows software](./installWindowsSoftwareAndChromiumExtensions.md) with chrome extensions to Brave browser✔️
     - Afterwards, run `Auroruns` program to disable unneeded update services (e.g. office related).
@@ -270,7 +271,6 @@ Alternatives:
 ## Microsoft OneNote: 
 - Setup onenote notebooks and sync online notebooks.
 - Add-on https://github.com/stevencohn/OneMore/releases
-
 
 ___
 

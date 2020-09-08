@@ -18,6 +18,7 @@ Mongo GUIs:
   - https://robomongo.org/
   - MongoDB Compass
 boostnote.io software
+swfplayer http://www.swffileplayer.com/
 
 webroot internet security (with license)
 VSCode insiders
@@ -28,6 +29,12 @@ azan basic (prayer times windows tray)
 debian WSL distro (Windows store)
 radiotray
 Bulk Rename Utility
+HashCheck Shell Extension - http://code.kliu.org/hashcheck/
+• Java: 
+  - Eclipse
+  - IntelliJ
+
+  
 
 procmon - Process Monitor from microsoft - https://docs.microsoft.com/en-us/sysinternals/downloads/procmon allows to check if any process is being blocked.
 Acronis True Image 2020 (for Full partitions backup into .img files or iso)
@@ -43,8 +50,12 @@ shutup10
 https://github.com/da2x/EdgeDeflector - conrtana searches change to default system browser 
 custom clock - https://github.com/White-Tiger/T-Clock
 epub reader software
+Hash Tool (From Windows store)
 
 https://www.safer-networking.org/ allows to remove spying in windows.
+
+https://www.cyotek.com/cyotek-webcopy/downloads
+https://www.octoparse.com/download
 
 ### TODO: Checkout and install following or similar apps: 
 - App for caching open windows to restart windows after a reboot. (an alternative to hibernate)
@@ -100,9 +111,11 @@ fiddler
 deskpins
 aerozoom
 WinHTTrack
+mpv
 
 ## Development
 cmder
+MobaXterm
 hyper
 androidstudio
 filezilla

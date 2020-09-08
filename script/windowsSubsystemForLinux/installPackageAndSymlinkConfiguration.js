@@ -44,7 +44,7 @@ export const nonElevatedCallback = async () => {
   // install other packages:
   childProcess.execSync(
     [
-      `sudo apt install -y wget curl nano vim zip unzip dnsutils netcat net-tools`,
+      `sudo apt install -y wget curl nano vim zip unzip dnsutils netcat net-tools man-db`,
       `sudo npm install --global jshint eslint`,
       // `sudo apt install bridge-utils`,  // DOESN'T WORK on WSL2. `brctl show` allows to view bridge network switches which docker on WSL2 creates.
     ].join(' && \\\n'),
