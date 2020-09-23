@@ -19,6 +19,7 @@ Mongo GUIs:
   - MongoDB Compass
 boostnote.io software
 swfplayer http://www.swffileplayer.com/
+Hex editor program https://mh-nexus.de/en/hxd/
 
 webroot internet security (with license)
 VSCode insiders
@@ -33,8 +34,8 @@ HashCheck Shell Extension - http://code.kliu.org/hashcheck/
 • Java: 
   - Eclipse
   - IntelliJ
+DrawPDF: allows to draw on the pdf for teaching. Drawboard PDF
 
-  
 
 procmon - Process Monitor from microsoft - https://docs.microsoft.com/en-us/sysinternals/downloads/procmon allows to check if any process is being blocked.
 Acronis True Image 2020 (for Full partitions backup into .img files or iso)
@@ -51,12 +52,18 @@ https://github.com/da2x/EdgeDeflector - conrtana searches change to default syst
 custom clock - https://github.com/White-Tiger/T-Clock
 epub reader software
 Hash Tool (From Windows store)
+Revo uninstaller
 
 https://www.safer-networking.org/ allows to remove spying in windows.
 
 https://www.cyotek.com/cyotek-webcopy/downloads
 https://www.octoparse.com/download
 
+run applications in stealth mode. 
+  - https://www.raymond.cc/blog/stealth-or-hide-running-program-from-appearing-in-taskbar-or-traybar/
+  - https://winaero.com/blog/run-a-program-hidden-in-windows-10/
+  - https://www.technize.net/how-to-protect-and-hide-running-applications-and-processes-in-windows/
+  - https://www.ghacks.net/2011/03/09/hide-applications-in-windows-with-winvisible/
 ### TODO: Checkout and install following or similar apps: 
 - App for caching open windows to restart windows after a reboot. (an alternative to hibernate)
 - "duet" allows for using ipad as a drawing tablet.

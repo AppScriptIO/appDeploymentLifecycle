@@ -101,6 +101,9 @@ Install from CD ROM (ISO), where the following drivers should downloaded and use
 - `msconfig` > boot timeout = 3s, check OS boot information.
 - TODO (Tool isn't easy to use, need a way to backup current context settings): Using `Easy Context Menu` tool, manipulate the Windows context menu, creating nested menus for common tools.
 - TODO: set calibration configuration from original backup ISO.
+- TODO: Add Windows explorer "tags" field for quick edit of metadata details in the "details pane" https://karl-voit.at/2019/11/26/Tagging-Files-With-Windows-10/
+    - https://github.com/Dijji/FileMeta/releases/tag/v1.6.0.4
+- Add to context menu "pin to start" for files: https://www.addictivetips.com/windows-tips/pin-a-file-to-start-menu-windows-10/#:~:text=Right%2Dclick%20the%20file%20and,context%20menu%20for%20all%20files.
 
 # Windows 10 themes: 
 - TODO: https://www.youtube.com/watch?v=X6FpuMqCghw
@@ -140,6 +143,7 @@ Use chrome canary as development browser.
 - make extensions run only when clicked.
 - Do not continue in background when closed.
 - Reopen where left.
+- brave://flags/ or chrome://flags and enable features related to tabs and fullscreen.
 
 ### ConEmu 
 - ConEmu setting > integration > Add to context explorer menu
@@ -235,6 +239,7 @@ localhost:8083      test.localhost
 ### Git: 
     - Save github credentials in windows Credential Manager: `git config --global credential.helper wincred`, afterwards the next login from git command will save the credentials in Credential Manager.
     Note the github global configuration should have already contain the entry for credntial helper "wincred", as the config is symlinked.
+    - TODO: Make sure the correct line-ending is used accross WSL2 and Windows applications. https://stackoverflow.com/questions/10418975/how-to-change-line-ending-settings 
 
 ### SmartGit:
     - Change to dark theme.
@@ -271,6 +276,10 @@ Alternatives:
 ## Microsoft OneNote: 
 - Setup onenote notebooks and sync online notebooks.
 - Add-on https://github.com/stevencohn/OneMore/releases
+- Add-on https://www.onenotegem.com/
+- custom style addons: 
+    - https://getonetastic.com/?i=update-for-onetastic-1-3-0#custom-styles
+    
 
 ___
 

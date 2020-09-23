@@ -20,4 +20,5 @@ Privacy Badger
 React Developer Tools extension
 Redux DevTools extension
 User-Agent Switcher for Chrome
-Video downloader for both regular and streaming videos downloadhelper.net 
+Video downloader for both regular and streaming videos downloadhelper.net
+tabtiles
