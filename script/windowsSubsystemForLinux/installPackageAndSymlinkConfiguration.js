@@ -44,6 +44,7 @@ export const nonElevatedCallback = async () => {
   // install other packages:
   childProcess.execSync(
     [
+      `echo deb http://deb.debian.org/debian buster-backports main contrib non-free | sudo tee /etc/apt/sources.list.d/buster-backports.list && sudo apt update && sudo apt install -t buster-backports gcc-doc`, // install gcc manual pages for usage with `man gcc` command
       `sudo apt install -y wget curl nano vim zip unzip dnsutils netcat net-tools man-db`,
       `sudo npm install --global jshint eslint`,
       // `sudo apt install bridge-utils`,  // DOESN'T WORK on WSL2. `brctl show` allows to view bridge network switches which docker on WSL2 creates.

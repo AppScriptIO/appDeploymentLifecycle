@@ -97,7 +97,7 @@ Install from CD ROM (ISO), where the following drivers should downloaded and use
     - set wallpapers to collection (copy from storage to user pictures fodler.).
     - ~~show all icons on desktop.~~
 - start menu: show most used apps.
-- change mouse & touchpad speed to fastest, change mouse color to yellow and size to 2 for mouse and cursor thickness, touchpad sentsitivity to "Most sensitive" to prevent mouse locking when pressing on keyboard at the same time.
+- change mouse & touchpad speed to fastest, change mouse color to yellow and size to 2 for mouse and cursor thickness, (~touchpad sentsitivity to "Most sensitive" to prevent mouse locking when pressing on keyboard at the same time~).
 - `msconfig` > boot timeout = 3s, check OS boot information.
 - TODO (Tool isn't easy to use, need a way to backup current context settings): Using `Easy Context Menu` tool, manipulate the Windows context menu, creating nested menus for common tools.
 - TODO: set calibration configuration from original backup ISO.
