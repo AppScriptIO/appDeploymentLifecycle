@@ -20,6 +20,7 @@ Mongo GUIs:
 boostnote.io software
 swfplayer http://www.swffileplayer.com/
 Hex editor program https://mh-nexus.de/en/hxd/
+  - https://superuser.com/questions/14465/hex-editors-for-windows
 
 webroot internet security (with license)
 VSCode insiders
@@ -35,7 +36,11 @@ HashCheck Shell Extension - http://code.kliu.org/hashcheck/
   - Eclipse
   - IntelliJ
 DrawPDF: allows to draw on the pdf for teaching. Drawboard PDF
-
+MegaBastered: Mega downloader  https://github.com/tonikelope/megabasterd/releases/tag/v7.28
+MegaDownloader
+URL Downloaders: https://www.raymond.cc/blog/how-to-download-all-files-from-a-folder-on-a-website-or-ftp/
+  - JDownloader https://www.raymond.cc/blog/download/did/1531/ 
+gVIM for windows: https://www.vim.org/download.php
 
 procmon - Process Monitor from microsoft - https://docs.microsoft.com/en-us/sysinternals/downloads/procmon allows to check if any process is being blocked.
 Acronis True Image 2020 (for Full partitions backup into .img files or iso)

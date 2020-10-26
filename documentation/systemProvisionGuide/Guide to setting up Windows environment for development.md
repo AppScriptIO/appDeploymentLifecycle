@@ -280,6 +280,11 @@ Alternatives:
 - custom style addons: 
     - https://getonetastic.com/?i=update-for-onetastic-1-3-0#custom-styles
     
+## VPN: 
+- https://www.psiphon3.com/en/download.html
+-NordVPN
+    - search for premium accounts
+    - Make sure VPN is secure https://support.nordvpn.com/FAQ/1047410162/How-to-be-truly-secure-whilst-using-NordVPN.htm
 
 ___
 
@@ -346,6 +351,9 @@ Notes & Resources:
 - Run graphical applications of WSL2 from Windows: https://www.reddit.com/r/bashonubuntuonwindows/comments/evs4hr/do_you_like_using_wsl2_but_hate_how_slow_git_runs/ffypob0/
 https://medium.com/@chuckdries/installing-gitkraken-in-wsl-2-15bf6459f823
 -->
+
+- Fix WSL DNS when using VPN: https://github.com/microsoft/WSL/issues/1350
+    - set `[network] generateResolvConf = false` in /etc/wsl.conf and add a different dns server name in /etc/resolv.conf file.
 
 ___
 

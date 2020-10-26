@@ -1,0 +1,2 @@
+- https://github.com/avilum/smart-url-fuzzer
+- https://github.com/mtojek/go-url-fuzzer
