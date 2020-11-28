@@ -21,11 +21,13 @@ boostnote.io software
 swfplayer http://www.swffileplayer.com/
 Hex editor program https://mh-nexus.de/en/hxd/
   - https://superuser.com/questions/14465/hex-editors-for-windows
+another hex tool - ntcore.com ExploreSuite 
 
 webroot internet security (with license)
 VSCode insiders
 whatsapp desktop
 trello
+notion.so
 Miro (miro.com windows app)
 azan basic (prayer times windows tray)
 debian WSL distro (Windows store)
@@ -41,6 +43,11 @@ MegaDownloader
 URL Downloaders: https://www.raymond.cc/blog/how-to-download-all-files-from-a-folder-on-a-website-or-ftp/
   - JDownloader https://www.raymond.cc/blog/download/did/1531/ 
 gVIM for windows: https://www.vim.org/download.php
+Remap any mouse buttons and auxilliary keys: https://www.highrez.co.uk/downloads/XMouseButtonControl.htm
+Disassembler and reverse engineering software: https://www.pelock.com/articles/reverse-engineering-tools-review
+  - IDA Pro
+  - https://ghidra-sre.org/
+  
 
 procmon - Process Monitor from microsoft - https://docs.microsoft.com/en-us/sysinternals/downloads/procmon allows to check if any process is being blocked.
 Acronis True Image 2020 (for Full partitions backup into .img files or iso)

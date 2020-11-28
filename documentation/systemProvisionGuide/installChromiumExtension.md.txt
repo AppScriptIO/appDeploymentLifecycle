@@ -1,3 +1,5 @@
+#TODO: check article for more extensions https://hackernoon.com/11-best-google-chrome-extensions-for-developers-in-2020-er3r3wtz
+
 # Chromium extensions list: for brave or chrome
 
 Google Translate 

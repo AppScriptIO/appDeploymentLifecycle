@@ -104,6 +104,7 @@ Install from CD ROM (ISO), where the following drivers should downloaded and use
 - TODO: Add Windows explorer "tags" field for quick edit of metadata details in the "details pane" https://karl-voit.at/2019/11/26/Tagging-Files-With-Windows-10/
     - https://github.com/Dijji/FileMeta/releases/tag/v1.6.0.4
 - Add to context menu "pin to start" for files: https://www.addictivetips.com/windows-tips/pin-a-file-to-start-menu-windows-10/#:~:text=Right%2Dclick%20the%20file%20and,context%20menu%20for%20all%20files.
+- Disable telemetry: https://www.easeus.com/partition-manager-software/fix-windows-10-microsoft-compatibility-telemetry-high-disk-usage.html
 
 # Windows 10 themes: 
 - TODO: https://www.youtube.com/watch?v=X6FpuMqCghw

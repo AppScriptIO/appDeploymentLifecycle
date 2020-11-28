@@ -13,3 +13,8 @@
     - https://ashwaniashwin.wordpress.com/2014/06/27/configure-remote-desktop-connection-to-hyper-v-virtual-machine/
     - https://learn.adafruit.com/adafruits-raspberry-pi-lesson-3-network-setup/finding-your-pis-ip-address
     - https://tinkertry.com/how-to-change-windows-10-network-type-from-public-to-private
+
+# Connection issues: 
+- make sure no other program blocks visibility on LAN (e.g. VPN program, or settings)
+- Allow remote connection, network level auth, allow in firewall settings (features) 
+- Network sharing settings
