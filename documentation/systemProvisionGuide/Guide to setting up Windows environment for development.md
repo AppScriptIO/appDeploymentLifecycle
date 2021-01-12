@@ -105,6 +105,7 @@ Install from CD ROM (ISO), where the following drivers should downloaded and use
     - https://github.com/Dijji/FileMeta/releases/tag/v1.6.0.4
 - Add to context menu "pin to start" for files: https://www.addictivetips.com/windows-tips/pin-a-file-to-start-menu-windows-10/#:~:text=Right%2Dclick%20the%20file%20and,context%20menu%20for%20all%20files.
 - Disable telemetry: https://www.easeus.com/partition-manager-software/fix-windows-10-microsoft-compatibility-telemetry-high-disk-usage.html
+- Check schedualed tasks in windows and disable unnecessary updates.
 
 # Windows 10 themes: 
 - TODO: https://www.youtube.com/watch?v=X6FpuMqCghw

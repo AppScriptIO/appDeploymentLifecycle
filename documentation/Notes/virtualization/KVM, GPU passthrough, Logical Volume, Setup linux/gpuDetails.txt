@@ -1,4 +1,0 @@
-01:00.0 VGA compatible controller [0300]: NVIDIA Corporation GP104M [GeForce GTX 1080 Mobile] [10de:1be0] (rev a1)
-01:00.1 Audio device [0403]: NVIDIA Corporation GP104 High Definition Audio Controller [10de:10f0] (rev a1)
-02:00.0 3D controller [0302]: NVIDIA Corporation GP104M [GeForce GTX 1080 Mobile] [10de:1be0] (rev a1)
-02:00.1 Audio device [0403]: NVIDIA Corporation GP104 High Definition Audio Controller [10de:10f0] (rev a1)

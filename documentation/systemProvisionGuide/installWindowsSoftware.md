@@ -22,6 +22,7 @@ swfplayer http://www.swffileplayer.com/
 Hex editor program https://mh-nexus.de/en/hxd/
   - https://superuser.com/questions/14465/hex-editors-for-windows
 another hex tool - ntcore.com ExploreSuite 
+FTP software: https://cyberduck.io/download/
 
 webroot internet security (with license)
 VSCode insiders
@@ -65,6 +66,7 @@ custom clock - https://github.com/White-Tiger/T-Clock
 epub reader software
 Hash Tool (From Windows store)
 Revo uninstaller
+Headphones volume limit (for ear protection): https://www.itechtics.com/3-ways-set-maximum-volume-limit-windows-10/
 
 https://www.safer-networking.org/ allows to remove spying in windows.
 
