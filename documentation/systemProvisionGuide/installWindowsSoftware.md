@@ -81,6 +81,7 @@ run applications in stealth mode.
 ### TODO: Checkout and install following or similar apps: 
 - App for caching open windows to restart windows after a reboot. (an alternative to hibernate)
 - "duet" allows for using ipad as a drawing tablet.
+- Shortcut software for more productivity https://windowsreport.com/shortcut-software-for-windows/
 ___
 
 # Must be executed in administractor powershell with execution policy allowed
