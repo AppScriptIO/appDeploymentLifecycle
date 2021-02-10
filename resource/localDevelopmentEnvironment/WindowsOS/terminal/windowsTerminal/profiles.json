@@ -5,7 +5,10 @@
     "$schema": "https://aka.ms/terminal-profiles-schema",
 
     "defaultProfile": "{58ad8b0c-3ef8-5f4d-bc6f-13e4c00f2530}",
-
+    "defaults":
+    {
+        // "startingDirectory": "."
+    },
     "profiles": [{
             // Make changes here to the powershell.exe profile
             "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
@@ -18,16 +21,19 @@
             "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
             "name": "cmd",
             "commandline": "cmd.exe",
-            "hidden": false
+            "hidden": false, 
+            // "startingDirectory": "%__CD__%"
         },
         {
             "guid": "{58ad8b0c-3ef8-5f4d-bc6f-13e4c00f2530}",
             "hidden": false,
             "name": "Debian",
-            "source": "Windows.Terminal.Wsl"
+            "source": "Windows.Terminal.Wsl", 
+            "commandline": "wsl",
+            // "startingDirectory": "."
         },
         {
-            "hidden": true,
+            "hidden": false,
             "guid": "{00000000-0000-0000-ba54-000000000002}",
             "acrylicOpacity": 0.75,
             "closeOnExit": true,
@@ -43,7 +49,8 @@
             "padding": "0, 0, 0, 0",
             "snapOnInput": true,
             "startingDirectory": "%USERPROFILE%",
-            "useAcrylic": true
+            // "startingDirectory": "%__CD__%",
+            "useAcrylic": true,
         },
         {
             "guid": "{00000000-0000-0000-ba54-000000000004}",
@@ -61,7 +68,8 @@
             "padding": "0, 0, 0, 0",
             "snapOnInput": true,
             "startingDirectory": "%USERPROFILE%",
-            "useAcrylic": true
+            "useAcrylic": true,
+            // "startingDirectory": "%__CD__%"
         },
         {
             "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",

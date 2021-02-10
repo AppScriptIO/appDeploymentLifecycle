@@ -42,7 +42,7 @@ DrawPDF: allows to draw on the pdf for teaching. Drawboard PDF
 MegaBastered: Mega downloader  https://github.com/tonikelope/megabasterd/releases/tag/v7.28
 MegaDownloader
 URL Downloaders: https://www.raymond.cc/blog/how-to-download-all-files-from-a-folder-on-a-website-or-ftp/
-  - JDownloader https://www.raymond.cc/blog/download/did/1531/ 
+  - JDownloader https://www.raymond.cc/blog/download/did/1531/
 gVIM for windows: https://www.vim.org/download.php
 Remap any mouse buttons and auxilliary keys: https://www.highrez.co.uk/downloads/XMouseButtonControl.htm
 Disassembler and reverse engineering software: https://www.pelock.com/articles/reverse-engineering-tools-review
@@ -62,7 +62,16 @@ SD Card Formatter
 easyUEFI Hasleo
 shutup10
 https://github.com/da2x/EdgeDeflector - conrtana searches change to default system browser 
-custom clock - https://github.com/White-Tiger/T-Clock
+Allow windows click through and always on top: 
+- https://windowtop.info/
+On screen tranlsation apps: 
+- https://quest-app.appspot.com/download
+- babylon
+Clocks: 
+- custom clock - https://github.com/White-Tiger/T-Clock
+- Other always on screen clocks:
+    - digital https://www.dualitysoft.com/dsclock/
+    - analog http://www.clocx.net/download.php
 epub reader software
 Hash Tool (From Windows store)
 Revo uninstaller
