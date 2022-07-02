@@ -288,6 +288,7 @@ Alternatives:
 -NordVPN
     - search for premium accounts
     - Make sure VPN is secure https://support.nordvpn.com/FAQ/1047410162/How-to-be-truly-secure-whilst-using-NordVPN.htm
+  - <https://github.com/kboghe/NordVPN-switcher>
 
 ___
 
