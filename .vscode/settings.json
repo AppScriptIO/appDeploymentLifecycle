@@ -1,153 +1,155 @@
 {
-    /** Linter & Formater & Static type checker
-     * Default VSCode validator for Typescript provides more features than ESLint equivalint (@typescript-eslint/parser).
-     * ESLint - https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint
-     * Pritier - 
-     */
-    "editor.formatOnSave": true, // enable builtin formater for all languages.
-    "editor.formatOnPaste": true,
-    "json.format.enable": true, // Enable builtin formatter as ESLint is not the best formatter for JSON, it was designed for JS.
-    "typescript.format.enable": false,
-    "javascript.format.enable": false,
-    "[typescript]": {
-        "editor.formatOnSave": false,
-        "editor.formatOnPaste": false,
-    },
-    "[javascript]": {
-        "editor.formatOnSave": false,
-        "editor.formatOnPaste": false,
-    },
-    "typescript.validate.enable": true, // enable/disable default VSCode Typescript validator.
-    "javascript.validate.enable": false, // disable default VSCode Javascript validator.
-    "javascript.implicitProjectConfig.experimentalDecorators": true,
-    "eslint.enable": true,
-    "eslint.options": {
-        "configFile": "./configuration/eslint.config.js"
-    },
-    "eslint.run": "onType",
-    "eslint.autoFixOnSave": true,
-    "eslint.validate": [ // https://code.visualstudio.com/docs/languages/identifiers
-        {
-            "language": "javascript",
-            "autoFix": true
-        },
-        {
-            "language": "javascriptreact",
-            "autoFix": true
-        },
-        {
-            "language": "typescript",
-            "autoFix": true
-        },
-        {
-            "language": "typescriptreact",
-            "autoFix": true
-        }
-    ],
-    "eslint.packageManager": "yarn",
-    "eslint.alwaysShowStatus": true,
-    "eslint.provideLintTask": true,
-    "eslint.codeAction.showDocumentation": {
-        "enable": true
-    },
-    "typescript.check.npmIsInstalled": false,
-    "workbench.colorCustomizations": {
-        "editor.background": "#000000",
-        "sideBar.background": "#000000",
-        "editor.selectionBackground": "#135564",
-        "editor.selectionHighlightBorder": "#135564",
-        "activityBar.background": "#000000",
-        "activityBar.activeBackground": "#000000",
-        "activityBar.activeBorder": "#782828",
-        "activityBar.foreground": "#e7e7e7",
-        "activityBar.inactiveForeground": "#e7e7e799",
-        "activityBarBadge.background": "#782828",
-        "activityBarBadge.foreground": "#e7e7e7",
-        "titleBar.activeBackground": "#000000",
-        "titleBar.inactiveBackground": "#00000099",
-        "titleBar.activeForeground": "#e7e7e7",
-        "titleBar.inactiveForeground": "#e7e7e799",
-        "statusBar.background": "#000000",
-        "statusBarItem.hoverBackground": "#1a1a1a",
-        "statusBar.foreground": "#e7e7e7",
-        "sash.hoverBorder": "#000000",
-        "statusBarItem.remoteBackground": "#000000",
-        "statusBarItem.remoteForeground": "#e7e7e7"
-    },
-    "peacock.color": "#000000",
-    "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": true
-    },
-    "editor.tokenColorCustomizations": {
-        "[Tomorrow Night Bright Operator Mono]": {
-            "textMateRules": [
-                {
-                    "scope": "keyword.control.trycatch.js, keyword.control.import.js, keyword.control.flow.js, meta.import.js, keyword.control.export.js, keyword.control.conditional.js, meta.var.expr.js, meta.block.js, storage.type.js, source.js, storage.modifier.async.js, meta.arrow.js",
-                    "settings": {}
-                },
-                {
-                    "scope": "support.type.js, support.typedef, meta.indexer.declaration.js, support.type.builtin.js",
-                    "settings": {
-                        "fontStyle": "italic",
-                        "foreground": "#ffc0cb"
-                    }
-                },
-                {
-                    "scope": "meta.interface.js, entity.name.type.interface.js, entity.name.type.js, entity.other.inherited-class.js, variable.language.this.js",
-                    "settings": {
-                        "fontStyle": "italic",
-                        "foreground": "#e7c547ff"
-                    }
-                },
-                {
-                    "scope": "support.type.primitive.js, meta.type.annotation.js, keyword.operator.type.annotation.js, meta.object.type.js, meta.type.annotation.js, meta.interface.js",
-                    "settings": {
-                        "fontStyle": "italic",
-                        "foreground": "#ffc0cb"
-                    }
-                },
-                {
-                    "scope": "keyword.operator.type.js",
-                    "settings": {
-                        "fontStyle": "",
-                        "foreground": "#ff76b8"
-                    }
-                },
-                {
-                    "scope": "punctuation.definition.block.js meta.object.type.js meta.type.annotation.js, variable.object.property.js",
-                    "settings": {
-                        "fontStyle": "",
-                        "foreground": "#AD1457"
-                    }
-                },
-                {
-                    "scope": "entity.name, variable.language.this.js",
-                    "settings": {
-                        "fontStyle": "",
-                        "foreground": "#e7c547ff"
-                    }
-                }
-            ]
-        },
-        "textMateRules": [
-            {
-                "scope": "googletest.failed",
-                "settings": {
-                    "foreground": "#f00"
-                }
-            },
-            {
-                "scope": "googletest.passed",
-                "settings": {
-                    "foreground": "#0f0"
-                }
-            },
-            {
-                "scope": "googletest.run",
-                "settings": {
-                    "foreground": "#0f0"
-                }
-            }
-        ]
-    }
+	/** Linter & Formater & Static type checker
+	 * Default VSCode validator for Typescript provides more features than ESLint equivalint (@typescript-eslint/parser).
+	 * ESLint - https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint
+	 * Pritier -
+	 */
+	"editor.formatOnSave": true, // enable builtin formater for all languages.
+	"editor.formatOnPaste": true,
+	"json.format.enable": true, // Enable builtin formatter as ESLint is not the best formatter for JSON, it was designed for JS.
+	"typescript.format.enable": false,
+	"javascript.format.enable": false,
+	"[typescript]": {
+		"editor.formatOnSave": false,
+		"editor.formatOnPaste": false
+	},
+	"[javascript]": {
+		"editor.formatOnSave": false,
+		"editor.formatOnPaste": false
+	},
+	"typescript.validate.enable": true, // enable/disable default VSCode Typescript validator.
+	"javascript.validate.enable": false, // disable default VSCode Javascript validator.
+	"javascript.implicitProjectConfig.experimentalDecorators": true,
+	"eslint.enable": true,
+	"eslint.options": {
+		"configFile": "./configuration/eslint.config.js"
+	},
+	"eslint.run": "onType",
+	"eslint.autoFixOnSave": true,
+	"eslint.validate": [
+		// https://code.visualstudio.com/docs/languages/identifiers
+		{
+			"language": "javascript",
+			"autoFix": true
+		},
+		{
+			"language": "javascriptreact",
+			"autoFix": true
+		},
+		{
+			"language": "typescript",
+			"autoFix": true
+		},
+		{
+			"language": "typescriptreact",
+			"autoFix": true
+		}
+	],
+	"eslint.packageManager": "yarn",
+	"eslint.alwaysShowStatus": true,
+	"eslint.provideLintTask": true,
+	"eslint.codeAction.showDocumentation": {
+		"enable": true
+	},
+	"typescript.check.npmIsInstalled": false,
+	"workbench.colorCustomizations": {
+		"editor.background": "#000000",
+		"sideBar.background": "#000000",
+		"editor.selectionBackground": "#135564",
+		"editor.selectionHighlightBorder": "#135564",
+		"activityBar.background": "#8f7066",
+		"activityBar.activeBackground": "#8f7066",
+		"activityBar.activeBorder": "#354a3a",
+		"activityBar.foreground": "#e7e7e7",
+		"activityBar.inactiveForeground": "#e7e7e799",
+		"activityBarBadge.background": "#354a3a",
+		"activityBarBadge.foreground": "#e7e7e7",
+		"titleBar.activeBackground": "#8f7066",
+		"titleBar.inactiveBackground": "#8f706699",
+		"titleBar.activeForeground": "#e7e7e7",
+		"titleBar.inactiveForeground": "#e7e7e799",
+		"statusBar.background": "#8f7066",
+		"statusBarItem.hoverBackground": "#a68b82",
+		"statusBar.foreground": "#e7e7e7",
+		"sash.hoverBorder": "#8f7066",
+		"statusBarItem.remoteBackground": "#8f7066",
+		"statusBarItem.remoteForeground": "#e7e7e7"
+	},
+	"peacock.color": "#000000",
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": true
+	},
+	"editor.tokenColorCustomizations": {
+		"[Tomorrow Night Bright Operator Mono]": {
+			"textMateRules": [
+				{
+					"scope": "keyword.control.trycatch.js, keyword.control.import.js, keyword.control.flow.js, meta.import.js, keyword.control.export.js, keyword.control.conditional.js, meta.var.expr.js, meta.block.js, storage.type.js, source.js, storage.modifier.async.js, meta.arrow.js",
+					"settings": {}
+				},
+				{
+					"scope": "support.type.js, support.typedef, meta.indexer.declaration.js, support.type.builtin.js",
+					"settings": {
+						"fontStyle": "italic",
+						"foreground": "#ffc0cb"
+					}
+				},
+				{
+					"scope": "meta.interface.js, entity.name.type.interface.js, entity.name.type.js, entity.other.inherited-class.js, variable.language.this.js",
+					"settings": {
+						"fontStyle": "italic",
+						"foreground": "#e7c547ff"
+					}
+				},
+				{
+					"scope": "support.type.primitive.js, meta.type.annotation.js, keyword.operator.type.annotation.js, meta.object.type.js, meta.type.annotation.js, meta.interface.js",
+					"settings": {
+						"fontStyle": "italic",
+						"foreground": "#ffc0cb"
+					}
+				},
+				{
+					"scope": "keyword.operator.type.js",
+					"settings": {
+						"fontStyle": "",
+						"foreground": "#ff76b8"
+					}
+				},
+				{
+					"scope": "punctuation.definition.block.js meta.object.type.js meta.type.annotation.js, variable.object.property.js",
+					"settings": {
+						"fontStyle": "",
+						"foreground": "#AD1457"
+					}
+				},
+				{
+					"scope": "entity.name, variable.language.this.js",
+					"settings": {
+						"fontStyle": "",
+						"foreground": "#e7c547ff"
+					}
+				}
+			]
+		},
+		"textMateRules": [
+			{
+				"scope": "googletest.failed",
+				"settings": {
+					"foreground": "#f00"
+				}
+			},
+			{
+				"scope": "googletest.passed",
+				"settings": {
+					"foreground": "#0f0"
+				}
+			},
+			{
+				"scope": "googletest.run",
+				"settings": {
+					"foreground": "#0f0"
+				}
+			}
+		]
+	},
+	"peacock.remoteColor": "#a68b82"
 }

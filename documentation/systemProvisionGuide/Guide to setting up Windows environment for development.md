@@ -359,6 +359,8 @@ https://medium.com/@chuckdries/installing-gitkraken-in-wsl-2-15bf6459f823
 - Fix WSL DNS when using VPN: https://github.com/microsoft/WSL/issues/1350
     - set `[network] generateResolvConf = false` in /etc/wsl.conf and add a different dns server name in /etc/resolv.conf file.
 
+- update debian 10 to debian 11 (bullseye) <https://www.cyberciti.biz/faq/update-upgrade-debian-10-to-debian-11-bullseye/>. To use latest g++ version compiler.
+
 ___
 
 # 💾 verify environment then: create `restore point` and remove all other restore points. (system properties > system protection > configure restore points for the system drive)
