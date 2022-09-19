@@ -129,6 +129,8 @@ ___
 ## T-Clock taskbar clock: 
 - Setting from ./resource/localDevelopmentEnvironment/WindowsOS/T-Clock settings.
 
+## add folder widgets to dektop https://www.stardock.com/products/fences/ 
+
 ### Brave browser:
 - create profile for each email and sign in.
 - remove passwords, payment method, address saving.
