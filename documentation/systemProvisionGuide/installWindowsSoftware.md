@@ -207,3 +207,10 @@ sandboxie.install
 winpatrol
 partitionwizard
 VisualBCD and dualboot repair for windows 10
+
+
+
+
+#### list of software came across or installed
+BTRFS for Windows <https://github.com/maharmstone/btrfs>
+ 
