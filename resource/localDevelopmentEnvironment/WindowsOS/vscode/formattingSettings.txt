@@ -1,0 +1,1 @@
+in C/C++ format settings in vscode use: "{ BasedOnStyle: LLVM, ColumnLimit: 0, PointerAlignment: Left, BinPackArguments: false, BinPackParameters: false, AllowAllParametersOfDeclarationOnNextLine: false}""
