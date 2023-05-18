@@ -215,7 +215,7 @@ localhost:8083      test.localhost
 ## NeoVim:
 
 -   install Operator Mono fonts
--   install NerdFonts.com icons
+-   install NerdFonts.com fonts (check github install script)
 -   install NvChad collection
 
 ### RadioTray:
@@ -325,9 +325,7 @@ Alternatives: - Qustodio - Cold Turkey
 ## other
 
 -   <https://ramensoftware.com/7-taskbar-numberer>
--
-
----
+-   ***
 
 # Setup Windows & WSL environment: ✔️
 
