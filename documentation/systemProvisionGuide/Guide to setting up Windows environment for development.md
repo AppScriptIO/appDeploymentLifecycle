@@ -218,6 +218,8 @@ localhost:8083      test.localhost
 -   install NerdFonts.com fonts (check github install script)
 -   install NvChad collection
 
+-   https://dev.to/nexxeln/my-developer-workflow-using-wsl-tmux-and-neovim-55f5
+
 ### RadioTray:
 
 -   Add recitation channels
